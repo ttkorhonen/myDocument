@@ -47,38 +47,23 @@ document discusses those security issues and then presents specific
 requirements for securing the APS Control System from unauthorized
 access.
 
-| A thorough Access Control System must accommodate the following
-  observations:The Advanced Photon Source Control System is based on
-  EPICS, the Experimental Phys
-| ics and Industrial Control System co-developed by Los Alamos National
-  Lab and Argonne
-| National Lab. The basic architecture of EPICS allows for intelligent
-  VME-based comput
-| ers (referred to as Input/Output Controllers or IOCs) to be placed
-  throughout the facility
-| close to the APS equipment to be monitored and controlled. These IOCs
-  are all intercon
-| nected to each other and to Unix-based workstations to allow
-  physicists, engineers and
-| technicians to monitor the operation of APS and to make changes to
-  operating parameters
-| from workstations in the control rooms or even their offices. The
-  interconnection of IOCs
-| and workstations is accomplished by widely accepted standards, namely
-  ethernet and
-| TCP/IP.
+A thorough Access Control System must accommodate the following
+observations:The Advanced Photon Source Control System is based on
+EPICS, the Experimental Phys ics and Industrial Control System co-developed by Los Alamos National
+Lab and Argonne National Lab. The basic architecture of EPICS allows for intelligent
+VME-based computers (referred to as Input/Output Controllers or IOCs) to be placed
+throughout the facility close to the APS equipment to be monitored and controlled. These IOCs
+are all interconnected to each other and to Unix-based workstations to allow
+physicists, engineers and technicians to monitor the operation of APS and to make changes to
+operating parameters from workstations in the control rooms or even their offices. The
+interconnection of IOCs and workstations is accomplished by widely accepted standards, namely
+ethernet and TCP/IP.
 
-| Extreme flexibility is provided by this "standards-based"
-  interconnection mechanism, al
-| lowing users from all over the world to have access to APS data.
-  However, significant se
-| curity issues arise when it is realized that access to APS data also
-  implies (currently) access
-| to APS parameters that can effect the operation of the machine. This
-  document discusses
-| those security issues and then presents specific requirements for
-  securing the APS Control
-| System from unauthorized access.
+Extreme flexibility is provided by this "standards-based" interconnection mechanism, allowing users from all over the world to have access to APS data.
+However, significant security issues arise when it is realized that access to APS data also
+implies (currently) access to APS parameters that can effect the operation of the machine. This
+document discusses those security issues and then presents specific requirements for
+securing the APS Control System from unauthorized access.
 
 -  Certain individuals may be authorized to control some parameters but
    not others (e.g. a LINAC technician should not be permitted to adjust
