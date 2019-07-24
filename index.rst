@@ -1,1 +1,1 @@
-:doc:`ChannelAccessSecurityRequirements.rst`
+:doc:`Channel Access Security Requirements /ChannelAccessSecurityRequirements.rst`
