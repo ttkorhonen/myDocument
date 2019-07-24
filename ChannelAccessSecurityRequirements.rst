@@ -5,18 +5,7 @@ Ned D. Arnold
 
 --------------
 
-Table of Contents
------------------
-
-`1.0 Abstract <casecsp.html#HDR1.0%20%20%20%202%207>`__
- 
-`2.0 Introduction <casecsp.html#HDR2.0%20%20%20%202%209>`__
-
-`3.0 IOC Access Control Requirements Overview <casecsp.html#HDR3.0%20%20%20%202%2010>`__
-
-`4.0 Functional Requirements <casecsp.html#HDR4.0%20%20%20%202%2012>`__
-
---------------
+.. contents:: Table of Contents
 
 1.0 Abstract
 ------------
