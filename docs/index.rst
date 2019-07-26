@@ -12,9 +12,3 @@ Welcome to EPICS pvAccess and Channel Access documentation!
 
    channelaccess/ChannelAccessSecurityRequirements
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
