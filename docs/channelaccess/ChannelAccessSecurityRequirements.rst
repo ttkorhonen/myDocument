@@ -5,7 +5,6 @@ Ned D. Arnold
 
 --------------
 
-.. contents:: Table of Contents
 
 1.0 Abstract
 ------------
