@@ -1,5 +1,5 @@
 ..    include:: <isonum.txt>
-.. sectnum::
+
 
 EPICS R3.15 Channel Access Reference Manual
 ===========================================
@@ -23,6 +23,7 @@ Copyright |copy| 2002 Berliner Speicherringgesellschaft für Synchrotronstrahlun
 EPICS BASE is distributed subject to a Software License Agreement found
 in the file LICENSE that is included with this distribution.
 
+.. sectnum::
 
 .. contents:: Table of Contents
 
