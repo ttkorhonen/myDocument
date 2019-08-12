@@ -25,8 +25,9 @@ in the file LICENSE that is included with this distribution.
 
 .. sectnum::
 
-.. contents:: Table of Contents
 
+.. contents:: Table of Contents
+ :depth: 2
 
 
 Configuration
