@@ -11,4 +11,5 @@ Welcome to EPICS pvAccess and Channel Access documentation!
    :caption: Channel Access:
 
    channelaccess/ChannelAccessSecurityRequirements
+   channelaccess/carefmanual
 
