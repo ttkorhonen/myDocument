@@ -7,8 +7,8 @@ Ned D. Arnold
 
 .. contents:: Table of Contents
 
-1.0 Abstract
-------------
+Abstract
+--------
 
 The Advanced Photon Source Control System is based on EPICS, the
 Experimental Physics and Industrial Control System co-developed by Los
@@ -63,8 +63,8 @@ parameter group (allowing LINAC parameters to have different rules than
 Storage Ring parameters). Four access levels are used to grant
 increasingly more access to those that are appropriately authorized.
 
-2.0 Introduction
-----------------
+Introduction
+------------
 
 The Experimental Physics and Industrial Control System (EPICS) allows
 for distributed control of very large facilities via software based on
@@ -94,16 +94,16 @@ operating system) are briefly discussed in this document to provide a
 unified presentation of the IOC security issue, but detailed
 requirements are presented in referenced documents.
 
-3.0 IOC Access Control Requirements Overview
---------------------------------------------
+IOC Access Control Requirements Overview
+----------------------------------------
 
 This section will introduce the requirements for the IOC Access Control
 implementation. The following discussion is not intended to present
 detailed functional requirements, but to present the general
 expectations of IOC Access Control.
 
-3.1 Restrict Access to the IOC Operating System
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Restrict Access to the IOC Operating System
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Access to the IOC operating system must be restricted to authorized
 individuals who are trained in vxWorks and have a legitimate need to be
@@ -128,8 +128,8 @@ challenge. Detailed requirements of the security requirements are <will
 be> discussed in the Functional Requirement "Access to The IOC Operating
 System".
 
-3.2 Prevent IOC Access from Outside the APS Control System Subnet
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Prevent IOC Access from Outside the APS Control System Subnet
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Since the Channel Access protocol is built upon the popular TCP/IP suite
 of protocols, the possibility exists for Channel Access clients to
@@ -151,8 +151,8 @@ and software utilities. Further details of the specific requirements are
 <will be> provided in the Functional Requirement "Channel Access Gateway
 to the Outside World".
 
-3.3 Restrict Channel Access Requests to "Authorized" Clients
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Restrict Channel Access Requests to "Authorized" Clients
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Channel access must restrict access to the IOC database parameters from
 all channel access clients except those specifically authorized to
@@ -209,8 +209,8 @@ database must be dynamically alterable by some appropriate
 administrative procedure. Ultimately, APS Operations will have overall
 control of the who, what, where, and when of IOC Access.
 
-3.4 Discourage a Sophisticated Saboteur
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Discourage a Sophisticated Saboteur
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The above requirements, if properly implemented, will discourage any
 inadvertent and/or direct attempt to interfere with normal APS
@@ -222,8 +222,8 @@ goals. There are no personnel safety issues involved, so the monumental
 task of implementing a system that can be guaranteed against even
 sophisticated saboteurs is not required for this application.
 
-4.0 Functional Requirements
----------------------------
+Functional Requirements
+-----------------------
 
 This section presents detailed requirements for Channel Access Security.
 Any discussions that imply a specific implementation are only
@@ -231,8 +231,8 @@ suggestions used to clarify the requirement and are not binding on the
 implementer as long as the requirement is met. Refer to Figure 2 for an
 illustration of the requirements being discussed.
 
-4.1 Enforcement of Channel Access Security
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Enforcement of Channel Access Security
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 All requests between a "channel access client" and a "channel access
 server" must be dependent on pre-defined security restrictions described
@@ -242,8 +242,8 @@ Access). Process Variable "links" within an IOC that do not use Channel
 Access are not subject to these pre-defined access rules (e.g. dbget,
 dbput, etc).
 
-4.2 Database Field Access Level
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Database Field Access Level
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Each field of a record type will have an "access level" defined to it at
 the time that the record type is defined (in xxxxRecord.ascii). "Access
@@ -254,8 +254,8 @@ permission to read or write from/to that particular field). Typically,
 higher access levels are more restrictive than lower access levels, but
 this is more of a convention than restraint, as will be seen later.
 
-4.3 Process Variable Groups
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Process Variable Groups
+~~~~~~~~~~~~~~~~~~~~~~~
 
 Process variables (unique instances of any record type) will be grouped
 into PV Groups where each process variable in that group requires
@@ -264,8 +264,8 @@ constraint on the number of PV Groups nor the number of process
 variables within a group. Any process variable can only be a member of
 one group.
 
-4.4 PV Group Access Rules
-~~~~~~~~~~~~~~~~~~~~~~~~~
+PV Group Access Rules
+~~~~~~~~~~~~~~~~~~~~~
 
 Each PV Group will have a set of rules for each access level. The rules
 will define the prerequisite conditions (who, what, when, from where)
@@ -299,8 +299,8 @@ Examples are provided below:
 
    ||, &&, !=, <, >, >=, <=, == , !
 
-4.5 User Access Groups [UAG]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+User Access Groups [UAG]
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 Groups of individual users can be defined and then referred to by a UAG
 name. For example, all authorized linac operators could be defined in a
@@ -313,8 +313,8 @@ mrk). For interactive channel access clients, provisions must be made to
 alter the current user (e.g. su nda) without requiring the client
 program to restart.
 
-4.6 Location Access Groups [LAG]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Location Access Groups [LAG]
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Location Access Groups define particular workstations (using the name of
 the workstation) which are allowed access, based on the access rules.
@@ -325,8 +325,8 @@ within a group. If a particular workstation is not included in any LAG,
 that workstation can only access database fields that have no LAG entry
 in its PV Group Access Rule.
 
-4.7 Process Variable [PV]
-~~~~~~~~~~~~~~~~~~~~~~~~~
+Process Variable [PV]
+~~~~~~~~~~~~~~~~~~~~~
 
 Process variables can be included in the PV Group Access Rules to
 implement access that is dependent on \\qreal-time\q status of the
@@ -336,8 +336,8 @@ effect within five seconds of the process variable changing to the new
 value. It is unacceptable to evaluate rules using process variables only
 at connection time.
 
-4.8 Configuration Changes
-~~~~~~~~~~~~~~~~~~~~~~~~~
+Configuration Changes
+~~~~~~~~~~~~~~~~~~~~~
 
 Configuration changes in the Channel Access Security System will only be
 done by authorized "Operations" personnel. A mechanism for altering the
