@@ -23,9 +23,6 @@ Copyright |copy| 2002 Berliner Speicherringgesellschaft für Synchrotronstrahlun
 EPICS BASE is distributed subject to a Software License Agreement found
 in the file LICENSE that is included with this distribution.
 
-.. sectnum::
- :depth: 2
-
 .. contents:: Table of Contents
  :depth: 2
 
