@@ -10,6 +10,7 @@ Welcome to EPICS pvAccess and Channel Access documentation!
    :maxdepth: 1
    :caption: Channel Access:
 
-   channelaccess/ChannelAccessSecurityRequirements
    channelaccess/carefmanual
+   channelaccess/ChannelAccessSecurityRequirements
+
 
