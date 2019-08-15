@@ -57,4 +57,4 @@ master_doc = 'index'
 html_theme_options = {
     'logo_only': False,
 }
-html_logo = "epics_logo_svg.svg"
+html_logo = "EPICS_logo_svg.svg"
