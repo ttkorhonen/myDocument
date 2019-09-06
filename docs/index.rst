@@ -7,14 +7,16 @@ Welcome to EPICS pvAccess and Channel Access documentation!
 ===========================================================================
 
 .. toctree::
+   :maxdepth: 2
+   :caption: General Documentation:
+
+   genericdocs/EPICS_Intro
+
+.. toctree::
    :maxdepth: 1
    :caption: Channel Access:
 
    channelaccess/carefmanual
    channelaccess/ChannelAccessSecurityRequirements
 
-.. toctree::
-   :maxdepth: 1
-   :caption: General Documentation:
 
-   genericdocs/EPICS_Intro
