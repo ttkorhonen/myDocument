@@ -13,7 +13,7 @@ typically expected from a distributed control system:
 
 -  Automatic sequencing of operations 
 
--  Mode and facility configuration control
+-  Facility mode and configuration control
 
 -  Management of common time across the facility
 
@@ -40,9 +40,9 @@ not bring the system down. For small installations it has to be possible
 to set up a control system without requiring complicated or expensive
 infrastructure components.
 
-For modern applications, management of data is getting more and more
-important. It shall be possible to store acquired operational data for
-long term and to retrieve it in the original form. EPICS provides the
+For modern applications, management of data is becoming increasingly important.
+It shall be possible to store acquired operational data for
+the long term and to retrieve it in the original form. EPICS provides the
 tools to achieve this and to tailor the data management to the needs of
 the facility.
 
@@ -53,21 +53,21 @@ to help other users with their issues and to discuss new ideas.
 System components
 ~~~~~~~~~~~~~~~~~
 
-Roughly speaking, the EPICS toolset enables creation of servers and
+Broadly speaking, the EPICS toolset enables creation of servers and
 client applications. Servers provide access to data, reading or writing,
 locally or over a network. Reading and writing is often done to and from
 hardware connected to physical components, however data can also be
 produced or used elsewhere. Physical I/O, however is the central task of
-any control system, including EPICS. The I/O server component of EPICS
-is called the Input/Output Controller, or IOC for short.
+any control system, including EPICS.
 
 Clients can display, store and manipulate the data. Client software
-ranges from (graphical) user interface tools to powerful services for
+ranges from (graphical and command line) user interface tools to powerful services for
 data management.
 
 The basic components of an EPICS-based control system are:
 
-**IOC** Almost any computing platform that can support EPICS basic
+**IOC**, the Input/Output Controller. This is the I/O server component of EPICS.
+Almost any computing platform that can support EPICS basic
 components like databases and network communication can be used
 as an IOC. One example is a regular desktop computer, other examples are
 systems based on real-time operating systems like vxWorks or RTEMS and
@@ -81,10 +81,10 @@ tools and data archiving. CWS can be desktop computer, a server machine
 or similar, and is usually running a “regular” (as opposed to real-time)
 operating system like Linux, Windows or MacOS.
 
-**LAN** Local Area Network. This is just a standard Ethernet-based
+**LAN** Local Area Network. This is just a standard Ethernet-based (or wireless)
 communication network that allows the IOCs and CWS’s to communicate.
 
-A simple EPICS control system can be composed of some IOCs and Client
+A simple EPICS control system can be composed of one or more IOCs and Client
 WorkStations that communicate over a LAN (Figure 1). Separation of
 clients and servers makes configuration of the systems easier and also
 makes the system more robust. Clients and servers can be added to and
@@ -96,20 +96,20 @@ Figure 1. A simple EPICS control system structure.
 
 In addition to these basic components of a “classical” EPICS control
 system, it is also possible to implement servers (aka services) for data
-that is not “process I/O” (real-time values from a controlled process)
+that are not “process I/O” (real-time values from a controlled process)
 or attached to hardware. These other services can for example provide
 configuration or calibration data, or computing services like particle
 beam modeling. Since all the services “speak” the same protocol and
-exchange the same data structures, the data source is transparent to the
+exchange the same type of data structures, the data source is transparent to the
 client software (i.e., you do not need to know in advance where the data
-comes from and how it is obtained.) In this sense, the IOC can be
-thought of as a special type of server that handles process data and
+comes from or how it is obtained.) In this sense, the IOC can be
+regarded as a special type of server that handles process data and
 connects to real field hardware (in many cases, but not necessarily.)
 
-EPICS software components Channel Access and pvAccess provide the
+The EPICS software components Channel Access (CA) and pvAccess (PVA) provide the
 protocols and structures that enable network transparent communication
 between client software running on a CWS and an arbitrary number of IOCs
-and other servers.
+and other servers. More details about CA and PVA are provided in later chapters.
 
 Basic Attributes
 ----------------
@@ -149,14 +149,14 @@ The basic attributes of EPICS are:
    interconnecting network and recover automatically when the network
    recovers from failure.
 
--  Process-variable based. In contrast to some other control system
+-  Process-variable based: In contrast to some other control system
    packages, EPICS does not model control system (I/O) devices as
    objects (as in object-oriented programming) but rather as data
    entities that describe a single aspect of the process or device under
    control, thus the name “process variable”, or “PV”. A typical PV can
-   be a temperature or (electric) current. This design is typical in
-   process control systems. The pros and cons of this design are shortly
-   discussed in the Appendix.
+   represent any one of various attributes such as temperature or (electric)
+   current. This design is typical in process control systems. The pros and
+   cons of this design are shortly discussed in the Appendix.
 
 IOC Software Components
 -----------------------
@@ -202,10 +202,10 @@ device) and has nothing to do with the more commonly known relational
 (aka SQL) databases.
 
 The database defines the functionality of the IOC: what process data it
-provides, how is the data handled and stored. The database contains an
-arbitrary number of records, each of which belongs to a specific record
+provides, how is the data handled and stored. The database can contain
+any number of records, each of which belongs to a specific record
 type. The record type defines the type of data that the record handles
-and a set of functions that define how the data is handled. Record
+and a set of functions that define how the data are handled. Record
 type-specific metadata, also known as “properties” is included in the
 records to configure and support the operation. For instance, an analog
 input (ai) record type supports reading in values from hardware devices
@@ -215,7 +215,7 @@ exceeded. EPICS supports a large and extensible set of record types,
 e.g. ai (Analog Input), ao (Analog Output), etc.
 
 The metadata, known as “fields” is used to configure the record’s
-behavior. There is a number of fields that are common to all record
+behavior. There are a number of fields that are common to all record
 types while some fields are specific to particular record types. Every
 record has a record name and every field has a field name. The record
 name must be unique across all IOCs that are attached to the same TCP/IP
@@ -224,7 +224,7 @@ subnet and to access its value and other fields.
 
 ::
 
-  record(ai, Cavity1:T) #type = ai, name = “Cavity1:T”
+  record("ai, Cavity1:T") #type = ai, name = “Cavity1:T”
   {
     field(DESC, “Cavity Temperature”) #description
     field(SCAN, “1 second”) #record update rate
@@ -246,8 +246,8 @@ Database records can be linked with each other. For example, records can
 retrieve input from other records, trigger other records to process,
 enable or disable records and so on.
 
-By linking together a combination of records, the EPICS database becomes
-a programming tool. Using this even very sophisticated functions can be
+By linking a combination of records together, the EPICS database becomes
+a programming tool. Using this, even very sophisticated functions can be
 achieved with the database. In addition, as this logic resides on the
 IOC, it is not dependent on any client software to work. By taking
 advantage of this, many client programs can be “thin” and just display
@@ -271,13 +271,13 @@ Database Scanning
 Database scanning is the mechanism to process a record. Processing means
 making the record perform its task, for instance reading an I/O channel,
 converting the read value to engineering units, attaching a timestamp to
-the value and checking the alarm limits. How data is handled when a
+the value or checking the alarm limits. How data are handled when a
 record is processed depends on the record type.
 
 Four basic types of record scanning are provided: Periodic, Event, I/O
 Event and Passive. All these methods can be mixed in an IOC.
 
--  **Periodic**: A request can be made to process a record periodically.
+-  **Periodic**: A record is processed periodically.
    A number of time intervals are supported, typically ranging from 10
    Hz to 0.01 Hz. Ranges are configurable to support higher and lower
    rates.
@@ -446,10 +446,10 @@ a call to db_post_event.
 Connection Management
 ^^^^^^^^^^^^^^^^^^^^^
 
-Each IOC provides a connection management service. When a Channel Access
+Each IOC provides a connection management service. If a Channel Access
 server fails (e.g. its IOC crashes) the client is notified and when a
-client fails (e.g. its task crashes) the server is notified. When a
-client fails, the server breaks the connection. When a server crashes,
+client fails (e.g. its task crashes) the server is notified. If a
+client fails, the server breaks the connection. If a server crashes,
 the client automatically re-establishes communication when the server
 restarts.
 
@@ -458,7 +458,7 @@ pvAccess
 
 pvAccess is a modern replacement and an alternative to Channel Access
 available in EPICS 7. PvAccess adds a number of capabilities to EPICS
-that augment the set of services that Channel Access provides. With
+that augment the set of services provided by Channel Access. With
 pvAccess, structured data can be transported with a high efficiency and
 is capable of handling big data sets; this has been achieved with a
 number of optimizations:
@@ -472,7 +472,7 @@ number of optimizations:
 -  Several under-the-hood optimizations in data manipulation have been
    made (reduce copying, etc.) In application testing pvAccess has been
    able to utilize 96-99% percent of the available theoretical bandwidth
-   of an 10 Gbit Ethernet link which is close to the limit of what is
+   of a 10 Gbit Ethernet link which is close to the limit of what is
    achievable in practice.
 
 Client Services
@@ -525,7 +525,7 @@ Search Server
 
 Like in Channel Access, **qsrv** waits for search messages. The server
 accepts all (UDP) search messages, checks to see if any of the process
-variables are located in this IOC, and, if any are found, replies to the
+variables are located in this IOC, and if any are found, replies to the
 sender with an “I have it” message.
 
 .. _connection-request-server-1:
@@ -560,17 +560,21 @@ these clients to communicate with multiple IOCs having differing sets of
 record types.
 
 Client Workstation Tools
-------------------------
+-------------------------
 
 EPICS offers a range of tools and services that are executed on the
 client workstations. These can be divided into two groups based on
-whether or not they use Channel Access. Channel Access tools are real
+whether or not they use Channel Access and/or pvAccess. CA/PVA tools are real
 time tools, i.e. they are used to monitor and control IOCs.
+These tools are not included in the EPICS "base" distribution and have to be
+downloaded separately. The tools are implemented in different languages and
+technologies and the users should select which tools are the best suited to
+their particular setup and infrastructure.
 
 Examples of CA/pvAccess Tools
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A large number of Channel Access tools have been developed. The
+A large number of CA/PVA tools have been developed. The
 following are some representative examples.
 
 -  CS-Studio: Control System Studio, an application bundle with many
@@ -595,7 +599,7 @@ following are some representative examples.
 
 -  Channel Finder (Indexing Service): A tool to manage (list, tag,
    categorize) the EPICS records in a system. This is a powerful tool to
-   manage and provide hierarchy and different viewpoints to the possibly
+   manage and provide hierarchy and different viewpoints to the potentially
    very large number of records. With this service, abstract views to
    the flat namespace of the records can be provided. For example,
    listing all vacuum pumps in the system, or horizontal position of the
@@ -629,6 +633,9 @@ References and further reading
 6. `Recent Advancements and Deployments of EPICS Version
    4 <http://epics-pvdata.sourceforge.net/talks/2015/ICALEPCS2015_WEA3O02_TALK.pdf>`__,
    Greg White et. al., ICALEPCS 2015, Melbourne, Australia.
+
+
+.. _appendix:
 
 Appendix: Objects vs Process Variables discussion
 -------------------------------------------------
@@ -678,12 +685,12 @@ removing the need of complicated workaround solutions.
    process variable. However, for this discussion it is sufficient to
    take the simpler approach to equate a record with a PV.
 
-.. |image0| image:: media/image1.png
+.. |image0| image:: media/Intro_SimpleSystem.png
    :width: 4.05012in
    :height: 2.72093in
-.. |image1| image:: media/image2.png
+.. |image1| image:: media/Intro_IOC_blockdiag.png
    :width: 5.41319in
    :height: 3.61736in
-.. |image2| image:: media/image3.png
+.. |image2| image:: media/Intro_RecordLinking.png
    :width: 6.69306in
    :height: 4.10093in
