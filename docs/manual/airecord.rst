@@ -28,7 +28,7 @@ The INP link field contains a database or channel access link or
 provides hardware address information that the device support uses to
 determine where the input data should come from. The format for the INP
 field value depends on the device support layer that is selected by the
-DTYP field. See :ref:`Address Specification <#address-specification>`__
+DTYP field. See `Address Specification <#address-specification>`__
 for a description of the various hardware address formats supported.
 
 Units Conversion
