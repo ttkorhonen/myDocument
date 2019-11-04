@@ -18,7 +18,7 @@ processed:
 The DTYP field selects which device support layer should be responsible
 for providing input data to the record. The ai device support layers
 provided by EPICS Base are documented in the `Device
-Support`_ section. External support
+Support <#device-support>`__ section. External support
 modules may provide additional device support for this record type. If
 not set explicitly, the DTYP value defaults to the first device support
 that is loaded for the record type, which will usually be the
@@ -28,7 +28,7 @@ The INP link field contains a database or channel access link or
 provides hardware address information that the device support uses to
 determine where the input data should come from. The format for the INP
 field value depends on the device support layer that is selected by the
-DTYP field. See `Address Specification`_
+DTYP field. See :ref:`Address Specification <#address-specification>`__
 for a description of the various hardware address formats supported.
 
 Units Conversion
