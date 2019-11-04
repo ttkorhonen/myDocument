@@ -20,3 +20,8 @@ Welcome to EPICS pvAccess and Channel Access documentation!
    channelaccess/ChannelAccessSecurityRequirements
 
 
+.. toctree::
+   :maxdepth: 2
+   manual/airecord
+
+
