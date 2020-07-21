@@ -118,7 +118,7 @@ The basic attributes of EPICS are:
 
 -  Tool Based: EPICS provides a set of interacting tools and components
    for creating a control system. This minimizes the need for
-   customer-specific coding and helps ensure uniform operator
+   customer-specific coding and helps to ensure uniform operator
    interfaces.
 
 -  Distributed: An arbitrary number of IOCs and CWSs can be supported.
