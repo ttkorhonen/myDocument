@@ -1,7 +1,5 @@
-.. container:: pod
-
-   .. rubric:: Analog Input Record (ai)
-      :name: Analog-Input-Record-ai
+Analog Input Record (ai)
+========================
 
    This record type is normally used to obtain an analog value from a
    hardware input and convert it to engineering units. The record
@@ -9,14 +7,14 @@
    smoothing, alarm limits, alarm filtering, and graphics and control
    limits.
 
-   .. rubric:: Parameter Fields
-      :name: Parameter-Fields
+Parameter Fields
+----------------
 
    The record-specific fields are described below, grouped by
    functionality.
 
-   .. rubric:: Input Specification
-      :name: Input-Specification
+Input Specification
+-------------------
 
    These fields control where the record will read data from when it is
    processed:
@@ -43,12 +41,10 @@
    INP field value depends on the device support layer that is selected
    by the DTYP field. See `Address Specification <....html>`__ for a
    description of the various hardware address formats supported.
+Units Conversion
+----------------
 
-   .. rubric:: Units Conversion
-      :name: Units-Conversion
-
-   These fields control if and how the raw input value gets converted
-   into engineering units:
+These fields control if and how the raw input value gets converted into engineering units:
 
       ===== =================== ========================================= === ======= ==== ===== =====
       Field Summary             Type                                      DCT Default Read Write CA PP
@@ -92,8 +88,8 @@
       appropriate scaling and offset factors and put them directly in
       ESLO and EOFF.
 
-   .. rubric:: Smoothing Filter
-      :name: Smoothing-Filter
+Smoothing Filter
+^^^^^^^^^^^^^^^^
 
    This filter is usually only used if the device support sets the RVAL
    field and the Units Conversion process is used. Device support that
@@ -119,8 +115,8 @@
 
    where T is the time between record processing.
 
-   .. rubric:: Undefined Check
-      :name: Undefined-Check
+Undefined Check
+^^^^^^^^^^^^^^^
 
    If after applying the smoothing filter the VAL field contains a NaN
    (Not-a-Number) value, the UDF field is set to a non-zero value,
@@ -133,8 +129,8 @@
       UDF   Undefined UCHAR Yes 1       Yes  Yes   Yes
       ===== ========= ===== === ======= ==== ===== =====
 
-   .. rubric:: Operator Display Parameters
-      :name: Operator-Display-Parameters
+Operator Display Parameters
+---------------------------
 
    These parameters are used to present meaningful data to the operator.
    They do not affect the functioning of the record at all.
@@ -164,8 +160,8 @@
       PREC  Display Precision    SHORT       Yes         Yes  Yes   No
       ===== ==================== =========== === ======= ==== ===== =====
 
-   .. rubric:: Alarm Limits
-      :name: Alarm-Limits
+Alarm Limits
+------------
 
    The user configures limit alarms by putting numerical values into the
    HIHI, HIGH, LOW and LOLO fields, and by setting the associated alarm
@@ -196,8 +192,8 @@
       LALM  Last Value Alarmed         DOUBLE                                        No          Yes  No    No
       ===== ========================== ============================================= === ======= ==== ===== =====
 
-   .. rubric:: Monitor Parameters
-      :name: Monitor-Parameters
+Monitor Parameters
+------------------
 
    These parameters are used to determine when to send monitors placed
    on the VAL field. The monitors are sent when the current value
@@ -223,8 +219,8 @@
       ORAW  Previous Raw Value  LONG   No          Yes  No    No
       ===== =================== ====== === ======= ==== ===== =====
 
-   .. rubric:: Simulation Mode
-      :name: Simulation-Mode
+Simulation Mode
+---------------
 
    The record provides several fields to support simulation of absent
    hardware. If the SIML field is set it is used to read a value into
@@ -256,9 +252,8 @@
       SVAL  Simulation Value         DOUBLE                                        No          Yes  Yes   No
       SIMS  Simulation Mode Severity MENU (`menuAlarmSevr <menuAlarmSevr.html>`__) Yes         Yes  Yes   No
       ===== ======================== ============================================= === ======= ==== ===== =====
-
-   .. rubric:: Device Support Interface
-      :name: Device-Support-Interface
+Device Support Interface
+------------------------
 
    The record requires device support to provide an entry table (dset)
    which defines the following members:
@@ -286,8 +281,8 @@
 
    The individual routines are described below.
 
-   .. rubric:: Device Support Routines
-      :name: Device-Support-Routines
+Device Support Routines
+-----------------------
 
    ::
 
