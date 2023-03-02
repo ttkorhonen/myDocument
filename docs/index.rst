@@ -25,5 +25,6 @@ Welcome to EPICS pvAccess and Channel Access documentation!
    :caption: Record Reference:
 
    manual/airecord
+   manual/aoRecord
 
 

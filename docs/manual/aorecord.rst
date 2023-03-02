@@ -21,6 +21,7 @@
 
       ===== ================= =============
       Index Identifier        Choice String
+      ===== ================= =============
       0     aoOIF_Full        Full
       1     aoOIF_Incremental Incremental
       ===== ================= =============
@@ -39,20 +40,12 @@
       +-------+-------+-------+-----+-------+------+-------+-------+
       | Field | Su    | Type  | DCT | De    | Read | Write | CA PP |
       |       | mmary |       |     | fault |      |       |       |
-      +-------+-------+-------+-----+-------+------+-------+-------+
+      +=======+=======+=======+=====+=======+======+=======+=======+
       | OMSL  | O     | MENU  | Yes |       | Yes  | Yes   | No    |
-      |       | utput | (`me  |     |       |      |       |       |
-      |       | Mode  | nuOms |     |       |      |       |       |
-      |       | S     | l <ht |     |       |      |       |       |
-      |       | elect | tps:/ |     |       |      |       |       |
-      |       |       | /epic |     |       |      |       |       |
-      |       |       | s.anl |     |       |      |       |       |
-      |       |       | .gov/ |     |       |      |       |       |
-      |       |       | base/ |     |       |      |       |       |
-      |       |       | R7-0/ |     |       |      |       |       |
-      |       |       | 7-doc |     |       |      |       |       |
-      |       |       | s/men |     |       |      |       |       |
-      |       |       | uOmsl |     |       |      |       |       |
+      |       | utput | (`men |     |       |      |       |       |
+      |       | Mode  | uOmsl |     |       |      |       |       |
+      |       | S     |  <men |     |       |      |       |       |
+      |       | elect | uOmsl |     |       |      |       |       |
       |       |       | .html |     |       |      |       |       |
       |       |       | >`__) |     |       |      |       |       |
       +-------+-------+-------+-----+-------+------+-------+-------+
@@ -145,19 +138,12 @@
       +-------+-------+-------+-----+-------+------+-------+-------+
       | Field | Su    | Type  | DCT | De    | Read | Write | CA PP |
       |       | mmary |       |     | fault |      |       |       |
-      +-------+-------+-------+-----+-------+------+-------+-------+
+      +=======+=======+=======+=====+=======+======+=======+=======+
       | LINR  | Lin   | MENU  | Yes |       | Yes  | Yes   | Yes   |
-      |       | eariz | (`men |     |       |      |       |       |
-      |       | ation | uConv |     |       |      |       |       |
-      |       |       | ert < |     |       |      |       |       |
-      |       |       | https |     |       |      |       |       |
-      |       |       | ://ep |     |       |      |       |       |
-      |       |       | ics.a |     |       |      |       |       |
-      |       |       | nl.go |     |       |      |       |       |
-      |       |       | v/bas |     |       |      |       |       |
-      |       |       | e/R7- |     |       |      |       |       |
-      |       |       | 0/7-d |     |       |      |       |       |
-      |       |       | ocs/m |     |       |      |       |       |
+      |       | eariz | (     |     |       |      |       |       |
+      |       | ation | `menu |     |       |      |       |       |
+      |       |       | Conve |     |       |      |       |       |
+      |       |       | rt <m |     |       |      |       |       |
       |       |       | enuCo |     |       |      |       |       |
       |       |       | nvert |     |       |      |       |       |
       |       |       | .html |     |       |      |       |       |
@@ -270,6 +256,7 @@
 
       ===== ==================== ======= === ======= ==== ===== =====
       Field Summary              Type    DCT Default Read Write CA PP
+      ===== ==================== ======= === ======= ==== ===== =====
       DTYP  Device Type          DEVICE  Yes         Yes  Yes   No
       OUT   Output Specification OUTLINK Yes         Yes  Yes   No
       ===== ==================== ======= === ======= ==== ===== =====
@@ -296,11 +283,12 @@
    record support routine is called.
 
    See `Fields Common to All Record
-   Types <https://epics.anl.gov/base/R7-0/7-docs/dbCommonRecord.html#Operator-Display-Parameters>`__
-   for more on the record name (NAME) and description (DESC) fields.
+   Types <dbCommonRecord.html#Operator-Display-Parameters>`__ for more
+   on the record name (NAME) and description (DESC) fields.
 
       ===== ==================== =========== === ======= ==== ===== =====
       Field Summary              Type        DCT Default Read Write CA PP
+      ===== ==================== =========== === ======= ==== ===== =====
       EGU   Engineering Units    STRING [16] Yes         Yes  Yes   No
       HOPR  High Operating Range DOUBLE      Yes         Yes  Yes   No
       LOPR  Low Operating Range  DOUBLE      Yes         Yes  Yes   No
@@ -322,18 +310,16 @@
    either NO_ALARM, MINOR, or MAJOR.
 
    See `Invalid Output Action
-   Fields <https://epics.anl.gov/base/R7-0/7-docs/dbCommonOutput.html#Invalid-Output-Action-Fields>`__
-   for more information on the IVOA and IVOV fields.
+   Fields <dbCommonOutput.html#Invalid-Output-Action-Fields>`__ for more
+   information on the IVOA and IVOV fields.
 
-   `Alarm
-   Fields <https://epics.anl.gov/base/R7-0/7-docs/dbCommonRecord.html#Alarm-Fields>`__
-   lists other fields related to a alarms that are common to all record
-   types.
+   `Alarm Fields <dbCommonRecord.html#Alarm-Fields>`__ lists other
+   fields related to a alarms that are common to all record types.
 
       +-------+-------+-------+-----+-------+------+-------+-------+
       | Field | Su    | Type  | DCT | De    | Read | Write | CA PP |
       |       | mmary |       |     | fault |      |       |       |
-      +-------+-------+-------+-----+-------+------+-------+-------+
+      +=======+=======+=======+=====+=======+======+=======+=======+
       | HIHI  | Hihi  | D     | Yes |       | Yes  | Yes   | Yes   |
       |       | Alarm | OUBLE |     |       |      |       |       |
       |       | Limit |       |     |       |      |       |       |
@@ -351,72 +337,40 @@
       |       | Limit |       |     |       |      |       |       |
       +-------+-------+-------+-----+-------+------+-------+-------+
       | HHSV  | Hihi  | MENU  | Yes |       | Yes  | Yes   | Yes   |
-      |       | Sev   | (`me  |     |       |      |       |       |
-      |       | erity | nuAla |     |       |      |       |       |
-      |       |       | rmSev |     |       |      |       |       |
-      |       |       | r <ht |     |       |      |       |       |
-      |       |       | tps:/ |     |       |      |       |       |
-      |       |       | /epic |     |       |      |       |       |
-      |       |       | s.anl |     |       |      |       |       |
-      |       |       | .gov/ |     |       |      |       |       |
-      |       |       | base/ |     |       |      |       |       |
-      |       |       | R7-0/ |     |       |      |       |       |
-      |       |       | 7-doc |     |       |      |       |       |
-      |       |       | s/men |     |       |      |       |       |
+      |       | Sev   | (`men |     |       |      |       |       |
+      |       | erity | uAlar |     |       |      |       |       |
+      |       |       | mSevr |     |       |      |       |       |
+      |       |       |  <men |     |       |      |       |       |
       |       |       | uAlar |     |       |      |       |       |
       |       |       | mSevr |     |       |      |       |       |
       |       |       | .html |     |       |      |       |       |
       |       |       | >`__) |     |       |      |       |       |
       +-------+-------+-------+-----+-------+------+-------+-------+
       | HSV   | High  | MENU  | Yes |       | Yes  | Yes   | Yes   |
-      |       | Sev   | (`me  |     |       |      |       |       |
-      |       | erity | nuAla |     |       |      |       |       |
-      |       |       | rmSev |     |       |      |       |       |
-      |       |       | r <ht |     |       |      |       |       |
-      |       |       | tps:/ |     |       |      |       |       |
-      |       |       | /epic |     |       |      |       |       |
-      |       |       | s.anl |     |       |      |       |       |
-      |       |       | .gov/ |     |       |      |       |       |
-      |       |       | base/ |     |       |      |       |       |
-      |       |       | R7-0/ |     |       |      |       |       |
-      |       |       | 7-doc |     |       |      |       |       |
-      |       |       | s/men |     |       |      |       |       |
+      |       | Sev   | (`men |     |       |      |       |       |
+      |       | erity | uAlar |     |       |      |       |       |
+      |       |       | mSevr |     |       |      |       |       |
+      |       |       |  <men |     |       |      |       |       |
       |       |       | uAlar |     |       |      |       |       |
       |       |       | mSevr |     |       |      |       |       |
       |       |       | .html |     |       |      |       |       |
       |       |       | >`__) |     |       |      |       |       |
       +-------+-------+-------+-----+-------+------+-------+-------+
       | LSV   | Low   | MENU  | Yes |       | Yes  | Yes   | Yes   |
-      |       | Sev   | (`me  |     |       |      |       |       |
-      |       | erity | nuAla |     |       |      |       |       |
-      |       |       | rmSev |     |       |      |       |       |
-      |       |       | r <ht |     |       |      |       |       |
-      |       |       | tps:/ |     |       |      |       |       |
-      |       |       | /epic |     |       |      |       |       |
-      |       |       | s.anl |     |       |      |       |       |
-      |       |       | .gov/ |     |       |      |       |       |
-      |       |       | base/ |     |       |      |       |       |
-      |       |       | R7-0/ |     |       |      |       |       |
-      |       |       | 7-doc |     |       |      |       |       |
-      |       |       | s/men |     |       |      |       |       |
+      |       | Sev   | (`men |     |       |      |       |       |
+      |       | erity | uAlar |     |       |      |       |       |
+      |       |       | mSevr |     |       |      |       |       |
+      |       |       |  <men |     |       |      |       |       |
       |       |       | uAlar |     |       |      |       |       |
       |       |       | mSevr |     |       |      |       |       |
       |       |       | .html |     |       |      |       |       |
       |       |       | >`__) |     |       |      |       |       |
       +-------+-------+-------+-----+-------+------+-------+-------+
       | LLSV  | Lolo  | MENU  | Yes |       | Yes  | Yes   | Yes   |
-      |       | Sev   | (`me  |     |       |      |       |       |
-      |       | erity | nuAla |     |       |      |       |       |
-      |       |       | rmSev |     |       |      |       |       |
-      |       |       | r <ht |     |       |      |       |       |
-      |       |       | tps:/ |     |       |      |       |       |
-      |       |       | /epic |     |       |      |       |       |
-      |       |       | s.anl |     |       |      |       |       |
-      |       |       | .gov/ |     |       |      |       |       |
-      |       |       | base/ |     |       |      |       |       |
-      |       |       | R7-0/ |     |       |      |       |       |
-      |       |       | 7-doc |     |       |      |       |       |
-      |       |       | s/men |     |       |      |       |       |
+      |       | Sev   | (`men |     |       |      |       |       |
+      |       | erity | uAlar |     |       |      |       |       |
+      |       |       | mSevr |     |       |      |       |       |
+      |       |       |  <men |     |       |      |       |       |
       |       |       | uAlar |     |       |      |       |       |
       |       |       | mSevr |     |       |      |       |       |
       |       |       | .html |     |       |      |       |       |
@@ -427,19 +381,11 @@
       |       | dband |       |     |       |      |       |       |
       +-------+-------+-------+-----+-------+------+-------+-------+
       | IVOA  | IN    | MENU  | Yes |       | Yes  | Yes   | No    |
-      |       | VALID | (`me  |     |       |      |       |       |
-      |       | o     | nuIvo |     |       |      |       |       |
-      |       | utput | a <ht |     |       |      |       |       |
-      |       | a     | tps:/ |     |       |      |       |       |
-      |       | ction | /epic |     |       |      |       |       |
-      |       |       | s.anl |     |       |      |       |       |
-      |       |       | .gov/ |     |       |      |       |       |
-      |       |       | base/ |     |       |      |       |       |
-      |       |       | R7-0/ |     |       |      |       |       |
-      |       |       | 7-doc |     |       |      |       |       |
-      |       |       | s/men |     |       |      |       |       |
-      |       |       | uIvoa |     |       |      |       |       |
-      |       |       | .html |     |       |      |       |       |
+      |       | VALID | (`men |     |       |      |       |       |
+      |       | o     | uIvoa |     |       |      |       |       |
+      |       | utput |  <men |     |       |      |       |       |
+      |       | a     | uIvoa |     |       |      |       |       |
+      |       | ction | .html |     |       |      |       |       |
       |       |       | >`__) |     |       |      |       |       |
       +-------+-------+-------+-----+-------+------+-------+-------+
       | IVOV  | IN    | D     | Yes |       | Yes  | Yes   | No    |
@@ -463,6 +409,7 @@
 
       ===== ================ ====== === ======= ==== ===== =====
       Field Summary          Type   DCT Default Read Write CA PP
+      ===== ================ ====== === ======= ==== ===== =====
       ADEL  Archive Deadband DOUBLE Yes         Yes  Yes   No
       MDEL  Monitor Deadband DOUBLE Yes         Yes  Yes   No
       ===== ================ ====== === ======= ==== ===== =====
@@ -500,6 +447,7 @@
 
       ===== =================== ======== === ======= ==== ===== =====
       Field Summary             Type     DCT Default Read Write CA PP
+      ===== =================== ======== === ======= ==== ===== =====
       ORAW  Previous Raw Value  LONG     No          Yes  No    No
       RBV   Readback Value      LONG     No          Yes  No    No
       ORBV  Prev Readback Value LONG     No          Yes  No    No
@@ -527,30 +475,22 @@
    simulation processing.
 
    See `Output Simulation
-   Fields <https://epics.anl.gov/base/R7-0/7-docs/dbCommonOutput.html#Output-Simulation-Fields>`__
-   for more information on simulation mode and its fields.
+   Fields <dbCommonOutput.html#Output-Simulation-Fields>`__ for more
+   information on simulation mode and its fields.
 
       +-------+-------+-------+-----+-------+------+-------+-------+
       | Field | Su    | Type  | DCT | De    | Read | Write | CA PP |
       |       | mmary |       |     | fault |      |       |       |
-      +-------+-------+-------+-----+-------+------+-------+-------+
+      +=======+=======+=======+=====+=======+======+=======+=======+
       | SIML  | Simul | I     | Yes |       | Yes  | Yes   | No    |
       |       | ation | NLINK |     |       |      |       |       |
       |       | Mode  |       |     |       |      |       |       |
       |       | Link  |       |     |       |      |       |       |
       +-------+-------+-------+-----+-------+------+-------+-------+
       | SIMM  | Simul | MENU  | No  |       | Yes  | Yes   | No    |
-      |       | ation | (`me  |     |       |      |       |       |
-      |       | Mode  | nuSim |     |       |      |       |       |
-      |       |       | m <ht |     |       |      |       |       |
-      |       |       | tps:/ |     |       |      |       |       |
-      |       |       | /epic |     |       |      |       |       |
-      |       |       | s.anl |     |       |      |       |       |
-      |       |       | .gov/ |     |       |      |       |       |
-      |       |       | base/ |     |       |      |       |       |
-      |       |       | R7-0/ |     |       |      |       |       |
-      |       |       | 7-doc |     |       |      |       |       |
-      |       |       | s/men |     |       |      |       |       |
+      |       | ation | (`men |     |       |      |       |       |
+      |       | Mode  | uSimm |     |       |      |       |       |
+      |       |       |  <men |     |       |      |       |       |
       |       |       | uSimm |     |       |      |       |       |
       |       |       | .html |     |       |      |       |       |
       |       |       | >`__) |     |       |      |       |       |
@@ -562,18 +502,10 @@
       |       | Link  |       |     |       |      |       |       |
       +-------+-------+-------+-----+-------+------+-------+-------+
       | SIMS  | Simul | MENU  | Yes |       | Yes  | Yes   | No    |
-      |       | ation | (`me  |     |       |      |       |       |
-      |       | Mode  | nuAla |     |       |      |       |       |
-      |       | Sev   | rmSev |     |       |      |       |       |
-      |       | erity | r <ht |     |       |      |       |       |
-      |       |       | tps:/ |     |       |      |       |       |
-      |       |       | /epic |     |       |      |       |       |
-      |       |       | s.anl |     |       |      |       |       |
-      |       |       | .gov/ |     |       |      |       |       |
-      |       |       | base/ |     |       |      |       |       |
-      |       |       | R7-0/ |     |       |      |       |       |
-      |       |       | 7-doc |     |       |      |       |       |
-      |       |       | s/men |     |       |      |       |       |
+      |       | ation | (`men |     |       |      |       |       |
+      |       | Mode  | uAlar |     |       |      |       |       |
+      |       | Sev   | mSevr |     |       |      |       |       |
+      |       | erity |  <men |     |       |      |       |       |
       |       |       | uAlar |     |       |      |       |       |
       |       |       | mSevr |     |       |      |       |       |
       |       |       | .html |     |       |      |       |       |
@@ -585,17 +517,9 @@
       |       | Delay |       |     |       |      |       |       |
       +-------+-------+-------+-----+-------+------+-------+-------+
       | SSCN  | Sim.  | MENU  | Yes | 65535 | Yes  | Yes   | No    |
-      |       | Mode  | (`me  |     |       |      |       |       |
-      |       | Scan  | nuSca |     |       |      |       |       |
-      |       |       | n <ht |     |       |      |       |       |
-      |       |       | tps:/ |     |       |      |       |       |
-      |       |       | /epic |     |       |      |       |       |
-      |       |       | s.anl |     |       |      |       |       |
-      |       |       | .gov/ |     |       |      |       |       |
-      |       |       | base/ |     |       |      |       |       |
-      |       |       | R7-0/ |     |       |      |       |       |
-      |       |       | 7-doc |     |       |      |       |       |
-      |       |       | s/men |     |       |      |       |       |
+      |       | Mode  | (`men |     |       |      |       |       |
+      |       | Scan  | uScan |     |       |      |       |       |
+      |       |       |  <men |     |       |      |       |       |
       |       |       | uScan |     |       |      |       |       |
       |       |       | .html |     |       |      |       |       |
       |       |       | >`__) |     |       |      |       |       |
