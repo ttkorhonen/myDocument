@@ -1,7 +1,5 @@
-.. container:: pod
-
-   .. rubric:: Analog Output Record (ao)
-      :name: analog-output-record-ao
+Analog Output Record (ao)
+=========================
 
    This record type is normally used to send an analog value to an
    output device, converting it from engineering units into an integer
@@ -10,11 +8,11 @@
    break-point conversion from engineering units, and graphics and
    control limits.
 
-   .. rubric:: Record-specific Menus
-      :name: record-specific-menus
+Record-specific Menus
+---------------------
 
-   .. rubric:: Menu aoOIF
-      :name: menu-aooif
+Menu aoOIF
+++++++++++
 
    The OIF field which uses this menu controls whether the record acts
    as an integrator (``Incremental``) or not (``Full``).
@@ -26,13 +24,13 @@
       1     aoOIF_Incremental Incremental
       ===== ================= =============
 
-   .. rubric:: Parameter Fields
-      :name: parameter-fields
+Parameter Fields
+----------------
 
    The record-specific fields are described below.
 
-   .. rubric:: Output Value Determination
-      :name: output-value-determination
+Output Value Determination
+++++++++++++++++++++++++++
 
    These fields control how the record determines the value to be output
    when it gets processed:
@@ -93,8 +91,8 @@
 
    The following steps are performed in order during record processing.
 
-   .. rubric:: Fetch Value, Integrate
-      :name: fetch-value-integrate
+Fetch Value, Integrate
+++++++++++++++++++++++
 
    The OMSL menu field is used to determine whether the DOL link and OIF
    menu fields should be used during processing or not:
@@ -107,15 +105,15 @@
       successfully, the record's previous output value PVAL is added to
       it.
 
-   .. rubric:: Drive Limits
-      :name: drive-limits
+Drive Limits
+++++++++++++
 
    The output value is now clipped to the range DRVL to DRVH inclusive,
    provided that DRVH > DRVL. The result is copied into both the VAL and
    PVAL fields.
 
-   .. rubric:: Limit Rate of Change
-      :name: limit-rate-of-change
+Limit Rate of Change
+++++++++++++++++++++
 
    If the OROC field is not zero, the VAL field is now adjusted so it is
    no more than OROC different to the previous output value given in
@@ -124,8 +122,8 @@
    copied into the OVAL field, which is used as the input to the
    following Units Conversion processing stage.
 
-   .. rubric:: Units Conversion
-      :name: units-conversion
+Units Conversion
+++++++++++++++++
 
    ...
 
@@ -187,8 +185,8 @@
       |       | ffset |       |     |       |      |       |       |
       +-------+-------+-------+-----+-------+------+-------+-------+
 
-   .. rubric:: Conversion Related Fields and the Conversion Process
-      :name: conversion-related-fields-and-the-conversion-process
+Conversion Related Fields and the Conversion Process
+----------------------------------------------------
 
    Except for analog outputs that use Soft Channel device support, the
    LINR field determines if a conversion is performed and which
@@ -238,8 +236,8 @@
    Records" <#Device-Support-For-Soft-Records>`__ below for more
    information.
 
-   .. rubric:: Output Specification
-      :name: output-specification
+Output Specification
+--------------------
 
    The analog output record sends its desired output to the address in
    the OUT field. For analog outputs that write their values to devices,
@@ -261,8 +259,8 @@
       OUT   Output Specification OUTLINK Yes         Yes  Yes   No
       ===== ==================== ======= === ======= ==== ===== =====
 
-   .. rubric:: Operator Display Parameters
-      :name: operator-display-parameters
+Operator Display Parameters
+---------------------------
 
    These parameters are used to present meaningful data to the operator.
    They display the value and other parameters of the analog output
@@ -297,8 +295,8 @@
       DESC  Descriptor           STRING [41] Yes         Yes  Yes   No
       ===== ==================== =========== === ======= ==== ===== =====
 
-   .. rubric:: Alarm Parameters
-      :name: alarm-parameters
+Alarm Parameters
+----------------
 
    The possible alarm conditions for analog outputs are the SCAN, READ,
    INVALID and limit alarms. The SCAN, READ, and INVALID alarms are
@@ -395,7 +393,7 @@
       |       | value |       |     |       |      |       |       |
       +-------+-------+-------+-----+-------+------+-------+-------+
 
-   .. rubric:: Monitor Parameters
+Monitor Parameters
       :name: monitor-parameters
 
    These parameters are used to specify deadbands for monitors on the
@@ -414,8 +412,8 @@
       MDEL  Monitor Deadband DOUBLE Yes         Yes  Yes   No
       ===== ================ ====== === ======= ==== ===== =====
 
-   .. rubric:: Run-time Parameters
-      :name: run-time-parameters
+Run-time Parameters
+-------------------
 
    These parameters are used by the run-time code for processing the
    analog output. They are not configurable. They represent the current
@@ -461,7 +459,7 @@
       OMOD  Was OVAL modified?  UCHAR    No          Yes  No    No
       ===== =================== ======== === ======= ==== ===== =====
 
-   .. rubric:: Simulation Mode Parameters
+Simulation Mode Parameters
       :name: simulation-mode-parameters
 
    The following fields are used to operate the record in simulation
@@ -525,11 +523,11 @@
       |       |       | __)   |     |       |      |       |       |
       +-------+-------+-------+-----+-------+------+-------+-------+
 
-   .. rubric:: Record Support
-      :name: record-support
+Record Support
+--------------
 
-   .. rubric:: Record Support Routines
-      :name: record-support-routines
+Record Support Routines
++++++++++++++++++++++++
 
    The following are the record support routines that would be of
    interest to an application developer. Other routines are the
@@ -599,8 +597,8 @@
           lower_warning_limit = LOW
           lower_alarm_limit = LOLO
 
-   .. rubric:: Record Processing
-      :name: record-processing
+Record Processing
+-----------------
 
    Routine process implements the following algorithm:
 
@@ -657,11 +655,11 @@
 
    7. Scan forward link if necessary, set PACT and INIT FALSE, and
    return.
-   .. rubric:: Device Support
-      :name: device-support
+Device Support
+--------------
 
-   .. rubric:: Fields Of Interest To Device Support
-      :name: fields-of-interest-to-device-support
+Fields Of Interest To Device Support
+++++++++++++++++++++++++++++++++++++
 
    Each analog output record must have an associated set of device
    support routines. The primary responsibility of the device support
@@ -679,8 +677,8 @@
    -  OVAL — Output Value, in Engineering units
    -  RVAL — Raw Output Value, after conversion
 
-   .. rubric:: Device Support routines
-      :name: device-support-routines
+Device Support routines
++++++++++++++++++++++++
 
    Device support consists of the following routines:
 
@@ -806,15 +804,15 @@
       Note that the record support sets EOFF to EGUL before calling this
       routine, which is a very common case (*RVAL_min* is zero).
 
-   .. rubric:: Device Support For Soft Records
-      :name: device-support-for-soft-records
+Device Support For Soft Records
++++++++++++++++++++++++++++++++
 
    Two soft device support modules Soft Channel and Raw Soft Channel are
    provided for output records not related to actual hardware devices.
    The OUT link type must be either a CONSTANT, DB_LINK, or CA_LINK.
 
-   .. rubric:: Soft Channel
-      :name: soft-channel
+Soft Channel
+++++++++++++
 
    This module writes the current value of OVAL.
 
@@ -825,8 +823,8 @@
    write_ao calls recGblPutLinkValue to write the current value of VAL.
    See Soft Output for details.
 
-   .. rubric:: Raw Soft Channel
-      :name: raw-soft-channel
+Raw Soft Channel
+++++++++++++++++
 
    This module is like the previous except that it writes the current
    value of RVAL.
