@@ -28,6 +28,7 @@ author = 'Timo Korhonen'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+   'linuxdoc.rstFlatTable',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
