@@ -37,22 +37,22 @@
    These fields control how the record determines the value to be output
    when it gets processed:
 
+      +-------+-----------+-------+-----+---------+------+-------+-------+
+      | Field | Summary   | Type  | DCT | Default | Read | Write | CA PP |
+      |       |           |       |     |         |      |       |       |
+      +=======+===========+=======+=====+=========+======+=======+=======+
+      | OMSL  | Output     | MENU  | Yes |        | Yes  | Yes   | No    |
+      |       |            | (`men |     |        |      |       |       |
+      |       | Mode       | uOmsl |     |        |      |       |       |
+      |       | Select     |  <men |     |        |      |       |       |
+      |       |            | uOmsl |     |        |      |       |       |
+      |       |            | .html |     |        |      |       |       |
+      |       |            | >`__) |     |        |      |       |       |
       +-------+-------+-------+-----+-------+------+-------+-------+
-      | Field | Su    | Type  | DCT | De    | Read | Write | CA PP |
-      |       | mmary |       |     | fault |      |       |       |
-      +=======+=======+=======+=====+=======+======+=======+=======+
-      | OMSL  | O     | MENU  | Yes |       | Yes  | Yes   | No    |
-      |       | utput | (`men |     |       |      |       |       |
-      |       | Mode  | uOmsl |     |       |      |       |       |
-      |       | S     |  <men |     |       |      |       |       |
-      |       | elect | uOmsl |     |       |      |       |       |
-      |       |       | .html |     |       |      |       |       |
-      |       |       | >`__) |     |       |      |       |       |
-      +-------+-------+-------+-----+-------+------+-------+-------+
-      | DOL   | De    | I     | Yes |       | Yes  | Yes   | No    |
-      |       | sired | NLINK |     |       |      |       |       |
-      |       | O     |       |     |       |      |       |       |
-      |       | utput |       |     |       |      |       |       |
+      | DOL   | Desired    | INLINK     | Yes |       | Yes  | Yes   | No    |
+      |       |  |  |     |       |      |       |       |
+      |       | Output     |       |     |       |      |       |       |
+      |       |  |       |     |       |      |       |       |
       |       | Link  |       |     |       |      |       |       |
       +-------+-------+-------+-----+-------+------+-------+-------+
       | OIF   | Out   | MENU  | Yes |       | Yes  | Yes   | No    |
@@ -62,32 +62,32 @@
       |       | ental | aoOIF |     |       |      |       |       |
       |       |       | >`__) |     |       |      |       |       |
       +-------+-------+-------+-----+-------+------+-------+-------+
-      | PVAL  | Pre   | D     | No  |       | Yes  | No    | No    |
-      |       | vious | OUBLE |     |       |      |       |       |
+      | PVAL  | Previous   | DOUBLE     | No  |       | Yes  | No    | No    |
+      |       |  |  |     |       |      |       |       |
       |       | value |       |     |       |      |       |       |
       +-------+-------+-------+-----+-------+------+-------+-------+
-      | DRVH  | Drive | D     | Yes |       | Yes  | Yes   | Yes   |
-      |       | High  | OUBLE |     |       |      |       |       |
+      | DRVH  | Drive | DOUBLE     | Yes |       | Yes  | Yes   | Yes   |
+      |       | High  |  |     |       |      |       |       |
       |       | Limit |       |     |       |      |       |       |
       +-------+-------+-------+-----+-------+------+-------+-------+
-      | DRVL  | Drive | D     | Yes |       | Yes  | Yes   | Yes   |
-      |       | Low   | OUBLE |     |       |      |       |       |
+      | DRVL  | Drive | DOUBLE     | Yes |       | Yes  | Yes   | Yes   |
+      |       | Low   |  |     |       |      |       |       |
       |       | Limit |       |     |       |      |       |       |
       +-------+-------+-------+-----+-------+------+-------+-------+
-      | VAL   | De    | D     | Yes |       | Yes  | Yes   | Yes   |
-      |       | sired | OUBLE |     |       |      |       |       |
-      |       | O     |       |     |       |      |       |       |
-      |       | utput |       |     |       |      |       |       |
+      | VAL   | Desired    | DOUBLE     | Yes |       | Yes  | Yes   | Yes   |
+      |       |  |  |     |       |      |       |       |
+      |       | Output     |       |     |       |      |       |       |
+      |       |  |       |     |       |      |       |       |
       +-------+-------+-------+-----+-------+------+-------+-------+
-      | OROC  | O     | D     | Yes |       | Yes  | Yes   | No    |
-      |       | utput | OUBLE |     |       |      |       |       |
+      | OROC  | Output     | DOUBLE     | Yes |       | Yes  | Yes   | No    |
+      |       |  |  |     |       |      |       |       |
       |       | Rate  |       |     |       |      |       |       |
       |       | of    |       |     |       |      |       |       |
-      |       | C     |       |     |       |      |       |       |
-      |       | hange |       |     |       |      |       |       |
+      |       | Change     |       |     |       |      |       |       |
+      |       |  |       |     |       |      |       |       |
       +-------+-------+-------+-----+-------+------+-------+-------+
-      | OVAL  | O     | D     | No  |       | Yes  | Yes   | No    |
-      |       | utput | OUBLE |     |       |      |       |       |
+      | OVAL  | Output     | DOUBLE     | No  |       | Yes  | Yes   | No    |
+      |       |  |  |     |       |      |       |       |
       |       | Value |       |     |       |      |       |       |
       +-------+-------+-------+-----+-------+------+-------+-------+
 
