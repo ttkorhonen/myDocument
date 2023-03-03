@@ -35,7 +35,7 @@ Output Value Determination
    These fields control how the record determines the value to be output
    when it gets processed:
 
-   .. list-table:: Output value determination
+.. list-table:: Output value determination
    :widths: 1 3 3 1 2 1 1 1
    :header-rows: 1
 
