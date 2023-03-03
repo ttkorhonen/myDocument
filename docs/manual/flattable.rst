@@ -1,4 +1,5 @@
-.. flat-table:: Spanning table cells
+.. list-table:: Spanning table cells
+   :widths: 20 20 20 20
    :header-rows: 2
 
    * - :rspan:`1` Col 1
