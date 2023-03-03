@@ -35,59 +35,91 @@ Output Value Determination
    These fields control how the record determines the value to be output
    when it gets processed:
 
-      +-------+------------+--------+-----+---------+------+-------+-------+
-      | Field | Summary    | Type   | DCT | Default | Read | Write | CA PP |
-      |       |            |        |     |         |      |       |       |
-      +=======+============+========+=====+=========+======+=======+=======+
-      | OMSL  | Output     | MENU   | Yes |         | Yes  | Yes   | No    |
-      |       |            | ( men  |     |         |      |       |       |
-      |       | Mode       | uOmsl  |     |         |      |       |       |
-      |       | Select     | men    |     |         |      |       |       |
-      |       |            | uOmsl  |     |         |      |       |       |
-      |       |            | .html  |     |         |      |       |       |
-      |       |            | __)    |     |         |      |       |       |
-      +-------+------------+--------+-----+---------+------+-------+-------+
-      | DOL   | Desired    | INLINK | Yes |         | Yes  | Yes   | No    |
-      |       |            |        |     |         |      |       |       |
-      |       | Output     |        |     |         |      |       |       |
-      |       |            |        |     |         |      |       |       |
-      |       | Link       |        |     |         |      |       |       |
-      +-------+------------+--------+-----+---------+------+-------+-------+
-      | OIF   | Out        | MENU   | Yes |         | Yes  | Yes   | No    |
-      |       | F          | ( aoO  |     |         |      |       |       |
-      |       | ull/I      | IF  #  |     |         |      |       |       |
-      |       | ncrem      | Menu-  |     |         |      |       |       |
-      |       | ental      | aoOIF  |     |         |      |       |       |
-      |       |            | __)    |     |         |      |       |       |
-      +-------+------------+--------+-----+---------+------+-------+-------+
-      | PVAL  | Previous   | DOUBLE | No  |         | Yes  | No    | No    |
-      |       |            |        |     |         |      |       |       |
-      |       | value      |        |     |         |      |       |       |
-      +-------+------------+--------+-----+---------+------+-------+-------+
-      | DRVH  | Drive      | DOUBLE | Yes |         | Yes  | Yes   | Yes   |
-      |       | High       |        |     |         |      |       |       |
-      |       | Limit      |        |     |         |      |       |       |
-      +-------+------------+--------+-----+---------+------+-------+-------+
-      | DRVL  | Drive      | DOUBLE | Yes |         | Yes  | Yes   | Yes   |
-      |       | Low        |        |     |         |      |       |       |
-      |       | Limit      |        |     |         |      |       |       |
-      +-------+------------+--------+-----+---------+------+-------+-------+
-      | VAL   | Desired    | DOUBLE | Yes |         | Yes  | Yes   | Yes   |
-      |       |            |        |     |         |      |       |       |
-      |       | Output     |        |     |         |      |       |       |
-      |       |            |        |     |         |      |       |       |
-      +-------+------------+--------+-----+---------+------+-------+-------+
-      | OROC  | Output     | DOUBLE | Yes |         | Yes  | Yes   | No    |
-      |       | Rate       |        |     |         |      |       |       |
-      |       | of         |        |     |         |      |       |       |
-      |       | Change     |        |     |         |      |       |       |
-      |       |            |        |     |         |      |       |       |
-      |       |            |        |     |         |      |       |       |
-      +-------+------------+--------+-----+---------+------+-------+-------+
-      | OVAL  | Output     | DOUBLE | No  |         | Yes  | Yes   | No    |
-      |       |            |        |     |         |      |       |       |
-      |       | Value      |        |     |         |      |       |       |
-      +-------+------------+--------+-----+---------+------+-------+-------+
+   .. list-table:: Output value determination
+   :widths: 1 3 3 1 2 1 1 1
+   :header-rows: 1
+
+   * - Field
+     - Summary
+     - Type
+     - DCT
+     - Default
+     - Read
+     - Write
+     - CA PP
+   * - OMSL
+     - Output mode select
+     - MENU
+     - Yes
+     -
+     - Yes
+     - Yes
+     - No
+   * - DOL
+     - Desired output link
+     - INLINK
+     - Yes
+     -
+     - Yes
+     - Yes
+     - No
+   * - OIF
+     - Out Full/Incremental
+     - MENU
+     - Yes
+     -
+     - Yes
+     - Yes
+     - No
+   * - PVAL
+     - Previous value
+     - DOUBLE
+     - No
+     -
+     - Yes
+     - No
+     - No
+   * - DRVH
+     - Drive High Limit
+     - DOUBLE
+     - Yes
+     -
+     - Yes
+     - Yes
+     - Yes
+   * - DRVL
+     - Drive Low Limit
+     - MENU
+     - Yes
+     -
+     - Yes
+     - Yes
+     - Yes
+   * - VAL
+     - Desired Output
+     - DOUBLE
+     - Yes
+     -
+     - Yes
+     - Yes
+     - Yes
+   * - OROC
+     - Output Rate of Change
+     - DOUBLE
+     - Yes
+     -
+     - Yes
+     - Yes
+     - No
+   * - OVAL
+     - Output Value
+     - DOUBLE
+     - No
+     -
+     - Yes
+     - Yes
+     - No
+
 
    The following steps are performed in order during record processing.
 
