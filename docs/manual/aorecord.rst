@@ -121,7 +121,8 @@ Output Value Determination
      - No
 
 
-   The following steps are performed in order during record processing.
+
+The following steps are performed in order during record processing.
 
 Fetch Value, Integrate
 ++++++++++++++++++++++
