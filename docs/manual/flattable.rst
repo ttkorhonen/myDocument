@@ -1,19 +1,13 @@
 .. list-table:: Spanning table cells
-   :widths: 20 20 20 20
-   :header-rows: 2
+   :widths: 25 25 25
+   :header-rows: 1
 
-   * - :rspan:`1` Col 1
-     - :rspan:`1` Col 2
-     - :rspan:`1` Col 3
-     - :cspan:`2` Col 4
-
-   * - Col 4a
-     - Col 4b
-     - Col 4c
-
-   * - 1
-     - 2
-     - 3
-     - 4a
-     - 4b
-     - 4c
+   * - Heading row 1, column 1
+     - Heading row 1, column 2
+     - Heading row 1, column 3
+   * - Row 1, column 1
+     -
+     - Row 1, column 3
+   * - Row 2, column 1
+     - Row 2, column 2
+     - Row 2, column 3
