@@ -1,4 +1,4 @@
-.. flat-table:: Spanning table cells\
+.. flat-table:: Spanning table cells
    :header-rows: 2
 
    * - :rspan:`1` Col 1
