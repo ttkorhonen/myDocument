@@ -1,13 +1,36 @@
 .. list-table:: Spanning table cells
-   :widths: 25 25 25
+   :widths: 1 3 3 1 2 1 1 1
    :header-rows: 1
 
-   * - Heading row 1, column 1
-     - Heading row 1, column 2
-     - Heading row 1, column 3
-   * - Row 1, column 1
+   * - Field
+     - Summary
+     - Type
+     - DCT
+     - Default
+     - Read
+     - Write
+     - CA PP
+   * - OMSL
+     - Output mode select
+     - MENU
+     - Yes
      -
-     - Row 1, column 3
-   * - Row 2, column 1
-     - Row 2, column 2
-     - Row 2, column 3
+     - Yes
+     - Yes
+     - No
+   * - DOL
+     - Desired output link
+     - INLINK
+     - Yes
+     -
+     - Yes
+     - Yes
+     - No
+   * - OIF
+     - Out Full/Incremental
+     - MENU
+     - Yes
+     -
+     - Yes
+     - Yes
+     - No
