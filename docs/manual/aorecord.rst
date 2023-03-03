@@ -35,7 +35,7 @@ Output Value Determination
    These fields control how the record determines the value to be output
    when it gets processed:
 
-.. list-table:: Output value determination
+.. list-table::
    :widths: 1 3 3 1 2 1 1 1
    :header-rows: 1
 
@@ -49,7 +49,7 @@ Output Value Determination
      - CA PP
    * - OMSL
      - Output mode select
-     - MENU
+     - MENU `menuOMSL <menuOMSL.html>`_
      - Yes
      -
      - Yes
@@ -65,7 +65,7 @@ Output Value Determination
      - No
    * - OIF
      - Out Full/Incremental
-     - MENU
+     - MENU `Menu aoOIF`_
      - Yes
      -
      - Yes
@@ -166,57 +166,92 @@ Units Conversion
    the address contained in the output link after it is adjusted by the
    values in the AOFF and ASLO fields.
 
-      +-------+-------+-------+-----+-------+------+-------+-------+
-      | Field | Su    | Type  | DCT | De    | Read | Write | CA PP |
-      |       | mmary |       |     | fault |      |       |       |
-      +=======+=======+=======+=====+=======+======+=======+=======+
-      | LINR  | Lin   | MENU  | Yes |       | Yes  | Yes   | Yes   |
-      |       | eariz | (     |     |       |      |       |       |
-      |       | ation | `menu |     |       |      |       |       |
-      |       |       | Conve |     |       |      |       |       |
-      |       |       | rt <m |     |       |      |       |       |
-      |       |       | enuCo |     |       |      |       |       |
-      |       |       | nvert |     |       |      |       |       |
-      |       |       | .html |     |       |      |       |       |
-      |       |       | >`__) |     |       |      |       |       |
-      +-------+-------+-------+-----+-------+------+-------+-------+
-      | RVAL  | Cu    | LONG  | No  |       | Yes  | Yes   | Yes   |
-      |       | rrent |       |     |       |      |       |       |
-      |       | Raw   |       |     |       |      |       |       |
-      |       | Value |       |     |       |      |       |       |
-      +-------+-------+-------+-----+-------+------+-------+-------+
-      | ROFF  | Raw   | ULONG | No  |       | Yes  | Yes   | Yes   |
-      |       | O     |       |     |       |      |       |       |
-      |       | ffset |       |     |       |      |       |       |
-      +-------+-------+-------+-----+-------+------+-------+-------+
-      | EGUF  | Eng   | D     | Yes |       | Yes  | Yes   | Yes   |
-      |       | Units | OUBLE |     |       |      |       |       |
-      |       | Full  |       |     |       |      |       |       |
-      +-------+-------+-------+-----+-------+------+-------+-------+
-      | EGUL  | Eng   | D     | Yes |       | Yes  | Yes   | Yes   |
-      |       | Units | OUBLE |     |       |      |       |       |
-      |       | Low   |       |     |       |      |       |       |
-      +-------+-------+-------+-----+-------+------+-------+-------+
-      | AOFF  | Adjus | D     | Yes |       | Yes  | Yes   | Yes   |
-      |       | tment | OUBLE |     |       |      |       |       |
-      |       | O     |       |     |       |      |       |       |
-      |       | ffset |       |     |       |      |       |       |
-      +-------+-------+-------+-----+-------+------+-------+-------+
-      | ASLO  | Adjus | D     | Yes |       | Yes  | Yes   | Yes   |
-      |       | tment | OUBLE |     |       |      |       |       |
-      |       | Slope |       |     |       |      |       |       |
-      +-------+-------+-------+-----+-------+------+-------+-------+
-      | ESLO  | EGU   | D     | Yes | 1     | Yes  | Yes   | Yes   |
-      |       | to    | OUBLE |     |       |      |       |       |
-      |       | Raw   |       |     |       |      |       |       |
-      |       | Slope |       |     |       |      |       |       |
-      +-------+-------+-------+-----+-------+------+-------+-------+
-      | EOFF  | EGU   | D     | Yes |       | Yes  | Yes   | Yes   |
-      |       | to    | OUBLE |     |       |      |       |       |
-      |       | Raw   |       |     |       |      |       |       |
-      |       | O     |       |     |       |      |       |       |
-      |       | ffset |       |     |       |      |       |       |
-      +-------+-------+-------+-----+-------+------+-------+-------+
+.. list-table::
+   :widths: 1 3 3 1 2 1 1 1
+   :header-rows: 1
+
+   * - Field
+     - Summary
+     - Type
+     - DCT
+     - Default
+     - Read
+     - Write
+     - CA PP
+   * - LINR
+     - Linearization
+     - MENU `menuConvert <menuConvert.html>`_
+     - Yes
+     -
+     - Yes
+     - Yes
+     - Yes
+   * - RVAL
+     - Current raw value
+     - LONG
+     - No
+     -
+     - Yes
+     - Yes
+     - Yes
+   * - ROFF
+     - Raw Offset
+     - ULONG
+     - No
+     -
+     - Yes
+     - Yes
+     - Yes
+   * - EGUF
+     - Eng Units Full
+     - DOUBLE
+     - Yes
+     -
+     - Yes
+     - Yes
+     - Yes
+   * - EGUL
+     - Eng Units Low
+     - DOUBLE
+     - Yes
+     -
+     - Yes
+     - Yes
+     - Yes
+   * - AOFF
+     - Adjustment Offset
+     - DOUBLE
+     - Yes
+     -
+     - Yes
+     - Yes
+     - Yes
+   * - ASLO
+     - Adjustment Slope
+     - DOUBLE
+     - Yes
+     -
+     - Yes
+     - Yes
+     - Yes
+   * - ESLO
+     - EGU to Raw Slope
+     - DOUBLE
+     - Yes
+     - 1
+     - Yes
+     - Yes
+     - Yes
+   * - EOFF
+     - EGU to Raw Offset
+     - DOUBLE
+     - Yes
+     -
+     - Yes
+     - Yes
+     - Yes
+
+
 
 Conversion Related Fields and the Conversion Process
 ----------------------------------------------------
@@ -347,84 +382,108 @@ Alarm Parameters
    `Alarm Fields <dbCommonRecord.html#Alarm-Fields>`__ lists other
    fields related to a alarms that are common to all record types.
 
-      +-------+-------+-------+-----+-------+------+-------+-------+
-      | Field | Su    | Type  | DCT | De    | Read | Write | CA PP |
-      |       | mmary |       |     | fault |      |       |       |
-      +=======+=======+=======+=====+=======+======+=======+=======+
-      | HIHI  | Hihi  | D     | Yes |       | Yes  | Yes   | Yes   |
-      |       | Alarm | OUBLE |     |       |      |       |       |
-      |       | Limit |       |     |       |      |       |       |
-      +-------+-------+-------+-----+-------+------+-------+-------+
-      | HIGH  | High  | D     | Yes |       | Yes  | Yes   | Yes   |
-      |       | Alarm | OUBLE |     |       |      |       |       |
-      |       | Limit |       |     |       |      |       |       |
-      +-------+-------+-------+-----+-------+------+-------+-------+
-      | LOW   | Low   | D     | Yes |       | Yes  | Yes   | Yes   |
-      |       | Alarm | OUBLE |     |       |      |       |       |
-      |       | Limit |       |     |       |      |       |       |
-      +-------+-------+-------+-----+-------+------+-------+-------+
-      | LOLO  | Lolo  | D     | Yes |       | Yes  | Yes   | Yes   |
-      |       | Alarm | OUBLE |     |       |      |       |       |
-      |       | Limit |       |     |       |      |       |       |
-      +-------+-------+-------+-----+-------+------+-------+-------+
-      | HHSV  | Hihi  | MENU  | Yes |       | Yes  | Yes   | Yes   |
-      |       | Sev   | ( men |     |       |      |       |       |
-      |       | erity | uAlar |     |       |      |       |       |
-      |       |       | mSevr |     |       |      |       |       |
-      |       |       | men   |     |       |      |       |       |
-      |       |       | uAlar |     |       |      |       |       |
-      |       |       | mSevr |     |       |      |       |       |
-      |       |       | .html |     |       |      |       |       |
-      |       |       | __)   |     |       |      |       |       |
-      +-------+-------+-------+-----+-------+------+-------+-------+
-      | HSV   | High  | MENU  | Yes |       | Yes  | Yes   | Yes   |
-      |       | Sev   | ( men |     |       |      |       |       |
-      |       | erity | uAlar |     |       |      |       |       |
-      |       |       | mSevr |     |       |      |       |       |
-      |       |       | men   |     |       |      |       |       |
-      |       |       | uAlar |     |       |      |       |       |
-      |       |       | mSevr |     |       |      |       |       |
-      |       |       | .html |     |       |      |       |       |
-      |       |       | __)   |     |       |      |       |       |
-      +-------+-------+-------+-----+-------+------+-------+-------+
-      | LSV   | Low   | MENU  | Yes |       | Yes  | Yes   | Yes   |
-      |       | Sev   | (men  |     |       |      |       |       |
-      |       | erity | uAlar |     |       |      |       |       |
-      |       |       | mSevr |     |       |      |       |       |
-      |       |       | men   |     |       |      |       |       |
-      |       |       | uAlar |     |       |      |       |       |
-      |       |       | mSevr |     |       |      |       |       |
-      |       |       | .html |     |       |      |       |       |
-      |       |       | __)   |     |       |      |       |       |
-      +-------+-------+-------+-----+-------+------+-------+-------+
-      | LLSV  | Lolo  | MENU  | Yes |       | Yes  | Yes   | Yes   |
-      |       | Sev   | men   |     |       |      |       |       |
-      |       | erity | uAlar |     |       |      |       |       |
-      |       |       | mSevr |     |       |      |       |       |
-      |       |       | men   |     |       |      |       |       |
-      |       |       | uAlar |     |       |      |       |       |
-      |       |       | mSevr |     |       |      |       |       |
-      |       |       | .html |     |       |      |       |       |
-      |       |       | __)   |     |       |      |       |       |
-      +-------+-------+-------+-----+-------+------+-------+-------+
-      | HYST  | Alarm | D     | Yes |       | Yes  | Yes   | No    |
-      |       | Dea   | OUBLE |     |       |      |       |       |
-      |       | dband |       |     |       |      |       |       |
-      +-------+-------+-------+-----+-------+------+-------+-------+
-      | IVOA  | IN    | MENU  | Yes |       | Yes  | Yes   | No    |
-      |       | VALID | men   |     |       |      |       |       |
-      |       | o     | uIvoa |     |       |      |       |       |
-      |       | utput | men   |     |       |      |       |       |
-      |       | a     | uIvoa |     |       |      |       |       |
-      |       | ction | .html |     |       |      |       |       |
-      |       |       | __)   |     |       |      |       |       |
-      +-------+-------+-------+-----+-------+------+-------+-------+
-      | IVOV  | IN    | D     | Yes |       | Yes  | Yes   | No    |
-      |       | VALID | OUBLE |     |       |      |       |       |
-      |       | o     |       |     |       |      |       |       |
-      |       | utput |       |     |       |      |       |       |
-      |       | value |       |     |       |      |       |       |
-      +-------+-------+-------+-----+-------+------+-------+-------+
+  .. list-table::
+   :widths: 1 3 3 1 2 1 1 1
+   :header-rows: 1
+
+   * - Field
+     - Summary
+     - Type
+     - DCT
+     - Default
+     - Read
+     - Write
+     - CA PP
+   * - HIHI
+     - Linearization
+     - DOUBLE
+     - Yes
+     -
+     - Yes
+     - Yes
+     - Yes
+   * - HIGH
+     - High Alarm Limit
+     - DOUBLE
+     - Yes
+     -
+     - Yes
+     - Yes
+     - Yes
+   * - LOW
+     - Low Alarm Limit
+     - DOUBLE
+     - Yes
+     -
+     - Yes
+     - Yes
+     - Yes
+   * - LOLO
+     - Lolo Alarm Limit
+     - DOUBLE
+     - Yes
+     -
+     - Yes
+     - Yes
+     - Yes
+   * - HHSV
+     - Hihi Severity
+     - MENU `menuAlarmSevr <menuAlarmSevr.html>`_
+     - Yes
+     -
+     - Yes
+     - Yes
+     - Yes
+   * - HSV
+     - High Severity
+     - MENU `menuAlarmSevr <menuAlarmSevr.html>`_
+     - Yes
+     -
+     - Yes
+     - Yes
+     - Yes
+   * - LSV
+     - Low Severity
+     - MENU `menuAlarmSevr <menuAlarmSevr.html>`_
+     - Yes
+     -
+     - Yes
+     - Yes
+     - Yes
+   * - LLSV
+     - LOLO Severity
+     - MENU `menuAlarmSevr <menuAlarmSevr.html>`_
+     - Yes
+     -
+     - Yes
+     - Yes
+     - Yes
+   * - HYST
+     - Alarm Deadband
+     - DOUBLE
+     - Yes
+     -
+     - Yes
+     - Yes
+     - Yes
+   * - IVOA
+     - Invalid Output Action
+     - MENU `menuIvoa <menuIvoa.html>`_
+     - Yes
+     -
+     - Yes
+     - Yes
+     - No
+   * - IVOV
+     - Invalid Output Value
+     - DOUBLE
+     - Yes
+     -
+     - Yes
+     - Yes
+     - No
+
+
 
 Monitor Parameters
       :name: monitor-parameters
@@ -509,52 +568,67 @@ Simulation Mode Parameters
    Fields <dbCommonOutput.html#Output-Simulation-Fields>`__ for more
    information on simulation mode and its fields.
 
-      +-------+-------+-------+-----+-------+------+-------+-------+
-      | Field | Su    | Type  | DCT | De    | Read | Write | CA PP |
-      |       | mmary |       |     | fault |      |       |       |
-      +=======+=======+=======+=====+=======+======+=======+=======+
-      | SIML  | Simul | I     | Yes |       | Yes  | Yes   | No    |
-      |       | ation | NLINK |     |       |      |       |       |
-      |       | Mode  |       |     |       |      |       |       |
-      |       | Link  |       |     |       |      |       |       |
-      +-------+-------+-------+-----+-------+------+-------+-------+
-      | SIMM  | Simul | MENU  | No  |       | Yes  | Yes   | No    |
-      |       | ation | men   |     |       |      |       |       |
-      |       | Mode  | uSimm |     |       |      |       |       |
-      |       |       | men   |     |       |      |       |       |
-      |       |       | uSimm |     |       |      |       |       |
-      |       |       | .html |     |       |      |       |       |
-      |       |       | __)   |     |       |      |       |       |
-      +-------+-------+-------+-----+-------+------+-------+-------+
-      | SIOL  | Simul | OU    | Yes |       | Yes  | Yes   | No    |
-      |       | ation | TLINK |     |       |      |       |       |
-      |       | O     |       |     |       |      |       |       |
-      |       | utput |       |     |       |      |       |       |
-      |       | Link  |       |     |       |      |       |       |
-      +-------+-------+-------+-----+-------+------+-------+-------+
-      | SIMS  | Simul | MENU  | Yes |       | Yes  | Yes   | No    |
-      |       | ation | men   |     |       |      |       |       |
-      |       | Mode  | uAlar |     |       |      |       |       |
-      |       | Sev   | mSevr |     |       |      |       |       |
-      |       | erity | men   |     |       |      |       |       |
-      |       |       | uAlar |     |       |      |       |       |
-      |       |       | mSevr |     |       |      |       |       |
-      |       |       | .html |     |       |      |       |       |
-      |       |       | __)   |     |       |      |       |       |
-      +-------+-------+-------+-----+-------+------+-------+-------+
-      | SDLY  | Sim.  | D     | Yes | -1.0  | Yes  | Yes   | No    |
-      |       | Mode  | OUBLE |     |       |      |       |       |
-      |       | Async |       |     |       |      |       |       |
-      |       | Delay |       |     |       |      |       |       |
-      +-------+-------+-------+-----+-------+------+-------+-------+
-      | SSCN  | Sim.  | MENU  | Yes | 65535 | Yes  | Yes   | No    |
-      |       | Mode  | men   |     |       |      |       |       |
-      |       | Scan  | uScan |     |       |      |       |       |
-      |       |       | men   |     |       |      |       |       |
-      |       |       | uScan |     |       |      |       |       |
-      |       |       | .html |     |       |      |       |       |
-      |       |       | __)   |     |       |      |       |       |
-      +-------+-------+-------+-----+-------+------+-------+-------+
+  .. list-table::
+   :widths: 1 4 2 1 2 1 1 1
+   :header-rows: 1
+
+   * - Field
+     - Summary
+     - Type
+     - DCT
+     - Default
+     - Read
+     - Write
+     - CA PP
+   * - SIML
+     - Simulation Mode Link
+     - INLINK
+     - Yes
+     -
+     - Yes
+     - Yes
+     - Yes
+   * - SIOL
+     - Simulation Output Link
+     - OUTLINK
+     - Yes
+     -
+     - Yes
+     - Yes
+     - Yes
+   * - SIMS
+     - Simulation Mode Severity
+     - MENU
+     - Yes
+     -
+     - Yes
+     - Yes
+     - Yes
+   * - SDLY
+     - Sim. Mode Async Delay
+     - DOUBLE
+     - Yes
+     - -1.0
+     - Yes
+     - Yes
+     - Yes
+   * - SSCN
+     - Sim. Mode Scan
+     - MENU
+     - Yes
+     -
+     - Yes
+     - Yes
+     - Yes
+   * - SIML
+     - Linearization
+     - DOUBLE
+     - Yes
+     -
+     - Yes
+     - Yes
+     - Yes
+
 
 Record Support
 --------------
