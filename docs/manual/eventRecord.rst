@@ -12,23 +12,23 @@ grouped by functionality.
 Scan Parameters
 
 The event record has the standard fields for specifying under what circumstances it will be processed.
-These fields are described in  href="dbCommonRecord.html#Scan-Fields" class="podlinkpod"
+These fields are described in dbCommonRecord.html#Scan-Fields
 
 Scan Fields.
 
-  ..list-table::
-  :widths: 1 3 3 1 2 1 1 1
-  :header-rows: 1
+.. list-table::
+   :widths: 1 3 3 1 2 1 1 1
+   :header-rows: 1
 
-  * - Field
-    - Summary
-    - Type
-    - DCT
-    - Default
-    - Read
-    - Write
-    - CA PP
-  * - SCAN
+   * - Field
+     - Summary
+     - Type
+     - DCT
+     - Default
+     - Read
+     - Write
+     - CA PP
+   * - SCAN
      - Scan Mechanism
      - MENU menuScan.html menuScan
      - Yes
@@ -36,7 +36,7 @@ Scan Fields.
      - Yes
      - Yes
      - No
-  *  - PHAS
+   * - PHAS
      - Scan Phase
      - SHORT
      - Yes
@@ -44,7 +44,7 @@ Scan Fields.
      - Yes
      - Yes
      - No
-  *  - EVNT
+   * - EVNT
      - Event Name
      - STRING [40]
      - Yes
@@ -52,7 +52,7 @@ Scan Fields.
      - Yes
      - Yes
      - No
-  *  - PRIO
+   * - PRIO
      - Scheduling Priority
      - MENU menuPriority.html menuPriority
      - Yes
@@ -60,7 +60,7 @@ Scan Fields.
      - Yes
      - Yes
      - No
-  *  - PINI
+   * - PINI
      - Process at iocInit
      - MENU menuPini.html menuPini
      - Yes
@@ -75,24 +75,25 @@ Event Number Parameters
 The VAL field contains the event number read by the device support routines. It is this number which is posted. For records that use <code>Soft Channel</code> device support, it can be configured before run-time or set via dbPuts.
 
 .. list-table::
- :widths: 1 3 3 1 2 1 1 1
- :header-rows: 1
- * - Field
-   - Summary
-   - Type
-   - DCT
-   - Default
-   - Read
-   - Write
-   - CA PP
- * - VAL
-   - Event Name To Post
-   - STRING [40]
-   - Yes
-   - &#38;nbsp;
-   - Yes
-   - Yes
-   - No
+  :widths: 1 3 3 1 2 1 1 1
+  :header-rows: 1
+
+  * - Field
+    - Summary
+    - Type
+    - DCT
+    - Default
+    - Read
+    - Write
+    - CA PP
+  * - VAL
+    - Event Name To Post
+    - STRING [40]
+    - Yes
+    - &#38;nbsp;
+    - Yes
+    - Yes
+    - No
 
 Input Specification
 
@@ -102,8 +103,8 @@ The device support routines use the address in this record to obtain input. For 
 For soft records, the INP field can be a constant, a database link, or a channel access link. For soft records, the DTYP field should specify <code>Soft Channel</code>.
 
 .. list-table::
- :widths: 1 3 3 1 2 1 1 1
- :header-rows: 1
+  :widths: 1 3 3 1 2 1 1 1
+  :header-rows: 1
  * - Field
    - Summary
    - Type

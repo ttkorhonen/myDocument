@@ -38,6 +38,7 @@ Output Value Determination
 .. list-table::
    :widths: 1 3 3 1 2 1 1 1
    :header-rows: 1
+   :class: tight-table
 
    * - Field
      - Summary
