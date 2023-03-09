@@ -60,5 +60,5 @@ html_theme_options = {
 html_logo = "EPICS_logo_svg.svg"
 
 def setup(app):
-   app.add_stylesheet('css/custom.css')
+   app.add_stylesheet('custom.css')
 
