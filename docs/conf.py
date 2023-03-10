@@ -28,8 +28,38 @@ author = 'Timo Korhonen'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    "hoverxref.extension",
+    "sphinx.ext.mathjax",
+    "sphinx.ext.ifconfig",
+    "sphinx.ext.graphviz",
+    "sphinx_copybutton",
+    "sphinx.ext.intersphinx",
 ]
+intersphinx_mapping = {
+    'how-tos': ('https://docs.epics-controls.org/projects/how-tos/en/latest', None),
+    'epics': ('https://docs.epics-controls.org/en/latest/', None),
+}
+hoverxref_role_types = {
+    'hoverxref': 'tooltip',
+    'ref': 'modal',
+    'confval': 'tooltip',
+    'mod': 'modal',
+    'class': 'modal',
+    'obj': 'tooltip',
+}
 
+hoverxref_intersphinx_types = {
+    'readthedocs': 'modal',
+    'sphinx': 'tooltip',
+}
+
+hoverxref_domains = [
+    'py',
+]
+hoverxref_intersphinx = [
+    'how-tos',
+    'epics',
+]
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
