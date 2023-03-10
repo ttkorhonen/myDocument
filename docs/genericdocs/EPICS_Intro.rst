@@ -165,7 +165,7 @@ An EPICS IOC at its core is a software entity or a process that contains
 the following software components:
 
 -  IOC Database: A memory resident database containing a set of named
-   :hoverxref:`records  <hoverxref:manual/aorecord>` of various types. The records host the process variables that
+   :doc:`records  <mydocs:manual/aorecord>` of various types. The records host the process variables that
    were mentioned above.
 
 -  Scanners: The mechanisms for processing records in the IOC database.
