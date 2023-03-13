@@ -333,7 +333,7 @@ record types do not need all functions):
    links, or from other IOCs via Channel Access (CA) or pvAccess (PVA)
    links.
 
--  **Conversion**: Conversion of raw input to engineering units or
+-  **Conversion**: :label:`Conversion <mydocs:ao-conversion-spec>` of raw input to engineering units or
    engineering units to raw output values.
 
 -  **Output**: Write outputs. Output can be directed, via device support
