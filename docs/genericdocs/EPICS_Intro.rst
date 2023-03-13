@@ -281,8 +281,7 @@ converting the read value to engineering units, attaching a timestamp to
 the value or checking the alarm limits. How data are handled when a
 record is processed depends on the record type.
 
-Four 
-:doc:`basic types  <mydocs:manual/menuScan>`basic types of record scanning are provided: Periodic, Event, I/O
+Four :doc:`basic types <mydocs:manual/menuScan>` of record scanning are provided: Periodic, Event, I/O
 Event and Passive. All these methods can be mixed in an IOC.
 
 -  **Periodic**: A record is processed periodically.
