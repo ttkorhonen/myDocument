@@ -334,7 +334,7 @@ record types do not need all functions):
    links.
 
 -  **Conversion**: 
-   :label:`Conversion <mydocs:ao-conversion-spec>` of raw input to engineering units or
+   :ref:`Conversion <mydocs:ao-conversion-spec>` of raw input to engineering units or
    engineering units to raw output values.
 
 -  **Output**: Write outputs. Output can be directed, via device support
