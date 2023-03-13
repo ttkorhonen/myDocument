@@ -55,6 +55,7 @@ hoverxref_intersphinx_types = {
 }
 
 hoverxref_domains = [
+    'std',
     'py',
 ]
 hoverxref_intersphinx = [
