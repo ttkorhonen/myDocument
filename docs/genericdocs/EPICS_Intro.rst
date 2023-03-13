@@ -238,7 +238,8 @@ subnet and to access its value and other fields.
     field(DTYP, “XYZ ADC”) #Device type
     field(INP, “#C1 S4”) #input channel
     field(PREC, “1”) #display precision
-    field(:doc:`LINR  <mydocs:manual/menuConvert>`, “typeJdegC”) #conversion spec
+    field(
+    :doc:`LINR  <mydocs:manual/menuConvert>`, “typeJdegC”) #conversion spec
     field(EGU, “degrees C”) #engineering units
     field(HOPR, “100”) #highest value on GUI
     field(LOPR, “0”) #lowest value on GUI
