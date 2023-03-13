@@ -50,7 +50,7 @@ Scan Fields.
      - Event Name
      - STRING [40]
      - Yes
-     - &#38;nbsp;
+     - 
      - Yes
      - Yes
      - No
@@ -58,7 +58,7 @@ Scan Fields.
      - Scheduling Priority
      - MENU menuPriority.html menuPriority
      - Yes
-     - &#38;nbsp;
+     -  
      - Yes
      - Yes
      - No
@@ -66,7 +66,7 @@ Scan Fields.
      - Process at iocInit
      - MENU menuPini.html menuPini
      - Yes
-     - &#38;nbsp;
+     -  
      - Yes
      - Yes
      - No
@@ -92,7 +92,7 @@ The VAL field contains the event number read by the device support routines. It 
     - Event Name To Post
     - STRING [40]
     - Yes
-    - &#38;nbsp;
+    -  
     - Yes
     - Yes
     - No
@@ -119,7 +119,7 @@ For soft records, the INP field can be a constant, a database link, or a channel
     - Input Specification
     - INLINK
     - Yes
-    - &#38;nbsp;
+    -  
     - Yes
     - Yes
     - No
@@ -127,7 +127,7 @@ For soft records, the INP field can be a constant, a database link, or a channel
     - Device Type
     - DEVICE
     - Yes
-    - &#38;nbsp;
+    - 
     - Yes
     - Yes
     - No
@@ -153,7 +153,7 @@ See  href="dbCommonRecord.html#Operator-Display-Parameters" Fields Common to All
     - Record Name
     - STRING [61]
     - No
-    - &#38;nbsp;
+    -  
     - Yes
     - No
     - No
@@ -161,7 +161,7 @@ See  href="dbCommonRecord.html#Operator-Display-Parameters" Fields Common to All
     - Descriptor
     - STRING [41]
     - Yes
-    - &#38;nbsp;
+    -  
     - Yes
     - Yes
     - No
@@ -192,7 +192,7 @@ The following fields are used to operate the event record in the simulation mode
    - Sim Input Specifctn
    - INLINK
    - Yes
-   - &#38;nbsp;
+   -  
    - Yes
    - Yes
    - No
@@ -200,7 +200,7 @@ The following fields are used to operate the event record in the simulation mode
    - Simulation Value
    - STRING [40]
    - No
-   - &#38;nbsp;
+   -  
    - Yes
    - Yes
    - No
@@ -208,7 +208,7 @@ The following fields are used to operate the event record in the simulation mode
    - Sim Mode Location
    - INLINK
    - Yes
-   - &#38;nbsp;
+   -  
    - Yes
    - Yes
    - No
@@ -216,7 +216,7 @@ The following fields are used to operate the event record in the simulation mode
    - Simulation Mode
    - MENU menuYesNo.html menuYesNo
    - No
-   - &#38;nbsp;
+   -  
    - Yes
    - Yes
    - No
@@ -224,7 +224,7 @@ The following fields are used to operate the event record in the simulation mode
    - Sim mode Alarm Svrty
    - MENU menuAlarmSevr.html menuAlarmSevr
    - Yes
-   - &#38;nbsp;
+   -  
    - Yes
    - Yes
    - No
@@ -283,7 +283,7 @@ Each record must have an associated set of device support routines. The device s
     - Record active
     - UCHAR
     - No
-    - &#38;nbsp;
+    -  
     - Yes
     - No
     - No
@@ -291,7 +291,7 @@ Each record must have an associated set of device support routines. The device s
     - Device Private
     - NOACCESS
     - No
-    - &#38;nbsp;
+    -  
     - No
     - No
     - No
@@ -307,7 +307,7 @@ Each record must have an associated set of device support routines. The device s
     - New Alarm Severity
     - MENU menuAlarmSevr.html menuAlarmSevr
     - No
-    - &#38;nbsp;
+    -  
     - Yes
     - No
     - No
@@ -315,7 +315,7 @@ Each record must have an associated set of device support routines. The device s
     - New Alarm Status
     - MENU menuAlarmStat.html menuAlarmStat
     - No
-    - &#38;nbsp;
+    -  
     - Yes
     - No
     - No
@@ -323,7 +323,7 @@ Each record must have an associated set of device support routines. The device s
     - Input Specification
     - INLINK
     - Yes
-    - &#38;nbsp;
+    -  
     - Yes
     - Yes
     - No
@@ -331,7 +331,7 @@ Each record must have an associated set of device support routines. The device s
     - Scheduling Priority
     - MENU menuPriority.html menuPriority
     - Yes
-    - &#38;nbsp;
+    -  
     - Yes
     - Yes
     - No
