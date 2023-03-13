@@ -1,3 +1,6 @@
+Scanning selection
+==================
+
 .. container:: pod
 
    .. rubric:: Menu menuScan

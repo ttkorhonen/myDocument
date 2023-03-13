@@ -1,3 +1,6 @@
+Yes or No
+=========
+
 .. container:: pod
 
    .. rubric:: Menu menuYesNo
@@ -12,7 +15,7 @@
    are not valid choices since they don't match the case of ``NO`` or
    ``YES``. The integer values ``0`` and ``1`` may often be used instead
    however, they are used as an index into the choices so ``0`` becomes
-   ``NO`` and ``1`` becomes <YES>.
+   ``NO`` and ``1`` becomes ``YES``.
 
       ===== ============ =============
       Index Identifier   Choice String

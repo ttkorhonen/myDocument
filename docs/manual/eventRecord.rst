@@ -1,10 +1,12 @@
 
 Event Record (event)
+====================
 
-he normal use for this record type is to post an event and/or process a forward link.
+The normal use for this record type is to post an event and/or process a forward link.
 Device support for this record can provide a hardware interrupt handler routine for I/O Event-scanned records.
 
 Parameter Fields
+----------------
 
 The record-specific fields are described below,
 grouped by functionality.
@@ -72,7 +74,7 @@ Scan Fields.
 
 Event Number Parameters
 
-The VAL field contains the event number read by the device support routines. It is this number which is posted. For records that use <code>Soft Channel</code> device support, it can be configured before run-time or set via dbPuts.
+The VAL field contains the event number read by the device support routines. It is this number which is posted. For records that use ``Soft Channel`` device support, it can be configured before run-time or set via dbPuts.
 
 .. list-table::
   :widths: 1 3 3 1 2 1 1 1
@@ -97,90 +99,87 @@ The VAL field contains the event number read by the device support routines. It 
 
 Input Specification
 
-The device support routines use the address in this record to obtain input. For records that provide an interrupt handler, the INP field should specify the address of the I/O card, and the DTYP field should specify a valid device support module. Be aware that the address format differs according to the card type used. See  href="https://docs.epics-controls.org/en/latest/guides/EPICS_Process_Database_Concepts.html#address-specification" class="podlinkurl"
->Address Specification for information on the format of hardware addresses and specifying links.
+The device support routines use the address in this record to obtain input. For records that provide an interrupt handler, the INP field should specify the address of the I/O card, and the DTYP field should specify a valid device support module. Be aware that the address format differs according to the card type used. See "https://docs.epics-controls.org/en/latest/guides/EPICS_Process_Database_Concepts.html#address-specification" Address Specification for information on the format of hardware addresses and specifying links.
 
-For soft records, the INP field can be a constant, a database link, or a channel access link. For soft records, the DTYP field should specify <code>Soft Channel</code>.
+For soft records, the INP field can be a constant, a database link, or a channel access link. For soft records, the DTYP field should specify ``Soft Channel``.
 
 .. list-table::
   :widths: 1 3 3 1 2 1 1 1
   :header-rows: 1
- * - Field
-   - Summary
-   - Type
-   - DCT
-   - Default
-   - Read
-   - Write
-   - CA PP
- * - INP
-   - Input Specification
-   - INLINK
-   - Yes
-   - &#38;nbsp;
-   - Yes
-   - Yes
-   - No
- * - DTYP
-   - Device Type
-   - DEVICE
-   - Yes
-   - &#38;nbsp;
-   - Yes
-   - Yes
-   - No
+  
+  * - Field
+    - Summary
+    - Type
+    - DCT
+    - Default
+    - Read
+    - Write
+    - CA PP
+  * - INP
+    - Input Specification
+    - INLINK
+    - Yes
+    - &#38;nbsp;
+    - Yes
+    - Yes
+    - No
+  * - DTYP
+    - Device Type
+    - DEVICE
+    - Yes
+    - &#38;nbsp;
+    - Yes
+    - Yes
+    - No
 
 
 Operator Display Parameters
 
-See  href="dbCommonRecord.html#Operator-Display-Parameters" class="podlinkpod"
->Fields Common to All Record Types for more on the record name (NAME) and description (DESC) fields.
+See  href="dbCommonRecord.html#Operator-Display-Parameters" Fields Common to All Record Types for more on the record name (NAME) and description (DESC) fields.
+
+.. list-table::
+  :widths: 1 3 3 1 2 1 1 1
+  :header-rows: 1
+ 
+  * - Field
+    - Summary
+    - Type
+    - DCT
+    - Default
+    - Read
+    - Write
+    - CA PP
+  * - NAME
+    - Record Name
+    - STRING [61]
+    - No
+    - &#38;nbsp;
+    - Yes
+    - No
+    - No
+  * - DESC
+    - Descriptor
+    - STRING [41]
+    - Yes
+    - &#38;nbsp;
+    - Yes
+    - Yes
+    - No
+
+Alarm Parameters
+++++++++++++++++
+
+The Event record has the alarm parameters common to all record types.  "Alarm-Fields" lists other fields related to alarms that are common to all record types.
+
+Simulation Mode Parameters
+++++++++++++++++++++++++++
+
+The following fields are used to operate the event record in the simulation mode. See "Fields-Common-to-Many-Record-Types" for more information on these fields.
 
 .. list-table::
  :widths: 1 3 3 1 2 1 1 1
  :header-rows: 1
- * - Field
-   - Summary
-   - Type
-   - DCT
-   - Default
-   - Read
-   - Write
-   - CA PP
- * - NAME
-   - Record Name
-   - STRING [61]
-   - No
-   - &#38;nbsp;
-   - Yes
-   - No
-   - No
- * - DESC
-   - Descriptor
-   - STRING [41]
-   - Yes
-   - &#38;nbsp;
-   - Yes
-   - Yes
-   - No
-
- class='u'
-name="Alarm-Parameters"
->Alarm Parameters
-
-The Event record has the alarm parameters common to all record types.  href="#Alarm-Fields" class="podlinkpod"
->&#34;Alarm Fields&#34; lists other fields related to alarms that are common to all record types.
-
- class='u'
-name="Simulation-Mode-Parameters"
->Simulation Mode Parameters
-
-The following fields are used to operate the event record in the simulation mode. See  href="#Fields-Common-to-Many-Record-Types" class="podlinkpod"
->&#34;Fields Common to Many Record Types&#34; for more information on these fields.
-
-.. list-table::
- :widths: 1 3 3 1 2 1 1 1
- :header-rows: 1
+ 
  * - Field
    - Summary
    - Type
@@ -231,8 +230,10 @@ The following fields are used to operate the event record in the simulation mode
    - No
 
 Record Support
+--------------
 
 Record Support Routines
++++++++++++++++++++++++
 
 init_record
 

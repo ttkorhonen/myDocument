@@ -1,3 +1,6 @@
+Process At Init
+===============
+
 .. container:: pod
 
    .. rubric:: Menu menuPini

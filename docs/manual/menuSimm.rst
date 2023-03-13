@@ -1,3 +1,6 @@
+Simulation Mode
+===============
+
 .. container:: pod
 
    .. rubric:: Menu menuSimm
