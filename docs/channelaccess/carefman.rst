@@ -1,4 +1,3 @@
---------------
 
 EPICS Channel Access 4.13.1 Reference Manual
 ============================================
@@ -23,7 +22,6 @@ Synchrotronstrahlung GmbH.
 EPICS BASE is distributed subject to a Software License Agreement found
 in the file LICENSE that is included with this distribution.
 
---------------
 
 Table of Contents
 -----------------
@@ -203,7 +201,6 @@ Deprecated Function Call Interface Function Index
 `Return Codes <#Return>`__
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
---------------
 
 .. _configuration-1:
 
@@ -435,7 +432,7 @@ C shell setenv EPICS_CA_ADDR_LIST "1.2.3.255 8.9.10.255:10000"
 ======= ======================================================
 
 Routing Restrictions on vxWorks Systems
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Frequently vxWorks systems boot by default with routes limiting access
 only to the local subnet. If a EPICS system is operating in a WAN
@@ -659,7 +656,7 @@ EPICS_CAS_IGNORE_ADDR_LIST      {N.N.N.N N.N.N.N:P ...} <none>
 =============================== ======================= ============================
 
 Server Port
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 The server configures its port number from the EPICS_CAS_SERVER_PORT
 environment variable if it is specified. Otherwise the
@@ -670,7 +667,7 @@ addresses and two servers sharing the same UDP port on the same
 host <#Unicast>`__.
 
 Server Beacons
-^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~
 
 The EPICS_CAS_BEACON_PERIOD parameter determines the server's beacon
 period and is specified in floating point seconds. The default is
@@ -699,7 +696,7 @@ EPICS_CA_ADDR_LIST. If EPICS_CAS_BEACON_PORT is not specified then
 beacons are sent to the port specified in EPICS_CA_REPEATER_PORT.
 
 Binding a Server to a Limited Set of Network Interfaces
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The parameter EPICS_CAS_INTF_ADDR_LIST allows a ca server to bind itself
 to, and therefore accept messages received by, a limited set of the
@@ -715,7 +712,7 @@ Prior to R3.15.4 CA servers would build the beacon address list using
 EPICS_CA_ADDR_LIST if EPICS_CAS_BEACON_ADDR_LIST was no set.
 
 Ignoring Process Variable Name Resolution Requests From Certain Hosts
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Name resolution requests originating from any of the IP addresses
 specified in the EPICS_CAS_IGNORE_ADDR_LIST parameter are not replied
@@ -723,7 +720,7 @@ to.\ *In R3.14 and previous releases the CA server employed by iocCore
 does not implement this feature.*
 
 Client Configuration that also Applies to Servers
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 See also `Configuring the Maximum Array Size <#Configurin1>`__.
 
@@ -761,7 +758,7 @@ these libraries on UNIX and Windows systems.
 +-------------+-------------+-------------+-------------+-------------+
 | .. containe | UNIX Object | UNIX        | Windows     | Windows     |
 | r::         |             | Shareable   | Object      | Shareable   |
-                                                                     
+
 +=============+=============+=============+=============+=============+
 | EPICS CA    | libca.a     | libca.so    | ca.lib      | ca.dll      |
 | Client      |             |             |             |             |
@@ -788,33 +785,33 @@ Some snapshots of typical build lines are shown below, but this
 information may be out of date.
 
 Typical Linux Build Options
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ``gcc -D_GNU_SOURCE -DOSITHREAD_USE_DEFAULT_STACK -D_X86_ -DUNIX -Dlinux -O3 -g -Wall -I. -I.. -I../../../../include/compiler/gcc -I../../../../include/os/Linux -I../../../../include -c ../acctst.c``
 
 ``g++ -o acctst -L/home/user/epics/base-3.15/lib/linux-x86 -Wl,-rpath,/home/user/epics/base-3.15/lib/linux-x86 acctstMain.o acctst.o -lca -lCom``
 
 Typical Solaris Build Options
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ``/opt/SUNWspro/bin/cc -c -D_POSIX_C_SOURCE=199506L -D_XOPEN_SOURCE=500 -DOSITHREAD_USE_DEFAULT_STACK -DUNIX -DSOLARIS=9 -mt -D__EXTENSIONS__ -Xc -v -xO4 -I. -I.. -I../../../../include/compiler/solStudio -I../../../../include/os/solaris -I../../../../include ../acctst.c``
 
 ``/opt/SUNWspro/bin/CC -o acctst -L/home/user/epics/base-3.15/lib/solaris-sparc/ -mt -z ignore -z combreloc -z lazyload -R/home/user/epics/base-3.15/lib/solaris-sparc acctstMain.o acctst.o -lca -lCom``
 
 Typical Windows Build Options
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ``cl -c /nologo /D__STDC__=0 /Ox /GL /W3 /w44355 /MD -I. -I.. -I..\\..\\..\\..\\include\\compiler\\msvc -I..\\..\\..\\..\\include\\os\\WIN32 -I..\\..\\..\\..\\include ..\\acctst.c``
 
 ``link -nologo /LTCG /incremental:no /opt:ref /release /version:3.15 -out:acctst.exe acctstMain.obj acctst.obj d:/user/epics/base-3.15/lib/win32-x86/ca.lib d:/user/epics/base-3.15/lib/win32-x86/Com.lib``
 
 Typical vxWorks Build Options
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ``/usr/local/vxWorks-6.9/gnu/4.3.3-vxworks-6.9/x86-linux2/bin/ccppc -DCPU=PPC32 -DvxWorks=vxWorks -O2 -Wall -mstrict-align -mlongcall -fno-builtin -include /usr/local/vxWorks-6.9/vxworks-6.9/target/h/vxWorks.h -I. -I../O.Common -I.. -I../../../../include/compiler/gcc -I../../../../include/os/vxWorks -I../../../../include -I/usr/local/vxWorks-6.9/vxworks-6.9/target/h -I/usr/local/vxWorks-6.9/vxworks-6.9/target/h/wrn/coreip -c ../acctst.c``
 
 Other Systems and Compilers
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Contributions gratefully accepted.
 
@@ -834,7 +831,7 @@ acctst
                     [test repetition count] [enable preemptive callback]
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Channel Access Client Library regression test.
 
@@ -858,7 +855,7 @@ catime
 .. _description-1:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Channel Access Client Library performance test.
 
@@ -878,7 +875,7 @@ casw
 .. _description-2:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 CA server "beacon anomaly" logging.
 
@@ -910,7 +907,7 @@ caEventRate
 .. _description-3:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Connect to the specified PV, subscribe for monitor updates the specified
 number of times (default once), and periodically log the current sampled
@@ -927,7 +924,7 @@ ca_test
 .. _description-4:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 If a value is specified it is written to the PV. Next, the current value
 of the PV is converted to each of the many external data type that can
@@ -951,12 +948,12 @@ caget
 .. _description-5:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Get and print value for PV(s).
 
 The values for one or multiple PVs are read and printed to stdout. The
-DBR_... format in which the data is read, the output format, and a
+DBR\_... format in which the data is read, the output format, and a
 number of details of how integer and float values are represented can be
 controlled using command line options.
 
@@ -1022,7 +1019,7 @@ in the output.
 |                                   | 15 DBR_GR_ENUM     24 DBR_CTRL_DO |
 |                                   | UBLE   34                         |
 |                                   | DBR_DOUBLE     6 DBR_TIME_SHORT   |
-|                                   | 15 DBR_GR_CHAR     25 DBR_STSACK_ |
+|                                   | 15 DBR_GR_CHAR     25 DBR_STSACK  |
 |                                   | STRING 37                         |
 |                                   | DBR_STS_STRING 7 DBR_TIME_FLOAT   |
 |                                   | 16 DBR_GR_LONG     26 DBR_CLASS_N |
@@ -1108,7 +1105,7 @@ camonitor
 .. _description-6:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Subscribe to and print value updates for PV(s).
 
@@ -1220,7 +1217,7 @@ caput
 .. _description-7:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Put value to a PV.
 
@@ -1272,7 +1269,7 @@ cainfo
 .. _description-8:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Get and print channel and connection information for PV(s).
 
@@ -1335,7 +1332,7 @@ bloaty                100000             Synchronous  float point, 64 bits 10.0 
 ===================== ================== ============ ==================== ========== ========= ==================================
 
 Bugs
-^^^^
+~~~~
 
 Not all of the options listed above have been tested recently.
 
@@ -1350,7 +1347,7 @@ When Clients Do Not Connect to Their Server
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Client and Server Broadcast Addresses Don't Match
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Verify that the broadcast addresses are identical on the server's host
 and on the client's host. This can be checked on UNIX with "netstat -i"
@@ -1364,7 +1361,7 @@ interface configuration. On most operating systems, when the host's IP
 address is configured, the host's IP subnet mask is also configured.
 
 Client Isn't Configured to Use the Server's Port
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Verify that the client and server are using the same UDP port. Check the
 server's port by running "netstat -a \| grep nnn" where nnn is the port
@@ -1372,7 +1369,7 @@ number configured in the client. If you do not set EPICS_CA_SERVER_PORT
 or EPICS_CAS_SERVER_PORT then the default port will be 5064.
 
 Unicast Addresses in the EPICS_CA_ADDR_LIST Does not Reliably Contact Servers Sharing the Same UDP Port on the Same Host
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Two servers can run on the same host with the same server port number,
 but there are restrictions. If the host has a modern IP kernel it is
@@ -1392,7 +1389,7 @@ search requests sent to unicast addresses (i.e. a single specific host's
 ip address).
 
 Client Does not See Server's Beacons
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Two conclusions deserve special emphasis. *First, if a client does not
 see the server's beacons, then it will use additional network and server
@@ -1413,7 +1410,7 @@ server's beacon address list was not modified so that its beacons are
 received by the client.
 
 A Server's IP Address Was Changed
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 When communication over a virtual circuit times out, then each channel
 attached to the circuit enters a disconnected state and the disconnect
@@ -1484,7 +1481,7 @@ documentation for configuration procedures which vary between OS and
 even between different versions of the same OS.
 
 Contributing Circumstances
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 -  The total number of connected clients is high. Each active socket
    requires dedicated mbufs for protocol control blocks, and for any
@@ -1527,7 +1524,7 @@ Contributing Circumstances
    diagnostic messages).
 
 Related Diagnostics
-^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~
 
 -  The EPICS command "casr [interest level]" displays information about
    the CA server and how many clients are connected.
@@ -2042,7 +2039,7 @@ Function Call Reference
 .. _description-9:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 This function, or ``ca_attach_context()``, should be called once from
 each thread prior to making any of the other Channel Access calls. If
@@ -2056,7 +2053,7 @@ threads are *not* allowed to join the CA context using
 that CA callbacks will be called preemptively from more than one thread.
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 ``SELECT``
    This argument specifies if preemptive invocation of callback
@@ -2085,7 +2082,7 @@ Arguments
    called ca_context_create) is executing within the CA client library.
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ECA_NORMAL - Normal successful completion
 
@@ -2095,7 +2092,7 @@ ECA_NOTTHREADED - Current thread is already a member of a non-preemptive
 callback CA context (possibly created implicitly)
 
 See Also
-^^^^^^^^
+~~~~~~~~
 
 ``ca_context_destroy()``
 
@@ -2110,7 +2107,7 @@ See Also
 .. _description-10:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Shut down the calling thread's channel access client context and free
 any resources allocated. Detach the calling thread from any CA client
@@ -2143,14 +2140,14 @@ deadlock may ensue. (See also ``ca_clear_channel()`` and
 .. _returns-1:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ECA_NORMAL - Normal successful completion
 
 .. _see-also-1:
 
 See Also
-^^^^^^^^
+~~~~~~~~
 
 ``ca_context_create()``
 
@@ -2168,7 +2165,7 @@ See Also
 .. _description-11:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 This function creates a CA channel. The CA client library will attempt
 to establish and maintain a virtual circuit between the caller's
@@ -2213,14 +2210,14 @@ guaranteed, and application programs may need to be prepared for a
 connected channel to enter a disconnected state at any time.
 
 Example
-^^^^^^^
+~~~~~~~
 
 See caExample.c in the example application created by makeBaseApp.pl.
 
 .. _arguments-1:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 ``PVNAME``
    A nil terminated process variable name string. EPICS process control
@@ -2276,7 +2273,7 @@ Arguments
 .. _returns-2:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ECA_NORMAL - Normal successful completion
 
@@ -2297,7 +2294,7 @@ ECA_ALLOCMEM - Unable to allocate memory
 .. _description-12:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Shutdown and reclaim resources associated with a channel created by
 ``ca_create_channel()``.
@@ -2321,7 +2318,7 @@ also ``ca_clear_subscription()``.)
 .. _arguments-2:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 ``CHID``
    Identifies the channel to delete.
@@ -2329,7 +2326,7 @@ Arguments
 .. _returns-3:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ECA_NORMAL - Normal successful completion
 
@@ -2356,7 +2353,7 @@ ECA_BADCHID - Corrupted CHID
 .. _description-13:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Write a scalar or array value to a process variable.
 
@@ -2388,7 +2385,7 @@ or ``ca_sg_block()`` are called. This allows several requests to be
 efficiently combined into one message.
 
 Description (IOC Database Specific)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 A CA put request causes the record to process if the record's SCAN field
 is set to passive, and the field being written has its process passive
@@ -2416,7 +2413,7 @@ written, but they do not cause the record to be processed.
 .. _arguments-3:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 ``TYPE``
    The external type of the supplied value to be written. Conversion
@@ -2445,7 +2442,7 @@ Arguments
 .. _returns-4:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ECA_NORMAL - Normal successful completion
 
@@ -2466,7 +2463,7 @@ ECA_DISCONN - Channel is disconnected
 .. _see-also-2:
 
 See Also
-^^^^^^^^
+~~~~~~~~
 
 ``ca_flush_io()``
 
@@ -2495,7 +2492,7 @@ See Also
 .. _description-14:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Read a scalar or array value from a process variable.
 
@@ -2524,7 +2521,7 @@ efficiently sent over the network in one message.
 .. _description-ioc-database-specific-1:
 
 Description (IOC Database Specific)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 A CA get or CA get callback request causes the record's field to be read
 immediately independent of whether the record is currently being
@@ -2534,14 +2531,14 @@ record to be processed when a CA get request is initiated.
 .. _example-1:
 
 Example
-^^^^^^^
+~~~~~~~
 
 See caExample.c in the example application created by makeBaseApp.pl.
 
 .. _arguments-4:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 ``TYPE``
    The external type of the user variable to return the value into.
@@ -2571,7 +2568,7 @@ Arguments
 .. _returns-5:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ECA_NORMAL - Normal successful completion
 
@@ -2592,7 +2589,7 @@ ECA_DISCONN - Channel is disconnected
 .. _see-also-3:
 
 See Also
-^^^^^^^^
+~~~~~~~~
 
 ``ca_pend_io()``
 
@@ -2615,7 +2612,7 @@ See Also
 .. _description-15:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Register a state change subscription and specify a callback function to
 be invoked whenever the process variable undergoes significant state
@@ -2658,14 +2655,14 @@ A better name for this function might have been ``ca_subscribe()``.
 .. _example-2:
 
 Example
-^^^^^^^
+~~~~~~~
 
 See caMonitor.c in the example application created by makeBaseApp.pl.
 
 .. _arguments-5:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 ``TYPE``
    The type of value presented to the callback function. Conversion will
@@ -2715,7 +2712,7 @@ Arguments
 .. _returns-6:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ECA_NORMAL - Normal successful completion
 
@@ -2730,7 +2727,7 @@ ECA_ADDFAIL - A local database event add failed
 .. _see-also-4:
 
 See Also
-^^^^^^^^
+~~~~~~~~
 
 ``ca_pend_event()``
 
@@ -2747,7 +2744,7 @@ See Also
 .. _description-16:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Cancel a subscription.
 
@@ -2766,7 +2763,7 @@ user's responsibility to ensure that this lock is not held when
 .. _arguments-6:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 EVID
    event id returned by ca_create_subscription()
@@ -2774,7 +2771,7 @@ EVID
 .. _returns-7:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ECA_NORMAL - Normal successful completion
 
@@ -2783,7 +2780,7 @@ ECA_BADCHID - Corrupted CHID
 .. _see-also-5:
 
 See Also
-^^^^^^^^
+~~~~~~~~
 
 ``ca_create_subscription()``
 
@@ -2798,7 +2795,7 @@ See Also
 .. _description-17:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 This function flushes the send buffer and then blocks until outstanding
 ``ca_get()`` requests complete, and until channels created specifying
@@ -2837,7 +2834,7 @@ background activities if none of the selected IO requests are pending.
 .. _arguments-7:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 TIMEOUT
    Specifies the time out interval. A ``TIMEOUT`` interval of zero
@@ -2846,7 +2843,7 @@ TIMEOUT
 .. _returns-8:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ECA_NORMAL - Normal successful completion
 
@@ -2858,7 +2855,7 @@ ECA_EVDISALLOW - Function inappropriate for use within an event handler
 .. _see-also-6:
 
 See Also
-^^^^^^^^
+~~~~~~~~
 
 ``ca_get()``
 
@@ -2877,7 +2874,7 @@ See Also
 .. _description-18:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 This function tests to see if all ``ca_get()`` requests are complete and
 channels created specifying a null connection callback function pointer
@@ -2889,7 +2886,7 @@ context initialization whichever is later.
 .. _returns-9:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ECA_IODONE - All IO operations completed
 
@@ -2898,7 +2895,7 @@ ECA_IOINPROGRESS - IO operations still in progress
 .. _see-also-7:
 
 See Also
-^^^^^^^^
+~~~~~~~~
 
 ``ca_pend_io()``
 
@@ -2914,7 +2911,7 @@ See Also
 .. _description-19:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 When ``ca_pend_event()`` is invoked the send buffer is flushed and CA
 background activity is processed for TIMEOUT seconds.
@@ -2937,7 +2934,7 @@ Code <#Thread>`__.
 .. _arguments-8:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 ``TIMEOUT``
    The duration to block in this routine in seconds. A timeout of zero
@@ -2946,7 +2943,7 @@ Arguments
 .. _returns-10:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ECA_TIMEOUT - The operation timed out
 
@@ -2964,7 +2961,7 @@ handler
 .. _description-20:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Flush outstanding IO requests to the server. This routine might be
 useful to users who need to flush requests prior to performing client
@@ -2976,7 +2973,7 @@ becomes full.
 .. _returns-11:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ECA_NORMAL - Normal successful completion
 
@@ -2992,7 +2989,7 @@ ECA_NORMAL - Normal successful completion
 .. _description-21:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Provide the error message character string associated with the supplied
 channel access error code and the supplied error context to diagnostics.
@@ -3007,7 +3004,7 @@ applications which do not wish to write code testing the status returned
 from each channel access call.
 
 Examples
-^^^^^^^^
+~~~~~~~~
 
 ::
 
@@ -3021,7 +3018,7 @@ provided for this purpose.
 .. _arguments-9:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 ``CA_STATUS``
    The status (error code) returned from a channel access function.
@@ -3033,7 +3030,7 @@ Arguments
 .. _returns-12:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ECA_NORMAL - Normal successful completion
 
@@ -3049,7 +3046,7 @@ ECA_NORMAL - Normal successful completion
 .. _description-22:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Replace the currently installed CA context global exception handler
 callback.
@@ -3070,7 +3067,7 @@ the addr field should not be used.
 .. _arguments-10:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 ``USERFUNC``
    Pointer to a user callback function to be executed when exceptions
@@ -3101,7 +3098,7 @@ Arguments
 .. _example-3:
 
 Example
-^^^^^^^
+~~~~~~~
 
 ::
 
@@ -3127,7 +3124,7 @@ Example
 .. _returns-13:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ECA_NORMAL - Normal successful completion
 
@@ -3142,7 +3139,7 @@ ECA_NORMAL - Normal successful completion
 .. _description-23:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 For use with the services provided by a file descriptor manager (IO
 multiplexor) such as "fdmgr.c". A file descriptor manager is often
@@ -3157,7 +3154,7 @@ disables file descriptor registration (this is the default).
 .. _arguments-11:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 USERFUNC
 
@@ -3180,7 +3177,7 @@ the file descriptor was closed.
 .. _example-4:
 
 Example
-^^^^^^^
+~~~~~~~
 
 ::
 
@@ -3196,7 +3193,7 @@ Example
    SEVCHK ( s, NULL );
 
 Comments
-^^^^^^^^
+~~~~~~~~
 
 When using this function it is advisable to call it only once prior to
 calling any other CA function, or once just after creating the CA
@@ -3217,7 +3214,7 @@ messages.
 .. _returns-14:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 "ECA_NORMAL - Normal successful completion
 
@@ -3233,7 +3230,7 @@ Returns
 .. _description-24:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Replace the default handler for formatted diagnostic message output. The
 default handler uses fprintf to send messages to 'stderr'.
@@ -3241,7 +3238,7 @@ default handler uses fprintf to send messages to 'stderr'.
 .. _arguments-12:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 ``PFUNC``
    A pointer to a user supplied callback handler to be invoked when CA
@@ -3251,7 +3248,7 @@ Arguments
 .. _examples-1:
 
 Examples
-^^^^^^^^
+~~~~~~~~
 
 ::
 
@@ -3266,7 +3263,7 @@ Examples
 .. _returns-15:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ECA_NORMAL - Normal successful completion
 
@@ -3283,7 +3280,7 @@ ECA_NORMAL - Normal successful completion
 .. _description-25:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Install or replace the access rights state change callback handler for
 the specified channel.
@@ -3302,7 +3299,7 @@ When a channel is created no access rights handler is installed.
 .. _arguments-13:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 ``CHAN``
    The channel identifier.
@@ -3328,7 +3325,7 @@ Arguments
 .. _returns-16:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ECA_NORMAL - Normal successful completion
 
@@ -3343,14 +3340,14 @@ ECA_NORMAL - Normal successful completion
 .. _description-26:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Return the native type in the server of the process variable.
 
 .. _arguments-14:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 ``CHID``
    channel identifier
@@ -3358,7 +3355,7 @@ Arguments
 .. _returns-17:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ``TYPE``
    The data type code will be a member of the set of DBF_XXXX in
@@ -3376,7 +3373,7 @@ Returns
 .. _description-27:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Return the maximum array element count in the server for the specified
 IO channel.
@@ -3384,7 +3381,7 @@ IO channel.
 .. _arguments-15:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 ``CHID``
    channel identifier
@@ -3392,7 +3389,7 @@ Arguments
 .. _returns-18:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ``COUNT``
    The maximum array element count in the server. An element count of
@@ -3409,14 +3406,14 @@ Returns
 .. _description-28:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Return the name provided when the supplied channel id was created.
 
 .. _arguments-16:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 ``CHID``
    channel identifier
@@ -3424,7 +3421,7 @@ Arguments
 .. _returns-19:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ``PNAME``
    The channel name. The string returned is valid as long as the channel
@@ -3441,7 +3438,7 @@ Returns
 .. _description-29:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Set a user private void pointer variable retained with each channel for
 use at the users discretion.
@@ -3449,7 +3446,7 @@ use at the users discretion.
 .. _arguments-17:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 CHID
    channel identifier
@@ -3468,7 +3465,7 @@ PUSER
 .. _description-30:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Return a user private void pointer variable retained with each channel
 for use at the users discretion.
@@ -3476,7 +3473,7 @@ for use at the users discretion.
 .. _arguments-18:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 ``CHID``
    channel identifier
@@ -3484,7 +3481,7 @@ Arguments
 .. _returns-20:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ``PUSER``
    user private pointer
@@ -3505,7 +3502,7 @@ Returns
 .. _description-31:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Returns an enumerated type indicating the current state of the specified
 IO channel.
@@ -3513,7 +3510,7 @@ IO channel.
 .. _arguments-19:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 ``CHID``
    channel identifier
@@ -3521,7 +3518,7 @@ Arguments
 .. _returns-21:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ``STATE``
    the connection state
@@ -3537,7 +3534,7 @@ Returns
 .. _description-32:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 return a message character string corresponding to a user specified CA
 status code.
@@ -3545,7 +3542,7 @@ status code.
 .. _arguments-20:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 ``STATUS``
    a CA status code
@@ -3553,7 +3550,7 @@ Arguments
 .. _returns-22:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ``STRING``
    the corresponding error message string
@@ -3569,7 +3566,7 @@ Returns
 .. _description-33:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Return a character string which contains the name of the host to which a
 channel is currently connected.
@@ -3577,7 +3574,7 @@ channel is currently connected.
 .. _arguments-21:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 ``CHID``
    the channel identifier
@@ -3585,7 +3582,7 @@ Arguments
 .. _returns-23:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ``STRING``
    The process variable server's host name. If the channel is
@@ -3602,7 +3599,7 @@ Returns
 .. _description-34:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Returns boolean true if the client currently has read access to the
 specified channel and boolean false otherwise.
@@ -3610,7 +3607,7 @@ specified channel and boolean false otherwise.
 .. _arguments-22:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 ``CHID``
    the channel identifier
@@ -3618,7 +3615,7 @@ Arguments
 .. _returns-24:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ``STRING``
    boolean true if the client currently has read access to the specified
@@ -3635,7 +3632,7 @@ Returns
 .. _description-35:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Returns boolean true if the client currently has write access to the
 specified channel and boolean false otherwise.
@@ -3643,7 +3640,7 @@ specified channel and boolean false otherwise.
 .. _arguments-23:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 ``CHID``
    the channel identifier
@@ -3651,7 +3648,7 @@ Arguments
 .. _returns-25:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ``STRING``
    boolean true if the client currently has write access to the
@@ -3668,14 +3665,14 @@ Returns
 .. _description-36:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 An array that returns the size in bytes for a DBR_XXXX type.
 
 .. _arguments-24:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 ``TYPE``
    The data type code. A member of the set of DBF_XXXX in db_access.h.
@@ -3683,7 +3680,7 @@ Arguments
 .. _returns-26:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ``SIZE``
    the size in bytes of the specified type
@@ -3699,7 +3696,7 @@ Returns
 .. _description-37:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Returns the size in bytes for a DBR_XXXX type with COUNT elements. If
 the DBR type is a structure then the value field is the last field in
@@ -3710,7 +3707,7 @@ array through a pointer to the value field.
 .. _arguments-25:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 ``TYPE``
    The data type
@@ -3721,7 +3718,7 @@ Arguments
 .. _returns-27:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ``SIZE``
    the size in bytes of the specified type with the specified number of
@@ -3738,7 +3735,7 @@ Returns
 .. _description-38:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 The array ``dbr_value_size[TYPE]`` returns the size in bytes for the
 value stored in a DBR_XXXX type. If the type is a structure the size of
@@ -3747,7 +3744,7 @@ the value field is returned otherwise the size of the type is returned.
 .. _arguments-26:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 ``TYPE``
    The data type code. A member of the set of DBF_XXXX in db_access.h.
@@ -3755,7 +3752,7 @@ Arguments
 .. _returns-28:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ``SIZE``
    the size in bytes of the value field if the type is a structure and
@@ -3772,7 +3769,7 @@ Returns
 .. _description-39:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Returns a constant null terminated string corresponding to the specified
 dbr type.
@@ -3780,7 +3777,7 @@ dbr type.
 .. _arguments-27:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 ``TYPE``
    The data type code. A member of the set of DBR_XXXX in db_access.h.
@@ -3788,7 +3785,7 @@ Arguments
 .. _returns-29:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ``STRING``
    The const string corresponding to the DBR_XXX type.
@@ -3803,7 +3800,7 @@ Returns
 .. _description-40:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 ::
 
@@ -3815,7 +3812,7 @@ that prints diagnostics to standard out.
 .. _examples-2:
 
 Examples
-^^^^^^^^
+~~~~~~~~
 
 ::
 
@@ -3826,7 +3823,7 @@ Examples
 .. _see-also-8:
 
 See Also
-^^^^^^^^
+~~~~~~~~
 
 ``ca_create_subscription()``
 
@@ -3841,7 +3838,7 @@ See Also
 .. _description-41:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Create a synchronous group and return an identifier for it.
 
@@ -3860,7 +3857,7 @@ operations outstanding within them at any given time.
 .. _arguments-28:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 ``PGID``
    Pointer to a user supplied CA_SYNC_GID.
@@ -3868,7 +3865,7 @@ Arguments
 .. _examples-3:
 
 Examples
-^^^^^^^^
+~~~~~~~~
 
 ::
 
@@ -3879,7 +3876,7 @@ Examples
 .. _returns-30:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ECA_NORMAL - Normal successful completion
 
@@ -3888,7 +3885,7 @@ ECA_ALLOCMEM - Failed, unable to allocate memory
 .. _see-also-9:
 
 See Also
-^^^^^^^^
+~~~~~~~~
 
 ``ca_sg_delete()``
 
@@ -3913,14 +3910,14 @@ See Also
 .. _description-42:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Deletes a synchronous group.
 
 .. _arguments-29:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 GID
    Identifier of the synchronous group to be deleted.
@@ -3928,7 +3925,7 @@ GID
 .. _examples-4:
 
 Examples
-^^^^^^^^
+~~~~~~~~
 
 ::
 
@@ -3939,7 +3936,7 @@ Examples
 .. _returns-31:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ECA_NORMAL - Normal successful completion
 
@@ -3948,7 +3945,7 @@ ECA_BADSYNCGRP - Invalid synchronous group
 .. _see-also-10:
 
 See Also
-^^^^^^^^
+~~~~~~~~
 
 ``ca_sg_create()``
 
@@ -3963,7 +3960,7 @@ See Also
 .. _description-43:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Flushes the send buffer and then waits until outstanding requests
 complete or the specified time out expires. At this time outstanding
@@ -3984,7 +3981,7 @@ process pending channel access background activity while it is waiting.
 .. _arguments-30:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 ``GID``
    Identifier of the synchronous group.
@@ -3995,7 +3992,7 @@ Arguments
 .. _examples-5:
 
 Examples
-^^^^^^^^
+~~~~~~~~
 
 ::
 
@@ -4006,7 +4003,7 @@ Examples
 .. _returns-32:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ECA_NORMAL - Normal successful completion
 
@@ -4019,7 +4016,7 @@ ECA_BADSYNCGRP - Invalid synchronous group
 .. _see-also-11:
 
 See Also
-^^^^^^^^
+~~~~~~~~
 
 ``ca_sg_test()``
 
@@ -4036,7 +4033,7 @@ See Also
 .. _description-44:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Test to see if all requests made within a synchronous group have
 completed.
@@ -4044,7 +4041,7 @@ completed.
 .. _arguments-31:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 ``GID``
    Identifier of the synchronous group.
@@ -4052,7 +4049,7 @@ Arguments
 .. _description-45:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Test to see if all requests made within a synchronous group have
 completed.
@@ -4060,7 +4057,7 @@ completed.
 .. _examples-6:
 
 Examples
-^^^^^^^^
+~~~~~~~~
 
 ::
 
@@ -4070,7 +4067,7 @@ Examples
 .. _returns-33:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ECA_IODONE - IO operations completed
 
@@ -4087,7 +4084,7 @@ ECA_IOINPROGRESS - Some IO operations still in progress
 .. _description-46:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Reset the number of outstanding requests within the specified
 synchronous group to zero so that ``ca_sg_test()`` will return
@@ -4097,7 +4094,7 @@ subsequent requests are made.
 .. _arguments-32:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 ``GID``
    Identifier of the synchronous group.
@@ -4105,7 +4102,7 @@ Arguments
 .. _examples-7:
 
 Examples
-^^^^^^^^
+~~~~~~~~
 
 ::
 
@@ -4115,7 +4112,7 @@ Examples
 .. _returns-34:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ECA_NORMAL - Normal successful completion
 
@@ -4149,7 +4146,7 @@ reissued.
 .. _arguments-33:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 ``GID``
    synchronous group identifier
@@ -4173,7 +4170,7 @@ Arguments
 .. _returns-35:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ECA_NORMAL - Normal successful completion
 
@@ -4192,7 +4189,7 @@ ECA_PUTFAIL - A local database put failed
 .. _see-also-12:
 
 See Also
-^^^^^^^^
+~~~~~~~~
 
 ``ca_flush_io()``
 
@@ -4211,7 +4208,7 @@ See Also
 .. _description-47:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Read a value from a channel and increment the outstanding request count
 of a synchronous group. The ``ca_sg_get()`` and ``ca_sg_array_get()``
@@ -4234,7 +4231,7 @@ reissued.
 .. _arguments-34:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 ``GID``
    Identifier of the synchronous group.
@@ -4258,7 +4255,7 @@ Arguments
 .. _returns-36:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ECA_NORMAL - Normal successful completion
 
@@ -4275,7 +4272,7 @@ ECA_GETFAIL - A local database get failed
 .. _see-also-13:
 
 See Also
-^^^^^^^^
+~~~~~~~~
 
 ``ca_pend_io()``
 
@@ -4295,7 +4292,7 @@ See Also
 .. _description-48:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Prints information about the client context including, at higher
 interest levels, status for each channel. Lacking a CA context pointer,
@@ -4305,7 +4302,7 @@ context.
 .. _arguments-35:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 ``CONTEXT``
    A pointer to the CA context to examine.
@@ -4322,7 +4319,7 @@ Arguments
 .. _description-49:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Returns a pointer to the current thread's CA context. If none then null
 is returned.
@@ -4330,7 +4327,7 @@ is returned.
 .. _see-also-14:
 
 See Also
-^^^^^^^^
+~~~~~~~~
 
 ``ca_attach_context()``
 
@@ -4350,7 +4347,7 @@ See Also
 .. _description-50:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 The calling thread becomes a member of the specified CA context. If
 ``ca_disable_preemptive_callback`` is specified when
@@ -4362,7 +4359,7 @@ called preemptively from more than one thread.
 .. _arguments-36:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 ``CONTEXT``
    A pointer to the CA context to join with.
@@ -4370,7 +4367,7 @@ Arguments
 .. _returns-37:
 
 Returns
-^^^^^^^
+~~~~~~~
 
 ECA_NORMAL - Normal successful completion
 
@@ -4381,7 +4378,7 @@ ECA_ISATTACHED - Thread already attached to a CA context
 .. _see-also-15:
 
 See Also
-^^^^^^^^
+~~~~~~~~
 
 ``ca_current_context()``
 
@@ -4401,7 +4398,7 @@ See Also
 .. _description-51:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Detach from any CA context currently attached to the calling thread.
 This does *not* cleanup or shutdown any currently attached CA context
@@ -4410,7 +4407,7 @@ This does *not* cleanup or shutdown any currently attached CA context
 .. _see-also-16:
 
 See Also
-^^^^^^^^
+~~~~~~~~
 
 ``ca_current_context()``
 
@@ -4423,7 +4420,6 @@ See Also
 ``ca_dump_dbr()``
 ~~~~~~~~~~~~~~~~~
 
-````
 
 ::
 
@@ -4432,14 +4428,14 @@ See Also
 .. _description-52:
 
 Description
-^^^^^^^^^^^
+~~~~~~~~~~~
 
 Dumps the specified dbr data type to standard out.
 
 .. _arguments-37:
 
 Arguments
-^^^^^^^^^
+~~~~~~~~~
 
 ``TYPE``
    The data type (from the DBR_XXX set described in db_access.h).

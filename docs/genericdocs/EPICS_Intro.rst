@@ -9,9 +9,11 @@ a set of software components and tools that can be used to create
 distributed control systems. EPICS provides capabilities that are
 typically expected from a distributed control system:
 
--  Remote control & monitoring of facility equipment 
+-  Remote control & monitoring of facility equipment
 
--  Automatic sequencing of operations 
+
+-  Automatic sequencing of operations
+
 
 -  Facility mode and configuration control
 
@@ -23,13 +25,18 @@ typically expected from a distributed control system:
 
 -  Modeling and simulation
 
--  Data conversions and filtering 
+-  Data conversions and filtering
 
--  Data acquisition including image data 
 
--  Data trending, archiving, retrieval and plotting 
+-  Data acquisition including image data
 
--  Data analysis  
+
+-  Data trending, archiving, retrieval and plotting
+
+
+-  Data analysis
+
+
 
 -  Access security (basic protection against unintended manipulation)
 
@@ -231,7 +238,7 @@ subnet and to access its value and other fields.
     field(DTYP, “XYZ ADC”) #Device type
     field(INP, “#C1 S4”) #input channel
     field(PREC, “1”) #display precision
-    field(LINR, “typeJdegC”) #conversion spec
+    field(:doc:`LINR  <mydocs:manual/menuConvert>`, “typeJdegC”) #conversion spec
     field(EGU, “degrees C”) #engineering units
     field(HOPR, “100”) #highest value on GUI
     field(LOPR, “0”) #lowest value on GUI
