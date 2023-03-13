@@ -238,8 +238,7 @@ subnet and to access its value and other fields.
     field(DTYP, “XYZ ADC”) #Device type
     field(INP, “#C1 S4”) #input channel
     field(PREC, “1”) #display precision
-    field(
-    :doc:`LINR  <mydocs:manual/menuConvert>`, “typeJdegC”) #conversion spec
+    field(LINR, “typeJdegC”) #conversion spec
     field(EGU, “degrees C”) #engineering units
     field(HOPR, “100”) #highest value on GUI
     field(LOPR, “0”) #lowest value on GUI
@@ -282,7 +281,8 @@ converting the read value to engineering units, attaching a timestamp to
 the value or checking the alarm limits. How data are handled when a
 record is processed depends on the record type.
 
-Four basic types of record scanning are provided: Periodic, Event, I/O
+Four 
+:doc:`basic types  <mydocs:menu-menuscan>`basic types of record scanning are provided: Periodic, Event, I/O
 Event and Passive. All these methods can be mixed in an IOC.
 
 -  **Periodic**: A record is processed periodically.
