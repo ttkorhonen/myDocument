@@ -89,6 +89,7 @@ master_doc = 'index'
 
 html_theme_options = {
     'logo_only': False,
+    'body_max_width': '70%',
 }
 html_logo = "EPICS_logo_svg.svg"
 html_css_files = [
