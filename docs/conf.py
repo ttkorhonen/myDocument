@@ -48,6 +48,7 @@ hoverxref_role_types = {
     'mod': 'modal',
     'class': 'modal',
     'obj': 'tooltip',
+    'doc' : 'modal',
 }
 
 hoverxref_intersphinx_types = {
