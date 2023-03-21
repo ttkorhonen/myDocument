@@ -39,6 +39,7 @@ intersphinx_mapping = {
     'how-tos': ('https://docs.epics-controls.org/projects/how-tos/en/latest', None),
     'epics': ('https://docs.epics-controls.org/en/latest/', None),
     'mydocs' : ('https://ca-security-spec.readthedocs.io/en/latest/',None),
+    'pvxs' : ('https://mdavidsaver.github.io/pvxs',None),
 }
 hoverxref_role_types = {
     'hoverxref': 'tooltip',
@@ -62,6 +63,7 @@ hoverxref_intersphinx = [
     'how-tos',
     'epics',
     'mydocs',
+    'pvxs'
 ]
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

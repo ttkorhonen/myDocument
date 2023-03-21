@@ -185,7 +185,7 @@ the following software components:
 
 -  Device Drivers: Device drivers handle access to external devices.
 
--  Channel Access or pvAccess: The interface between the external world
+-  Channel Access or pvAccess  :doc:`pvAccess <pvxs:overview>`: The interface between the external world
    and the IOC. It provides the interface for accessing the (EPICS)
    database via the network.
 
