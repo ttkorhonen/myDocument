@@ -24,6 +24,7 @@ Welcome to EPICS pvAccess and Channel Access documentation!
    :maxdepth: 2
    :caption: Record Reference:
 
+   manual/RecordRefMan
    manual/airecord
    manual/aorecord
 
