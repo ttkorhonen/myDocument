@@ -13,7 +13,7 @@ EPICS Record Reference Manual
    :maxdepth: 1
    :caption: Common features:
    
-   Process Database Concepts <:doc:`epics:guides/EPICS_Process_Database_Concepts`>
+   ../genericdocs/EPICS_Process_Database_Concepts
 
 .. toctree::
    :maxdepth: 2
