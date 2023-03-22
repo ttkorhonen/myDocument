@@ -1,10 +1,6 @@
 Analog Conversions
 ==================
 
-.. container:: pod
-
-   .. rubric:: Menu menuConvert
-      :name: menu-menuconvert
 
    This menu defines the standard analog conversions which are included
    with Base. IOC applications may add choices or replace the later
