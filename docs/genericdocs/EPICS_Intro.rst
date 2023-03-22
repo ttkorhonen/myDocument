@@ -219,7 +219,7 @@ input (ai) record type supports reading in values from hardware devices
 and converting them into desired (engineering) units. It also provides
 limits for expected operating ranges and alarms when these limits are
 exceeded. EPICS supports a large and extensible set of record types,
-e.g. ai (Analog Input), ao (Analog Output), etc.
+e.g. ai ( :doc:`Analog Input  <mydocs:manual/airecord>` ), ao ( :doc:`Analog Output  <mydocs:manual/aorecord>` ), etc.
 
 The metadata, known as “fields” is used to configure the record’s
 behavior. There are a number of fields that are common to all record
@@ -275,13 +275,13 @@ structures because they access the database via library routines.
 Database Scanning
 ~~~~~~~~~~~~~~~~~
 
-Database scanning is the mechanism to process a record. Processing means
+:doc:`Database scanning <mydocs:manual/menuScan>` is the mechanism to process a record. Processing means
 making the record perform its task, for instance reading an I/O channel,
 converting the read value to engineering units, attaching a timestamp to
 the value or checking the alarm limits. How data are handled when a
 record is processed depends on the record type.
 
-Four :doc:`basic types <mydocs:manual/menuScan>` of record scanning are provided: Periodic, Event, I/O
+Four basic types of record scanning are provided: Periodic, Event, I/O
 Event and Passive. All these methods can be mixed in an IOC.
 
 -  **Periodic**: A record is processed periodically.
