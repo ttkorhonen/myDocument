@@ -13,9 +13,9 @@ EPICS Record Reference Manual
    :maxdepth: 1
    :caption: Common features:
    
-   :doc:`Process Database Concepts  <epics:guides/EPICS_Process_Database_Concepts>`
-   channelaccess/carefman
-   channelaccess/ChannelAccessSecurityRequirements
+   :ref:`Process Database Concepts  <epics:guides/EPICS_Process_Database_Concepts>`
+   ../channelaccess/carefman
+   ../channelaccess/ChannelAccessSecurityRequirements
 
 
 .. toctree::
