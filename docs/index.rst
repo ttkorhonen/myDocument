@@ -14,18 +14,14 @@ Welcome to EPICS pvAccess and Channel Access documentation!
 
 .. toctree::
    :maxdepth: 1
+   :caption: Record Reference:
+
+   manual/RecordRefMan
+
+.. toctree::
+   :maxdepth: 1
    :caption: Channel Access:
 
    channelaccess/carefman
    channelaccess/ChannelAccessSecurityRequirements
-
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Record Reference:
-
-   manual/RecordRefMan
-   manual/airecord
-   manual/aorecord
-
 
