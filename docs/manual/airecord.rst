@@ -53,7 +53,7 @@ These fields control if and how the raw input value gets converted into engineer
       ROFF  Raw Offset          ULONG                                     No          Yes  Yes   Yes
       ASLO  Adjustment Slope    DOUBLE                                    Yes 1       Yes  Yes   Yes
       AOFF  Adjustment Offset   DOUBLE                                    Yes         Yes  Yes   Yes
-      LINR  Linearization       MENU (`:doc:`menuConvert <menuConvert>`)  Yes         Yes  Yes   Yes
+      LINR  Linearization       MENU ( :doc:`menuConvert <menuConvert>`)  Yes         Yes  Yes   Yes
       ESLO  Raw to EGU Slope    DOUBLE                                    Yes 1       Yes  Yes   Yes
       EOFF  Raw to EGU Offset   DOUBLE                                    Yes         Yes  Yes   Yes
       EGUL  Engineer Units Low  DOUBLE                                    Yes         Yes  Yes   Yes
