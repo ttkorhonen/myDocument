@@ -19,5 +19,4 @@ EPICS Record Reference Manual
    :maxdepth: 2
    :caption: Record Reference:
 
-   airecord
-   aorecord
+   SupportedRecords
