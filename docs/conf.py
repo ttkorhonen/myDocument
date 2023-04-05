@@ -41,6 +41,7 @@ intersphinx_mapping = {
     'mydocs' : ('https://ca-security-spec.readthedocs.io/en/latest/',None),
     'pvxs' : ('https://mdavidsaver.github.io/pvxs',None),
     'phoebus' : ('https://control-system-studio.readthedocs.io/en/latest/',None),
+    'sequencer' : ('https://www-csr.bessy.de/control/SoftDist/sequencer/',None),
 }
 hoverxref_role_types = {
     'hoverxref': 'tooltip',

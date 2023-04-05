@@ -599,7 +599,7 @@ following are some representative examples.
 -  Alarm Handler. General-purpose alarm handler driven by an alarm
    configuration file.
 
--  Sequencer: Runs in an IOC to implement state machines.
+-  :doc:`Sequencer <sequencer:Introduction>` : Runs in an IOC to implement state machines.
 
 -  Archiver Appliance: Collects data from EPICS servers (CA,PVA) and
    stores the data in time-series files so that they can be later
