@@ -84,7 +84,7 @@ or similar.
 
 **CWS**, or Client WorkStation. This is a computer that can run various
 EPICS tools and client applications; typical examples are 
-:ref:`user interface tools <phoebus:intro>` and data archiving. 
+:doc:`user interface tools <phoebus:intro>` and data archiving. 
 CWS can be desktop computer, a server machine
 or similar, and is usually running a “regular” (as opposed to real-time)
 operating system like Linux, Windows or MacOS.
@@ -586,7 +586,8 @@ Examples of CA/pvAccess Tools
 A large number of CA/PVA tools have been developed. The
 following are some representative examples.
 
--  CS-Studio: Control System Studio, an application bundle with many
+-  CS-Studio: 
+   :doc:`Control System Studio <phoebus:intro>`, an application bundle with many
    available plug-ins like display managers (BOY, Display Builder), data
    visualization/charting tools (DataBrowser), and so on.
 
