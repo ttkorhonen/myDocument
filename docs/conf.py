@@ -42,6 +42,8 @@ intersphinx_mapping = {
     'pvxs' : ('https://mdavidsaver.github.io/pvxs',None),
     'phoebus' : ('https://control-system-studio.readthedocs.io/en/latest/',None),
     'sequencer' : ('https://www-csr.bessy.de/control/SoftDist/sequencer/',None),
+    'asyn' : ('http://epics-modules.github.io/asyn/',None),
+    'channelfinder' : ('https://channelfinder.readthedocs.io/en/latest/',None),
 }
 hoverxref_role_types = {
     'hoverxref': 'tooltip',

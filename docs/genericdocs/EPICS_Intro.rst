@@ -357,7 +357,8 @@ record types do not need all functions):
 
 The same concept is applied to the device support and device driver
 modules: each support module has to define a set of functions so that it
-can become a part of the IOC software.
+can become a part of the IOC software. 
+:doc:` Asyn Driver <asyn:index>` is a very commonly used API to write device support modules.
 
 Database Monitors
 ~~~~~~~~~~~~~~~~~
@@ -607,7 +608,7 @@ following are some representative examples.
    performance of the “machine”, i.e., the device or facility under
    control.
 
--  Channel Finder (Indexing Service): A tool to manage (list, tag,
+-  :doc:`Channel Finder (Indexing Service) <channelfinder:overview>` : A tool to manage (list, tag,
    categorize) the EPICS records in a system. This is a powerful tool to
    manage and provide hierarchy and different viewpoints to the potentially
    very large number of records. With this service, abstract views to
