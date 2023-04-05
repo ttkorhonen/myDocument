@@ -40,6 +40,7 @@ intersphinx_mapping = {
     'epics': ('https://docs.epics-controls.org/en/latest/', None),
     'mydocs' : ('https://ca-security-spec.readthedocs.io/en/latest/',None),
     'pvxs' : ('https://mdavidsaver.github.io/pvxs',None),
+    'phoebus' : ('https://control-system-studio.readthedocs.io/en/latest/',None),
 }
 hoverxref_role_types = {
     'hoverxref': 'tooltip',

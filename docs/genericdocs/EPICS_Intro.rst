@@ -83,8 +83,9 @@ CompactPCI. EPICS IOC can also run on low-cost hardware like RaspberryPi
 or similar.
 
 **CWS**, or Client WorkStation. This is a computer that can run various
-EPICS tools and client applications; typical examples are user interface
-tools and data archiving. CWS can be desktop computer, a server machine
+EPICS tools and client applications; typical examples are 
+:ref:`user interface tools <phoebus:intro>` and data archiving. 
+CWS can be desktop computer, a server machine
 or similar, and is usually running a “regular” (as opposed to real-time)
 operating system like Linux, Windows or MacOS.
 
