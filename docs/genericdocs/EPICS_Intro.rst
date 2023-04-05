@@ -623,7 +623,7 @@ Examples of other Tools
 design and configure EPICS databases, and is able to visualize the
 records and their connections.
 
-• SNC: State Notation Compiler. It generates a C program that represents
+• SNC: :doc:`State Notation Compiler <sequencer:Compiling>`. It generates a C program that represents
 the states for the IOC Sequencer tool.
 
 References and further reading
