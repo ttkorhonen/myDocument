@@ -358,7 +358,7 @@ record types do not need all functions):
 The same concept is applied to the device support and device driver
 modules: each support module has to define a set of functions so that it
 can become a part of the IOC software. 
-:doc:` Asyn Driver <asyn:index>` is a very commonly used API to write device support modules.
+:doc:`Asyn Driver <asyn:index>` is a very commonly used API to write device support modules.
 
 Database Monitors
 ~~~~~~~~~~~~~~~~~
