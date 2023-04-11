@@ -298,8 +298,11 @@ Conversion Related Fields and the Conversion Process
    1. If LINR==LINEAR or LINR==SLOPE, then X = (VAL - EOFF) / ESLO, else
    if LINR==NO_CONVERSION, then X = VAL, else X is obtained via
    breakpoint table.
+
    2. X = (X - AOFF) / ASLO
+   
    3. RVAL = round(X) - ROFF
+  
    To see how the Raw Soft Channel device support routine uses these
    fields, see `"Device Support For Soft
    Records" <#Device-Support-For-Soft-Records>`__ below for more
