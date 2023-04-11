@@ -271,70 +271,71 @@ Each record must have an associated set of device support routines. The device s
 .. list-table::
  :widths: 1 3 3 1 2 1 1 1
  :header-rows: 1
-  * - Field
-    - Summary
-    - Type
-    - DCT
-    - Default
-    - Read
-    - Write
-    - CA PP
-  * - PACT
-    - Record active
-    - UCHAR
-    - No
-    -  
-    - Yes
-    - No
-    - No
-  * - DPVT
-    - Device Private
-    - NOACCESS
-    - No
-    -  
-    - No
-    - No
-    - No
-  * - UDF
-    - Undefined
-    - UCHAR
-    - Yes
-    - 1
-    - Yes
-    - Yes
-    - Yes
-  * - NSEV
-    - New Alarm Severity
-    - MENU menuAlarmSevr.html menuAlarmSevr
-    - No
-    -  
-    - Yes
-    - No
-    - No
-  * - NSTA
-    - New Alarm Status
-    - MENU menuAlarmStat.html menuAlarmStat
-    - No
-    -  
-    - Yes
-    - No
-    - No
-  * - INP
-    - Input Specification
-    - INLINK
-    - Yes
-    -  
-    - Yes
-    - Yes
-    - No
-  * - PRIO
-    - Scheduling Priority
-    - MENU menuPriority.html menuPriority
-    - Yes
-    -  
-    - Yes
-    - Yes
-    - No
+
+ * - Field
+   - Summary
+   - Type
+   - DCT
+   - Default
+   - Read
+   - Write
+   - CA PP
+ * - PACT
+   - Record active
+   - UCHAR
+   - No
+   -  
+   - Yes
+   - No
+   - No
+ * - DPVT
+   - Device Private
+   - NOACCESS
+   - No
+   -  
+   - No
+   - No
+   - No
+ * - UDF
+   - Undefined
+   - UCHAR
+   - Yes
+   - 1
+   - Yes
+   - Yes
+   - Yes
+ * - NSEV
+   - New Alarm Severity
+   - MENU menuAlarmSevr.html menuAlarmSevr
+   - No
+   -  
+   - Yes
+   - No
+   - No
+ * - NSTA
+   - New Alarm Status
+   - MENU menuAlarmStat.html menuAlarmStat
+   - No
+   -  
+   - Yes
+   - No
+   - No
+ * - INP
+   - Input Specification
+   - INLINK
+   - Yes
+   -  
+   - Yes
+   - Yes
+   - No
+ * - PRIO
+   - Scheduling Priority
+   - MENU menuPriority.html menuPriority
+   - Yes
+   -  
+   - Yes
+   - Yes
+   - No
 
 
 Device Support Routines
@@ -357,7 +358,7 @@ This routine is optional. If provided, it is called by the record support <code>
 
 get_ioint_info
 
-  get_ioint_info(int cmd, struct dbCommon *precord, IOSCANPVT *ppvt)
+  get_ioint_info(int cmd, struct dbCommon \*precord, IOSCANPVT \*ppvt)
 
 This routine is called by the ioEventScan system each time the record is added or deleted from an I/O event scan list. <code>cmd</code> has the value (0,1) if the record is being (added to, deleted from) an I/O event list. It must be provided for any device type that can use the ioEvent scanner.
 
