@@ -714,6 +714,7 @@ Record Processing
    it doesn't, an error message is issued and processing is terminated
    with the PACT field set to TRUE. This ensures that processes will no
    longer be called for this record. Thus error storms will not occur.
+
    2. Check PACT: If PACT is FALSE call fetch_values and convert which
    perform the following steps:
 
@@ -746,11 +747,14 @@ Record Processing
    It also honors the alarm hysteresis factor (HYST). Thus the value
    must change by at least HYST before the alarm status and severity is
    reduced.
+   
    4. Check severity and write the new value. See Invalid Alarm Output
    Action for details on how invalid alarms affect output records.
+   
    5. If PACT has been changed to TRUE, the device support write output
    routine has started but has not completed writing the new value. In
    this case, the processing routine merely returns, leaving PACT TRUE.
+   
    6. Check to see if monitors should be invoked:
 
    -  Alarm monitors are invoked if the alarm status or severity has
@@ -763,6 +767,7 @@ Record Processing
 
    7. Scan forward link if necessary, set PACT and INIT FALSE, and
    return.
+
 Device Support
 --------------
 
