@@ -34,6 +34,7 @@ extensions = [
     "sphinx.ext.graphviz",
     "sphinx_copybutton",
     "sphinx.ext.intersphinx",
+    "myst_parser",
 ]
 intersphinx_mapping = {
     'how-tos': ('https://docs.epics-controls.org/projects/how-tos/en/latest', None),
