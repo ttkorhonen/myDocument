@@ -10,3 +10,4 @@ EPICS Record Types
    airecord
    aorecord
    eventRecord
+   biRecord
