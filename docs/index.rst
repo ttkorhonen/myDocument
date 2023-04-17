@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to EPICS pvAccess and Channel Access documentation!
+EPICS Record Reference
 ===========================================================================
 
 .. toctree::
@@ -17,11 +17,4 @@ Welcome to EPICS pvAccess and Channel Access documentation!
    :caption: Record Reference:
 
    manual/RecordRefMan
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Channel Access:
-
-   channelaccess/carefman
-   channelaccess/ChannelAccessSecurityRequirements
 
