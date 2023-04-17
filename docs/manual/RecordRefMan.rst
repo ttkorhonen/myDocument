@@ -14,6 +14,9 @@ EPICS Record Reference Manual
    :caption: Common features:
    
    ../genericdocs/EPICS_Process_Database_Concepts
+   ../genericdocs/dbCommon
+   ../genericdocs/dbCommonInput
+   ../genericdocs/dbCommonOutput   
 
 .. toctree::
    :maxdepth: 2
