@@ -55,7 +55,7 @@ These fields are described in [Scan Fields](dbCommonRecord#Scan-Fields).
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
-| SCAN | Scan Mechanism | MENU menuScan.md'>menuScan | Yes |   | Yes | Yes | No | 
+| SCAN | Scan Mechanism | MENU [menuScan](menuScan.html) | Yes |   | Yes | Yes | No | 
 | PHAS | Scan Phase | SHORT | Yes |   | Yes | Yes | No | 
 | EVNT | Event Name | STRING \[40\] | Yes |   | Yes | Yes | No | 
 | PRIO | Scheduling Priority | MENU menuPriority.md'>menuPriority | Yes |   | Yes | Yes | No | 
@@ -81,7 +81,7 @@ The following fields determine what channel to read and how to compress the data
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
-| ALG | Compression Algorithm | MENU #Menu compressALG'>compressALG | Yes |   | Yes | Yes | No | 
+| ALG | Compression Algorithm | MENU [compressALG](#compressALG) | Yes |   | Yes | Yes | No | 
 | INP | Input Specification | INLINK | Yes |   | Yes | Yes | No | 
 | NSAM | Number of Values | ULONG | Yes | 1 | Yes | No | No | 
 | N | N to 1 Compression | ULONG | Yes | 1 | Yes | Yes | No | 
