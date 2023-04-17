@@ -51,15 +51,15 @@ The record-specific fields are described below, grouped by functionality.
 The compression record has the standard fields for specifying under what
 circumstances the record will be processed. Since  the compression record
 supports no direct interfaces to hardware, its SCAN field cannot be set to `I/O Intr`.
-These fields are described in [Scan Fields](dbCommonRecord#Scan-Fields).
+These fields are described in [Scan Fields](dbCommonRecord#Scan_Fields).
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
 | SCAN | Scan Mechanism | MENU [menuScan](menuScan.html) | Yes |   | Yes | Yes | No | 
 | PHAS | Scan Phase | SHORT | Yes |   | Yes | Yes | No | 
 | EVNT | Event Name | STRING \[40\] | Yes |   | Yes | Yes | No | 
-| PRIO | Scheduling Priority | MENU menuPriority.md'>menuPriority | Yes |   | Yes | Yes | No | 
-| PINI | Process at iocInit | MENU menuPini.md'>menuPini | Yes |   | Yes | Yes | No | 
+| PRIO | Scheduling Priority | MENU [menuPriority](menuPriority.html) | Yes |   | Yes | Yes | No | 
+| PINI | Process at iocInit | MENU [menuPini](menuPini.html) | Yes |   | Yes | Yes | No | 
 
 ### Algorithms and Related Parameters
 
@@ -81,7 +81,7 @@ The following fields determine what channel to read and how to compress the data
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
-| ALG | Compression Algorithm | MENU [compressALG](#compressALG) | Yes |   | Yes | Yes | No | 
+| ALG | Compression Algorithm | MENU [compressALG](%23Menu%20compressALG) | Yes |   | Yes | Yes | No | 
 | INP | Input Specification | INLINK | Yes |   | Yes | Yes | No | 
 | NSAM | Number of Values | ULONG | Yes | 1 | Yes | No | No | 
 | N | N to 1 Compression | ULONG | Yes | 1 | Yes | Yes | No | 
@@ -197,12 +197,12 @@ PREC controls the floating-point precision whenever `get_precision` is
 called, and the field being referenced is the VAL field (i.e., one of the values
 contained in the circular buffer).
 
-See [Fields Common to All Record Types](dbCommonRecord#Operator-Display-Parameters) for more on the record name (NAME) and description (DESC) fields.
+See [Fields Common to All Record Types](dbCommonRecord#Operator_DisplayParameters) for more on the record name (NAME) and description (DESC) fields.
 
 ### Alarm Parameters
 
 The compression record has the alarm parameters common to all record types
-described in [Alarm Fields](dbCommonRecord#Alarm-Fields).
+described in [Alarm Fields](dbCommonRecord#Alarm_Fields).
 
 ### Run-time Parameters
 
