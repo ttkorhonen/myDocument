@@ -97,6 +97,7 @@ master_doc = 'index'
 html_theme_options = {
     'logo_only': False,
     'body_max_width': '90%',
+    'style_nav_header_background' :'#C6D93C',
 }
 html_logo = "EPICS_logo_svg.svg"
 html_css_files = [
