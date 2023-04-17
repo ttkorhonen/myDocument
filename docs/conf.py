@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'EPICS pvAccess and Channel Access Documentation'
+project = 'EPICS Documentation Sandbox'
 copyright = '2019, Timo Korhonen'
 author = 'Timo Korhonen'
 
