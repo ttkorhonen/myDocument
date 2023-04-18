@@ -81,7 +81,7 @@ The following fields determine what channel to read and how to compress the data
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
-| ALG | Compression Algorithm | MENU [compressALG](%23Menu%20compressALG) | Yes |   | Yes | Yes | No | 
+| ALG | Compression Algorithm | MENU [compressALG](%23menu-compressalg) | Yes |   | Yes | Yes | No | 
 | INP | Input Specification | INLINK | Yes |   | Yes | Yes | No | 
 | NSAM | Number of Values | ULONG | Yes | 1 | Yes | No | No | 
 | N | N to 1 Compression | ULONG | Yes | 1 | Yes | Yes | No | 
