@@ -15,7 +15,7 @@ gets processed:
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
-| OMSL | Output Mode Select | MENU menuOmsl.md'>menuOmsl | Yes |   | Yes | Yes | No | 
+| OMSL | Output Mode Select | MENU [menuOmsl](menuOmsl.md) | Yes |   | Yes | Yes | No | 
 | DOL | Desired Output Link | INLINK | Yes |   | Yes | Yes | No | 
 | DRVH | Drive High Limit | INT64 | Yes |   | Yes | Yes | Yes | 
 | DRVL | Drive Low Limit | INT64 | Yes |   | Yes | Yes | Yes | 
@@ -99,10 +99,10 @@ hysteresis functionality.
 | HIGH | High Alarm Limit | INT64 | Yes |   | Yes | Yes | Yes | 
 | LOW | Low Alarm Limit | INT64 | Yes |   | Yes | Yes | Yes | 
 | LOLO | Lolo Alarm Limit | INT64 | Yes |   | Yes | Yes | Yes | 
-| HHSV | Hihi Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| HSV | High Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| LSV | Low Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| LLSV | Lolo Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
+| HHSV | Hihi Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| HSV | High Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| LSV | Low Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| LLSV | Lolo Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
 | HYST | Alarm Deadband | INT64 | Yes |   | Yes | Yes | No | 
 | LALM | Last Value Alarmed | INT64 | No |   | Yes | No | No | 
 
@@ -139,17 +139,17 @@ SSCN sets a different SCAN mechanism to use in simulation mode.
 SDLY sets a delay (in sec) that is used for asynchronous simulation
 processing.
 
-See [Output Simulation Fields](dbCommonOutput#Output-Simulation-Fields)
+See [Output Simulation Fields](dbCommonOutput#Output_Simulation_Fields)
 for more information on simulation mode and its fields.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
 | SIML | Simulation Mode Link | INLINK | Yes |   | Yes | Yes | No | 
-| SIMM | Simulation Mode | MENU menuYesNo.md'>menuYesNo | No |   | Yes | Yes | No | 
+| SIMM | Simulation Mode | MENU [menuYesNo](menuYesNo.md) | No |   | Yes | Yes | No | 
 | SIOL | Simulation Output Link | OUTLINK | Yes |   | Yes | Yes | No | 
-| SIMS | Simulation Mode Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | No | 
+| SIMS | Simulation Mode Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | No | 
 | SDLY | Sim. Mode Async Delay | DOUBLE | Yes | -1.0 | Yes | Yes | No | 
-| SSCN | Sim. Mode Scan | MENU menuScan.md'>menuScan | Yes | 65535 | Yes | Yes | No | 
+| SSCN | Sim. Mode Scan | MENU [menuScan](menuScan.md) | Yes | 65535 | Yes | Yes | No | 
 
 ### Invalid Alarm Output Action
 
@@ -170,7 +170,7 @@ the action to take.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
-| IVOA | INVALID output action | MENU menuIvoa.md'>menuIvoa | Yes |   | Yes | Yes | No | 
+| IVOA | INVALID output action | MENU [menuIvoa](menuIvoa.md) | Yes |   | Yes | Yes | No | 
 | IVOV | INVALID output value | INT64 | Yes |   | Yes | Yes | No | 
 
 ## Record Support
@@ -225,7 +225,7 @@ undefined (UDF is TRUE) or if the new VAL causes the alarm status
 and severity to change. In the latter case, NSEV, NSTA and LALM are set.
 It also honors the alarm hysteresis factor (HYST): the value must change
 by at least HYST between level alarm status and severity changes.
-4. Check severity and write the new value. See [Invalid Output Action Fields](dbCommonOutput#Invalid-Output-Action-Fields)
+4. Check severity and write the new value. See [Invalid Output Action Fields](dbCommonOutput#Invalid_Output_Action_Fields)
 for details on how invalid alarms affect output records.
 5. If PACT has been changed to TRUE, the device support signals asynchronous
 processing: its `write_int64out` output routine has started, but not

@@ -12,15 +12,15 @@ The record-specific fields are described below, grouped by functionality.
 
 The event record has the standard fields for specifying under what circumstances
 it will be processed.
-These fields are described in [Scan Fields](dbCommonRecord#Scan-Fields).
+These fields are described in [Scan Fields](dbCommonRecord#Scan_Fields).
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
-| SCAN | Scan Mechanism | MENU menuScan.md'>menuScan | Yes |   | Yes | Yes | No | 
+| SCAN | Scan Mechanism | MENU [menuScan](menuScan.md) | Yes |   | Yes | Yes | No | 
 | PHAS | Scan Phase | SHORT | Yes |   | Yes | Yes | No | 
 | EVNT | Event Name | STRING \[40\] | Yes |   | Yes | Yes | No | 
-| PRIO | Scheduling Priority | MENU menuPriority.md'>menuPriority | Yes |   | Yes | Yes | No | 
-| PINI | Process at iocInit | MENU menuPini.md'>menuPini | Yes |   | Yes | Yes | No | 
+| PRIO | Scheduling Priority | MENU [menuPriority](menuPriority.md) | Yes |   | Yes | Yes | No | 
+| PINI | Process at iocInit | MENU [menuPini](menuPini.md) | Yes |   | Yes | Yes | No | 
 
 ### Event Number Parameters
 
@@ -52,7 +52,7 @@ access link. For soft records, the DTYP field should specify `Soft Channel`.
 
 ### Operator Display Parameters
 
-See [Fields Common to All Record Types](dbCommonRecord#Operator-Display-Parameters) for more on the record name (NAME) and description (DESC) fields.
+See [Fields Common to All Record Types](dbCommonRecord#Operator_DisplayParameters) for more on the record name (NAME) and description (DESC) fields.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
@@ -76,8 +76,8 @@ fields.
 | SIOL | Sim Input Specifctn | INLINK | Yes |   | Yes | Yes | No | 
 | SVAL | Simulation Value | STRING \[40\] | No |   | Yes | Yes | No | 
 | SIML | Sim Mode Location | INLINK | Yes |   | Yes | Yes | No | 
-| SIMM | Simulation Mode | MENU menuYesNo.md'>menuYesNo | No |   | Yes | Yes | No | 
-| SIMS | Sim mode Alarm Svrty | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | No | 
+| SIMM | Simulation Mode | MENU [menuYesNo](menuYesNo.md) | No |   | Yes | Yes | No | 
+| SIMS | Sim mode Alarm Svrty | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | No | 
 
 ## Record Support
 
@@ -120,10 +120,10 @@ support routines are primarily interested in the following fields:
 | PACT | Record active | UCHAR | No |   | Yes | No | No | 
 | DPVT | Device Private | NOACCESS | No |   | No | No | No | 
 | UDF | Undefined | UCHAR | Yes | 1 | Yes | Yes | Yes | 
-| NSEV | New Alarm Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | No |   | Yes | No | No | 
-| NSTA | New Alarm Status | MENU menuAlarmStat.md'>menuAlarmStat | No |   | Yes | No | No | 
+| NSEV | New Alarm Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | No |   | Yes | No | No | 
+| NSTA | New Alarm Status | MENU [menuAlarmStat](menuAlarmStat.md) | No |   | Yes | No | No | 
 | INP | Input Specification | INLINK | Yes |   | Yes | Yes | No | 
-| PRIO | Scheduling Priority | MENU menuPriority.md'>menuPriority | Yes |   | Yes | Yes | No | 
+| PRIO | Scheduling Priority | MENU [menuPriority](menuPriority.md) | Yes |   | Yes | Yes | No | 
 
 ### Device Support Routines
 

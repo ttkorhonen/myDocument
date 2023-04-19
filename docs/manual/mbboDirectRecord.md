@@ -17,15 +17,15 @@ The record-specific fields are described below, grouped by functionality.
 
 The mbboDirect record has the standard fields for specifying under what
 circumstances it will be processed.
-These fields are listed in [Scan Fields](dbCommonRecord#Scan-Fields).
+These fields are listed in [Scan Fields](dbCommonRecord#Scan_Fields).
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
-| SCAN | Scan Mechanism | MENU menuScan.md'>menuScan | Yes |   | Yes | Yes | No | 
+| SCAN | Scan Mechanism | MENU [menuScan](menuScan.md) | Yes |   | Yes | Yes | No | 
 | PHAS | Scan Phase | SHORT | Yes |   | Yes | Yes | No | 
 | EVNT | Event Name | STRING \[40\] | Yes |   | Yes | Yes | No | 
-| PRIO | Scheduling Priority | MENU menuPriority.md'>menuPriority | Yes |   | Yes | Yes | No | 
-| PINI | Process at iocInit | MENU menuPini.md'>menuPini | Yes |   | Yes | Yes | No | 
+| PRIO | Scheduling Priority | MENU [menuPriority](menuPriority.md) | Yes |   | Yes | Yes | No | 
+| PINI | Process at iocInit | MENU [menuPini](menuPini.md) | Yes |   | Yes | Yes | No | 
 
 ### Desired Output Parameters
 
@@ -43,7 +43,7 @@ written direcly into the VAL field from elsewhere as long as the record is in
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
-| OMSL | Output Mode Select | MENU menuOmsl.md'>menuOmsl | Yes |   | Yes | Yes | Yes | 
+| OMSL | Output Mode Select | MENU [menuOmsl](menuOmsl.md) | Yes |   | Yes | Yes | Yes | 
 | DOL | Desired Output Link | INLINK | Yes |   | Yes | Yes | No | 
 | VAL | Word | LONG | Yes |   | Yes | Yes | Yes | 
 
@@ -151,7 +151,7 @@ MASK with the RVAL field's value.
 
 ### Operator Display Parameters
 
-See [Fields Common to All Record Types](dbCommonRecord#Operator-Display-Parameters) for more on the record name (NAME) and description (DESC) fields.
+See [Fields Common to All Record Types](dbCommonRecord#Operator_DisplayParameters) for more on the record name (NAME) and description (DESC) fields.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
@@ -189,17 +189,17 @@ SSCN sets a different SCAN mechanism to use in simulation mode.
 SDLY sets a delay (in sec) that is used for asynchronous simulation
 processing.
 
-See [Output Simulation Fields](dbCommonOutput#Output-Simulation-Fields)
+See [Output Simulation Fields](dbCommonOutput#Output_Simulation_Fields)
 for more information on simulation mode and its fields.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
 | SIML | Simulation Mode Link | INLINK | Yes |   | Yes | Yes | No | 
-| SIMM | Simulation Mode | MENU menuSimm.md'>menuSimm | No |   | Yes | Yes | No | 
+| SIMM | Simulation Mode | MENU [menuSimm](menuSimm.md) | No |   | Yes | Yes | No | 
 | SIOL | Simulation Output Link | OUTLINK | Yes |   | Yes | Yes | No | 
-| SIMS | Simulation Mode Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | No | 
+| SIMS | Simulation Mode Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | No | 
 | SDLY | Sim. Mode Async Delay | DOUBLE | Yes | -1.0 | Yes | Yes | No | 
-| SSCN | Sim. Mode Scan | MENU menuScan.md'>menuScan | Yes | 65535 | Yes | Yes | No | 
+| SSCN | Sim. Mode Scan | MENU [menuScan](menuScan.md) | Yes | 65535 | Yes | Yes | No | 
 
 ### Alarm Parameters
 
@@ -212,17 +212,17 @@ outputs`, or `Set output to IVOV`. When `Set output to IVOV` is
 specified and a INVALID alarm is triggered, the record will write the value in
 the IVOV field to the output.
 
-See [Invalid Output Action Fields](dbCommonOutput#Invalid-Output-Action-Fields)
+See [Invalid Output Action Fields](dbCommonOutput#Invalid_Output_Action_Fields)
 for more information about IVOA and IVOV.
 
 See [Alarm Specification](https://docs.epics-controls.org/en/latest/guides/EPICS_Process_Database_Concepts.html#alarm-specification)
 for a complete explanation of record alarms and of the standard fields.
-[Alarm Fields](dbCommonRecord#Alarm-Fields) lists other fields related
+[Alarm Fields](dbCommonRecord#Alarm_Fields) lists other fields related
 to alarms that are common to all record types.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
-| IVOA | INVALID outpt action | MENU menuIvoa.md'>menuIvoa | Yes |   | Yes | Yes | No | 
+| IVOA | INVALID outpt action | MENU [menuIvoa](menuIvoa.md) | Yes |   | Yes | Yes | No | 
 | IVOV | INVALID output value | LONG | Yes |   | Yes | Yes | No | 
 
 ## Record Support
@@ -298,8 +298,8 @@ primarily interested in the following fields:
 | PACT | Record active | UCHAR | No |   | Yes | No | No | 
 | DPVT | Device Private | NOACCESS | No |   | No | No | No | 
 | UDF | Undefined | UCHAR | Yes | 1 | Yes | Yes | Yes | 
-| NSEV | New Alarm Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | No |   | Yes | No | No | 
-| NSTA | New Alarm Status | MENU menuAlarmStat.md'>menuAlarmStat | No |   | Yes | No | No | 
+| NSEV | New Alarm Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | No |   | Yes | No | No | 
+| NSTA | New Alarm Status | MENU [menuAlarmStat](menuAlarmStat.md) | No |   | Yes | No | No | 
 | NOBT | Number of Bits | SHORT | Yes |   | Yes | No | No | 
 | OUT | Output Specification | OUTLINK | Yes |   | Yes | Yes | No | 
 | RVAL | Raw Value | ULONG | No |   | Yes | No | Yes | 

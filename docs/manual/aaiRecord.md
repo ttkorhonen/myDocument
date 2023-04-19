@@ -13,7 +13,7 @@ The record-specific fields are described below, grouped by functionality.
 
 The array analog input record has the standard fields for specifying under what
 circumstances the record will be processed.
-These fields are described in [Scan Fields](dbCommonRecord#Scan-Fields).
+These fields are described in [Scan Fields](dbCommonRecord#Scan_Fields).
 
 ### Read Parameters
 
@@ -38,7 +38,7 @@ for a list of the available choices).
 | DTYP | Device Type | DEVICE | Yes |   | Yes | Yes | No | 
 | INP | Input Specification | INLINK | Yes |   | Yes | Yes | No | 
 | NELM | Number of Elements | ULONG | Yes | 1 | Yes | No | No | 
-| FTVL | Field Type of Value | MENU menuFtype.md'>menuFtype | Yes |   | Yes | No | No | 
+| FTVL | Field Type of Value | MENU [menuFtype](menuFtype.md) | Yes |   | Yes | No | No | 
 
 ### Operator Display Parameters
 
@@ -59,7 +59,7 @@ The PREC field determines the floating point precision with which to display the
 array values. It is used whenever the `get_precision()` record support
 routine is called.
 
-See [Fields Common to All Record Types](dbCommonRecord#Operator-Display-Parameters) for more on the record name (NAME) and description (DESC) fields.
+See [Fields Common to All Record Types](dbCommonRecord#Operator_DisplayParameters) for more on the record name (NAME) and description (DESC) fields.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
@@ -89,8 +89,8 @@ duplicate data.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
-| APST | Post Archive Monitors | MENU #Menu aaiPOST'>aaiPOST | Yes |   | Yes | Yes | No | 
-| MPST | Post Value Monitors | MENU #Menu aaiPOST'>aaiPOST | Yes |   | Yes | Yes | No | 
+| APST | Post Archive Monitors | MENU [aaiPOST](menu-aaipost) | Yes |   | Yes | Yes | No | 
+| MPST | Post Value Monitors | MENU [aaiPOST](menu-aaipost) | Yes |   | Yes | Yes | No | 
 | HASH | Hash of OnChange data. | ULONG | No |   | Yes | Yes | No | 
 
 #### Menu aaiPOST
@@ -130,17 +130,17 @@ SSCN sets a different SCAN mechanism to use in simulation mode.
 SDLY sets a delay (in sec) that is used for asynchronous simulation
 processing.
 
-See [Input Simulation Fields](dbCommonInput#Input-Simulation-Fields)
+See [Input Simulation Fields](dbCommonInput#Input_Simulation_Fields)
 for more information on simulation mode and its fields.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
 | SIML | Simulation Mode Link | INLINK | Yes |   | Yes | Yes | No | 
-| SIMM | Simulation Mode | MENU menuYesNo.md'>menuYesNo | No |   | Yes | Yes | No | 
+| SIMM | Simulation Mode | MENU [menuYesNo](menuYesNo.md) | No |   | Yes | Yes | No | 
 | SIOL | Simulation Input Link | INLINK | Yes |   | Yes | Yes | No | 
-| SIMS | Simulation Mode Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | No | 
+| SIMS | Simulation Mode Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | No | 
 | SDLY | Sim. Mode Async Delay | DOUBLE | Yes | -1.0 | Yes | Yes | No | 
-| SSCN | Sim. Mode Scan | MENU menuScan.md'>menuScan | Yes | 65535 | Yes | Yes | No | 
+| SSCN | Sim. Mode Scan | MENU [menuScan](menuScan.md) | Yes | 65535 | Yes | Yes | No | 
 
 <div>
     <br>
@@ -277,11 +277,11 @@ routines are primarily interested in the following fields:
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
 | PACT | Record active | UCHAR | No |   | Yes | No | No | 
 | DPVT | Device Private | NOACCESS | No |   | No | No | No | 
-| NSEV | New Alarm Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | No |   | Yes | No | No | 
-| NSTA | New Alarm Status | MENU menuAlarmStat.md'>menuAlarmStat | No |   | Yes | No | No | 
+| NSEV | New Alarm Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | No |   | Yes | No | No | 
+| NSTA | New Alarm Status | MENU [menuAlarmStat](menuAlarmStat.md) | No |   | Yes | No | No | 
 | INP | Input Specification | INLINK | Yes |   | Yes | Yes | No | 
 | NELM | Number of Elements | ULONG | Yes | 1 | Yes | No | No | 
-| FTVL | Field Type of Value | MENU menuFtype.md'>menuFtype | Yes |   | Yes | No | No | 
+| FTVL | Field Type of Value | MENU [menuFtype](menuFtype.md) | Yes |   | Yes | No | No | 
 | BPTR | Buffer Pointer | NOACCESS | No |   | No | No | No | 
 | NORD | Number elements read | ULONG | No |   | Yes | No | No | 
 

@@ -14,7 +14,7 @@ The record-specific fields are described below, grouped by functionality.
 
 The mbbo record has the standard fields for specifying under what circumstances
 it will be processed.
-These fields are listed in [Scan Fields](dbCommonRecord#Scan-Fields).
+These fields are listed in [Scan Fields](dbCommonRecord#Scan_Fields).
 
 ### Desired Output Parameters
 
@@ -38,7 +38,7 @@ without any conversion.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
-| OMSL | Output Mode Select | MENU menuOmsl.md'>menuOmsl | Yes |   | Yes | Yes | No | 
+| OMSL | Output Mode Select | MENU [menuOmsl](menuOmsl.md) | Yes |   | Yes | Yes | No | 
 | DOL | Desired Output Link | INLINK | Yes |   | Yes | Yes | No | 
 | VAL | Desired Value | ENUM | Yes |   | Yes | Yes | Yes | 
 
@@ -115,7 +115,7 @@ each of the corresponding states. The `get_enum_str()` and
 operator. `get_enum_str()` gets the string corresponding to the value in
 VAL, and `get_enum_strs()` retrieves all the strings.
 
-See [Fields Common to All Record Types](dbCommonRecord#Operator-Display-Parameters) for more on the record name (NAME) and description (DESC) fields.
+See [Fields Common to All Record Types](dbCommonRecord#Operator_DisplayParameters) for more on the record name (NAME) and description (DESC) fields.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
@@ -163,33 +163,33 @@ state changes, if set to MAJOR or MINOR.
 The state severity (ZRSV-FFSV) fields, when set to MAJOR or MINOR, trigger an
 alarm when VAL equals the corresponding field.
 
-See [Invalid Output Action Fields](dbCommonOutput#Invalid-Output-Action-Fields)
+See [Invalid Output Action Fields](dbCommonOutput#Invalid_Output_Action_Fields)
 for an explanation of the IVOA and IVOV fields.
-[Alarm Fields](dbCommonRecord#Alarm-Fields) lists the fields related to
+[Alarm Fields](dbCommonRecord#Alarm_Fields) lists the fields related to
 alarms that are common to all record types.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
-| UNSV | Unknown State Sevr | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| COSV | Change of State Sevr | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| IVOA | INVALID outpt action | MENU menuIvoa.md'>menuIvoa | Yes |   | Yes | Yes | No | 
+| UNSV | Unknown State Sevr | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| COSV | Change of State Sevr | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| IVOA | INVALID outpt action | MENU [menuIvoa](menuIvoa.md) | Yes |   | Yes | Yes | No | 
 | IVOV | INVALID output value | USHORT | Yes |   | Yes | Yes | No | 
-| ZRSV | State Zero Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| ONSV | State One Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| TWSV | State Two Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| THSV | State Three Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| FRSV | State Four Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| FVSV | State Five Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| SXSV | State Six Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| SVSV | State Seven Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| EISV | State Eight Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| NISV | State Nine Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| TESV | State Ten Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| ELSV | State Eleven Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| TVSV | State Twelve Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| TTSV | State Thirteen Sevr | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| FTSV | State Fourteen Sevr | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| FFSV | State Fifteen Sevr | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
+| ZRSV | State Zero Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| ONSV | State One Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| TWSV | State Two Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| THSV | State Three Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| FRSV | State Four Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| FVSV | State Five Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| SXSV | State Six Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| SVSV | State Seven Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| EISV | State Eight Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| NISV | State Nine Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| TESV | State Ten Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| ELSV | State Eleven Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| TVSV | State Twelve Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| TTSV | State Thirteen Sevr | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| FTSV | State Fourteen Sevr | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| FFSV | State Fifteen Sevr | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
 
 ### Run-Time Parameters
 
@@ -228,17 +228,17 @@ SSCN sets a different SCAN mechanism to use in simulation mode.
 SDLY sets a delay (in sec) that is used for asynchronous simulation
 processing.
 
-See [Output Simulation Fields](dbCommonOutput#Output-Simulation-Fields)
+See [Output Simulation Fields](dbCommonOutput#Output_Simulation_Fields)
 for more information on simulation mode and its fields.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
 | SIML | Simulation Mode Link | INLINK | Yes |   | Yes | Yes | No | 
-| SIMM | Simulation Mode | MENU menuSimm.md'>menuSimm | No |   | Yes | Yes | No | 
+| SIMM | Simulation Mode | MENU [menuSimm](menuSimm.md) | No |   | Yes | Yes | No | 
 | SIOL | Simulation Output Link | OUTLINK | Yes |   | Yes | Yes | No | 
-| SIMS | Simulation Mode Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | No | 
+| SIMS | Simulation Mode Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | No | 
 | SDLY | Sim. Mode Async Delay | DOUBLE | Yes | -1.0 | Yes | Yes | No | 
-| SSCN | Sim. Mode Scan | MENU menuScan.md'>menuScan | Yes | 65535 | Yes | Yes | No | 
+| SSCN | Sim. Mode Scan | MENU [menuScan](menuScan.md) | Yes | 65535 | Yes | Yes | No | 
 
 ## Record Support
 
@@ -317,8 +317,8 @@ this record. Thus error storms will not occur.
 4. Check alarms. This routine checks to see if the new VAL causes the alarm status
 and severity to change. If so, NSEV, NSTA and LALM are set.
 5. Check severity and write the new value. See
-[Output Simulation Fields](dbCommonOutput#Output-Simulation-Fields) and 
-[Invalid Output Action Fields](dbCommonOutput#Invalid-Output-Action-Fields) for
+[Output Simulation Fields](dbCommonOutput#Output_Simulation_Fields) and 
+[Invalid Output Action Fields](dbCommonOutput#Invalid_Output_Action_Fields) for
 more information.
 6. If PACT has been changed to TRUE, the device support write output routine has
 started but has not completed writing the new value. In this case, the
@@ -343,8 +343,8 @@ primarily interested in the following fields:
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
 | PACT | Record active | UCHAR | No |   | Yes | No | No | 
 | DPVT | Device Private | NOACCESS | No |   | No | No | No | 
-| NSEV | New Alarm Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | No |   | Yes | No | No | 
-| NSTA | New Alarm Status | MENU menuAlarmStat.md'>menuAlarmStat | No |   | Yes | No | No | 
+| NSEV | New Alarm Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | No |   | Yes | No | No | 
+| NSTA | New Alarm Status | MENU [menuAlarmStat](menuAlarmStat.md) | No |   | Yes | No | No | 
 | NOBT | Number of Bits | USHORT | Yes |   | Yes | No | No | 
 | OUT | Output Specification | OUTLINK | Yes |   | Yes | Yes | No | 
 | RVAL | Raw Value | ULONG | No |   | Yes | Yes | Yes | 

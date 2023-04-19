@@ -74,10 +74,10 @@ functionality.
 | HIGH | High Alarm Limit | INT64 | Yes |   | Yes | Yes | Yes | 
 | LOW | Low Alarm Limit | INT64 | Yes |   | Yes | Yes | Yes | 
 | LOLO | Lolo Alarm Limit | INT64 | Yes |   | Yes | Yes | Yes | 
-| HHSV | Hihi Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| HSV | High Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| LSV | Low Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| LLSV | Lolo Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
+| HHSV | Hihi Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| HSV | High Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| LSV | Low Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| LLSV | Lolo Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
 | HYST | Alarm Deadband | INT64 | Yes |   | Yes | Yes | No | 
 | AFTC | Alarm Filter Time Constant | DOUBLE | Yes |   | Yes | Yes | No | 
 | LALM | Last Value Alarmed | INT64 | No |   | Yes | No | No | 
@@ -115,18 +115,18 @@ SSCN sets a different SCAN mechanism to use in simulation mode.
 SDLY sets a delay (in sec) that is used for asynchronous simulation
 processing.
 
-See [Input Simulation Fields](dbCommonInput#Input-Simulation-Fields)
+See [Input Simulation Fields](dbCommonInput#Input_Simulation_Fields)
 for more information on simulation mode and its fields.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
 | SIML | Simulation Mode Link | INLINK | Yes |   | Yes | Yes | No | 
-| SIMM | Simulation Mode | MENU menuYesNo.md'>menuYesNo | No |   | Yes | Yes | No | 
+| SIMM | Simulation Mode | MENU [menuYesNo](menuYesNo.md) | No |   | Yes | Yes | No | 
 | SIOL | Simulation Input Link | INLINK | Yes |   | Yes | Yes | No | 
 | SVAL | Simulation Value | INT64 | No |   | Yes | Yes | No | 
-| SIMS | Simulation Mode Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | No | 
+| SIMS | Simulation Mode Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | No | 
 | SDLY | Sim. Mode Async Delay | DOUBLE | Yes | -1.0 | Yes | Yes | No | 
-| SSCN | Sim. Mode Scan | MENU menuScan.md'>menuScan | Yes | 65535 | Yes | Yes | No | 
+| SSCN | Sim. Mode Scan | MENU [menuScan](menuScan.md) | Yes | 65535 | Yes | Yes | No | 
 
 ## Record Support
 

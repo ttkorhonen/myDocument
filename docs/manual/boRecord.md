@@ -10,15 +10,15 @@ the HIGH field is configured.
 
 The binary output record has the standard fields for specifying under what
 circumstances the record will be processed.
-These fields are described in [Scan Fields](dbCommonRecord#Scan-Fields).
+These fields are described in [Scan Fields](dbCommonRecord#Scan_Fields).
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
-| SCAN | Scan Mechanism | MENU menuScan.md'>menuScan | Yes |   | Yes | Yes | No | 
+| SCAN | Scan Mechanism | MENU [menuScan](menuScan.md) | Yes |   | Yes | Yes | No | 
 | PHAS | Scan Phase | SHORT | Yes |   | Yes | Yes | No | 
 | EVNT | Event Name | STRING \[40\] | Yes |   | Yes | Yes | No | 
-| PRIO | Scheduling Priority | MENU menuPriority.md'>menuPriority | Yes |   | Yes | Yes | No | 
-| PINI | Process at iocInit | MENU menuPini.md'>menuPini | Yes |   | Yes | Yes | No | 
+| PRIO | Scheduling Priority | MENU [menuPriority](menuPriority.md) | Yes |   | Yes | Yes | No | 
+| PINI | Process at iocInit | MENU [menuPini](menuPini.md) | Yes |   | Yes | Yes | No | 
 
 ### Desired Output Parameters
 
@@ -42,7 +42,7 @@ for information on hardware addresses and links.
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
 | DOL | Desired Output Link | INLINK | Yes |   | Yes | Yes | No | 
-| OMSL | Output Mode Select | MENU menuOmsl.md'>menuOmsl | Yes |   | Yes | Yes | No | 
+| OMSL | Output Mode Select | MENU [menuOmsl](menuOmsl.md) | Yes |   | Yes | Yes | No | 
 
 ### Convert and Write Parameters
 
@@ -130,7 +130,7 @@ corresponding to the VAL's state. So, if the value is 1, `get_enum_str()`
 will return the string in the ONAM field: and if 0, `get_enum_str()` will
 return the ZNAM string.
 
-See [Fields Common to All Record Types](dbCommonRecord#Operator-Display-Parameters) for more on the record name (NAME) and description (DESC) fields.
+See [Fields Common to All Record Types](dbCommonRecord#Operator_DisplayParameters) for more on the record name (NAME) and description (DESC) fields.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
@@ -151,16 +151,16 @@ The possible values for these fields are `NO_ALARM`, `MINOR`, and
 state. COSV is used to cause an alarm whenever the state changes between
 states (0-1, 1-0) and its severity is configured as MINOR or MAJOR.
 
-See [Invalid Output Action Fields](dbCommonOutput#Invalid-Output-Action-Fields) for more information on the IVOA and
-IVOV fields. [Alarm Fields](dbCommonRecord#Alarm-Fields) lists other fields related to alarms that are
+See [Invalid Output Action Fields](dbCommonOutput#Invalid_Output_Action_Fields) for more information on the IVOA and
+IVOV fields. [Alarm Fields](dbCommonRecord#Alarm_Fields) lists other fields related to alarms that are
 common to all record types.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
-| ZSV | Zero Error Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| OSV | One Error Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| COSV | Change of State Sevr | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| IVOA | INVALID outpt action | MENU menuIvoa.md'>menuIvoa | Yes |   | Yes | Yes | No | 
+| ZSV | Zero Error Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| OSV | One Error Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| COSV | Change of State Sevr | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| IVOA | INVALID outpt action | MENU [menuIvoa](menuIvoa.md) | Yes |   | Yes | Yes | No | 
 | IVOV | INVALID output value | USHORT | Yes |   | Yes | Yes | No | 
 
 ### Run-Time Parameters
@@ -214,17 +214,17 @@ SSCN sets a different SCAN mechanism to use in simulation mode.
 SDLY sets a delay (in sec) that is used for asynchronous simulation
 processing.
 
-See [Output Simulation Fields](dbCommonOutput#Output-Simulation-Fields)
+See [Output Simulation Fields](dbCommonOutput#Output_Simulation_Fields)
 for more information on simulation mode and its fields.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
 | SIML | Simulation Mode Link | INLINK | Yes |   | Yes | Yes | No | 
-| SIMM | Simulation Mode | MENU menuSimm.md'>menuSimm | No |   | Yes | Yes | No | 
+| SIMM | Simulation Mode | MENU [menuSimm](menuSimm.md) | No |   | Yes | Yes | No | 
 | SIOL | Simulation Output Link | OUTLINK | Yes |   | Yes | Yes | No | 
-| SIMS | Simulation Mode Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | No | 
+| SIMS | Simulation Mode Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | No | 
 | SDLY | Sim. Mode Async Delay | DOUBLE | Yes | -1.0 | Yes | Yes | No | 
-| SSCN | Sim. Mode Scan | MENU menuScan.md'>menuScan | Yes | 65535 | Yes | Yes | No | 
+| SSCN | Sim. Mode Scan | MENU [menuScan](menuScan.md) | Yes | 65535 | Yes | Yes | No | 
 
 ## Record Support
 
@@ -288,7 +288,7 @@ If PACT is FALSE
 Check alarms: This routine checks to see if the new VAL causes the alarm
 status and severity to change. If so, NSEV, NSTA, and LALM are set.
 - 4.
-Check severity and write the new value. See [Invalid Output Action Fields](dbCommonOutput#Invalid-Output-Action-Fields)
+Check severity and write the new value. See [Invalid Output Action Fields](dbCommonOutput#Invalid_Output_Action_Fields)
 for more information on how INVALID alarms affect output.
 - 5.
 If PACT has been changed to TRUE, the device support write output routine
@@ -322,8 +322,8 @@ are primarily interested in the following fields:
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
 | PACT | Record active | UCHAR | No |   | Yes | No | No | 
 | DPVT | Device Private | NOACCESS | No |   | No | No | No | 
-| NSEV | New Alarm Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | No |   | Yes | No | No | 
-| NSTA | New Alarm Status | MENU menuAlarmStat.md'>menuAlarmStat | No |   | Yes | No | No | 
+| NSEV | New Alarm Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | No |   | Yes | No | No | 
+| NSTA | New Alarm Status | MENU [menuAlarmStat](menuAlarmStat.md) | No |   | Yes | No | No | 
 | VAL | Current Value | ENUM | Yes |   | Yes | Yes | Yes | 
 | OUT | Output Specification | OUTLINK | Yes |   | Yes | Yes | No | 
 | RVAL | Raw Value | ULONG | No |   | Yes | Yes | Yes | 

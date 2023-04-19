@@ -54,11 +54,11 @@ retrieved from SELL each time the record is processed and can also be changed
 via dbPuts.
 
 The Fanout record also has the standard scanning fields common to all records.
-These fields are listed in [Scan Fields](dbCommonRecord#Scan-Fields).
+These fields are listed in [Scan Fields](dbCommonRecord#Scan_Fields).
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
-| SELM | Select Mechanism | MENU #Menu fanoutSELM'>fanoutSELM | Yes |   | Yes | Yes | No | 
+| SELM | Select Mechanism | MENU [fanoutSELM](menu-fanoutselm) | Yes |   | Yes | Yes | No | 
 | SELN | Link Selection | USHORT | No | 1 | Yes | Yes | No | 
 | SELL | Link Selection Loc | INLINK | Yes |   | Yes | Yes | No | 
 | OFFS | Offset for Specified | SHORT | Yes |   | Yes | Yes | No | 
@@ -83,7 +83,7 @@ These fields are listed in [Scan Fields](dbCommonRecord#Scan-Fields).
 ### Operator Display Parameters
 
 These parameters are used to present meaningful data to the operator. See
-[Fields Common to All Record Types](dbCommonRecord#Operator-Display-Parameters)
+[Fields Common to All Record Types](dbCommonRecord#Operator_Display_Parameters)
 for more on these fields.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
@@ -94,7 +94,7 @@ for more on these fields.
 ### Alarm Parameters
 
 The Fanout record has the alarm parameters common to all record types.
-[Alarm Fields](dbCommonRecord#Alarm-Fields) lists the fields related to
+[Alarm Fields](dbCommonRecord#Alarm_Fields) lists the fields related to
 alarms that are common to all record types.
 
 ### Run-time Parameters

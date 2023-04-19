@@ -19,7 +19,7 @@ The record-specific fields are described below, grouped by functionality.
 
 The Calcout record has the standard fields for specifying under what
 circumstances the record will be processed.
-These fields are listed in [Scan Fields](dbCommonRecord#Scan-Fields).
+These fields are listed in [Scan Fields](dbCommonRecord#Scan_Fields).
 
 ### Read Parameters
 
@@ -339,13 +339,13 @@ INVALID.
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
 | OUT | Output Specification | OUTLINK | Yes |   | Yes | Yes | No | 
-| OOPT | Output Execute Opt | MENU #Menu calcoutOOPT'>calcoutOOPT | Yes |   | Yes | Yes | No | 
-| DOPT | Output Data Opt | MENU #Menu calcoutDOPT'>calcoutDOPT | Yes |   | Yes | Yes | No | 
+| OOPT | Output Execute Opt | MENU [calcoutOOPT](menu-calcoutoopt) | Yes |   | Yes | Yes | No | 
+| DOPT | Output Data Opt | MENU [calcoutDOPT](menu-calcoutdopt) | Yes |   | Yes | Yes | No | 
 | OCAL | Output Calculation | STRING \[80\] | Yes |   | Yes | Yes | Yes | 
 | OVAL | Output Value | DOUBLE | No |   | Yes | Yes | No | 
 | OEVT | Event To Issue | STRING \[40\] | Yes |   | Yes | Yes | No | 
 | ODLY | Output Execute Delay | DOUBLE | Yes |   | Yes | Yes | No | 
-| IVOA | INVALID output action | MENU menuIvoa.md'>menuIvoa | Yes |   | Yes | Yes | No | 
+| IVOA | INVALID output action | MENU [menuIvoa](menuIvoa.md) | Yes |   | Yes | Yes | No | 
 | IVOV | INVALID output value | DOUBLE | Yes |   | Yes | Yes | No | 
 
 ### Operator Display Parameter
@@ -390,7 +390,7 @@ is set to one.
 
 The DLYA field is set to one during the delay specified in ODLY.
 
-See [Fields Common to All Record Types](dbCommonRecord#Operator-Display-Parameters) for more on the record name (NAME) and description (DESC) fields.
+See [Fields Common to All Record Types](dbCommonRecord#Operator_DisplayParameters) for more on the record name (NAME) and description (DESC) fields.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
@@ -398,19 +398,19 @@ See [Fields Common to All Record Types](dbCommonRecord#Operator-Display-Paramete
 | PREC | Display Precision | SHORT | Yes |   | Yes | Yes | No | 
 | HOPR | High Operating Rng | DOUBLE | Yes |   | Yes | Yes | No | 
 | LOPR | Low Operating Range | DOUBLE | Yes |   | Yes | Yes | No | 
-| INAV | INPA PV Status | MENU #Menu calcoutINAV'>calcoutINAV | No | 1 | Yes | No | No | 
-| INBV | INPB PV Status | MENU #Menu calcoutINAV'>calcoutINAV | No | 1 | Yes | No | No | 
-| INCV | INPC PV Status | MENU #Menu calcoutINAV'>calcoutINAV | No | 1 | Yes | No | No | 
-| INDV | INPD PV Status | MENU #Menu calcoutINAV'>calcoutINAV | No | 1 | Yes | No | No | 
-| INEV | INPE PV Status | MENU #Menu calcoutINAV'>calcoutINAV | No | 1 | Yes | No | No | 
-| INFV | INPF PV Status | MENU #Menu calcoutINAV'>calcoutINAV | No | 1 | Yes | No | No | 
-| INGV | INPG PV Status | MENU #Menu calcoutINAV'>calcoutINAV | No | 1 | Yes | No | No | 
-| INHV | INPH PV Status | MENU #Menu calcoutINAV'>calcoutINAV | No | 1 | Yes | No | No | 
-| INIV | INPI PV Status | MENU #Menu calcoutINAV'>calcoutINAV | No | 1 | Yes | No | No | 
-| INJV | INPJ PV Status | MENU #Menu calcoutINAV'>calcoutINAV | No | 1 | Yes | No | No | 
-| INKV | INPK PV Status | MENU #Menu calcoutINAV'>calcoutINAV | No | 1 | Yes | No | No | 
-| INLV | INPL PV Status | MENU #Menu calcoutINAV'>calcoutINAV | No | 1 | Yes | No | No | 
-| OUTV | OUT PV Status | MENU #Menu calcoutINAV'>calcoutINAV | No |   | Yes | No | No | 
+| INAV | INPA PV Status | MENU [calcoutINAV](menu-calcoutinav) | No | 1 | Yes | No | No | 
+| INBV | INPB PV Status | MENU [calcoutINAV](menu-calcoutinav) | No | 1 | Yes | No | No | 
+| INCV | INPC PV Status | MENU [calcoutINAV](menu-calcoutinav) | No | 1 | Yes | No | No | 
+| INDV | INPD PV Status | MENU [calcoutINAV](menu-calcoutinav) | No | 1 | Yes | No | No | 
+| INEV | INPE PV Status | MENU [calcoutINAV](menu-calcoutinav) | No | 1 | Yes | No | No | 
+| INFV | INPF PV Status | MENU [calcoutINAV](menu-calcoutinav) | No | 1 | Yes | No | No | 
+| INGV | INPG PV Status | MENU [calcoutINAV](menu-calcoutinav) | No | 1 | Yes | No | No | 
+| INHV | INPH PV Status | MENU [calcoutINAV](menu-calcoutinav) | No | 1 | Yes | No | No | 
+| INIV | INPI PV Status | MENU [calcoutINAV](menu-calcoutinav) | No | 1 | Yes | No | No | 
+| INJV | INPJ PV Status | MENU [calcoutINAV](menu-calcoutinav) | No | 1 | Yes | No | No | 
+| INKV | INPK PV Status | MENU [calcoutINAV](menu-calcoutinav) | No | 1 | Yes | No | No | 
+| INLV | INPL PV Status | MENU [calcoutINAV](menu-calcoutinav) | No | 1 | Yes | No | No | 
+| OUTV | OUT PV Status | MENU [calcoutINAV](menu-calcoutinav) | No |   | Yes | No | No | 
 | CLCV | CALC Valid | LONG | No |   | Yes | Yes | No | 
 | OCLV | OCAL Valid | LONG | No |   | Yes | Yes | No | 
 | DLYA | Output Delay Active | USHORT | No |   | Yes | No | No | 
@@ -433,7 +433,7 @@ The HYST field defines an alarm deadband for each limit.
 
 See [Alarm Specification](https://docs.epics-controls.org/en/latest/guides/EPICS_Process_Database_Concepts.html#alarm-specification)
 for a complete explanation of record alarms and of the standard fields.
-[Alarm Fields](dbCommonRecord#Alarm-Fields) lists other fields related
+[Alarm Fields](dbCommonRecord#Alarm_Fields) lists other fields related
 to alarms that are common to all record types.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
@@ -442,10 +442,10 @@ to alarms that are common to all record types.
 | HIGH | High Alarm Limit | DOUBLE | Yes |   | Yes | Yes | Yes | 
 | LOW | Low Alarm Limit | DOUBLE | Yes |   | Yes | Yes | Yes | 
 | LOLO | Lolo Alarm Limit | DOUBLE | Yes |   | Yes | Yes | Yes | 
-| HHSV | Hihi Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| HSV | High Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| LSV | Low Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| LLSV | Lolo Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
+| HHSV | Hihi Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| HSV | High Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| LSV | Low Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| LLSV | Lolo Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
 | HYST | Alarm Deadband | DOUBLE | Yes |   | Yes | Yes | No | 
 
 ### Monitor Parameters

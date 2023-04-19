@@ -11,7 +11,7 @@ The record-specific fields are described below, grouped by functionality.
 
 The string output record has the standard fields for specifying under what
 circumstances it will be processed.
-These fields are listed in [Scan Fields](dbCommonRecord#Scan-Fields).
+These fields are listed in [Scan Fields](dbCommonRecord#Scan_Fields).
 
 ### Desired Output Parameters
 
@@ -34,7 +34,7 @@ cannot be `closed_loop`.
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
 | VAL | Current Value | STRING \[40\] | Yes |   | Yes | Yes | Yes | 
 | DOL | Desired Output Link | INLINK | Yes |   | Yes | Yes | No | 
-| OMSL | Output Mode Select | MENU menuOmsl.md'>menuOmsl | Yes |   | Yes | Yes | No | 
+| OMSL | Output Mode Select | MENU [menuOmsl](menuOmsl.md) | Yes |   | Yes | Yes | No | 
 
 ### Output Specification
 
@@ -66,8 +66,8 @@ APST is used for archiver monitors and MPST is for all other type of monitors.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
-| MPST | Post Value Monitors | MENU #Menu stringoutPOST'>stringoutPOST | Yes |   | Yes | Yes | No | 
-| APST | Post Archive Monitors | MENU #Menu stringoutPOST'>stringoutPOST | Yes |   | Yes | Yes | No | 
+| MPST | Post Value Monitors | MENU [stringoutPOST](menu-stringoutpost) | Yes |   | Yes | Yes | No | 
+| APST | Post Archive Monitors | MENU [stringoutPOST](menu-stringoutpost) | Yes |   | Yes | Yes | No | 
 
 ### Operator Display Parameters
 
@@ -75,7 +75,7 @@ These parameters are used to present meaningful data to the operator. These
 fields are used to display the value and other parameters of the string output
 either textually or graphically.
 
-See [Fields Common to All Record Types](dbCommonRecord#Operator-Display-Parameters) for more on the record name (NAME) and description (DESC) fields.
+See [Fields Common to All Record Types](dbCommonRecord#Operator_DisplayParameters) for more on the record name (NAME) and description (DESC) fields.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
@@ -101,17 +101,17 @@ SSCN sets a different SCAN mechanism to use in simulation mode.
 SDLY sets a delay (in sec) that is used for asynchronous simulation
 processing.
 
-See [Output Simulation Fields](dbCommonOutput#Output-Simulation-Fields)
+See [Output Simulation Fields](dbCommonOutput#Output_Simulation_Fields)
 for more information on simulation mode and its fields.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
 | SIML | Simulation Mode Link | INLINK | Yes |   | Yes | Yes | No | 
-| SIMM | Simulation Mode | MENU menuYesNo.md'>menuYesNo | No |   | Yes | Yes | No | 
+| SIMM | Simulation Mode | MENU [menuYesNo](menuYesNo.md) | No |   | Yes | Yes | No | 
 | SIOL | Simulation Output Link | OUTLINK | Yes |   | Yes | Yes | No | 
-| SIMS | Simulation Mode Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | No | 
+| SIMS | Simulation Mode Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | No | 
 | SDLY | Sim. Mode Async Delay | DOUBLE | Yes | -1.0 | Yes | Yes | No | 
-| SSCN | Sim. Mode Scan | MENU menuScan.md'>menuScan | Yes | 65535 | Yes | Yes | No | 
+| SSCN | Sim. Mode Scan | MENU [menuScan](menuScan.md) | Yes | 65535 | Yes | Yes | No | 
 
 ### Alarm Parameters
 
@@ -122,15 +122,15 @@ configurable.
 The IVOA field specifies an action to take when the INVALID alarm is triggered.
 When `Set output to IVOV`, the value contained in the IVOV field is
 written to the output link during an alarm condition. See
-[Invalid Output Action Fields](dbCommonOutput#Invalid-Output-Action-Fields)
+[Invalid Output Action Fields](dbCommonOutput#Invalid_Output_Action_Fields)
 for more information on the IVOA and IVOV fields.
 
-[Alarm Fields](dbCommonRecord#Alarm-Fields) lists the fields related to
+[Alarm Fields](dbCommonRecord#Alarm_Fields) lists the fields related to
 alarms that are common to all record types.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
-| IVOA | INVALID output action | MENU menuIvoa.md'>menuIvoa | Yes |   | Yes | Yes | No | 
+| IVOA | INVALID output action | MENU [menuIvoa](menuIvoa.md) | Yes |   | Yes | Yes | No | 
 | IVOV | INVALID output value | STRING \[40\] | Yes |   | Yes | Yes | No | 
 
 ## Record Support
@@ -174,7 +174,7 @@ the current value of VAL. See ["Soft Output"](#soft-output).
 If the return status of recGblGetLinkValue is zero then UDF is set to FALSE.
 3. Check severity and write the new value. See
 ["Simulation Mode"](#simulation-mode) and
-[Invalid Output Action Fields](dbCommonOutput#Invalid-Output-Action-Fields)
+[Invalid Output Action Fields](dbCommonOutput#Invalid_Output_Action_Fields)
 for details on how the simulation mode and the INVALID alarm conditions affect output.
 4. If PACT has been changed to TRUE, the device support write output routine has
 started but has not completed writing the new value. In this case, the
@@ -204,8 +204,8 @@ primarily interested in the following fields:
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
 | PACT | Record active | UCHAR | No |   | Yes | No | No | 
 | DPVT | Device Private | NOACCESS | No |   | No | No | No | 
-| NSEV | New Alarm Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | No |   | Yes | No | No | 
-| NSTA | New Alarm Status | MENU menuAlarmStat.md'>menuAlarmStat | No |   | Yes | No | No | 
+| NSEV | New Alarm Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | No |   | Yes | No | No | 
+| NSTA | New Alarm Status | MENU [menuAlarmStat](menuAlarmStat.md) | No |   | Yes | No | No | 
 | VAL | Current Value | STRING \[40\] | Yes |   | Yes | Yes | Yes | 
 | OUT | Output Specification | OUTLINK | Yes |   | Yes | Yes | No | 
 

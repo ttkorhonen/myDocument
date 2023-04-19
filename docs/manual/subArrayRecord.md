@@ -22,7 +22,7 @@ The record-specific fields are described below, grouped by functionality.
 
 The subArray record has the standard fields for specifying under what
 circumstances the record will be processed.
-These fields are listed in [Scan Fields](dbCommonRecord#Scan-Fields).
+These fields are listed in [Scan Fields](dbCommonRecord#Scan_Fields).
 
 ### Read Parameters
 
@@ -61,7 +61,7 @@ The actual sub-array is referenced by the VAL field.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
-| FTVL | Field Type of Value | MENU menuFtype.md'>menuFtype | Yes |   | Yes | No | No | 
+| FTVL | Field Type of Value | MENU [menuFtype](menuFtype.md) | Yes |   | Yes | No | No | 
 | VAL | Value | Set by FTVL | No |   | Yes | Yes | Yes | 
 | MALM | Maximum Elements | ULONG | Yes | 1 | Yes | No | No | 
 | NELM | Number of Elements | ULONG | Yes | 1 | Yes | Yes | Yes | 
@@ -85,7 +85,7 @@ The PREC field determines the floating point precision with which to display
 VAL. It is used whenever the `get_precision()` record support routine is
 called.
 
-See [Fields Common to All Record Types](dbCommonRecord#Operator-Display-Parameters) for more on the record name (NAME) and description (DESC) fields.
+See [Fields Common to All Record Types](dbCommonRecord#Operator_DisplayParameters) for more on the record name (NAME) and description (DESC) fields.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
@@ -99,7 +99,7 @@ See [Fields Common to All Record Types](dbCommonRecord#Operator-Display-Paramete
 ### Alarm Parameters
 
 The subarray record has the alarm parameters common to all record types.
-[Alarm Fields](dbCommonRecord#Alarm-Fields) lists the fields related to
+[Alarm Fields](dbCommonRecord#Alarm_Fields) lists the fields related to
 alarms that are common to all record types.
 
 ### Run-time Parameters
@@ -231,10 +231,10 @@ The device support routines are primarily interested in the following fields:
 | PACT | Record active | UCHAR | No |   | Yes | No | No | 
 | DPVT | Device Private | NOACCESS | No |   | No | No | No | 
 | UDF | Undefined | UCHAR | Yes | 1 | Yes | Yes | Yes | 
-| NSEV | New Alarm Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | No |   | Yes | No | No | 
-| NSTA | New Alarm Status | MENU menuAlarmStat.md'>menuAlarmStat | No |   | Yes | No | No | 
+| NSEV | New Alarm Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | No |   | Yes | No | No | 
+| NSTA | New Alarm Status | MENU [menuAlarmStat](menuAlarmStat.md) | No |   | Yes | No | No | 
 | INP | Input Specification | INLINK | Yes |   | Yes | Yes | No | 
-| FTVL | Field Type of Value | MENU menuFtype.md'>menuFtype | Yes |   | Yes | No | No | 
+| FTVL | Field Type of Value | MENU [menuFtype](menuFtype.md) | Yes |   | Yes | No | No | 
 | MALM | Maximum Elements | ULONG | Yes | 1 | Yes | No | No | 
 | NELM | Number of Elements | ULONG | Yes | 1 | Yes | Yes | Yes | 
 | INDX | Substring Index | ULONG | Yes |   | Yes | Yes | Yes | 

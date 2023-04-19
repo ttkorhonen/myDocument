@@ -18,7 +18,7 @@ The record-specific fields are described below, grouped by functionality.
 
 The mbbiDirect record has the standard fields for specifying under what
 circumstances the record will be processed.
-These fields are listed in [Scan Fields](dbCommonRecord#Scan-Fields).
+These fields are listed in [Scan Fields](dbCommonRecord#Scan_Fields).
 
 ### Read and Convert Parameters
 
@@ -90,7 +90,7 @@ Each of the fields, B0-BF and B10-B1F, represents one bit of the word.
 
 These parameters are used to present meaningful data to the operator.
 
-See [Fields Common to All Record Types](dbCommonRecord#Operator-Display-Parameters) for more on the record name (NAME) and description (DESC) fields.
+See [Fields Common to All Record Types](dbCommonRecord#Operator_DisplayParameters) for more on the record name (NAME) and description (DESC) fields.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
@@ -126,18 +126,18 @@ SSCN sets a different SCAN mechanism to use in simulation mode.
 SDLY sets a delay (in sec) that is used for asynchronous simulation
 processing.
 
-See [Input Simulation Fields](dbCommonInput#Input-Simulation-Fields)
+See [Input Simulation Fields](dbCommonInput#Input_Simulation_Fields)
 for more information on simulation mode and its fields.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
 | SIML | Simulation Mode Link | INLINK | Yes |   | Yes | Yes | No | 
-| SIMM | Simulation Mode | MENU menuSimm.md'>menuSimm | No |   | Yes | Yes | No | 
+| SIMM | Simulation Mode | MENU [menuSimm](menuSimm.md) | No |   | Yes | Yes | No | 
 | SIOL | Simulation Input Link | INLINK | Yes |   | Yes | Yes | No | 
 | SVAL | Simulation Value | LONG | No |   | Yes | Yes | No | 
-| SIMS | Simulation Mode Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | No | 
+| SIMS | Simulation Mode Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | No | 
 | SDLY | Sim. Mode Async Delay | DOUBLE | Yes | -1.0 | Yes | Yes | No | 
-| SSCN | Sim. Mode Scan | MENU menuScan.md'>menuScan | Yes | 65535 | Yes | Yes | No | 
+| SSCN | Sim. Mode Scan | MENU [menuScan](menuScan.md) | Yes | 65535 | Yes | Yes | No | 
 
 ### Alarm Parameters
 
@@ -146,7 +146,7 @@ SCAN and READ alarms. These alarms are not configurable by the user since they
 are always of MAJOR severity. No fields exist for the mbbi direct record
 to have state alarms.
 
-[Alarm Fields](dbCommonRecord#Alarm-Fields) lists the fields related to
+[Alarm Fields](dbCommonRecord#Alarm_Fields) lists the fields related to
 alarms that are common to all record types.
 
 ## Record Support
@@ -222,8 +222,8 @@ primarily interested in the following fields:
 | PACT | Record active | UCHAR | No |   | Yes | No | No | 
 | DPVT | Device Private | NOACCESS | No |   | No | No | No | 
 | UDF | Undefined | UCHAR | Yes | 1 | Yes | Yes | Yes | 
-| NSEV | New Alarm Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | No |   | Yes | No | No | 
-| NSTA | New Alarm Status | MENU menuAlarmStat.md'>menuAlarmStat | No |   | Yes | No | No | 
+| NSEV | New Alarm Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | No |   | Yes | No | No | 
+| NSTA | New Alarm Status | MENU [menuAlarmStat](menuAlarmStat.md) | No |   | Yes | No | No | 
 | NOBT | Number of Bits | SHORT | Yes |   | Yes | No | No | 
 | VAL | Current Value | LONG | Yes |   | Yes | Yes | Yes | 
 | INP | Input Specification | INLINK | Yes |   | Yes | Yes | No | 

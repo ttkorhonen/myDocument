@@ -14,7 +14,7 @@ The record-specific fields are described below, grouped by functionality.
 
 The longout record has the standard fields for specifying under what
 circumstances it will be processed.
-These fields are listed in [Scan Fields](dbCommonRecord#Scan-Fields).
+These fields are listed in [Scan Fields](dbCommonRecord#Scan_Fields).
 
 ### Desired Output Parameters
 
@@ -42,7 +42,7 @@ set or DRVH <= DRVL they will not be used.
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
 | DOL | Desired Output Link | INLINK | Yes |   | Yes | Yes | No | 
-| OMSL | Output Mode Select | MENU menuOmsl.md'>menuOmsl | Yes |   | Yes | Yes | No | 
+| OMSL | Output Mode Select | MENU [menuOmsl](menuOmsl.md) | Yes |   | Yes | Yes | No | 
 | DRVH | Drive High Limit | LONG | Yes |   | Yes | Yes | Yes | 
 | DRVL | Drive Low Limit | LONG | Yes |   | Yes | Yes | Yes | 
 | VAL | Desired Output | LONG | Yes |   | Yes | Yes | Yes | 
@@ -79,7 +79,7 @@ measures. It is retrieved by the `get_units` record support routine.
 The HOPR and LOPR fields set the upper and lower display limits for the VAL,
 HIHI, HIGH, LOW, and LOLO fields. Both the `get_graphic_double` and `get_control_double` record support routines retrieve these fields.
 
-See [Fields Common to All Record Types](dbCommonRecord#Operator-Display-Parameters) for more on the record name (NAME) and description (DESC) fields.
+See [Fields Common to All Record Types](dbCommonRecord#Operator_DisplayParameters) for more on the record name (NAME) and description (DESC) fields.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
@@ -104,11 +104,11 @@ corresponding severity field which can be either NO\_ALARM, MINOR, or MAJOR.
 The HYST field sets an alarm deadband around each limit alarm.
 
 For an explanation of the IVOA and IVOV fields, see
-[Invalid Output Action Fields](dbCommonOutput#Invalid-Output-Action-Fields).
+[Invalid Output Action Fields](dbCommonOutput#Invalid_Output_Action_Fields).
 
 See [Alarm Specification](https://docs.epics-controls.org/en/latest/guides/EPICS_Process_Database_Concepts.html#alarm-specification)
 for a complete explanation of record alarms and of the standard fields.
-[Alarm Fields](dbCommonRecord#Alarm-Fields) lists other fields related
+[Alarm Fields](dbCommonRecord#Alarm_Fields) lists other fields related
 to alarms that are common to all record types.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
@@ -117,12 +117,12 @@ to alarms that are common to all record types.
 | HIGH | High Alarm Limit | LONG | Yes |   | Yes | Yes | Yes | 
 | LOW | Low Alarm Limit | LONG | Yes |   | Yes | Yes | Yes | 
 | LOLO | Lolo Alarm Limit | LONG | Yes |   | Yes | Yes | Yes | 
-| HHSV | Hihi Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| HSV | High Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| LSV | Low Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| LLSV | Lolo Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
+| HHSV | Hihi Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| HSV | High Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| LSV | Low Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| LLSV | Lolo Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
 | HYST | Alarm Deadband | LONG | Yes |   | Yes | Yes | No | 
-| IVOA | INVALID output action | MENU menuIvoa.md'>menuIvoa | Yes |   | Yes | Yes | No | 
+| IVOA | INVALID output action | MENU [menuIvoa](menuIvoa.md) | Yes |   | Yes | Yes | No | 
 | IVOV | INVALID output value | LONG | Yes |   | Yes | Yes | No | 
 
 ### Monitor Parameters
@@ -165,17 +165,17 @@ SSCN sets a different SCAN mechanism to use in simulation mode.
 SDLY sets a delay (in sec) that is used for asynchronous simulation
 processing.
 
-See [Output Simulation Fields](dbCommonOutput#Output-Simulation-Fields)
+See [Output Simulation Fields](dbCommonOutput#Output_Simulation_Fields)
 for more information on simulation mode and its fields.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
 | SIML | Sim Mode Location | INLINK | Yes |   | Yes | Yes | No | 
-| SIMM | Simulation Mode | MENU menuYesNo.md'>menuYesNo | No |   | Yes | Yes | No | 
+| SIMM | Simulation Mode | MENU [menuYesNo](menuYesNo.md) | No |   | Yes | Yes | No | 
 | SIOL | Sim Output Specifctn | OUTLINK | Yes |   | Yes | Yes | No | 
-| SIMS | Sim mode Alarm Svrty | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | No | 
+| SIMS | Sim mode Alarm Svrty | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | No | 
 | SDLY | Sim. Mode Async Delay | DOUBLE | Yes | -1.0 | Yes | Yes | No | 
-| SSCN | Sim. Mode Scan | MENU menuScan.md'>menuScan | Yes | 65535 | Yes | Yes | No | 
+| SSCN | Sim. Mode Scan | MENU [menuScan](menuScan.md) | Yes | 65535 | Yes | Yes | No | 
 
 <div>
     <br><hr><br>
@@ -249,7 +249,7 @@ and severity to change. If so, NSEV, NSTA and LALM are set. It also honors the
 alarm hysteresis factor (HYST). Thus the value must change by more than HYST
 before the alarm status and severity is lowered.
 4. Check severity and write the new value. See
-[Invalid Output Action Fields](dbCommonOutput#Invalid-Output-Action-Fields) for
+[Invalid Output Action Fields](dbCommonOutput#Invalid_Output_Action_Fields) for
 information on how INVALID alarms affect output records.
 5. If PACT has been changed to TRUE, the device support write output routine has
 started but has not completed writing the new value. In this case, the
@@ -278,8 +278,8 @@ primarily interested in the following fields:
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
 | PACT | Record active | UCHAR | No |   | Yes | No | No | 
 | DPVT | Device Private | NOACCESS | No |   | No | No | No | 
-| NSEV | New Alarm Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | No |   | Yes | No | No | 
-| NSTA | New Alarm Status | MENU menuAlarmStat.md'>menuAlarmStat | No |   | Yes | No | No | 
+| NSEV | New Alarm Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | No |   | Yes | No | No | 
+| NSTA | New Alarm Status | MENU [menuAlarmStat](menuAlarmStat.md) | No |   | Yes | No | No | 
 | OUT | Output Specification | OUTLINK | Yes |   | Yes | Yes | No | 
 
 ### Device Support Routines

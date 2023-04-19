@@ -13,7 +13,7 @@ The record-specific fields are described below, grouped by functionality.
 
 The data fanout record has the standard fields for specifying under what
 circumstances it will be processed.
-These fields are listed in [Scan Fields](dbCommonRecord#Scan-Fields).
+These fields are listed in [Scan Fields](dbCommonRecord#Scan_Fields).
 
 ### Desired Output Parameters
 
@@ -36,7 +36,7 @@ undergoes no conversions before it is sent out to the output links.
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
 | DOL | Desired Output Link | INLINK | Yes |   | Yes | Yes | No | 
-| OMSL | Output Mode Select | MENU menuOmsl.md'>menuOmsl | Yes |   | Yes | Yes | No | 
+| OMSL | Output Mode Select | MENU [menuOmsl](menuOmsl.md) | Yes |   | Yes | Yes | No | 
 | VAL | Desired Output | DOUBLE | Yes |   | Yes | Yes | Yes | 
 
 ### Write Parameters
@@ -78,7 +78,7 @@ will be written to.
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
 | SELL | Link Selection Loc | INLINK | Yes |   | Yes | Yes | No | 
-| SELM | Select Mechanism | MENU #Menu dfanoutSELM'>dfanoutSELM | Yes |   | Yes | Yes | No | 
+| SELM | Select Mechanism | MENU [dfanoutSELM](menu-dfanoutselm) | Yes |   | Yes | Yes | No | 
 | SELN | Link Selection | USHORT | No | 1 | Yes | Yes | No | 
 | OUTA | Output Spec A | OUTLINK | Yes |   | Yes | Yes | No | 
 | OUTB | Output Spec B | OUTLINK | Yes |   | Yes | Yes | No | 
@@ -105,7 +105,7 @@ HIHI, HIGH, LOW, and LOLO fields.
 digits to show after the decimal point) with which to display VAL and the other
 DOUBLE fields.
 
-See [Fields Common to All Record Types](dbCommonRecord#Operator-Display-Parameters) for more about the record name (NAME) and description (DESC) fields.
+See [Fields Common to All Record Types](dbCommonRecord#Operator_DisplayParameters) for more about the record name (NAME) and description (DESC) fields.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
@@ -129,7 +129,7 @@ number which serves as the deadband on the limit alarms.
 
 See [Alarm Specification](https://docs.epics-controls.org/en/latest/guides/EPICS_Process_Database_Concepts.html#alarm-specification)
 for a complete explanation of record alarms and of the standard fields.
-[Alarm Fields](dbCommonRecord#Alarm-Fields) lists other fields related
+[Alarm Fields](dbCommonRecord#Alarm_Fields) lists other fields related
 to alarms that are common to all record types.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
@@ -138,10 +138,10 @@ to alarms that are common to all record types.
 | HIGH | High Alarm Limit | DOUBLE | Yes |   | Yes | Yes | Yes | 
 | LOW | Low Alarm Limit | DOUBLE | Yes |   | Yes | Yes | Yes | 
 | LOLO | Lolo Alarm Limit | DOUBLE | Yes |   | Yes | Yes | Yes | 
-| HHSV | Hihi Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| HSV | High Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| LSV | Low Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| LLSV | Lolo Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
+| HHSV | Hihi Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| HSV | High Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| LSV | Low Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| LLSV | Lolo Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
 | HYST | Alarm Deadband | DOUBLE | Yes |   | Yes | Yes | No | 
 
 ### Monitor Parameters

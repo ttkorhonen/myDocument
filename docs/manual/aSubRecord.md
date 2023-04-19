@@ -83,13 +83,13 @@ first called and be able to release them again when they are no longer needed.
 | VAL | Subr. return value | LONG | No |   | Yes | Yes | No | 
 | OVAL | Old return value | LONG | No |   | Yes | No | No | 
 | INAM | Initialize Subr. Name | STRING \[41\] | Yes |   | Yes | No | No | 
-| LFLG | Subr. Input Enable | MENU #Menu aSubLFLG'>aSubLFLG | Yes |   | Yes | Yes | No | 
+| LFLG | Subr. Input Enable | MENU [aSubLFLG](menu-asublflg) | Yes |   | Yes | Yes | No | 
 | SUBL | Subroutine Name Link | INLINK | Yes |   | Yes | No | No | 
 | SNAM | Process Subr. Name | STRING \[41\] | Yes |   | Yes | Yes | No | 
 | ONAM | Old Subr. Name | STRING \[41\] | Yes |   | Yes | No | No | 
 | SADR | Subroutine Address | NOACCESS | No |   | No | No | No | 
 | CADR | Subroutine Cleanup Address | NOACCESS | No |   | No | No | No | 
-| BRSV | Bad Return Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
+| BRSV | Bad Return Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
 
 ### Operator Display Parameters
 
@@ -107,7 +107,7 @@ This flag controls value, log (archive) and alarm change events.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
-| EFLG | Output Event Flag | MENU #Menu aSubEFLG'>aSubEFLG | Yes | 1 | Yes | Yes | No | 
+| EFLG | Output Event Flag | MENU [aSubEFLG](menu-asubeflg) | Yes | 1 | Yes | Yes | No | 
 
 ### Input Link Fields
 
@@ -174,27 +174,27 @@ The choices can be found by following the link to the menuFtype definition.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
-| FTA | Type of A | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTB | Type of B | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTC | Type of C | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTD | Type of D | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTE | Type of E | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTF | Type of F | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTG | Type of G | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTH | Type of H | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTI | Type of I | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTJ | Type of J | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTK | Type of K | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTL | Type of L | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTM | Type of M | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTN | Type of N | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTO | Type of O | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTP | Type of P | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTQ | Type of Q | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTR | Type of R | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTS | Type of S | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTT | Type of T | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTU | Type of U | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
+| FTA | Type of A | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTB | Type of B | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTC | Type of C | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTD | Type of D | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTE | Type of E | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTF | Type of F | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTG | Type of G | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTH | Type of H | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTI | Type of I | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTJ | Type of J | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTK | Type of K | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTL | Type of L | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTM | Type of M | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTN | Type of N | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTO | Type of O | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTP | Type of P | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTQ | Type of Q | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTR | Type of R | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTS | Type of S | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTT | Type of T | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTU | Type of U | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
 
 ### Input Value Array Capacity
 
@@ -351,27 +351,27 @@ The choices can be found by following a link to the menuFtype definition.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
-| FTVA | Type of VALA | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTVB | Type of VALB | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTVC | Type of VALC | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTVD | Type of VALD | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTVE | Type of VALE | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTVF | Type of VALF | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTVG | Type of VALG | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTVH | Type of VALH | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTVI | Type of VALI | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTVJ | Type of VALJ | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTVK | Type of VALK | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTVL | Type of VALL | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTVM | Type of VALM | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTVN | Type of VALN | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTVO | Type of VALO | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTVP | Type of VALP | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTVQ | Type of VALQ | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTVR | Type of VALR | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTVS | Type of VALS | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTVT | Type of VALT | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
-| FTVU | Type of VALU | MENU menuFtype.md'>menuFtype | Yes | DOUBLE | Yes | No | No | 
+| FTVA | Type of VALA | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTVB | Type of VALB | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTVC | Type of VALC | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTVD | Type of VALD | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTVE | Type of VALE | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTVF | Type of VALF | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTVG | Type of VALG | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTVH | Type of VALH | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTVI | Type of VALI | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTVJ | Type of VALJ | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTVK | Type of VALK | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTVL | Type of VALL | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTVM | Type of VALM | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTVN | Type of VALN | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTVO | Type of VALO | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTVP | Type of VALP | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTVQ | Type of VALQ | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTVR | Type of VALR | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTVS | Type of VALS | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTVT | Type of VALT | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
+| FTVU | Type of VALU | MENU [menuFtype](menuFtype.md) | Yes | DOUBLE | Yes | No | No | 
 
 ### Output Value Array Capacity
 

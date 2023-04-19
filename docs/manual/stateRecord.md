@@ -15,11 +15,11 @@ The record-specific fields are described below, grouped by functionality.
 
 The state record has the standard fields for specifying under what circumstances
 it will be processed.
-These fields are listed in [Scan Fields](dbCommonRecord#Scan-Fields).
+These fields are listed in [Scan Fields](dbCommonRecord#Scan_Fields).
 
 ### Operator Display Parameters
 
-See [Fields Common to All Record Types](dbCommonRecord#Operator-Display-Parameters) for more on the record name (NAME) and description (DESC) fields.
+See [Fields Common to All Record Types](dbCommonRecord#Operator_DisplayParameters) for more on the record name (NAME) and description (DESC) fields.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
@@ -29,7 +29,7 @@ See [Fields Common to All Record Types](dbCommonRecord#Operator-Display-Paramete
 ### Alarm Parameters
 
 The state record has the alarm parameters common to all record types.
-[Alarm Fields](dbCommonRecord#Alarm-Fields) lists the fields related to
+[Alarm Fields](dbCommonRecord#Alarm_Fields) lists the fields related to
 alarms that are common to all record types.
 
 ### Run-time Parameters

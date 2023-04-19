@@ -11,7 +11,7 @@ The record-specific fields are described below, grouped by functionality.
 
 The subroutine record has the standard fields for specifying under what
 circumstances it will be processed.
-These fields are described in [Scan Fields](dbCommonRecord#Scan-Fields).
+These fields are described in [Scan Fields](dbCommonRecord#Scan_Fields).
 
 ### Read Parameters
 
@@ -80,7 +80,7 @@ The PREC field determines the floating point precision with which to display
 VAL. It is used whenever the `get_precision` record support routine is
 called.
 
-See [Fields Common to All Record Types](dbCommonRecord#Operator-Display-Parameters) for more on the record name (NAME) and description (DESC) fields.
+See [Fields Common to All Record Types](dbCommonRecord#Operator_DisplayParameters) for more on the record name (NAME) and description (DESC) fields.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
@@ -104,7 +104,7 @@ NO\_ALARM, MINOR, or MAJOR.
 The BRSV field is where the user can set the alarm severity in case the
 subroutine returns a negative value.
 
-[Alarm Fields](dbCommonRecord#Alarm-Fields) lists the fields related to
+[Alarm Fields](dbCommonRecord#Alarm_Fields) lists the fields related to
 alarms that are common to all record types.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
@@ -113,11 +113,11 @@ alarms that are common to all record types.
 | HIGH | High Alarm Limit | DOUBLE | Yes |   | Yes | Yes | Yes | 
 | LOW | Low Alarm Limit | DOUBLE | Yes |   | Yes | Yes | Yes | 
 | LOLO | Lolo Alarm Limit | DOUBLE | Yes |   | Yes | Yes | Yes | 
-| HHSV | Hihi Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| HSV | High Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| LSV | Low Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| LLSV | Lolo Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| BRSV | Bad Return Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
+| HHSV | Hihi Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| HSV | High Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| LSV | Low Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| LLSV | Lolo Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| BRSV | Bad Return Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
 | HYST | Alarm Deadband | DOUBLE | Yes |   | Yes | Yes | No | 
 
 ### Monitor Parameters

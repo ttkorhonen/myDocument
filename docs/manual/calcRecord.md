@@ -13,15 +13,15 @@ The record-specific fields are described below, grouped by functionality.
 
 The Calc record has the standard fields for specifying under what
 circumstances the record will be processed.
-These fields are described in [Scan Fields](dbCommonRecord#Scan-Fields).
+These fields are described in [Scan Fields](dbCommonRecord#Scan_Fields).
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
-| SCAN | Scan Mechanism | MENU menuScan.md'>menuScan | Yes |   | Yes | Yes | No | 
+| SCAN | Scan Mechanism | MENU [menuScan](menuScan.md) | Yes |   | Yes | Yes | No | 
 | PHAS | Scan Phase | SHORT | Yes |   | Yes | Yes | No | 
 | EVNT | Event Name | STRING \[40\] | Yes |   | Yes | Yes | No | 
-| PRIO | Scheduling Priority | MENU menuPriority.md'>menuPriority | Yes |   | Yes | Yes | No | 
-| PINI | Process at iocInit | MENU menuPini.md'>menuPini | Yes |   | Yes | Yes | No | 
+| PRIO | Scheduling Priority | MENU [menuPriority](menuPriority.md) | Yes |   | Yes | Yes | No | 
+| PINI | Process at iocInit | MENU [menuPini](menuPini.md) | Yes |   | Yes | Yes | No | 
 
 ### Read Parameters
 
@@ -280,7 +280,7 @@ solely for an operator's sake and does not have to be used.
 The HOPR and LOPR fields only refer to the limits of the VAL, HIHI, HIGH,
 LOW and LOLO fields. PREC controls the precision of the VAL field.
 
-See [Fields Common to All Record Types](dbCommonRecord#Operator-Display-Parameters) for more on the record name (NAME) and description (DESC) fields.
+See [Fields Common to All Record Types](dbCommonRecord#Operator_DisplayParameters) for more on the record name (NAME) and description (DESC) fields.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
@@ -307,7 +307,7 @@ The HYST field defines an alarm deadband for each limit.
 
 See [Alarm Specification](https://docs.epics-controls.org/en/latest/guides/EPICS_Process_Database_Concepts.html#alarm-specification)
 for a complete explanation of record alarms and of the standard fields.
-[Alarm Fields](dbCommonRecord#Alarm-Fields) lists other fields related
+[Alarm Fields](dbCommonRecord#Alarm_Fields) lists other fields related
 to alarms that are common to all record types.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
@@ -316,10 +316,10 @@ to alarms that are common to all record types.
 | HIGH | High Alarm Limit | DOUBLE | Yes |   | Yes | Yes | Yes | 
 | LOW | Low Alarm Limit | DOUBLE | Yes |   | Yes | Yes | Yes | 
 | LOLO | Lolo Alarm Limit | DOUBLE | Yes |   | Yes | Yes | Yes | 
-| HHSV | Hihi Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| HSV | High Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| LSV | Low Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
-| LLSV | Lolo Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | Yes | 
+| HHSV | Hihi Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| HSV | High Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| LSV | Low Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| LLSV | Lolo Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
 | HYST | Alarm Deadband | DOUBLE | Yes |   | Yes | Yes | No | 
 
 ### Monitor Parameters

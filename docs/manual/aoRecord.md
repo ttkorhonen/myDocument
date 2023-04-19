@@ -29,7 +29,7 @@ gets processed:
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
-| OMSL | Output Mode Select | MENU [menuOmsl](menuOmsl.html) | Yes |   | Yes | Yes | No | 
+| OMSL | Output Mode Select | MENU [menuOmsl](menuOmsl.md) | Yes |   | Yes | Yes | No | 
 | DOL | Desired Output Link | INLINK | Yes |   | Yes | Yes | No | 
 | OIF | Out Full/Incremental | MENU [aoOIF](menu-aooif) | Yes |   | Yes | Yes | No | 
 | PVAL | Previous value | DOUBLE | No |   | Yes | No | No | 
@@ -79,7 +79,7 @@ output link after it is adjusted by the values in the AOFF and ASLO fields.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
-| LINR | Linearization | MENU [menuConvert](menuConvert.html) | Yes |   | Yes | Yes | Yes | 
+| LINR | Linearization | MENU [menuConvert](menuConvert.md) | Yes |   | Yes | Yes | Yes | 
 | RVAL | Current Raw Value | LONG | No |   | Yes | Yes | Yes | 
 | ROFF | Raw Offset | ULONG | No |   | Yes | Yes | Yes | 
 | EGUF | Eng Units Full | DOUBLE | Yes |   | Yes | Yes | Yes | 
@@ -213,12 +213,12 @@ alarms that are common to all record types.
 | HIGH | High Alarm Limit | DOUBLE | Yes |   | Yes | Yes | Yes | 
 | LOW | Low Alarm Limit | DOUBLE | Yes |   | Yes | Yes | Yes | 
 | LOLO | Lolo Alarm Limit | DOUBLE | Yes |   | Yes | Yes | Yes | 
-| HHSV | Hihi Severity | MENU [menuAlarmSevr](menuAlarmSevr.html) | Yes |   | Yes | Yes | Yes | 
-| HSV | High Severity | MENU [menuAlarmSevr](menuAlarmSevr.html) | Yes |   | Yes | Yes | Yes | 
-| LSV | Low Severity | MENU [menuAlarmSevr](menuAlarmSevr.html) | Yes |   | Yes | Yes | Yes | 
-| LLSV | Lolo Severity | MENU [menuAlarmSevr](menuAlarmSevr.html) | Yes |   | Yes | Yes | Yes | 
+| HHSV | Hihi Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| HSV | High Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| LSV | Low Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
+| LLSV | Lolo Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | Yes | 
 | HYST | Alarm Deadband | DOUBLE | Yes |   | Yes | Yes | No | 
-| IVOA | INVALID output action | MENU [menuIvoa](menuIvoa.html) | Yes |   | Yes | Yes | No | 
+| IVOA | INVALID output action | MENU [menuIvoa](menuIvoa.md) | Yes |   | Yes | Yes | No | 
 | IVOV | INVALID output value | DOUBLE | Yes |   | Yes | Yes | No | 
 
 ### Monitor Parameters
@@ -297,11 +297,11 @@ for more information on simulation mode and its fields.
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
 | SIML | Simulation Mode Link | INLINK | Yes |   | Yes | Yes | No | 
-| SIMM | Simulation Mode | MENU [menuSimm](menuSimm.html) | No |   | Yes | Yes | No | 
+| SIMM | Simulation Mode | MENU [menuSimm](menuSimm.md) | No |   | Yes | Yes | No | 
 | SIOL | Simulation Output Link | OUTLINK | Yes |   | Yes | Yes | No | 
-| SIMS | Simulation Mode Severity | MENU [menuAlarmSevr](menuAlarmSevr.html) | Yes |   | Yes | Yes | No | 
+| SIMS | Simulation Mode Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | No | 
 | SDLY | Sim. Mode Async Delay | DOUBLE | Yes | -1.0 | Yes | Yes | No | 
-| SSCN | Sim. Mode Scan | MENU [menuScan](menuScan.html) | Yes | 65535 | Yes | Yes | No | 
+| SSCN | Sim. Mode Scan | MENU [menuScan](menuScan.md) | Yes | 65535 | Yes | Yes | No | 
 
 ## Record Support
 

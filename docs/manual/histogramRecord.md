@@ -39,7 +39,7 @@ These intervals are determined by dividing the range by NELM:
 These parameters are used to present meaningful data to the operator. These
 fields are used to display the value and other parameters of the histogram
 either textually or graphically. See
-[Fields Common to All Record Types](dbCommonRecord#Operator-Display-Parameters)
+[Fields Common to All Record Types](dbCommonRecord#Operator_Display_Parameters)
 for more on the record name (NAME) and description (DESC) fields.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
@@ -50,7 +50,7 @@ for more on the record name (NAME) and description (DESC) fields.
 ### Alarm Parameters
 
 The Histogram record has the alarm parameters common to all record types.
-[Alarm Fields](dbCommonRecord#Alarm-Fields) lists the fields related to
+[Alarm Fields](dbCommonRecord#Alarm_Fields) lists the fields related to
 alarms that are common to all record types.
 
 ### Monitor Parameters
@@ -132,7 +132,7 @@ would be 2. Thus, it is (ULIM - LLIM) / NELM.
 | BPTR | Buffer Pointer | NOACCESS | No |   | No | No | No | 
 | VAL | Value | ULONG\[\] | No |   | Yes | Yes | No | 
 | MCNT | Counts Since Monitor | SHORT | No |   | Yes | No | No | 
-| CMD | Collection Control | MENU #Menu histogramCMD'>histogramCMD | No |   | Yes | Yes | No | 
+| CMD | Collection Control | MENU [histogramCMD](menu-histogramcmd) | No |   | Yes | Yes | No | 
 | CSTA | Collection Status | SHORT | No | 1 | Yes | No | No | 
 | WDTH | Element Width | DOUBLE | No |   | Yes | No | No | 
 
@@ -145,8 +145,8 @@ simulation mode fields.
 | SIOL | Simulation Input Link | INLINK | Yes |   | Yes | Yes | No | 
 | SVAL | Simulation Value | DOUBLE | No |   | Yes | Yes | No | 
 | SIML | Simulation Mode Link | INLINK | Yes |   | Yes | Yes | No | 
-| SIMM | Simulation Mode | MENU menuYesNo.md'>menuYesNo | No |   | Yes | Yes | No | 
-| SIMS | Simulation Mode Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | No | 
+| SIMM | Simulation Mode | MENU [menuYesNo](menuYesNo.md) | No |   | Yes | Yes | No | 
+| SIMS | Simulation Mode Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | No | 
 
 ## Record Support
 
@@ -226,8 +226,8 @@ The device support routines are primarily interested in the following fields:
 | PACT | Record active | UCHAR | No |   | Yes | No | No | 
 | DPVT | Device Private | NOACCESS | No |   | No | No | No | 
 | UDF | Undefined | UCHAR | Yes | 1 | Yes | Yes | Yes | 
-| NSEV | New Alarm Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | No |   | Yes | No | No | 
-| NSTA | New Alarm Status | MENU menuAlarmStat.md'>menuAlarmStat | No |   | Yes | No | No | 
+| NSEV | New Alarm Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | No |   | Yes | No | No | 
+| NSTA | New Alarm Status | MENU [menuAlarmStat](menuAlarmStat.md) | No |   | Yes | No | No | 
 | SVL | Signal Value Location | INLINK | Yes |   | Yes | Yes | No | 
 | SGNL | Signal Value | DOUBLE | No |   | Yes | Yes | No | 
 
