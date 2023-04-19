@@ -7,8 +7,8 @@ EPICS Record Types
    :maxdepth: 3
    :caption: Record Reference:
 
-   airecord
-   aorecord
+   aiRecord
+   aoRecord
    aSubRecord
    aaiRecord
    aaoRecord
