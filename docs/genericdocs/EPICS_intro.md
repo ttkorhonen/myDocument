@@ -78,7 +78,7 @@ of clients and servers makes configuration of the systems easier and
 also makes the system more robust. Clients and servers can be added to
 and removed from the system without having to stop the operation.
 
-![image0](media/Intro_SimpleSystem.png){w="400 px"}
+![image0](media/Intro_SimpleSystem.png){ w=400px }
 
 Figure 1. A simple EPICS control system structure.
 
@@ -168,7 +168,7 @@ the following software components:
 Let us briefly describe the major components of the IOC and how they
 interact.
 
-![image1](media/Intro_IOC_blockdiag.png){w="400 px"}
+![image1](media/Intro_IOC_blockdiag.png){ w=400px }
 
 Figure 2. EPICS IOC components.
 
@@ -236,8 +236,7 @@ two sensors T1 and T2 is over 10 degrees, the chiller is switched on.
 This database contains four records: two analog inputs (ai), one binary
 output (bo) and one calculation (calc).
 
-![image2](media/Intro_RecordLinking.png){width="6.69306in"
-height="4.10093in"}
+![image2](media/Intro_RecordLinking.png){ w=400px }
 
 Figure 4. Example of record linking. From \[2\].
 
