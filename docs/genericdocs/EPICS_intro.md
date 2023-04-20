@@ -78,8 +78,7 @@ of clients and servers makes configuration of the systems easier and
 also makes the system more robust. Clients and servers can be added to
 and removed from the system without having to stop the operation.
 
-![image0](media/Intro_SimpleSystem.png){width="4.05012in"
-height="2.72093in"}
+![image0](media/Intro_SimpleSystem.png){w="400 px"}
 
 Figure 1. A simple EPICS control system structure.
 
@@ -169,8 +168,7 @@ the following software components:
 Let us briefly describe the major components of the IOC and how they
 interact.
 
-![image1](media/Intro_IOC_blockdiag.png){width="5.41319in"
-height="3.61736in"}
+![image1](media/Intro_IOC_blockdiag.png){w="400 px"}
 
 Figure 2. EPICS IOC components.
 
