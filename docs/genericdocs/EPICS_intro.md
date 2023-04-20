@@ -78,7 +78,7 @@ of clients and servers makes configuration of the systems easier and
 also makes the system more robust. Clients and servers can be added to
 and removed from the system without having to stop the operation.
 
-![image0](media/Intro_SimpleSystem.png) { w=600px }
+![image0](media/Intro_SimpleSystem.png){ w=600px }
 
 Figure 1. A simple EPICS control system structure.
 
@@ -189,8 +189,8 @@ input (ai) record type supports reading in values from hardware devices
 and converting them into desired (engineering) units. It also provides
 limits for expected operating ranges and alarms when these limits are
 exceeded. EPICS supports a large and extensible set of record types,
-e.g. ai ( [Analog Input](inv:mydocs:std:doc:manual/airecord) ), ao (
-[Analog Output](inv:mydocs:std:doc:manual/aorecord) ), etc.
+e.g. ai ( [Analog Input]<inv:mydocs:std:doc:manual/airecord> ), ao (
+[Analog Output]<inv:mydocs:std:doc:manual/aorecord> ), etc.
 
 The metadata, known as "fields" is used to configure the record's
 behavior. There are a number of fields that are common to all record
