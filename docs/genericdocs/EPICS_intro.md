@@ -78,7 +78,7 @@ of clients and servers makes configuration of the systems easier and
 also makes the system more robust. Clients and servers can be added to
 and removed from the system without having to stop the operation.
 
-![image0](media/Intro_SimpleSystem.png)
+![image0](media/Intro_SimpleSystem.png) { w=600px }
 
 Figure 1. A simple EPICS control system structure.
 
@@ -157,8 +157,7 @@ the following software components:
 -   Device Support: Device support routines bind I/O data to the
     database records.
 -   Device Drivers: Device drivers handle access to external devices.
--   Channel Access or `pvAccess <pvxs:overview>`{.interpreted-text
-    role="doc"}: The interface between the external world and the IOC.
+-   Channel Access or [pvAccess](inv:pvxs:overview): The interface between the external world and the IOC.
     It provides the interface for accessing the (EPICS) database via the
     network.
 -   Sequencer: A finite state machine. Strictly speaking, this is an
@@ -190,8 +189,8 @@ input (ai) record type supports reading in values from hardware devices
 and converting them into desired (engineering) units. It also provides
 limits for expected operating ranges and alarms when these limits are
 exceeded. EPICS supports a large and extensible set of record types,
-e.g. ai ( [Analog Input] (inv:mydocs:std:doc:manual/airecord) ), ao (
-[Analog Output] (inv:mydocs:std:doc:manual/aorecord) ), etc.
+e.g. ai ( [Analog Input](inv:mydocs:std:doc:manual/airecord) ), ao (
+[Analog Output](inv:mydocs:std:doc:manual/aorecord) ), etc.
 
 The metadata, known as "fields" is used to configure the record's
 behavior. There are a number of fields that are common to all record
@@ -244,9 +243,8 @@ structures because they access the database via library routines.
 
 ### Database Scanning
 
-`Database scanning <mydocs:manual/menuScan>`{.interpreted-text
-role="doc"} is the mechanism to process a record. Processing means
-making the record perform its task, for instance reading an I/O channel,
+[Database scanning](inv:mydocs:manual/menuScan) is the mechanism to process a record. 
+Processing means making the record perform its task, for instance reading an I/O channel,
 converting the read value to engineering units, attaching a timestamp to
 the value or checking the alarm limits. How data are handled when a
 record is processed depends on the record type.
