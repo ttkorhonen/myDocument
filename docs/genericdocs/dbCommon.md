@@ -118,16 +118,16 @@ The **SPVT** field is for internal use by the scanning system.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
-| SCAN | Scan Mechanism | MENU menuScan.md'>menuScan | Yes |   | Yes | Yes | No | 
-| PINI | Process at iocInit | MENU menuPini.md'>menuPini | Yes |   | Yes | Yes | No | 
+| SCAN | Scan Mechanism | MENU [menuScan](menuScan.md) | Yes |   | Yes | Yes | No | 
+| PINI | Process at iocInit | MENU [menuPini](menuPini.md) | Yes |   | Yes | Yes | No | 
 | PHAS | Scan Phase | SHORT | Yes |   | Yes | Yes | No | 
 | EVNT | Event Name | STRING \[40\] | Yes |   | Yes | Yes | No | 
-| PRIO | Scheduling Priority | MENU menuPriority.md'>menuPriority | Yes |   | Yes | Yes | No | 
+| PRIO | Scheduling Priority | MENU [menuPriority](menuPriority.md) | Yes |   | Yes | Yes | No | 
 | DISV | Disable Value | SHORT | Yes | 1 | Yes | Yes | No | 
 | DISA | Disable | SHORT | No |   | Yes | Yes | No | 
 | SDIS | Scanning Disable | INLINK | Yes |   | Yes | Yes | No | 
 | PROC | Force Processing | UCHAR | No |   | Yes | Yes | Yes | 
-| DISS | Disable Alarm Sevrty | MENU menuAlarmSevr.md'>menuAlarmSevr | Yes |   | Yes | Yes | No | 
+| DISS | Disable Alarm Sevrty | MENU [menuAlarmSevr](menuAlarmSevr.md) | Yes |   | Yes | Yes | No | 
 | LCNT | Lock Count | UCHAR | No |   | Yes | No | No | 
 | PACT | Record active | UCHAR | No |   | Yes | No | No | 
 | FLNK | Forward Process Link | FWDLINK | Yes |   | Yes | Yes | No | 
@@ -176,14 +176,14 @@ responsible for setting and clearing UDF.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
 | ----- | ------- | ---- | --- | ------- | ---- | ---- | ----- |
-| STAT | Alarm Status | MENU menuAlarmStat.md'>menuAlarmStat | No | UDF | Yes | No | No | 
-| SEVR | Alarm Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | No |   | Yes | No | No | 
+| STAT | Alarm Status | MENU [menuAlarmStat](menuAlarmStat.md) | No | UDF | Yes | No | No | 
+| SEVR | Alarm Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | No |   | Yes | No | No | 
 | AMSG | Alarm Message | STRING \[40\] | No |   | Yes | No | No | 
-| NSTA | New Alarm Status | MENU menuAlarmStat.md'>menuAlarmStat | No |   | Yes | No | No | 
-| NSEV | New Alarm Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | No |   | Yes | No | No | 
+| NSTA | New Alarm Status | MENU [menuAlarmStat](menuAlarmStat.md) | No |   | Yes | No | No | 
+| NSEV | New Alarm Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | No |   | Yes | No | No | 
 | NAMSG | New Alarm Message | STRING \[40\] | No |   | Yes | No | No | 
-| ACKS | Alarm Ack Severity | MENU menuAlarmSevr.md'>menuAlarmSevr | No |   | Yes | No | No | 
-| ACKT | Alarm Ack Transient | MENU menuYesNo.md'>menuYesNo | Yes | YES | Yes | No | No | 
+| ACKS | Alarm Ack Severity | MENU [menuAlarmSevr](menuAlarmSevr.md) | No |   | Yes | No | No | 
+| ACKT | Alarm Ack Transient | MENU [menuYesNo](menuYesNo.md) | Yes | YES | Yes | No | No | 
 | UDF | Undefined | UCHAR | Yes | 1 | Yes | Yes | Yes | 
 
 ### Device Fields
