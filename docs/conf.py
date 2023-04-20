@@ -36,6 +36,9 @@ extensions = [
     "sphinx.ext.intersphinx",
     "myst_parser",
 ]
+myst_enable_extensions = [
+    "attrs_inline",
+]
 intersphinx_mapping = {
     'how-tos': ('https://docs.epics-controls.org/projects/how-tos/en/latest', None),
     'epics': ('https://docs.epics-controls.org/en/latest/', None),
