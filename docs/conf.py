@@ -46,7 +46,7 @@ myst_ref_domains = [
 ]
 myst_url_schemes=["http", "https", "mailto"]
 
-myst_heading_anchors = 3
+myst_heading_anchors = 4
 
 intersphinx_mapping = {
     'how-tos': ('https://docs.epics-controls.org/projects/how-tos/en/latest', None),
