@@ -157,7 +157,7 @@ the following software components:
 -   Device Support: Device support routines bind I/O data to the
     database records.
 -   Device Drivers: Device drivers handle access to external devices.
--   Channel Access or [pvAccess](inv:pvxs:overview): The interface between the external world and the IOC.
+-   Channel Access or [pvAccess](inv:pvxs:overview.html): The interface between the external world and the IOC.
     It provides the interface for accessing the (EPICS) database via the
     network.
 -   Sequencer: A finite state machine. Strictly speaking, this is an
@@ -190,7 +190,7 @@ and converting them into desired (engineering) units. It also provides
 limits for expected operating ranges and alarms when these limits are
 exceeded. EPICS supports a large and extensible set of record types,
 e.g. ai ( [Analog Input](inv:mydocs:std:doc:manual/airecord.html) ), ao (
-[Analog Output](inv:mydocs:std:doc:manual/aorecord.html) ), etc.
+[Analog Output](inv:manual/aorecord.html) ), [Analog Output](inv:manual/aoRecord) ), etc.
 
 The metadata, known as "fields" is used to configure the record's
 behavior. There are a number of fields that are common to all record

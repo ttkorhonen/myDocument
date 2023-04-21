@@ -39,6 +39,9 @@ extensions = [
 myst_enable_extensions = [
     "attrs_inline",
 ]
+
+myst_url_schemes=["http", "https", "mailto"]
+
 intersphinx_mapping = {
     'how-tos': ('https://docs.epics-controls.org/projects/how-tos/en/latest', None),
     'epics': ('https://docs.epics-controls.org/en/latest/', None),
