@@ -44,7 +44,11 @@ myst_ref_domains = [
     'std',
     'py',
 ]
-myst_url_schemes=["http", "https", "mailto"]
+myst_url_schemes=["http" : None,
+                  "https" : None, 
+                  "mailto": None,]
+
+myst_heading_anchors = 3
 
 intersphinx_mapping = {
     'how-tos': ('https://docs.epics-controls.org/projects/how-tos/en/latest', None),
