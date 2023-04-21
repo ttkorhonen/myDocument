@@ -302,7 +302,7 @@ record types do not need all functions):
     links, or from other IOCs via Channel Access (CA) or pvAccess (PVA)
     links.
 -   **Conversion**:
-    [Conversion](inv:mydocs:std#units-conversion) of raw input to engineering units or engineering units
+    [Conversion](inv:mydocs:std#aoRecord.md#units-conversion) of raw input to engineering units or engineering units
     to raw output values.
 -   **Output**: Write outputs. Output can be directed, via device
     support routines, to hardware, to other database records within the
