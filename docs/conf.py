@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'EPICS Documentation Sandbox'
-copyright = '2019, Timo Korhonen'
+copyright = '2023, Timo Korhonen'
 author = 'Timo Korhonen'
 
 
