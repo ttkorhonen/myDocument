@@ -148,8 +148,7 @@ An EPICS IOC at its core is a software entity or a process that contains
 the following software components:
 
 -   IOC Database: A memory resident database containing a set of named
-    `records  <mydocs:manual/aorecord>`{.interpreted-text role="doc"} of
-    various types. The records host the process variables that were
+    records of various types. The records host the process variables that were
     mentioned above.
 -   Scanners: The mechanisms for processing records in the IOC database.
 -   Record Support: Each record type has an associated set of record
@@ -157,7 +156,7 @@ the following software components:
 -   Device Support: Device support routines bind I/O data to the
     database records.
 -   Device Drivers: Device drivers handle access to external devices.
--   Channel Access or [pvAccess](inv:pvxs:std#overview): The interface between the external world and the IOC.
+-   Channel Access or [pvAccess](inv:pvxs:std#overview) : The interface between the external world and the IOC.
     It provides the interface for accessing the (EPICS) database via the
     network.
 -   Sequencer: A finite state machine. Strictly speaking, this is an
@@ -189,8 +188,8 @@ input (ai) record type supports reading in values from hardware devices
 and converting them into desired (engineering) units. It also provides
 limits for expected operating ranges and alarms when these limits are
 exceeded. EPICS supports a large and extensible set of record types,
-e.g. ai ( [Analog Input](inv:mydocs:std#aiRecord) ), ao (
-[Analog Output](inv:mydocs:std#aoRecord) )), etc.
+e.g. ai ( [Analog Input](inv:mydocs:std#manual/aiRecord) ), ao (
+[Analog Output](inv:mydocs:std#manual/aoRecord) )), etc.
 
 The metadata, known as "fields" is used to configure the record's
 behavior. There are a number of fields that are common to all record
@@ -243,7 +242,7 @@ structures because they access the database via library routines.
 
 ### Database Scanning
 
-[Database scanning](inv:mydocs:manual/menuScan) is the mechanism to process a record. 
+[Database scanning](inv:mydocs:std#manual/menuScan) is the mechanism to process a record. 
 Processing means making the record perform its task, for instance reading an I/O channel,
 converting the read value to engineering units, attaching a timestamp to
 the value or checking the alarm limits. How data are handled when a
@@ -303,8 +302,7 @@ record types do not need all functions):
     links, or from other IOCs via Channel Access (CA) or pvAccess (PVA)
     links.
 -   **Conversion**:
-    `Conversion <mydocs:ao-conversion-spec>`{.interpreted-text
-    role="ref"} of raw input to engineering units or engineering units
+    [Conversion](inv:mydocs:std#ao-conversion-spec) of raw input to engineering units or engineering units
     to raw output values.
 -   **Output**: Write outputs. Output can be directed, via device
     support routines, to hardware, to other database records within the
@@ -316,7 +314,7 @@ record types do not need all functions):
 The same concept is applied to the device support and device driver
 modules: each support module has to define a set of functions so that it
 can become a part of the IOC software.
-`Asyn Driver <asyn:index>`{.interpreted-text role="doc"} is a very
+[Asyn Driver](inv:asyn:std#index) is a very
 commonly used API to write device support modules.
 
 ### Database Monitors
@@ -509,8 +507,7 @@ suited to their particular setup and infrastructure.
 A large number of CA/PVA tools have been developed. The following are
 some representative examples.
 
--   CS-Studio: `Control System Studio <phoebus:intro>`{.interpreted-text
-    role="doc"}, an application bundle with many available plug-ins like
+-   CS-Studio: [Control System Studio](inv:phoebus:std#intro), an application bundle with many available plug-ins like
     display managers (BOY, Display Builder), data visualization/charting
     tools (DataBrowser), and so on.
 -   EDM: Extensible Display Manager. One of the several alternative
@@ -519,15 +516,15 @@ some representative examples.
     tool), just to name a couple.
 -   Alarm Handler. General-purpose alarm handler driven by an alarm
     configuration file.
--   `Sequencer <sequencer:Introduction>`{.interpreted-text role="doc"} :
+-   [Sequencer](inv:sequencer:std#Introduction) :
     Runs in an IOC to implement state machines.
 -   Archiver Appliance: Collects data from EPICS servers (CA,PVA) and
     stores the data in time-series files so that they can be later
     retrieved and analyzed for correlating events and monitoring the
     performance of the "machine", i.e., the device or facility under
     control.
--   `Channel Finder (Indexing Service) <channelfinder:overview>`{.interpreted-text
-    role="doc"} : A tool to manage (list, tag, categorize) the EPICS
+-   [Channel Finder (Indexing Service)](inv:channelfinder:std#overview) : 
+    A tool to manage (list, tag, categorize) the EPICS
     records in a system. This is a powerful tool to manage and provide
     hierarchy and different viewpoints to the potentially very large
     number of records. With this service, abstract views to the flat
