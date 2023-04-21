@@ -40,6 +40,10 @@ myst_enable_extensions = [
     "attrs_inline",
 ]
 
+myst_ref_domains = [
+    'std',
+    'py',
+]
 myst_url_schemes=["http", "https", "mailto"]
 
 intersphinx_mapping = {
