@@ -70,7 +70,7 @@ setup will safely abort.
 
 ##### Global EVG Options:
 
--   [Enable ](bo/bi): EVG enable and disable.
+-   **Enable** (bo/bi): EVG enable and disable.
 
 ##### Timestamping
 
@@ -94,7 +94,7 @@ Following are the EVR requirements for accurate timestamping:
     updated serially by loading zeros and ones on receipt of event code
     0x70 and 0x71 respectively.
 
-Timestamping at EVG:
+###### Timestamping at EVG:
 
 For timestamp EVG needs a pulse from the time source at the start of
 every second. EVG used this 1 pulse per second input to address both
@@ -131,12 +131,12 @@ Advantages:
 
 -   Using minimum number of EVG inputs for the timestamping purpose.
 
-Records associated with EVG time stamping:
+###### Records associated with EVG time stamping:
 
 -   **Synchronize Timestamp** (bo): Sync the current time with
     the NTP server.
 
--   [1PPS source ] for Timestamping:
+-   **1PPS source** for Timestamping:
 
     -   **Timestamp Input** (mbbo/mbbi):
 
@@ -209,10 +209,8 @@ with the event clock rate.
     bus can be driven by selecting one of the following sources.
 
     -   Ext Inp : Sampling of the external input signals at event rate.
-
     -   MXC : Sampling of the corresponding multiplexed counter output
         at event rate.
-
     -   Upstream EVG : Forwarding the state of distributed bus bit of
         upstream EVG.
 
@@ -232,13 +230,10 @@ bus signals and trigger sequence RAMs.
 
 -   **Polarity** (bo/bi): Set the Multiplex Counter(Mxc)
     output polarity.
-
 -   **Frequency** (ao/ai): Request a signal with a particular
     frequency.
-
 -   **Prescaler** (longout/longin): Used as counter to produce a signal with
     a particular frequency.
-
 -   **Reset**  Reset all the multiplexed counters. After reset all the
     counters are in phase/sync with each other.
 
@@ -315,7 +310,7 @@ When user are satisfied with the changes made to the working copy then
 they can ['commit' ]the soft sequence which will update the
 complete sequence with the scratch sequence. If the software sequence
 has an associated hardware sequence with it then the complete sequence
-is copied to the hardware on [commit]. This is the Sync
+is copied to the hardware on **commit**. This is the Sync
 operation of sequencer.
 
 Parts of the sequence:
