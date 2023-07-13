@@ -34,8 +34,8 @@ extensions = [
     "sphinx.ext.graphviz",
     "sphinx_copybutton",
     "sphinx.ext.intersphinx",
+    "sphinx.ext.autosectionlabel",
     "myst_parser",
-    "sphinx_tippy",
 ]
 extensions += ['sphinx.ext.autosectionlabel']
 # Make sure the target is unique
@@ -66,7 +66,7 @@ intersphinx_mapping = {
 }
 hoverxref_role_types = {
     'hoverxref': 'tooltip',
-    'ref': 'modal',
+    'ref': 'tooltip',
     'confval': 'tooltip',
     'mod': 'modal',
     'class': 'modal',
