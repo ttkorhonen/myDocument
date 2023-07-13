@@ -133,12 +133,12 @@ Advantages:
 
 Records associated with EVG time stamping:
 
--   [Synchronize Timestamp ](bo): Sync the current time with
+-   **Synchronize Timestamp** (bo): Sync the current time with
     the NTP server.
 
 -   [1PPS source ] for Timestamping:
 
-    -   [Timestamp Input ](mbbo/mbbi):
+    -   **Timestamp Input** (mbbo/mbbi):
 
         -   None : Stop timestamping
 
@@ -153,23 +153,20 @@ Records associated with EVG time stamping:
 All the operations on EVG are synchronized to the event clock. Which is
 derived from either externally provided RF clock or from an on-board
 fractional synthesizer.
-e.g. ai ( :doc:`Analog Input  <mydocs:manual/airecord>` ), ao ( :doc:`Analog Output  <mydocs:manual/aorecord>` ), etc.
-e.g. ai ( {ref}`Analog Input  <mydocs:manual/airecord>` )
-:hoverxref:`Analog Input  <mydocs:manual/airecord>`
 
--   [Source ](bo/bi): The event clock may be derived from
+-   **Source** (bo/bi): The event clock may be derived from
     external RF clock signal or from an on-board fractional synthesizer.
 
--   RF reference frequency: ao ( :doc:`Analog Output  <mydocs:manual/aorecord>` ): Set the RF Input
+-   **RF reference frequency** ao/ai ( {ref}`Analog Output  <mydocs:manual/aorecord>` ): Set the RF Input
     frequency in MHz. Frequency can range from 50 to 1600.
 
--   [RF Divider ](longout/longin): Divider to derive desired
+-   **RF Divider** (longout/longin): Divider to derive desired
     event clock from RF reference frequency.
 
--   [Fractional Synthesizer frequency ](ao/ai): This
+-   **Fractional Synthesizer frequency** (ao/ai): This
     frequency could be used to derive event clock.
 
--   [Event Clock Frequency Readback ](ai): Gets the current
+-   **Event Clock Frequency Readback** (ai): Gets the current
     event clock frequency in MHz.
 
 #### Software Events
@@ -177,10 +174,10 @@ e.g. ai ( {ref}`Analog Input  <mydocs:manual/airecord>` )
 Software event is used to send out an event code by writing that event
 to a particular register in EVG.
 
--   [Enable ](bo/bi): Enable/Disable the transmission of
+-   **Enable** (bo/bi): Enable/Disable the transmission of
     Software Events.
 
--   [Event Code ](longout/longin): Sends out the event code
+-   **Event Code** (longout/longin): Sends out the event code
     onto the event stream. Event code can range form 0 to 255.
 
 #### Trigger Events
@@ -190,14 +187,14 @@ send out event code into the event streams, every time a trigger is
 received. The stimulus could be a rising edge on an external input
 signal or a multiplexed counter output or the ac signal.
 
--   [Enable ](bo/bi): Enable/Disable the transmission of
+-   **Enable** (bo/bi): Enable/Disable the transmission of
     Trigger Events.
 
--   [Event Code ](longout/longin): Sets the event code to be
+-   **Event Code** (longout/longin): Sets the event code to be
     sent out, whenever a trigger is received. Event Code can range form
     0 to 255.
 
--   [Trigger Source ](mbbo): The trigger could come from one
+-   **Trigger Source** (mbbo): The trigger could come from one
     or multiple sources. It could come from any of the external inputs
     and/or any multiplexed counter output and/or from ac signal. If
     multiple trigger sources are selected then those signal are OR'ed
@@ -208,7 +205,7 @@ signal or a multiplexed counter output or the ac signal.
 The distributed bus allows transmission of eight simultaneous signals
 with the event clock rate.
 
--   [Signal Source/Map ](mbbo): The bits of the distributed
+-   **Signal Source/Map** (mbbo): The bits of the distributed
     bus can be driven by selecting one of the following sources.
 
     -   Ext Inp : Sampling of the external input signals at event rate.
@@ -219,7 +216,7 @@ with the event clock rate.
     -   Upstream EVG : Forwarding the state of distributed bus bit of
         upstream EVG.
 
--   [Selecting the input ](bo): When the source for the
+-   **Selecting the input** (bo): When the source for the
     distributed bus signals is external input signal, we need to specify
     which input signal needs to be mapped onto the distributed bus. If
     multiple inputs are mapped onto a single distributed bus bit then
@@ -233,23 +230,23 @@ programmable frequencies from event clock/2\^32-1 to event clock/2. The
 counter outputs may be programmed to trigger events, drive distributed
 bus signals and trigger sequence RAMs.
 
--   [Polarity ](bo/bi): Set the Multiplex Counter(Mxc)
+-   **Polarity** (bo/bi): Set the Multiplex Counter(Mxc)
     output polarity.
 
--   [Frequency ](ao/ai): Request a signal with a particular
+-   **Frequency** (ao/ai): Request a signal with a particular
     frequency.
 
--   [Prescaler ](longout/longin): Used as counter to produce a signal with
+-   **Prescaler** (longout/longin): Used as counter to produce a signal with
     a particular frequency.
 
--   Reset: Reset all the multiplexed counters. After reset all the
+-   **Reset**  Reset all the multiplexed counters. After reset all the
     counters are in phase/sync with each other.
 
 #### Input
 
 VME-EVG-230 has 2 Front panel, 4 Universal and 16 Transitional Inputs.
 
--   [External Input Interrupt ](bo): Enable or Disable the
+-   **External Input Interrupt** (bo): Enable or Disable the
     External Interrupt. When enabled, an interrupt is received on every
     rising edge the input signal.
 
@@ -258,7 +255,7 @@ VME-EVG-230 has 2 Front panel, 4 Universal and 16 Transitional Inputs.
 It is used to configure the 4 front panel outputs and 4 four front panel
 universal outputs.
 
--   [Source ](mbbo/mbbi): The output could be mapped to
+-   **Source**　(mbbo/mbbi): The output could be mapped to
 
     -   Any of the eight distributed bus bits
 
@@ -271,17 +268,17 @@ universal outputs.
 EVG provides synchronization to the mains voltage frequency or another
 external clock.
 
--   [Divider ](longout/longin): The mains voltage frequency
+-   **Divider**　(longout/longin): The mains voltage frequency
     can be divided by an eight bit programmable divider.
 
--   [Phase ](ao/ai): The output of the divider may be
+-   **Phase**　(ao/ai): The output of the divider may be
     delayed by 0 to 25.5 ms by a phase shifter in 0.1ms steps to adjust
     the triggering position relative to mains voltage phase.
 
--   [AC Bypass ](bo/bi): It is set to bypass the AC divider
+-   **AC Bypass**　(bo/bi): It is set to bypass the AC divider
     and phase shifter circuitry.
 
--   [Sync ](bo/bi): The AC Trigger could be synchronized
+-   **Sync** (bo/bi): The AC Trigger could be synchronized
     either with event clock or the output of multiplexed counter 7.
 
 #### Event Sequencer 
@@ -324,15 +321,15 @@ operation of sequencer.
 
 Parts of the sequence:
 
--   [Event Code List ](waveform): It is used to set the list
+-   **Event Code List**　(waveform): It is used to set the list
     of the eventCodes of the soft sequence. These eventCodes are
     transmitted whenever the timeStamp associated with eventCode matches
     the counter value of sequencer.
 
--   [Timestamp List ](waveform): It is used to set the
+-   **Timestamp List**　(waveform): It is used to set the
     timeStamps for the events in the soft sequence.
 
--   [Timestamp Input Mode](bo): There are two mode to enter
+-   **Timestamp Input Mode**　(bo): There are two mode to enter
     the timestamping data in the sequencer i.e. EGU and TICKS.
 
     -   EGU: In EGU mode user can enter the timestamps in units of
@@ -344,7 +341,7 @@ Parts of the sequence:
     -   All the timestamp values are offset from the time the sequencer
         receives the trigger.
 
--   [Timestamp Resolution](mbbo) : If the timestamp input mode is EGU user
+-   **Timestamp Resolution**　(mbbo) : If the timestamp input mode is EGU user
     can use this record to give the units to time.
 
     -   Sec - Input/Output sequencer timestamps in seconds
@@ -355,7 +352,7 @@ Parts of the sequence:
 
     -   nSec - Input/Output sequencer timestamps in nano-seconds
 
--   [Run Mode ](mbbo/mbbi): Run mode is used determine what
+-   **Run Mode**　(mbbo/mbbi): Run mode is used determine what
     will the sequencer do at the end of the sequence. where mode could
     be any of the following:
 
@@ -367,7 +364,7 @@ Parts of the sequence:
     -   Normal : At the end of the sequence, the sequencer rearms and
         waits for the trigger to restart the sequence.
 
--   [Trigger Source ](mbbo/mbbi): Trigger Src is used to
+-   **Trigger Source**　(mbbo/mbbi): Trigger Src is used to
     select the source of the trigger, which starts the sequencer.
 
     -   Mxc : Trigger from MXC0 - MXC7
@@ -384,7 +381,7 @@ do not directly interact with the hardware sequence.
 A soft sequence could be in different states like LOADED or UNLOADED,
 COMMITTED or DIRTY, ENABLED or DISABLED.
 
--   [Load ](bo): If successful, load causes a soft sequence
+-   **Load**　(bo): If successful, load causes a soft sequence
     to move from UNLOADED state to LOADED state. In the LOADED state, an
     hard sequence is assigned to a soft sequence. If the soft sequence
     is already in LOADED state then load will return with an error
@@ -393,12 +390,12 @@ COMMITTED or DIRTY, ENABLED or DISABLED.
     time, each hard sequence is connected to only one soft sequence.
     Load also copies the last committed data to the hardware.
 
--   [Unload ](bo): The unload causes the soft sequence to
+-   **Unload**　(bo): The unload causes the soft sequence to
     enter into UNLOADED state. This operation cannot fail. In unloaded
     state the assignment of a hard sequence to a soft sequence is
     released.
 
--   [Commit ](bo): Whenever you modify a soft sequence, the
+-   **Commit**　(bo): Whenever you modify a soft sequence, the
     scratch copy in the soft sequence is modified (Refer to evg-seq
     diagram). Commit causes the changes from the 'scratch sequence' to
     be copied to the 'complete sequence'. If the soft sequence is
@@ -409,20 +406,20 @@ COMMITTED or DIRTY, ENABLED or DISABLED.
     running. Hence it waits for the current sequence to finish before
     writing to the hardware sequence.
 
--   [Enable ](bo): It puts the soft sequence in the ENABLED
+-   **Enable**　(bo): It puts the soft sequence in the ENABLED
     state. In enabled state, a loaded sequence is armed and waits for
     the trigger. If is already in ENABLED state the record does nothing.
 
--   [Disable ](bo): In DISABLED state the armed sequence is
+-   **Disable**　(bo): In DISABLED state the armed sequence is
     disarmed, so even if the sequencer receives the trigger the sequence
     is does not run again.
 
--   [Pause ](bo): This stops the currently running
+-   **Pause**　(bo): This stops the currently running
     sequence(if any) and then disarms it. Pause leaves the sequence in
     DISABLED state. When the sequence starts running again(Arm +
     Trigger), it continues the from where it was stopped.
 
--   [Abort ](bo): This causes the currently running
+-   **Abort**　(bo): This causes the currently running
     sequence(if any) to stop and then disarmed. Abort leaves the
     sequence in DISABLED state. After disarming it also resets the
     timestamp and eventCode registers. So when the sequence starts
