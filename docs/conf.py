@@ -35,6 +35,7 @@ extensions = [
     "sphinx_copybutton",
     "sphinx.ext.intersphinx",
     "myst_parser",
+    "sphinx_tippy",
 ]
 extensions += ['sphinx.ext.autosectionlabel']
 # Make sure the target is unique
