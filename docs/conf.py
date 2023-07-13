@@ -36,6 +36,11 @@ extensions = [
     "sphinx.ext.intersphinx",
     "myst_parser",
 ]
+extensions += ['sphinx.ext.autosectionlabel']
+# Make sure the target is unique
+autosectionlabel_prefix_document = True
+autosectionlabel_maxdepth = None
+
 myst_enable_extensions = [
     "attrs_inline",
 ]
