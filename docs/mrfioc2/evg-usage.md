@@ -153,11 +153,14 @@ Records associated with EVG time stamping:
 All the operations on EVG are synchronized to the event clock. Which is
 derived from either externally provided RF clock or from an on-board
 fractional synthesizer.
+e.g. ai ( :doc:`Analog Input  <mydocs:manual/airecord>` ), ao ( :doc:`Analog Output  <mydocs:manual/aorecord>` ), etc.
+e.g. ai ( :ref:`Analog Input  <mydocs:manual/airecord>` )
+:hoverxref:`Analog Input  <mydocs:manual/airecord>`
 
 -   [Source ](bo/bi): The event clock may be derived from
     external RF clock signal or from an on-board fractional synthesizer.
 
--   RF reference frequency: ao,( :doc:`Analog Output  <mydocs:manual/aorecord>` ): Set the RF Input
+-   RF reference frequency: ao ( :doc:`Analog Output  <mydocs:manual/aorecord>` ): Set the RF Input
     frequency in MHz. Frequency can range from 50 to 1600.
 
 -   [RF Divider ](longout/longin): Divider to derive desired
