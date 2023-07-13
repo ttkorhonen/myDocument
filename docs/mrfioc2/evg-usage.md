@@ -293,8 +293,7 @@ event code is transmitted.
 
 ### Functional block diagram of device support for event sequencer 
 
-![PIC](2_Users_timokorhonen_Work_EPICS_modules_mrfioc2_documentation_evg-seq.jpg){width="345"
-height="345"}
+![PIC](evg-seq.jpg){width="345" height="345"}
 
 Device support for sequencer introduces a concept of software
 sequence(a.k.a. soft sequence). The existence of the software and
