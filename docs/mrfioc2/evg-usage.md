@@ -157,7 +157,7 @@ fractional synthesizer.
 -   [Source ](bo/bi): The event clock may be derived from
     external RF clock signal or from an on-board fractional synthesizer.
 
--   [RF reference frequency ](inv:mydocs:std#manual/aoRecord): Set the RF Input
+-   RF reference frequency: ao,( :doc:`Analog Output  <mydocs:manual/aorecord>` ): Set the RF Input
     frequency in MHz. Frequency can range from 50 to 1600.
 
 -   [RF Divider ](longout/longin): Divider to derive desired
