@@ -62,7 +62,7 @@ setup will safely abort.
 :::
 
 
-### Classes/Sub-Component
+### Classes/Sub-Components
 
 ![PIC](evg-usage0x.png)
 
@@ -150,14 +150,23 @@ Advantages:
 
 #### Event Clock
 
-All the operations on EVG are synchronized to the event clock. Which is
+All the operations on EVG are synchronized to the event clock, which is
 derived from either externally provided RF clock or from an on-board
-fractional synthesizer.
+fractional synthesizer. Use of the on-board fractional synthesiser is 
+mainly intended for laboratory testing purposes. 
+
+The serial link bit rate is 20 times the event clock rate. The acceptable range for the event clock and bit rate is shown in the following table.
+
+| | **Event Clock** | **Bit Rate**|
+| | --------------- | ----------- |
+| Minimum | 50 MHz | 1.0 Gb/s |
+| Maximum | 142.8 MHz | 2.9 Gb/s |
+
 
 -   **Source** (bo/bi): The event clock may be derived from
     external RF clock signal or from an on-board fractional synthesizer.
 
--   **RF reference frequency** ao/ai ( {ref}`Analog Output  <mydocs:manual/aorecord>` ): Set the RF Input
+-   **RF reference frequency** (ao/ai) : Set the RF Input
     frequency in MHz. Frequency can range from 50 to 1600.
 
 -   **RF Divider** (longout/longin): Divider to derive desired
@@ -248,6 +257,7 @@ bus signals and trigger sequence RAMs.
     counters are in phase/sync with each other.
 
 | **Prescaler value** | **DutyCycle** | **Frequency at 125MHz Event Clock** |
+| ------------------- | ------------- | ----------------------------------- |
 | 0,1 not allowed | undefined | undefined |
 | 2 | 50/50 | 62.5 MHz |
 | 3 | 33/66 | 41.7 MHz |
