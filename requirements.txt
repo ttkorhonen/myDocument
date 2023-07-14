@@ -1,4 +1,5 @@
 sphinx_copybutton
+sphinx-togglebutton
 sphinx-hoverxref
 myst_parser
 myst-parser == 0.15.0
