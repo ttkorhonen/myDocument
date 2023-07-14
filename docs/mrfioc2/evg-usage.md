@@ -9,6 +9,8 @@
 
 ::: date
 [Last Updated: September 28, 2011]
+[Last Updated: Ju 28, 2011]
+
 :::
 
 ### The Source
@@ -50,13 +52,15 @@ interrupt on level 3 with vector 0x26.
 You can look at example startup script(st.cmd file) for EVG in
 ./mrfioc2/iocBoot/iocevgmrm directory.
 
-
-[Note: ]VME64x allows for jumpless configuration of the
+:::{admonition} About VME64x card configuration
+:class: dropdown
+:name: vme64-conf
+VME64x allows for jumpless configuration of the
 card, but not automatically assignment of resources. Selection of an
 unused address range and IRQ level/vector is necessarily left to the
 user.
- 
-[Note: ]Before setup is done the VME64 identifer fields are
+
+Before setup is done the VME64 identifer fields are
 verified so that specifying an incorrect slot number is detected and
 setup will safely abort.
 :::
@@ -157,8 +161,8 @@ mainly intended for laboratory testing purposes.
 
 The serial link bit rate is 20 times the event clock rate. The acceptable range for the event clock and bit rate is shown in the following table.
 
-| | **Event Clock** | **Bit Rate**|
-| | --------------- | ----------- |
+|         | **Event Clock** | **Bit Rate** |
+| ------- | --------------- | -----------  |
 | Minimum | 50 MHz | 1.0 Gb/s |
 | Maximum | 142.8 MHz | 2.9 Gb/s |
 
@@ -180,27 +184,29 @@ The serial link bit rate is 20 times the event clock rate. The acceptable range 
 
 #### Software Events
 
-Software event is used to send out an event code by writing that event
+Software event is used to send out an event by writing that event code 
 to a particular register in EVG.
 
 -   **Enable** (bo/bi): Enable/Disable the transmission of
     Software Events.
 
 -   **Event Code** (longout/longin): Sends out the event code
-    onto the event stream. Event code can range form 0 to 255.
+    onto the event stream. Event code can range from 0 to 255.
 
 #### Trigger Events
 
-There are currently 8 trigger event sources. Trigger events are used to
-send out event code into the event streams, every time a trigger is
-received. The stimulus could be a rising edge on an external input
-signal or a multiplexed counter output or the ac signal.
+*see: evgMrmApp/Db/evgTrigEvt.db*
+
+Trigger events are used to send out event codes into the event stream 
+every time an input trigger is received. 
+The stimulus can be a rising edge on an external input
+signal, a multiplexed counter output or the ac signal.
 
 -   **Enable** (bo/bi): Enable/Disable the transmission of
     Trigger Events.
 
 -   **Event Code** (longout/longin): Sets the event code to be
-    sent out, whenever a trigger is received. Event Code can range form
+    sent out, whenever a trigger is received. Event Code can range from
     0 to 255.
 
 -   **Trigger Source** (mbbo): The trigger could come from one
@@ -314,11 +320,16 @@ external clock.
 
 Event Sequencer provides a method of transmitting or playing back
 sequences of events stored in random access memory with defined timing.
-MRF VME-EVG-230 has 2 sequenceRams (sequencers or hard sequence). The
-sequencer can hold up to 2048 \<event code, timeStamp\> pairs. When the
-sequencer is triggered, an internal counter starts counting. When the
+The EVG has 2 sequence RAMs (sequencers or hard sequence). The
+sequencer can hold up to 2048 \<event code, mask, timeStamp\> 3-item tuples. 
+When the sequencer is triggered, an internal counter starts counting. When the
 counter value matches the timeStamp of the next event, the attached
 event code is transmitted.
+Starting with firmware version 0200 a mask field has been added. Bits in the 
+mask field allow masking events from being send out based on external signal 
+input states or software mask bits.
+
+
 
 ### Functional block diagram of device support for event sequencer 
 

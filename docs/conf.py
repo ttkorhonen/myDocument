@@ -33,6 +33,7 @@ extensions = [
     "sphinx.ext.ifconfig",
     "sphinx.ext.graphviz",
     "sphinx_copybutton",
+    "sphinx_togglebutton",
     "sphinx.ext.intersphinx",
     "sphinx.ext.autosectionlabel",
     "myst_parser",
