@@ -202,8 +202,14 @@ signal or a multiplexed counter output or the ac signal.
 
 #### Distributed bus
 
-The distributed bus allows transmission of eight simultaneous signals
-with the event clock rate.
+The distributed bus allows transmission of eight simultaneous signals with 
+half of the event clock rate time resolution (for example, 20 ns at 100 MHz event clock rate). 
+The source for distributed bus signals may come from an external source or the signals 
+may be generated with programmable multiplexed counters (MXC) inside the event generator.
+
+The distributed bus signals may be programmed to be available as hardware outputs on the event receiver.
+
+![PIC](evg-dbus1.png)
 
 -   **Signal Source/Map** (mbbo): The bits of the distributed
     bus can be driven by selecting one of the following sources.
@@ -228,6 +234,10 @@ programmable frequencies from event clock/2\^32-1 to event clock/2. The
 counter outputs may be programmed to trigger events, drive distributed
 bus signals and trigger sequence RAMs.
 
+![PIC](evg-dbus1.png)
+
+*see evgMrmApp/Db/evgMxc.db*
+
 -   **Polarity** (bo/bi): Set the Multiplex Counter(Mxc)
     output polarity.
 -   **Frequency** (ao/ai): Request a signal with a particular
@@ -236,6 +246,16 @@ bus signals and trigger sequence RAMs.
     a particular frequency.
 -   **Reset**  Reset all the multiplexed counters. After reset all the
     counters are in phase/sync with each other.
+
+| **Prescaler value** | **DutyCycle** | **Frequency at 125MHz Event Clock** |
+| 0,1 not allowed | undefined | undefined |
+| 2 | 50/50 | 62.5 MHz |
+| 3 | 33/66 | 41.7 MHz |
+| 4 | 50/50 | 31.25 MHz |
+| 5 | 40/60 | 25 MHz |
+| ... | ... | ... |
+| 232 −1 | approx. 50/50 | 0.029 Hz |
+
 
 #### Input
 
@@ -263,6 +283,10 @@ universal outputs.
 EVG provides synchronization to the mains voltage frequency or another
 external clock.
 
+*see: evgMrmApp/Db/evgAcTrig.db*
+
+![PIC](evg-acsync.png)
+
 -   **Divider**　(longout/longin): The mains voltage frequency
     can be divided by an eight bit programmable divider.
 
@@ -288,7 +312,7 @@ event code is transmitted.
 
 ### Functional block diagram of device support for event sequencer 
 
-![PIC](evg-seq.jpg){width="345" height="345"}
+![PIC](evg-seq.jpg)
 
 Device support for sequencer introduces a concept of software
 sequence(a.k.a. soft sequence). The existence of the software and
