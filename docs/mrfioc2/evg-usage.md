@@ -52,9 +52,9 @@ interrupt on level 3 with vector 0x26.
 You can look at example startup script(st.cmd file) for EVG in
 ./mrfioc2/iocBoot/iocevgmrm directory.
 
-:::{admonition} About VME64x card configuration
+:::{note}
 :class: dropdown
-:name: vme64-conf
+
 VME64x allows for jumpless configuration of the
 card, but not automatically assignment of resources. Selection of an
 unused address range and IRQ level/vector is necessarily left to the
