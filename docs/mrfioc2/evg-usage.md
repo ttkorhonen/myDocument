@@ -52,7 +52,7 @@ interrupt on level 3 with vector 0x26.
 You can look at example startup script(st.cmd file) for EVG in
 ./mrfioc2/iocBoot/iocevgmrm directory.
 
-:::{note}
+```{admonition} VME64x card configuration
 :class: dropdown
 
 VME64x allows for jumpless configuration of the
@@ -63,7 +63,7 @@ user.
 Before setup is done the VME64 identifer fields are
 verified so that specifying an incorrect slot number is detected and
 setup will safely abort.
-:::
+```
 
 
 ### Classes/Sub-Components
