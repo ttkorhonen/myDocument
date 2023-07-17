@@ -21,11 +21,29 @@ VCS Checkout
 $ git clone https://github.com/epics-modules/mrfioc2.git
 ```
 
-Currently the driver supports the following models: (TBD)
+Currently the driver supports the following models: (To be completed)
+
+- VME-EVG-220
+- VME-EVG-230
+- cPCI-EVG-220
+- cPCI-EVG-230
+- PXI-EVG-220
+- VME-EVM-300
+- MTCA-EVM-300
+
+The required software that this driver depends on:
+
+- [EPICS Base](https://epics-controls.org/resources-and-support/base/) >= 3.14.10, 
+- [devLib2](https://github.com/epics-modules/devlib2/) >= 2.8, and 
+- the MSI tool (included in Base >= 3.15.1).
+
+
 
 ### IOC Deployment
 
 This section outlines a general strategy for adding an EVG to an IOC.
+
+#### VMEbus based hardware
 
 The VME bus based EVGs are configured using the mrmEvgSetupVME() IOC
 shell function.
@@ -56,15 +74,24 @@ You can look at example startup script(st.cmd file) for EVG in
 :class: dropdown
 
 VME64x allows for jumpless configuration of the
-card, but not automatically assignment of resources. Selection of an
-unused address range and IRQ level/vector is necessarily left to the
-user.
+card, but does not support automatic assignment of resources. Selection of an
+unused address range and IRQ level/vector is left to the user.
 
 Before setup is done the VME64 identifer fields are
 verified so that specifying an incorrect slot number is detected and
 setup will safely abort.
 ```
+#### PCI or PCIe based hardware
 
+For PCI (or PCIe) - based EVG or EVM, use
+
+```
+mrmEvgSetupPCI (
+        const char* id,         // Card Identifier
+        const char *spec,       // ID spec. or Bus number
+        int d,                                  // Device number
+        int f)                                  // Function number
+```
 
 ### Classes/Sub-Components
 
@@ -75,6 +102,38 @@ setup will safely abort.
 ##### Global EVG Options:
 
 -   **Enable** (bo/bi): EVG enable and disable.
+
+#### Event Clock
+
+All the operations on EVG are synchronized to the event clock, which is
+derived from either externally provided RF clock or from an on-board
+fractional synthesizer. Use of the on-board fractional synthesiser is 
+mainly intended for laboratory testing purposes. 
+
+The serial link bit rate is 20 times the event clock rate. The acceptable range for the event clock and bit rate is shown in the following table.
+
+|         | **Event Clock** | **Bit Rate** |
+| ------- | --------------- | -----------  |
+| Minimum | 50 MHz | 1.0 Gb/s |
+| Maximum | 142.8 MHz | 2.9 Gb/s |
+
+*see: evgMrmApp/Db/evgEvtClk.db*
+
+-   **Source** (bo/bi): The event clock may be derived from
+    external RF clock signal or from an on-board fractional synthesizer.
+
+-   **RF reference frequency** (ao/ai) : Set the RF Input
+    frequency in MHz. Frequency can range from 50 to 1600.
+
+-   **RF Divider** (longout/longin): Divider to derive desired
+    event clock from RF reference frequency.
+
+-   **Fractional Synthesizer frequency** (ao/ai): This
+    frequency could be used to derive event clock.
+
+-   **Event Clock Frequency Readback** (ai): Gets the current
+    event clock frequency in MHz.
+
 
 ##### Timestamping
 
@@ -135,6 +194,8 @@ Advantages:
 
 -   Using minimum number of EVG inputs for the timestamping purpose.
 
+*see: evgMrmApp/Db/evgMrm.db*
+
 ###### Records associated with EVG time stamping:
 
 -   **Synchronize Timestamp** (bo): Sync the current time with
@@ -152,35 +213,6 @@ Advantages:
 
         -   Rear : Rear Transitional Input
 
-#### Event Clock
-
-All the operations on EVG are synchronized to the event clock, which is
-derived from either externally provided RF clock or from an on-board
-fractional synthesizer. Use of the on-board fractional synthesiser is 
-mainly intended for laboratory testing purposes. 
-
-The serial link bit rate is 20 times the event clock rate. The acceptable range for the event clock and bit rate is shown in the following table.
-
-|         | **Event Clock** | **Bit Rate** |
-| ------- | --------------- | -----------  |
-| Minimum | 50 MHz | 1.0 Gb/s |
-| Maximum | 142.8 MHz | 2.9 Gb/s |
-
-
--   **Source** (bo/bi): The event clock may be derived from
-    external RF clock signal or from an on-board fractional synthesizer.
-
--   **RF reference frequency** (ao/ai) : Set the RF Input
-    frequency in MHz. Frequency can range from 50 to 1600.
-
--   **RF Divider** (longout/longin): Divider to derive desired
-    event clock from RF reference frequency.
-
--   **Fractional Synthesizer frequency** (ao/ai): This
-    frequency could be used to derive event clock.
-
--   **Event Clock Frequency Readback** (ai): Gets the current
-    event clock frequency in MHz.
 
 #### Software Events
 
@@ -329,7 +361,7 @@ Starting with firmware version 0200 a mask field has been added. Bits in the
 mask field allow masking events from being send out based on external signal 
 input states or software mask bits.
 
-
+*see mrmShared/Db/mrmSoftSeq.template and evgMrmApp/Db/evgSoftSeq.template*
 
 ### Functional block diagram of device support for event sequencer 
 
