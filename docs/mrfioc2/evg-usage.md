@@ -15,6 +15,8 @@
 
 ### The Source
 
+Source code for the mrfioc2 module, including the EVG support is available in the EPICS modules repository in Github.
+
 VCS Checkout
 
 ```
