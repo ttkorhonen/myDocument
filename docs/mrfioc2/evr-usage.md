@@ -1,6 +1,9 @@
 
 
-# What is Available?
+# Epics device driver for MRF Event Receiver (EVR)
+
+
+## What is Available?
 
 More infomation on the Micro Research hardware can be found on their
 website <http://www.mrf.fi/>.
@@ -45,25 +48,19 @@ iocstats
     <http://www.slac.stanford.edu/comp/unix/package/epics/site/devIocStats/>\
     <http://sourceforge.net/projects/epics/files/devIocStats/>
 
-Target operating system requirements
+### Target operating system requirements
 
-RTEMS
+RTEMS:   >= 4.9.x
 
-:   \>= 4.9.x
+vxWorks: >=6.7
 
-vxWorks
-
-:   \>=6.7
-
-Linux
-
-:   \>= 3.2.1 (earlier versions may work)
+Linux kernel:   >= 3.2.1 (earlier versions may work)
 
 ## Source
 
 VCS Checkout
 
-``` {.bash basicstyle="\\scriptsize" language="bash"}
+```
 $ git clone https://github.com/epics-modules/mrfioc2.git
 ```
 
@@ -72,20 +69,20 @@ Edit 'configure/CONFIG_SITE' and 'configure/RELEASE' then run make.
 The following is a brief tour of the important locations in the source
 tree relating to the EVR.
 
-## Supported Hardware[]{#sec:supported label="sec:supported"}
+## Supported Hardware
 
 The following devices are supported.
 
-         Name          \# FP[^1]   \# FP UNIV[^2]   \# FP Inputs[^3]   RTM[^4]
-  ------------------- ----------- ---------------- ------------------ ---------
-    VME-EVR-230[^5]        4             4                 2             Yes
-     VME-EVR-230RF       7[^6]           2                 2             Yes
-      PMC-EVR-230          3             0                 1             No
-     CPCI-EVR-230          0             4                 2           Yes[^7]
-    cPCI-EVRTG-300       2[^8]           2               1[^9]           No
-     cPCI-EVR-300          0             12                2              0
-    PCIe-EVR-300DC         0             0                 0             16
-   mTCA-EVR-300[^10]       4            4/0                2            0/16
+ |       Name          | #FP[^1]  | # FP UNIV[^2] |  #FP Inputs[^3]  |  RTM[^4]   |
+ | ------------------- | -------- | -------------- | ---------------- | --------- |
+ |   VME-EVR-230[^5]   |    4     |        4       |          2        |     Yes  |
+ |    VME-EVR-230RF    |  7[^6]   |        2       |          2        |     Yes  |
+ |     PMC-EVR-230     |    3     |        0       |          1        |     No   |
+ |    CPCI-EVR-230     |    0     |        4       |          2        |  Yes[^7] |
+ |   cPCI-EVRTG-300    |  2[^8]   |        2       |        1[^9]      |     No   |
+ |    cPCI-EVR-300     |    0     |        12      |          2        |      0   |
+ |   PCIe-EVR-300DC    |    0     |        0       |          0        |     16   |
+ |  mTCA-EVR-300[^10]  |    4     |       4/0      |          2        |    0/1 6 |
 
 # System Overview
 
@@ -117,7 +114,7 @@ simply copied from sender to receiver (the Distributed Bus or DBus), and
 optionally a variable length byte array (Data Buffer).
 
 These two types of data can be combined in two ways (Fig.
-[2](#img:wire:frames){reference-type="ref" reference="img:wire:frames"})
+[2](#img:wire:frames))
 depending on whether or not the Data Buffer feature is used. In
 configuration A every 16-bit frame is split between an 8-bit event and
 the 8-bit Distributed Bus. In configuration B every frame carries an
@@ -164,22 +161,19 @@ channels. However, there are a number of event codes which have special
 meaning in the MRF system. The meaning of all other codes is left to the
 system operator.
 
-::: centering
-::: {#tbl:spec:codes}
-   Code                                   Meaning
-  ------ --------------------------------------------------------------------------
-   0x00               Idle, or null, event. Send when nothing happens.
-   0x70                  Shift 0 into EVR timestamp shift register
-   0x71                  Shift 1 into EVR timestamp shift register
-   0x7A                     Reset EVR heartbeat timeout counter
-   0x7B               Reset all EVR dividers. Synchronize global phase
-   0x7C             Increment EVR timestamp counter (depending on mode)
-   0x7D                           Reset timestamp counter
-   0x7F   End of sequence (not transmitted). Use in other contexts is discouraged.
 
-  : Special Event codes
-:::
-:::
+  |  Code |                                 Meaning |
+  | ----- | -------------------------------------------------------------------------- |
+  | 0x00  |             Idle, or null, event. Send when nothing happens.               |
+  | 0x70  |                Shift 0 into EVR timestamp shift register                   |
+  | 0x71  |                Shift 1 into EVR timestamp shift register                   |
+  | 0x7A  |                   Reset EVR heartbeat timeout counter                      |
+  | 0x7B  |             Reset all EVR dividers. Synchronize global phase               |
+  | 0x7C  |           Increment EVR timestamp counter (depending on mode)              |
+  | 0x7D  |                         Reset timestamp counter                            |
+  | 0x7F  | End of sequence (not transmitted). Use in other contexts is discouraged.   |
+
+Special Event codes
 
 ### Distributed Bus (DBus) bits
 
@@ -273,12 +267,10 @@ event links to the local inputs and outputs. These sub-units include:
 the Event Mapping Ram, Pulse Generators, Prescalers (clock dividers),
 and the logical controls for the physical inputs and outputs.
 
-<figure id="img:evr:blocks">
-<div class="centering">
-<img src="images/mrf-evr-blocks" />
-</div>
-<figcaption>Logical connections inside an EVR</figcaption>
-</figure>
+![EVR blocks](mrf-evr-blocks.png)
+
+
+Logical connections inside an EVR
 
 ## Pulse Generators
 
@@ -332,7 +324,7 @@ Pulse Generator (see
 [\[sec:out:mappings\]](#sec:out:mappings){reference-type="ref+page"
 reference="sec:out:mappings"} for a complete list).
 
-## Outputs (CML and GTX)[]{#sec:evr:cml label="sec:evr:cml"}
+## Outputs (CML and GTX)
 
 Current Mode Logic outputs can send a bit pattern at the bit rate of the
 event link bit clock (20x the Event Clock). This pattern may be
@@ -409,7 +401,7 @@ the extra steps needed to use mrfioc2 under Linux.
 
 An example IOC shell script is included as "iocBoot/iocevrmrm/st.cmd".
 
-## Device names[]{#sec:devnames label="sec:devnames"}
+## Device names
 
 All EVGs and EVRs in an IOC are identified by an unique name. This is
 first given in the IOC shell functions described below, and repeated in
@@ -422,7 +414,7 @@ since some code is shared between these two devices.
 The VME bus based EVRs and EVGs are configured using one of the
 following IOC shell functions.
 
-``` {.bash language="bash"}
+```
 # Receiver
 mrmEvrSetupVME("anEVR", 3, 0x30000000, 4, 0x28)
 ```
@@ -444,7 +436,7 @@ usually be found at boot time (RTEMS) or in /proc/bus/pci/devices
 The IOC shell function devPCIShow() is also provided to list PCI devices
 in the system.
 
-``` {.bash language="bash"}
+```
 # Receiver
 mrmEvrSetupPCI("PMC", "1:2.0")
 ```
@@ -474,7 +466,7 @@ location will be elsewhere.
 
 To build the module for use on the host system:
 
-``` {.bash language="bash"}
+```
 $ make -C /location/of/mrmShared/linux \
 KERNELDIR=/lib/modules/`uname -r`/build modules_install
 $ sudo depmod -a
@@ -483,7 +475,7 @@ $ sudo modprobe mrf
 
 Building for a cross-target might look like:
 
-``` {.bash language="bash"}
+```
 $ make -C /location/of/mrmShared/linux \
 KERNELDIR=/location/of/kernel/src \
 ARCH=arm CROSS_COMPILE=/usr/local/bin/arm- \
@@ -497,7 +489,7 @@ running UDEV this will happen automatically. See mrmShared/linux/README
 for example UDEV config. If UDEV is not present, then you must do the
 following.
 
-``` {.bash language="bash"}
+```
 # grep mrf /proc/devices
 254 mrf
 # mknod -m 666 /dev/uio0 c 254 0
@@ -546,7 +538,7 @@ each IOC).
 
 Thus an IOC with two identical VME cards could use a configuration like:
 
-``` {.bash language="bash"}
+```
 mrmEvrSetupVME("evr1",5,0x20000000,3,0x26)
 mrmEvrSetupVME("evr2",6,0x21000000,3,0x28)
 dbLoadRecords("evr-vmerf-230.db", "SYS=test, D=evr:a, EVR=evr1")
@@ -950,7 +942,7 @@ starting on page 67 for more detailed instructions.
 
 9.  Exit iMPACT
 
-### Programming with UrJTAG[]{#sec:pmc:prog label="sec:pmc:prog"}
+### Programming with UrJTAG
 
 <http://urjtag.org/>
 
