@@ -1,5 +1,7 @@
 # Analog Input Record (ai)
 
+## Synopsis
+
 This record type is normally used to obtain an analog value from a hardware
 input and convert it to engineering units.
 The record supports linear and break-point conversion to engineering units,
