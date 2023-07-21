@@ -45,6 +45,7 @@ autosectionlabel_maxdepth = None
 
 myst_enable_extensions = [
     "attrs_inline",
+    "attrs_block",
 ]
 
 myst_ref_domains = [
