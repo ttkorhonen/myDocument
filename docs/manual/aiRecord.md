@@ -1,6 +1,6 @@
 # Analog Input Record (ai)
 
-## Typical use of Analog Input Record (ai)
+{#airec-usage }
 
 This record type is normally used to obtain an analog value from a hardware
 input and convert it to engineering units.
