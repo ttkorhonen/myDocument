@@ -63,7 +63,7 @@ or similar.
 
 **CWS**, or Client WorkStation. This is a computer that can run various
 EPICS tools and client applications; typical examples are
-`user interface tools <phoebus:intro>`{.interpreted-text role="doc"} and
+{doc}`user interface tools <phoebus:intro>` and
 data archiving. CWS can be desktop computer, a server machine or
 similar, and is usually running a "regular" (as opposed to real-time)
 operating system like Linux, Windows or MacOS.
@@ -78,7 +78,7 @@ of clients and servers makes configuration of the systems easier and
 also makes the system more robust. Clients and servers can be added to
 and removed from the system without having to stop the operation.
 
-![image0](media/Intro_SimpleSystem.png){ w=400px }
+![image0](media/Intro_SimpleSystem.png | width=400px )
 
 Figure 1. A simple EPICS control system structure.
 
@@ -156,7 +156,7 @@ the following software components:
 -   Device Support: Device support routines bind I/O data to the
     database records.
 -   Device Drivers: Device drivers handle access to external devices.
--   Channel Access or [pvAccess](inv:pvxs:std#overview) : The interface between the external world and the IOC.
+-   Channel Access or [pvAccess](`pvxs:std#overview`) : The interface between the external world and the IOC.
     It provides the interface for accessing the (EPICS) database via the
     network.
 -   Sequencer: A finite state machine. Strictly speaking, this is an
@@ -166,7 +166,7 @@ the following software components:
 Let us briefly describe the major components of the IOC and how they
 interact.
 
-![image1](media/Intro_IOC_blockdiag.png){ w=600px }
+![image1](media/Intro_IOC_blockdiag.png | width=600px ) 
 
 Figure 2. EPICS IOC components.
 
@@ -188,7 +188,7 @@ input (ai) record type supports reading in values from hardware devices
 and converting them into desired (engineering) units. It also provides
 limits for expected operating ranges and alarms when these limits are
 exceeded. EPICS supports a large and extensible set of record types,
-e.g. ai ( [Analog Input](inv:mydocs:std#manual/aiRecord) ), ao (
+e.g. ai ( [Analog Input](`mydocs:std#manual/aiRecord`) ), ao (
 [Analog Output](inv:mydocs:std#manual/aoRecord) )), etc.
 
 The metadata, known as "fields" is used to configure the record's
@@ -232,7 +232,7 @@ two sensors T1 and T2 is over 10 degrees, the chiller is switched on.
 This database contains four records: two analog inputs (ai), one binary
 output (bo) and one calculation (calc).
 
-![image2](media/Intro_RecordLinking.png){ w=400px }
+![image2](media/Intro_RecordLinking.png | width=400px )
 
 Figure 4. Example of record linking. From \[2\].
 
