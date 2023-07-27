@@ -10,7 +10,7 @@ EPICS Record Reference
    :maxdepth: 2
    :caption: General Documentation:
 
-   genericdocs/EPICS_Intro
+   genericdocs/EPICS_intro
 
 .. toctree::
    :maxdepth: 1

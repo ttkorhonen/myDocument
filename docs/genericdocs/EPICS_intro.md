@@ -502,7 +502,7 @@ downloaded separately. The tools are implemented in different languages
 and technologies and the users should select which tools are the best
 suited to their particular setup and infrastructure.
 
-#### Examples of CA/pvAccess Tools
+### Examples of CA/pvAccess Tools
 
 A large number of CA/PVA tools have been developed. The following are
 some representative examples.
@@ -532,7 +532,7 @@ some representative examples.
     vacuum pumps in the system, or horizontal position of the beam in
     the accelerator as measured by the Beam Position Monitors.
 
-#### Examples of other Tools
+### Examples of other Tools
 
 • VDCT: A Java based database configuration tool, which can be used to
 design and configure EPICS databases, and is able to visualize the
