@@ -28,6 +28,7 @@ author = 'Timo Korhonen'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    "multiproject",
     "hoverxref.extension",
     "sphinx.ext.mathjax",
     "sphinx.ext.ifconfig",
@@ -42,6 +43,16 @@ extensions += ['sphinx.ext.autosectionlabel']
 # Make sure the target is unique
 autosectionlabel_prefix_document = True
 autosectionlabel_maxdepth = None
+
+multiproject_projects = {
+    "generic": {
+        "path":".",
+    },
+    "mrfioc2": {
+        # Set a custom path.
+        "path": "mrfioc2",
+    },
+}
 
 myst_enable_extensions = [
     "attrs_inline",
