@@ -16,4 +16,4 @@ EPICS Record Reference
    :maxdepth: 1
    :caption: Event System:
 
-   mrfEventRef.rst
+   mrfEventRef

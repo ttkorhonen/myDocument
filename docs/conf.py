@@ -38,6 +38,7 @@ extensions = [
     "sphinx.ext.intersphinx",
     "sphinx.ext.autosectionlabel",
     "myst_parser",
+    "sphinx_tippy",
 ]
 # Make sure the target is unique
 autosectionlabel_prefix_document = True
@@ -52,6 +53,8 @@ multiproject_projects = {
         "path": "mrfioc2",
     },
 }
+
+tippy_props = {"theme": "translucent"}
 
 myst_enable_extensions = [
     "attrs_inline",
