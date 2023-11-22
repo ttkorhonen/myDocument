@@ -5,48 +5,35 @@
 
 ## What is Available?
 
-More infomation on the Micro Research hardware can be found on their
+More information on the Micro Research hardware can be found on their
 website <http://www.mrf.fi/>.
 
-The software discussed below can be found on the EPICS application
-project on SourceForge <http://sourceforge.net/projects/epics/>.
-
-The latest developments can be found in the 'mrfioc2' Git VCS
-repository.
+The software discussed below can be found on the 'EPICS modules'
+site on Github, in the 'mrfioc2' repository.
 
 <https://github.com/epics-modules/mrfioc2>
 
 ## Prerequisites
 
-Build system required modules
+### Build system required modules
 
-EPICS Base \>= 3.14.10
+EPICS Base (\>= 3.14.10) :   EPICS Core\
+    <https://epics-controls.org/resources-and-support/base/>
 
-:   EPICS Core\
-    <http://www.aps.anl.gov/epics/base/R3-14/index.php>
-
-MSI
-
-:   Macro expansion tool (Base \<3.15.0 only)\
+MSI Macro expansion tool (required only for EPICS Base \<3.15.0)\
     <http://www.aps.anl.gov/epics/extensions/msi/index.php>
 
-devLib2 \>= 2.9
-
-:   PCI/VME64x Hardware access library\
+devLib2 (\>= 2.9):   PCI/VME64x Hardware access library\
     <https://github.com/epics-modules/devlib2/>
 
-Build system optional modules. Not required, but highly recommended.
+### Build system optional modules. Not required, but highly recommended.
 
-autosave
+autosave:   Automatic save and restore on boot\
+    <https://github.com/epics-modules/autosave>
 
-:   Automatic save and restore on boot\
-    <http://www.aps.anl.gov/bcda/synApps/autosave/autosave.html>
-
-iocstats
-
-:   Runtime IOC statistics (CPU load, ...)\
-    <http://www.slac.stanford.edu/comp/unix/package/epics/site/devIocStats/>\
-    <http://sourceforge.net/projects/epics/files/devIocStats/>
+iocstats :   Runtime IOC statistics (CPU load, ...)\
+    <https://github.com/epics-modules/iocStats>\
+    <https://www.slac.stanford.edu/grp/ssrl/spear/epics/site/devIocStats/>
 
 ### Target operating system requirements
 
@@ -84,195 +71,27 @@ The following devices are supported.
  |   PCIe-EVR-300DC    |    0     |        0       |          0        |     16   |
  |  mTCA-EVR-300[^10]  |    4     |       4/0      |          2        |    0/1 6 |
 
-# System Overview
+# Overview
 
-The purpose of this document is to act as a guide and reference when
+The purpose of this document is to act as a guide and reference for
 using the 'mrfioc2' EPICS support module for the Micro Research Finland
-(MRF) timing system[^11]. It describes software for using the Event
-Generator (EVG) and Event Receiver (EVR).
-
-The MRF Event Timing System can be deployed in two configurations (Fig.
-[1](#img:sys:confs){reference-type="ref" reference="img:sys:confs"}).
-The first is a unidirectional broadcast from a single source (EVG) to
-multiple destinations (EVRs). The Repeater devices simply retransmit its
-single input to all outputs (one to many). In the second configuration a
-return path from many EVRs back up to single central (master) EVR is
-added.
-
-An EVR will act in one of two roles: either Leaf or Master. The Master
-EVR is necessary because, while the generator (EVG) is capable of
-receiving an event stream, it does not impliment the features of the
-receiver (EVR).
-
-![Configuration](mrf-overview.png)
-
-Two system configurations for the MRF Timing System
-
-What is transmitted over the event link is a combination of 8-bit event
-codes and data. Data can take the form of a single 8-bit byte which is
-simply copied from sender to receiver (the Distributed Bus or DBus), and
-optionally a variable length byte array (Data Buffer).
-
-These two types of data can be combined in two ways (Fig.
-[2](#img:wire:frames))
-depending on whether or not the Data Buffer feature is used. In
-configuration A every 16-bit frame is split between an 8-bit event and
-the 8-bit Distributed Bus. In configuration B every frame carries an
-8-bit event with the Distributed Bus or a Data Buffer byte sent in
-alternating frames.
-
-In addition to data, the use of 8b10b encoding on the event link allows
-the local oscillator of each EVR to be phase locked to a reference sent
-by the EVG. The EVG itself is typically driven from an external
-oscillator.
-
-![Frames](mrf-frames.png)
-
-Two supported link allocation schemes.
+(MRF) timing system[^11]. It describes software for using the Event Receiver (EVR).
 
 
-When discussing the MRF timing system there are three clocks. The
-external reference clock for the EVG, the bit clock for transceivers,
-and the Event Clock. The relation between the reference and the Event
-clocks is determined by a programmable divider in the EVG and is usually
-a small integer number (eg. 4). The Event clock must be in the range
-between 50MHz and 125MHz. The relation between the Event clock and the
-bit clock is a fixed factor of 20 which is determined by the frame size
-described above.
-
-$$F_{bit}/20=F_{Event}=F_{Ext}/N_{Divide}$$
-
-## Event Link Data
-
-Data which is transferred over the event link is interpreted in four
-ways: Event Codes, DBus bits, Data Buffers, and Clock Phase. Each
-carries a different meaning, and is used in different ways.
-
-### Event Codes
-
-An event is momentary. Typically an event causes something to happen (a
-trigger). The 255 usable event codes available in the MRF system can be
-thought of as 255 seperate physical wires. On every tick of the Event
-Clock a pulse is sent on one (and only one) of the "wires". Zero is the
-"idle" event which is sent when no other event is queued.
-
-Event Codes will most often be used as triggers for external delay
-channels. However, there are a number of event codes which have special
-meaning in the MRF system. The meaning of all other codes is left to the
-system operator.
-
-
-  |  Code |                                 Meaning |
-  | ----- | -------------------------------------------------------------------------- |
-  | 0x00  |             Idle, or null, event. Send when nothing happens.               |
-  | 0x70  |                Shift 0 into EVR timestamp shift register                   |
-  | 0x71  |                Shift 1 into EVR timestamp shift register                   |
-  | 0x7A  |                   Reset EVR heartbeat timeout counter                      |
-  | 0x7B  |             Reset all EVR dividers. Synchronize global phase               |
-  | 0x7C  |           Increment EVR timestamp counter (depending on mode)              |
-  | 0x7D  |                         Reset timestamp counter                            |
-  | 0x7F  | End of sequence (not transmitted). Use in other contexts is discouraged.   |
-
-Special Event codes
-
-### Distributed Bus (DBus) bits
-
-The Distributed Bus (DBus) consists of 8 bits of data which are stored
-on every EVR. This data is initialized to zero when the EVR starts, and
-overwritten whenever the EVR receives an event frame with DBus data.
-Depending on configuration this is either every frame, or every second
-frame (See fig. [2](#img:wire:frames){reference-type="ref"
-reference="img:wire:frames"}).
-
-The DBus can thus be used to distribute either periodic, or
-non-periodic, signals with bandwidth up to $\frac{1}{2}$ (or
-$\frac{1}{4}$) of the Event clock.
-
-The bits of the DBus can be routed to physical output. A special feature
-of DBus bit 4 allows its rising edge to increment the timestamp counter
-(depending on mode).
-
-### Data Buffers
-
-When enabled, a protocol is used to broadcast arbitrary byte arrays from
-the EVG to all EVRs. Bytes are sent one at a time in the data part of
-every second frame. Special 8b10b codes are used to mark the beginning
-and end for each transfer. A simple checksum is also sent. The 230
-series hardware allows buffers up to 2047 bytes in length.
-
-In keeping with the convention of the original MRF EPICS Support package
-the first byte of a buffer is used as a header (Protocol ID) to identify
-it. No restrictions are placed on the body of buffer.
-
-### Event Clock Phase
-
-The use of 8b10b encoding allows each EVR's local oscillator to lock to
-the EVG's reference clock. This allows operation at speeds higher then
-the event clock rate. This is used by the CML outputs described in
-section [\[sec:evr:cml\]](#sec:evr:cml){reference-type="ref"
-reference="sec:evr:cml"}.
-
-## Global Time Distribution
-
-The model of time implemented by the MRF hardware is two 32-bit unsigned
-integers: counter, and "seconds". The counter is maintained by each EVR
-and incremented quickly. The value of the "seconds" is sent periodically
-from the EVG at a lower rate.
-
-During each "second" 33 special codes (see sec.
-[1](#tbl:spec:codes){reference-type="ref" reference="tbl:spec:codes"})
-must be sent. The first 32 are the shift 0/1 codes which contain the
-value of the next "second". The last is the timestamp reset event. When
-received this code transfers the new "second" value out of the shift
-register, and resets the counter to zero. These actions start the next
-"second".
-
-Note that while it is referred to as "seconds" this value is an
-arbitrary integer which can have other meanings. Currently only one time
-model is implemented, but implementing others is possible.
-
-### Light Source Time Model
-
-In this model the "seconds" value is an actual 1Hz counter. The software
-default is the POSIX time of seconds since 1 Jan. 1970 UTC. Each new
-second is started with a trigger from an external 1Hz oscillator,
-usually a GPS receiver. Most GPS receivers have a one pulse per second
-(PPS) output. Time is converted to the EPICS epoch (1 Jan. 1990) for use
-in the IOC.
-
-Several methods of sending the seconds value to the EVG are possible:
-
-#### External hardware
-
-has been created by Diamond light source which communicates with a GPS
-receiver over a serial (RS232) link to receive the timestamp and
-connects to two external inputs on the EVG. These inputs must be
-programmed to send the shift 0/1 codes.
-
-#### Time from an NTP server
-
-can be used without special hardware. This requires only a 1Hz (PPS)
-signal coming from the same source as the NTP time. Several commerial
-vendors supply dedicated NTP servers with builtin GPS receivers and 1Hz
-outputs. A software function is provided on the EVG which is triggered
-by the 1Hz signal. At the start of each second it sends the next second
-(current+1), which will be latched after the following 1Hz tick.
-
-# Receiver Functions
+## Receiver Functions
 
 Internally an EVR can be thought of as a number of logical sub-units
-(Fig. [3](#img:evr:blocks){reference-type="ref"
-reference="img:evr:blocks"}) connecting the upstream and downstream
+(Fig. [3](#blocks)) connecting the upstream and downstream
 event links to the local inputs and outputs. These sub-units include:
 the Event Mapping Ram, Pulse Generators, Prescalers (clock dividers),
 and the logical controls for the physical inputs and outputs.
 
-![EVR blocks](mrf-evr-blocks.png)
+![EVR blocks](images/mrf-evr-blocks.png){#blocks}
 
 
 Logical connections inside an EVR
 
-## Pulse Generators
+### Pulse Generators
 
 Each pulse generator has a an associated Delay, Width, Polarity (active
 low/high), and (sometimes) a Prescaler (clock divider). When triggered
@@ -286,24 +105,23 @@ setting of 1 gives the best resolution.
 In addition, the Mapping Ram can force a Pulse Generator into either
 state (Active/Inactive).
 
-## Event Mapping Ram
+### Event Mapping Ram
 
 The Event Mapping Ram is a table used to define the actions to be taken
 by an EVR when it receives a particular event code number. The mapping
 it defines is a many-to-many relations. One event can cause several
 actions, and one action can be caused by several events.
 
-The actions which can be taken can be grouped into two catagories:
+The actions which can be taken can be grouped into two categories:
 Special actions, and Pulse Generator actions. Special actions include
 those related to timestamp distribution, and the system heartbeat tick
 (see
-[\[sec:spec:mappings\]](#sec:spec:mappings){reference-type="ref+page"
-reference="sec:spec:mappings"} for a complete list). Each Pulse
-Generater has three mapable actions: Set (force active), Reset (force
+[Special Function Mappings]](#special-function-mappings) for a complete list). 
+Each Pulse Generator has three mapable actions: Set (force active), Reset (force
 inactive), and Trigger (start delay program). Most applications will use
 Trigger mappings.
 
-## Prescalers (Clock Divider)
+### Prescalers (Clock Divider)
 
 Prescaler sub-units take the EVR's local oscillator and output a lower
 frequency clock which is phased locked to the local clock, which is in
@@ -312,30 +130,29 @@ integer divisor of the Event clock.
 
 To provide known phase relationships, all dividers can be synchronously
 reset when a mapped event code is received. This is the Reset PS action.
-See
-[\[sec:spec:mappings\]](#sec:spec:mappings){reference-type="ref+page"
-reference="sec:spec:mappings"}.
+See [Special Function Mappings]](#special-function-mapppec:mappings).
 
-## Outputs (TTL)
+### Outputs (TTL)
 
 This sub-unit represents a local physical output on the EVR. Each output
 may be connected to one source: a Distributed Bus bit, a Prescaler, or a
 Pulse Generator (see
-[\[sec:out:mappings\]](#sec:out:mappings){reference-type="ref+page"
-reference="sec:out:mappings"} for a complete list).
+[Special Function Mappings]](#special-function-mappings) for a complete list).
 
-## Outputs (CML and GTX)
+(cml-output)=
+### Outputs (CML and GTX)
 
 Current Mode Logic outputs can send a bit pattern at the bit rate of the
 event link bit clock (20x the Event Clock). This pattern may be
-specified in one of three possible ways.
+specified in one of three possible ways:
 
-As four 20 bit sub-patterns (rising, high, falling, and low). As two
-periods (high and low). These specify a square wave with variable
-frequency and duty factor. As an arbitrary bit pattern (\<= 40940 bits)
-which begins when the output goes \[TODO: high or low?\].
+  - As four 20 bit sub-patterns (rising, high, falling, and low). 
+  - As two periods (high and low). These specify a square wave with variable
+    frequency and duty factor. 
+  - As an arbitrary bit pattern (\<= 40940 bits) which begins when the 
+    output goes \[TODO: high or low?\].
 
-In the sub-pattern mode. The rising and falling patterns are transmitted
+In the sub-pattern mode, t  he rising and falling patterns are transmitted
 when the output level changes, while the high and low patterns are
 repeated in between level changes.
 
@@ -343,7 +160,7 @@ The GTX outputs found only on the EVRTG ($e^{-}$gun) receiver function
 similarly to the CML outputs at twice the frequency. Thus for this
 device patterns are 40 bits.
 
-## Inputs
+### Inputs
 
 An EVR's local TTL input can cause several actions when triggered. It
 may be directly connected to one of the upstream Distributed Bus bits,
@@ -352,7 +169,7 @@ the local Mapping Ram.
 
 The rising edge of a local input can be timestamped.
 
-## Global Timestamp Reception
+### Global Timestamp Reception
 
 Each EVR receives synchronous time broadcasts from an EVG. Software may
 query the current time at any point. The arrival time of certain event
@@ -361,8 +178,7 @@ record device support.
 
 Each EVR may be configured with a different method of incrementing the
 timestamp counter. See section
-[\[sec:evr:ts:src\]](#sec:evr:ts:src){reference-type="ref"
-reference="sec:evr:ts:src"}.
+[Timestamp Sources](#timestamp-sources).
 
 In addition to being slaved to an EVG, those EVR models/firmware which
 provide a Software Event transmission function can send timestamps as
@@ -386,14 +202,14 @@ TimeSrc=2
 :   In Sys Clock mode, the EVR will generate a software 125 event based
     on the system clock. This is the simplest standalone mode.
 
-## Data Buffer Tx/Rx
+### Data Buffer Tx/Rx
 
 A recipient can register callback functions for each Protocol ID. It
 will then be shown the body of every buffer arriving with this ID.
 
 A default recipient is provided which stores data in a waveform record.
 
-# IOC Deployment
+## IOC Deployment
 
 This section outlines a general strategy for adding an EVR to an IOC.
 First general information is presented, followed by a section describing
@@ -401,7 +217,7 @@ the extra steps needed to use mrfioc2 under Linux.
 
 An example IOC shell script is included as "iocBoot/iocevrmrm/st.cmd".
 
-## Device names
+### Device names
 
 All EVGs and EVRs in an IOC are identified by an unique name. This is
 first given in the IOC shell functions described below, and repeated in
@@ -451,7 +267,7 @@ upgrades.
 
     mrmEvrSetupPCI("PMC", "slot=5")
 
-## PCI Setup in Linux
+### PCI Setup in Linux
 
 In order to use PCI EVRs in the Linux operating system a small kernel
 driver must be built and loaded. The source for this driver is found in
@@ -511,8 +327,8 @@ mrmEvrSetupPCI().
 
 ## Example Databases
 
-The MRFIOC2 module includes example database templates for all supported
-devices (see [\[sec:supported\]](#sec:supported){reference-type="ref"
+The mrfioc2 module includes example database templates for all supported
+devices (see [Supported Hardware](#supported-hardware){reference-type="ref"
 reference="sec:supported"}). While each is fully functional, it is
 expected that most sites will make modifications. It is suggested that
 the original be left unchanged and a copy be made with the institute
@@ -521,10 +337,10 @@ becomes evr-pmc-230-nsls2.substitutions).
 
 The authors would like to encourage users to send their customized
 databases back so that they may be included as examples in future
-releases of MRFIOC2.
+releases of mrfioc2.
 
-The templates consist of a substitutions file for each model (PMC, cPCI,
-VME-RF). This template instanciates the correct number of records for
+The templates consist of a substitutions file for each model (MTCA, PMC, cPCI,
+VME-RF). These templates instanciate the correct number of records for
 the inputs/outputs found on each device. It also includes entries for
 event mappings and database events which will be frequent targets for
 customization.
@@ -585,7 +401,7 @@ the "info()" entries in the database files are used.
 
 Finally the request files are re-read and monitor sets are created.
 
-# Testing Procedures
+## Testing Procedures
 
 This section presents several step by step procedures which may be
 useful when testing the function of hardware and software.
@@ -593,7 +409,7 @@ useful when testing the function of hardware and software.
 In the "documentation/demo/" directory several IOC shell script files
 with the commands given in this section as well as other examples.
 
-## EVG and EVR Checkout
+### EVG and EVR Checkout
 
 This procedure requires both a generator, receiver, and a fiber jumper
 cable to connect them.
@@ -698,7 +514,7 @@ The counter for the 1Hz event should now be increasing.
     >dbpr("TST{evr}1hzCnt-I")
     ... VAL: 6
 
-## Timestamp Test
+### Timestamp Test
 
 An external 1Hz pulse generator is required for this test. It should be
 connected to front panel input 0 on the EVG. This is LEMO connector
@@ -783,9 +599,9 @@ switching this.
 Now a time latched by software when this record is processed. For
 real-time system this time should be stable.
 
-# Firmware Update
+## Firmware Update
 
-## 300-series Devices
+### 300-series Devices
 
 -   PCIe-EVR-300DC
 
@@ -839,16 +655,16 @@ update process to completion.
 After the write completes successfully, power cycle the card to load the
 new bit file.
 
-## VME EVRs and EVGs
+### VME EVRs and EVGs
 
 Update for VME cards is accomplished through the ethernet jack label "10
 BaseT". The procedure covered in the MRF manual.
 
-## cPCI-EVRTG-300
+### cPCI-EVRTG-300
 
 Undocumented.
 
-## PMC-EVR-230
+### PMC-EVR-230
 
 Firmware update for the PMC module EVR is accomplished through a JTAG
 interface as with the cPCI-EVRTG-300. For reasons of physical space the
@@ -1041,7 +857,7 @@ If no errors are printed then the update process was successful. The new
 firmware will not be loaded until the PMC module is reset (power cycle
 system).
 
-# NTPD Time Source
+## NTPD Time Source
 
 It is possible to use an EVR as a time source for the system NTP daemon
 on Linux. This is implemented using the shared memory clock driver
@@ -1092,7 +908,7 @@ If the propagation time from the time source to the EVR is known, then
 the offset can be given by adding "time1 0.XXX" to the 'fudge' line in
 *ntp.conf*.
 
-# Buffered Timestamp Capture
+## Buffered Timestamp Capture
 
 Some applications are interested in the precise reception timestamp of
 an asynchronous event code. For example, an External event code from an
@@ -1139,12 +955,12 @@ TimesRelFirst
     is stored in the record timestamp. Element values are always
     positive, and the first element value is always zero.
 
-# Implementation Details
+## Implementation Details
 
 Details of some parts of the driver which may be useful in understanding
 (and trouble shooting) the behavior of the driver.
 
-## Event code FIFO Buffer
+### Event code FIFO Buffer
 
 Each EVR implements a hardware First In First Out buffer for event
 codes. When certain "interesting" event code numbers are received the
@@ -1193,7 +1009,7 @@ reoccurred before the actions of the last occurrence were finished
 processing. This is less serious since other event codes are not
 effected.
 
-## Data Buffer reception
+### Data Buffer reception
 
 Each EVR can receive a single data buffer. Once a data message has been
 received, the reception engine is disabled to allow time to download the
@@ -1209,7 +1025,7 @@ callback. This callback passes the buffer to a list of user callback
 functions which have registered interest in the Protocol ID found in the
 message header.
 
-## Timestamp validation
+### Timestamp validation
 
 It is impossible to verify a time without a second trusted reference.
 Since such a reference is not generally available, the driver can only
@@ -1225,7 +1041,7 @@ invalid.
 When the time is invalid, it can only become valid after five sequential
 seconds values are received. Any out of sequence value resets the count.
 
-# EVR Device Support Reference
+## EVR Device Support Reference
 
 The EPICS support module for MRF devices consists of a number of
 supports which are generally tied to a specific logical sub-unit. Each
@@ -1288,14 +1104,555 @@ record(longin, "$(PN)Delay:Raw-RB")
 This provides setting in engineering units and readbacks in both EGU and
 raw for the delay property.
 
-**Note:** In is inadvisible to have to more then one output record
+```{note}
+It is inadvisable to have to more then one output record
 pointing to the same property of the same device. However, it is allowed
 since there are cases where this is desireable.
-
-**Note:** Documentation of individual device support may be found in the
+```
+```{note}
+Documentation of individual device support may be found in the
 example database files.
+```
+## Global Properties
 
-## Per-device Database Files
+Properties in this section apply to the EVR as a whole.
+Records accessing properties in this section will have DTYP set to "EVR". See: evrApp/Db/evrbase.db
+
+|      Name          | Record type(s)  | Description                                                           |
+| -------------------| --------------- | --------------------------------------------------------------------- |
+|   {term}`Enable`   |    bo, bi       |  {term}`Master enable for the EVR. <Enable>`  |
+| PLL Lock Status    |     bi          |      |
+| Link Status        |     bi          | [Event link status](#link-status) |
+| Timestamp Valid | bi | [Validity of the timestamp](#timestamp-valid) |
+| Model | longin | [Hardware model](#model-number)|
+| Version |  longin | |
+| Sw Version | | |
+| FIFO Overflow Count | longin | |
+| Fifo Over Rate | longin | |
+| HB Timeout Count | | |
+| Clock | ao, ai | |
+| Timestamp Source | longout, longin | [Selects timestamp source](#timestamp-sources) |
+| Timestamp Clock |  ao, ai| |
+| Timestamp Prescaler | longin | | 
+| Timestamp | stringin | |
+| Event Clock TD Div | longin | |
+| Receive Error Count | longin | |
+
+For example, the boolean property Enable could be written by the following record:
+
+```
+  record(bo, "$(P)ena " ) {
+    field ( DTYP, " Obj Prop bool " )
+    field (OUT , "@OBJ=$(OBJ), PROP=Enable")
+  }
+```
+
+### PLL Lock Status
+Implemented for: bi
+
+This indicates whether the phase locked loop which synchronizes an EVR's local
+oscillator with the phase of the EVG's oscillator. Outputs will not be stable unless
+the PLL is locked.
+
+Except for immediately (≪ 1sec) after a change to the fractional synthesizer
+this property should always read as true (locked). Reading false for longer than
+one second is likely an indication that the fractional synthesizer is misconfigured,
+or that a hardware fault has occurred.
+
+(link-status)=
+### Link Status
+
+Indicates when the event link is active. This means that the receiver sees light,
+and that valid data is being decoded.
+
+A reading of false may be caused by a number of conditions including: EVG
+down, fiber unplugged or broken, and/or incorrect fractional synthesizer frequency.
+
+(timestamp-valid)=
+### Timestamp Valid
+
+Indicates if the EVR has a current, valid timestamp. Conditions under which
+the timestamp is declared invalid include:
+
+  - TS counter reset event received, but \"seconds\" value not updated.
+  - Found timestamp with previous invalid value. Catches old timestamp in
+    buffers.
+  - TS counter exceeded limit (eg. missed reset event)
+  - New seconds value is less then the last valid values, or more then two
+    greater then the last valid value. (Light Soure time model only). This
+    will reject single bad values sent by the EVG.
+  - Event Link error (Status is error)
+
+The timestamp will become valid when a new seconds value is received from
+the EVG.
+
+(model-number)=
+### Model
+
+The hardware model number.
+
+### Version
+
+The firmware version number.
+
+### Sw Version
+
+A string describing the version of the driver software. This is captured when
+the driver is compiled
+
+### FIFO Overflow Count
+
+
+Counts the number of hardware event buffer overflows. There is a single hard-
+ware buffer for all event codes. When it overflows arbitrary events will fail to be
+delivered to software. This can cause the timestamp to falsely be invalidated,
+and can disrupt database processing which depends on event reception.
+This is a serious error which should be corrected.
+
+Note: An overflow does not effect physical outputs.
+
+### FIFO Over rate
+
+Counts overflows in all of the per event software buffers.
+This indicates that the period between successive events is shorter then the
+runtime of the code (callbacks, and database processing) that is causes. Extra
+events are being dropped and cause no action.
+Actions of other event codes are not effected.
+
+### Clock
+
+Frequency of an EVR's local oscillator. This must be close enough to the EVG
+master oscilator to allow the phase locked loop in the EVR to lock.
+The native analog units are Hertz (Hz). This can be changed with the LINR
+and ESLO fields. Use ESLO of 1e-6 to allow user setting/reading in MHz.
+
+(timestap-sources)=
+### Timestamp Sources
+
+Determines what causes the timestamp event counter to tick. There are three
+possible values:
+
+  **Event clock**: Use an integer divisor of the EVR's local oscillator.
+  **Mapped code(s)**: Increments the counter whenever certain events arrive. These codes can be defined using special mapping records.
+  **DBus 4**: Increments on the 0->1 transition of DBus bit #4.
+
+(timestamp-clock)=
+### Timestamp Clock
+
+Specifies the rate at which the timestamp event counter will be incremented.
+This determines the resolution of all timestamps.
+This setting is used in conjunction with the 'Timestamp Source'.
+When the timestamp source is set to "Event clock" this property is used to
+compute an integer divider from the EVR's local oscilator frequency to the
+given frequency. Since this may not be exact it is recommended to read back
+the actual divider setting via the "Timestamp Prescaler" property.
+In all modes this value is stored in memory and used to convert the timestamp
+event counter values from ticks to seconds.
+By default the analog units are Hertz (Hz). This can be changed with the LINR
+and ESLO fields. Use ESLO of 1e-6 to allow user setting/reading in MHz.
+
+### Timestamp Prescaler
+
+When using the "Event clock" timestamp source this will return the actual
+divisor used. In other modes it reads 0.
+
+### Timestamp
+
+When processed creates a human readable string with either the current event
+link time, or the event link time when code # was last received.
+
+### Event Clock TS Div
+
+This is an approximate divider from the event link frequency down to 1MHz. It
+is used to determine the heartbeat timeout.
+
+### Receive Error Count
+
+The number of event link errors which have occurred.
+
+## Pulse Generator
+Properties in this section apply to the Pulse Generator (Pulser) sub-unit named
+\$(OBJ):Pul# where # is a number between 0 and 15.
+Records accessing properties in this section will have DTYP set to \"EVR Pulser\".
+
+See: evrApp/Db/evrpulser.db
+
+### Enable
+Implemented for: bo, bi
+When not set, the output of the Pulse Generator will remain in its inactive
+state (normally low).
+
+The generator must be enabled before mapped actions will have any effect.
+
+### Polarity
+Implemented for: bo, bi
+Reverses the output polarity. When set, changes the Pulse Generator's output
+from normally low to normally high.
+
+### Prescaler
+Implemented for: longout, longin
+Decreases the resolution of both delay and width by an integer multiple. Determines the tick rate of the internal counters used for delay and width with
+respect to the EVR's local oscillator.
+
+### Delay
+Implemented for: ao, longout, ai, longin
+Determines the time between when the Pulse Generator is triggered and when
+it changes state from inactive to active (normally low to high).
+This can be given in integer ticks, or floating point seconds. This can be changed
+with the LINR and ESLO fields. Use ESLO of 1e6 to allow user setting/reading
+in microseconds.
+
+### Width
+Implemented for: ao, longout, ai, longin
+Determines the time between when the Pulse Generator changes state from
+inactive to active (normally low to high), and when it changes back to inactive.
+This can be given in integer ticks, or floating point seconds. This can be changed
+with the LINR and ESLO fields. Use ESLO of 1e6 to allow user setting/reading
+in microseconds.
+
+### Prescaler (Clock Divider)
+Properties in this section apply to the Prescaler sub-unit.
+Records accessing properties in this section will have DTYP set to "EVR Prescaler".
+See: evrApp/Db/evrscale.db
+
+### Divide
+Implemented for: longout, ao, longin
+Sets the integer divisor between the Event Clock and the sub-unit output.
+By default the analog units are Hertz (Hz). This can be changed with the LINR
+and ESLO fields. Use ESLO of 1e-6 to allow user setting/reading in MHz.
+
+## Output (TTL and CML)
+Properties in this section apply to the Output sub-unit.
+Records accessing properties in this section will have DTYP set to "EVR Output".
+See: evrMrmApp/Db/mrmevrout.db
+
+### Map
+Implemented for: longout, longin
+The meaning of this value is determined by the specific implementation used.
+For the MRM implementation the following codes are valid.
+
+| # | Output Source |
+| - | ------------- |
+| 63 |  Force High |
+| 62 |  Force Low | 
+| 42 |  Prescaler (Divider) 2 |
+| 41 |  Prescaler (Divider) 1 |
+| 40 |  Prescaler (Divider) 0 |
+| 39 |  Distributed Bus Bit 7 |
+| 38 |  Distributed Bus Bit 6 |
+| 37 |  Distributed Bus Bit 5 |
+| 36 |  Distributed Bus Bit 4 |
+| 35 |  Distributed Bus Bit 3 |
+| 34 |  Distributed Bus Bit 2 |
+| 33 |  Distributed Bus Bit 1 |
+| 32 |  Distributed Bus Bit 0 |
+| 9  | Pulse generator 9 |
+| 8  | Pulse generator 8 |
+| 7  | Pulse generator 7 |
+| 6  | Pulse generator 6 |
+| 5  | Pulse generator 5 |
+| 4  | Pulse generator 4 |
+| 3  | Pulse generator 3 |
+| 2  | Pulse generator 2 |
+| 1  | Pulse generator 1 |
+| 0  | Pulse generator 0 |
+
+
+
+## Output (CML only)
+Additional properties for Current Mode Logic (CML) outputs.
+Records accessing properties in this section will have DTYP set to "EVR CML"
+with the exception of waveform records which have either "EVR CML Pattern Set" 
+or "EVR CML Pattern Get".
+
+See: evrApp/Db/evrcml.db
+
+### Enable
+Implemented for: bo, bi
+Trigger permit.
+
+### Power
+Implemented for: bo, bi
+Current driver on.
+
+### Reset
+Implemented for: bo, bi
+Pattern reset.
+
+### Mode
+Implemented for: mbbo
+Selects CML pattern mode. Possible values are: 4x Pattern (0), Frequency (1),
+Waveform (2).
+
+4x Pattern Uses the Pat Rise, Pat High, Pat Fall, and Pat Low properties to
+store four 20 bit (0 -> 0xfff ) sub-patterns.
+
+Frequency Uses the Freq Trig Lvl, Counts High, and Counts Low properties
+Waveform Uses the bit pattern stored by the Pattern Set property.
+
+### Pat Rise/High/Fall/Low
+
+Implemented for: longout, longin
+Each property stores a seperate 20-bit pattern (0 -> 0xfff ). These patterns are
+sent during the four parts of a square wave.
+Rising and Falling patterns start as soon as the edge is detected and will interrupt the pattern currently being sent.
+The High and Low patterns are sent after an edge pattern is sent and will repeat
+until the next edge.
+
+### Freq Trig Lvl
+Implemented for: bo, bi
+Synchronize forces to this level when in frequency mode.
+
+### Counts High/Low
+Implemented for: longout, longin, ao, ai
+Stores a value which is the number of counts (long) or time (analog) of the high
+or low part of a square wave.
+The number of ticks must be >20 and the time must be greater then one period
+of the event clock.
+
+## Input
+Properties in this section apply to the Input sub-unit.
+Records accessing properties in this section will have DTYP set to "EVR Input".
+See: evrApp/Db/evrin.db
+
+### Active Level
+Implemented for: bo, bi
+When operating in level triggered mode, determines if codes are sent when the
+input level is low, or high.
+
+### Active Edge
+Implemented for: bo, bi
+When operating in edge triggered mode, Determines if codes are sent on the
+falling or rising edge in the input signal.
+
+### External Mode
+Implemented for: mbbo, mbbi
+Selects the condition (Level, Edge, None) in which to inject event codes into
+the local mapping ram.
+
+These codes are treated as codes coming from the downstream event link.
+
+### External Code
+Implemented for: longout, longin
+Sets the code which will be applied to the local mapping ram whenever the
+'External Mode' condition is met.
+
+### Backwards Mode
+Implemented for: mbbo, mbbi
+Selects the condition (Level, Edge, None) in which to send on the upstream
+event link.
+
+### Backwards Code
+Implemented for: longout, longin
+Sets the code which will be sent on the upstream event link whenever the 'Backwards Mode' condition is met.
+
+### DBus Mask
+Implemented for: mbbo, mbbi
+Sets the upstream Distributed Bus bit mask which is driven by this input.
+
+## Event Mapping
+Properties in this section describe actions which should be taken when an event
+code is received.
+
+### Pulse Generator Mapping
+Implemented for: longout
+
+See: evrApp/Db/evrpulsermap.db
+
+Causes a received event to trigger a Pulse Generator (Pulser) sub-unit, or force
+it into an active (set) or inactive (reset) state.
+
+These records will have DTYP set to "EVR Pulser Mapping".
+Each record will cause one event to trigger, set, or reset one Pulse Generator. It
+is possible (and likely) that more then one record will interact with each event
+code or Pulse Generator. However, each pairing must be unique.
+
+```
+record ( longout, "$(P)$(N)$(M)" ) {
+   field(DTYP, "EVR Pulser Mapping" )
+   field(OUT , "@C=$(C) , I=$(PID) , Func=$(F)" )
+   field(PINI , "YES" )
+   field(DESC, "Mapping for Pulser $(PID)" )
+   field(VAL , "$(EVT)" )
+   field(LOPR, "0" )
+   field(HOPR, "255" )
+   field(DRVL, "0" )
+   field(DRVH, "255" )
+
+```
+
+In this example the event \$(EVT) specified in the VAL field will cause function
+\$(F) on Pulse Generator # $(PID). Current functions are \'Trig\', \'Reset\', and
+\'Set\'.
+
+### Special Function Mapping
+
+Implemented for: longout
+
+See: evrApp/Db/evrmap.db
+
+Allows a number of special actions to be mapped to certains events.
+These actions include:
+
+**Blink** 
+An LED on the EVRs front panel will blink when the code is received.
+
+**Forward** 
+The received code will be immediately retransmits on the upstream
+event link.
+
+**Stop Log** 
+Freeze the circular event log buffer. An CPU interrupt will be raised
+which will cause the buffer to be downloaded. This might be a useful action
+to map to a fault event.
+
+**Log** 
+Include this event code in the circular event log.
+
+**Heartbeat** 
+This event resets the heartbeat timeout timer.
+
+**Reset PS** 
+Resets the phase of all prescalers.
+
+**TS reset** 
+Transfers the seconds timestamp from the shift register and zeros the
+sub-seconds part.
+
+**TS tick**
+When the timestamp source is 'Mapped code' then any event with this
+mapping will cause the sub-seconds part of the timestamp to increment.
+
+**Shift 1**
+Shifts the current value of the seconds timestamp shift register up by
+one bit and sets the low bit to 1.
+
+**Shift 0**
+Shifts the current value of the seconds timestamp shift register up by
+one bit and sets the low bit to 0.
+
+**FIFO**
+Bypass the automatic allocation mechanism and always include this code
+in the event FIFO.
+
+In the following example the front panel LED on the EVR will blink whenever
+event 14 is received.
+
+```
+record (longout , "$(P)map: blink" ) {
+   field(DTYP, "EVR Mapping" )
+   field(OUT , "@C=$(C) , Func=Blink" )
+   field(PINI , "YES" )
+   field(VAL , "14" )
+   field(LOPR, "0" )
+   field(HOPR, "255" )
+}
+```
+
+## Database Events
+
+Implemented for: longout
+See: evrApp/Db/evrevent.db
+
+A device support for the 'event' recordtype is provided which uses the Event
+FIFO to record the arrival of certain interesting events.
+
+When set to SCAN 'I/O Intr' the event record device support will process the record causing the
+requested DB event.
+
+```
+record (longout ,"$(P)$(N)" ) {
+   field (DTYP,"EVR" )
+   field (SCAN,"I/O Intr" )
+   field ( INP ,"@Card=$(C) ,Code=$(CODE)" )
+   field (VAL ,"$(EVNT)" )
+   field (TSE ,"−2" ) # from device support
+   field (FLNK,"$(P)$(N) : count" )
+
+}
+
+   record (calc, "$(P)$(N):count" ) {
+   field (SCAN, "Event" )
+   field (EVNT, "$(EVNT)" )
+   field (CALC, "A+1" )
+   field (INPA , "$(P)$(N) : count NPP" )
+   field (TSEL, "$(P)$(N) .TIME" )
+}
+```
+
+In this example the hardware event code '\$(CODE)' will cause the database
+event '\$(EVNT)'.
+
+Note:
+
+that while both '\$(CODE)' and '\$(EVNT)' are numbers, they need not
+be the same. Hardware code 21 can cause DB event 40.
+
+## Data Buffer Rx
+Records accessing properties in this section will have DTYP set to "MRM EVR
+Buf Rx".
+See: evrApp/Db/mrmevrbufrx.db
+
+### Enable Data
+Implemented for: bo
+Selects Event link data mode. This chooses between DBus only, and DBus+Buffer
+modes. In DBus only mode Data Buffer reception is not possible.
+
+### Data Rx
+Implemented for: waveform
+When a buffer with the given Protocol ID is received a copy is placed in this
+record. It is possible to have many records receiving the same Protocol ID.
+
+Note:
+
+In order to avoid extra copy overhead this record bypasses the normal
+scanning process. It function like "I/O Intr", however the SCAN field should be
+left as "Passive".
+
+```
+record ( waveform , "$(P)dbus:recv:u32" )
+
+{
+   field (DESC,"Recv Buffer" )
+   field (DTYP,"MRM EVR Buf Rx" )
+   field ( INP ,"@C=$(C) , Proto=$(PROTO) , P=Data Rx" )
+   field (FTVL,"ULONG" )
+   field (NELM,"2046" )
+   info(autosaveFields_pass0 , "INP" )
+}
+```
+
+## Data Buffer Tx
+Records accessing properties in this section will have DTYP set to "MRF Data
+Buf Tx".
+
+This section is shared between the EVR and EVG.
+
+### Outgoing Event Data Mode
+See: mrmShared/Db/databuftxCtrl.db
+Implemented for: bo
+Selects Event link data mode. This chooses between DBus only, and DBus+Buffer
+modes. In DBus only mode Data Buffer transmission is not possible.
+
+### Data Tx
+See: mrmShared/Db/databuftx.db
+This records sends a block of data with the given Protocol ID.
+
+```
+record ( waveform , "$(P)dbus:send:u32" )
+{
+   field (DESC, " Send Buffer")
+   field (DTYP, "MRF Data Buf Tx" )
+   field ( INP , "@C=$ (C) , Proto=$ (PROTO) , P=Data Tx" )
+   field (FTVL, "ULONG" )
+   field (NELM, " 2046 " )
+   info( autosaveFields_pass0 , "INP " )
+   info( autosaveFields_pass1 , "VAL" )
+}
+```
+
+
+### Per-device Database Files
 
 Several database are installed by default for use with certain devices.
 Use with different devices is not an error, but will result in warnings
@@ -1316,7 +1673,7 @@ physically present.
 
 -   db/evr-vmerf-230.db
 
-## Special Database Files
+### Special Database Files
 
 Several database files are provided to augment the per-device files.
 These optional files are not tied to a specific hardware sub-unit.
@@ -1367,5 +1724,11 @@ Status for the builtin NTP clock driver.
     other with an IFB-300 connector,
 
 [^11]: List of supported hardware given in section
-    [\[sec:supported\]](#sec:supported){reference-type="ref"
-    reference="sec:supported"}.
+    [Supported Hardware]](#supported-hardware).
+
+```{glossary}
+EnablePLL
+    This indicates whether the phase locked loop which synchronizes an EVR's local oscillator with the phase of the EVG's oscillator. 
+    Outputs will not be stable unless the PLL is locked.
+    Except for immediately (≪ 1sec) after a change to the fractional synthesizer this property should always read as true (locked). Reading false for longer then one second is likely an indication that the fractional synthesize is misconfigured, or that a hardware fault has occured.
+```

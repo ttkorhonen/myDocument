@@ -1,5 +1,4 @@
-
-## Epics device driver for MRF Event Generator (EVG)
+# Epics device driver for MRF Event Generator (EVG)
 
 ::: author
 [Jayesh Shah, NSLS2, BNL jshah@bnl.gov]
@@ -13,7 +12,7 @@
 
 :::
 
-### The Source
+## The Source
 
 Source code for the mrfioc2 module, including the EVG support is available in the EPICS modules repository in Github.
 
@@ -41,11 +40,11 @@ The required software that this driver depends on:
 
 
 
-### IOC Deployment
+## IOC Deployment
 
 This section outlines a general strategy for adding an EVG to an IOC.
 
-#### VMEbus based hardware
+### VMEbus based hardware
 
 The VME bus based EVGs are configured using the mrmEvgSetupVME() IOC
 shell function.
@@ -83,7 +82,7 @@ Before setup is done the VME64 identifer fields are
 verified so that specifying an incorrect slot number is detected and
 setup will safely abort.
 ```
-#### PCI or PCIe based hardware
+### PCI or PCIe based hardware
 
 For PCI (or PCIe) - based EVG or EVM, use
 
@@ -95,13 +94,13 @@ mrmEvgSetupPCI (
         int f)                                  // Function number
 ```
 
-### Classes/Sub-Components
+## Classes/Sub-Components
 
-![PIC](evg-usage0x.png)
+![PIC](images/evg-usage0x.png)
 
-#### EVG
+### EVG
 
-##### Global EVG Options:
+#### Global EVG Options:
 
 -   **Enable** (bo/bi): EVG enable and disable.
 
@@ -137,7 +136,7 @@ The serial link bit rate is 20 times the event clock rate. The acceptable range 
     event clock frequency in MHz.
 
 
-##### Timestamping
+#### Timestamping
 
 The Event System provides a global timebase to attach timestamps to all
 collected data and performed actions at EVR. The time stamping system
@@ -146,7 +145,7 @@ consists of 32-bit timestamp event counter and a 32-bit seconds counter.
 This driver provides you an option of doing timestamping calculations in
 software as compared to the dedicated hardware as used at few places.
 
-![PIC](evg-usage1x.png)
+![PIC](images/evg-usage1x.png)
 
 Following are the EVR requirements for accurate timestamping:
 
@@ -159,7 +158,7 @@ Following are the EVR requirements for accurate timestamping:
     updated serially by loading zeros and ones on receipt of event code
     0x70 and 0x71 respectively.
 
-###### Timestamping at EVG:
+##### Timestamping at EVG:
 
 For timestamp EVG needs a pulse from the time source at the start of
 every second. EVG used this 1 pulse per second input to address both
@@ -198,7 +197,7 @@ Advantages:
 
 *see: evgMrmApp/Db/evgMrm.db*
 
-###### Records associated with EVG time stamping:
+##### Records associated with EVG time stamping:
 
 -   **Synchronize Timestamp** (bo): Sync the current time with
     the NTP server.
@@ -258,7 +257,7 @@ may be generated with programmable multiplexed counters (MXC) inside the event g
 
 The distributed bus signals may be programmed to be available as hardware outputs on the event receiver.
 
-![PIC](evg-dbus1.png)
+![PIC](images/evg-dbus1.png)
 
 -   **Signal Source/Map** (mbbo): The bits of the distributed
     bus can be driven by selecting one of the following sources.
@@ -279,11 +278,11 @@ The distributed bus signals may be programmed to be available as hardware output
 #### Multiplexed Counter
 
 There are 8 32-bit multiplexed counters that generate clock signals with
-programmable frequencies from event clock/2\^32-1 to event clock/2. The
+programmable frequencies from event clock/2{sup}`32`-1 to event clock/2. The
 counter outputs may be programmed to trigger events, drive distributed
 bus signals and trigger sequence RAMs.
 
-![PIC](evg-dbus1.png)
+![PIC](images/evg-dbus1.png)
 
 *see evgMrmApp/Db/evgMxc.db*
 
@@ -304,7 +303,7 @@ bus signals and trigger sequence RAMs.
 | 4 | 50/50 | 31.25 MHz |
 | 5 | 40/60 | 25 MHz |
 | ... | ... | ... |
-| 232 −1 | approx. 50/50 | 0.029 Hz |
+| 2{sup}`32`−1 | approx. 50/50 | 0.029 Hz |
 
 
 #### Input
@@ -335,7 +334,7 @@ external clock.
 
 *see: evgMrmApp/Db/evgAcTrig.db*
 
-![PIC](evg-acsync.png)
+![PIC](images/evg-acsync.png)
 
 -   **Divider**　(longout/longin): The mains voltage frequency
     can be divided by an eight bit programmable divider.
@@ -367,7 +366,7 @@ input states or software mask bits.
 
 ### Functional block diagram of device support for event sequencer 
 
-![PIC](evg-seq.jpg)
+![PIC](images/evg-seq.jpg)
 
 Device support for sequencer introduces a concept of software
 sequence(a.k.a. soft sequence). The existence of the software and
@@ -536,3 +535,115 @@ Thanks for all the help and support
 -   Michael Davidsaver, NSLS2, BNL.
 
 -   Eric Bjorklund, LANSCE, LANL.
+
+## EVG Device Support Reference
+
+The following sections list the properties for all sub-units with functional descriptions.
+
+Global
+Properties in this section apply to the EVG as a whole.
+See: evgMrmApp/Db/evgMrm.db
+
+Enable
+Implemented for: bo
+DTYP: EVG
+Master enable for the EVG. If not set then very little will happen.
+
+Event Clock
+See: evgMrmApp/Db/evgEvtClk.db
+
+Clock Source
+Implemented for: bo
+DTYP: EVG Evt Clk Source
+Selects either the internal fractional synthesizer, or the external clock input
+(RFIN).
+
+RF Divider
+Implemented for: longout
+DTYP: EVG RF Divider
+Sets the programmable divider which converts the external clock input (RFIN)
+to the Event clock frequency.
+Valid only for the external clock source.
+
+RF Ref. Frequency
+Implemented for: ao
+DTYP: EVG Clk RFref
+When using the external clock input (RFIN). This property must be set to the
+frequency being given to RFIN. The EVG is not able to measure this, so it must
+be provided by the user.
+This number is used to convert Event clock ticks into real time (nanoseconds).
+An incorrect setting will result in incorrect delays and periods being calculated.
+
+Synth. Frequency
+Implemented for: ao
+DTYP: EVG Clk
+When using the internal fractional synthesizer this property sets the Event clock
+frequency used.
+If the fractional synthesizer is not able to produce the requested frequency then
+it will attempt to find a frequency as close as possible.
+
+Event Clock Frequency
+Implemented for: ai
+DTYP: EVG Clk
+Current Event clock frequency. When using the external clock this is a readback
+of the value of the RF Ref.
+
+Frequency property.
+
+When using the internal
+fractional synthesizer this is a readback of the actual output frequency, which
+may be different then what was requested with the Synth. Frequency.
+
+9.3 AC Line Sync.
+The AC Line Sync unit is a trigger source which relates to the phase of its input.
+The trigger is given on the closest tick of the syncroniszation source.
+Typically this is used to provide a trigger from the facility power mains.
+See: evgMrmApp/Db/evgAcTrig.db
+
+9.3.1 Divider
+Implemented for: longout
+DTYP: EVG AC Divider
+The mains voltage frequency can be divided by an eight bit programmable
+divider.
+
+9.3.2 Phase
+Implemented for: ao
+DTYP: EVG AC Phase
+The output of the divider may be delayed by 0 to 25.5 ms by a phase shifter in
+0.1ms steps to adjust the triggering position relative to mains voltage phase.
+
+9.3.3 Bypass
+Implemented for: bo
+DTYP: EVG AC Bypass
+Bypass the AC divider and phase shifter circuitry. Equivalent to setting divide
+by 1 and phase 0.
+
+9.3.4 Synchronization Source
+Implemented for: bo
+DTYP: EVG AC Sync
+The AC Trigger could be synchronized either with event clock or the output of
+multiplexed counter 7.
+
+9.4 Software Event
+See: evgMrmApp/Db/evgSoftEvt.db
+Implemented for: longout
+DTYP: EVG Soft Evt
+When processed immediately queues the code stored in the value field to be sent
+over the event link. Software events have the lowest priority in the queue and
+will be sent in the next otherwise empty frame.
+Only one software event can be queued. If there are more then one records then
+each will wait until it can queue its code, and will continue to wait until the
+code is sent.
+
+32
+
+9.5 Event Triggers
+See: evgMrmApp/Db/evgSoftEvt.db
+
+9.6 Inputs
+9.7 Outputs
+9.8 DBus Bits
+9.9 Multiplexed Counters
+9.10 Software Sequences
+9.11 Data Buffer Tx
+See section 8.10.2 on page 29.
