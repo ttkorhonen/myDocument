@@ -12,3 +12,8 @@ EPICS Record Reference
 
    manual/RecordRefMan
 
+.. toctree::
+   :maxdepth: 1
+   :caption: Event System:
+
+   mrfEventRef.rst
