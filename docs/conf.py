@@ -54,7 +54,6 @@ multiproject_projects = {
     },
 }
 
-tippy_props = {"theme": "translucent"}
 
 myst_enable_extensions = [
     "attrs_inline",
