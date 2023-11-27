@@ -1,10 +1,9 @@
-# EVM Descriptions
+# EVG Function Register Map
 
 The EVM module can be configured for use as an Event Generator (EVG) or a fanout/concentrator.
 
-## EVG Function Register Map
-
 This is the register map when EVM is configured as an EVG.
+
 
 | Address |  Register | Type | Description |
 | ------- | --------- | ---- | ----------- |
@@ -195,9 +194,9 @@ This is the register map when EVM is configured as an EVG.
 |         | **bit 23** | **bit 22** | **bit 21** | **bit 20** | **bit 19** | **bit 18** | **bit 17** | **bit 16** |
 |  0x009  |        |        | IFSOV1 | IFSOV0 |        |        | IFSHF1 | IFSHF0 |
 |         | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| 0x00A   |        |        | IFSSTO1 | IFSSTO0 |       |       | IFSSTA1 | IFSSTA0 |
+| 0x00A   |        |        | IFSSTO1 | IFSSTO0 |             || IFSSTA1 | IFSSTA0 |
 |         | bit 7  | bit 6  | bit 5  |bit 4   | bit 3  | bit 2  | bit 1  | bit 0 |
-| 0x00B   |        | IFEXT  | IFDBUF |        |        |        | IFFF   | IFVIO |
+| 0x00B   |        | IFEXT  | IFDBUF |        |                || IFFF   | IFVIO |
 
 
 
@@ -863,48 +862,49 @@ Please note that after changing the Event clock source the fractional synthesize
 
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x544 | TI1SQMK(3:0) |TI1SQEEN3:0 | TI1IRQ |
+| 0x544   | TI1SQMK(3:0) |TI1SQEEN3:0 | TI1IRQ |
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
-| 0x545 | TI1DB7 | TI1DB6 | TI1DB5 | TI1DB4 | TI1DB3 | TI1DB2 | TI1DB1 | TI1DB0 |
+| 0x545   | TI1DB7 | TI1DB6 | TI1DB5 | TI1DB4 | TI1DB3 | TI1DB2 | TI1DB1 | TI1DB0 |
 | address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| 0x546 | TI1SEN1 | TI1SEN0 | TI1SEQ1 | TI1SEQ0 |
+| 0x546   | TI1SEN1 | TI1SEN0 | TI1SEQ1 | TI1SEQ0 |
 | address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| 0x547 | TI1EV7 | TI1EV6 | TI1EV5 | TI1EV4 | TI1EV3 | TI1EV2 | TI1EV1 | TI1EV0 |
+| 0x547   | TI1EV7 | TI1EV6 | TI1EV5 | TI1EV4 | TI1EV3 | TI1EV2 | TI1EV1 | TI1EV0 |
 | ... |
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
-| 0x55C | TI15SQMK(3:0) | TI15SQEEN3:0| TI15IRQ |
+| 0x55C   | TI15SQMK(3:0) | TI15SQEEN3:0| TI15IRQ |
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
-| 0x55D | TI15DB7 | TI15DB6 | TI15DB5 | TI15DB4 | TI15DB3 | TI15DB2 | TI15DB1 | TI15DB0 |
-| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| 0x55E | TI15SEN1 | TI15SEN0 | TI15SEQ1 | TI15SEQ0 |
-|      | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 |bit 1 |bit 0 |
-| 0x55F | TI15EV7 | TI15EV6 | TI15EV5 | TI15EV4 | TI15EV3 | TI15EV2 | TI15EV1 | TI15EV0 |
+| 0x55D   | TI15DB7 | TI15DB6 | TI15DB5 | TI15DB4 | TI15DB3 | TI15DB2 | TI15DB1 | TI15DB0 |
+| address | bit 15 | bit 14 | bit 13   | bit 12   | bit 11   | bit 10 | bit 9   | bit 8   |
+| 0x55E   |        |        | TI15SEN1 | TI15SEN0 |          |        |TI15SEQ1 | TI15SEQ0 |
+|         | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 |bit 1 |bit 0 |
+| 0x55F   | TI15EV7 | TI15EV6 | TI15EV5 | TI15EV4 | TI15EV3 | TI15EV2 | TI15EV1 | TI15EV0 |
 
 | Bit | Function |
 | --- | -------- |
 | TIxSQMKy    | Map Transition Board Input x to Sequence Event Mask bit y |
 | TIxSQEENy   | Map Transition Board Input x to Sequence Event Enable bit y |
-| TIxIRQ Map  | Transition Board Input x to External Interrupt |
-| TIxDB7 Map  | Transition Board Input x to Distributed Bus bit 7 |
-| TIxDB6 Map  | Transition Board Input x to Distributed Bus bit 6 |
-| TIxDB5 Map  | Transition Board Input x to Distributed Bus bit 5 |
-| TIxDB4 Map  | Transition Board Input x to Distributed Bus bit 4 |
-| TIxDB3 Map  | Transition Board Input x to Distributed Bus bit 3 |
-| TIxDB2 Map  | Transition Board Input x to Distributed Bus bit 2 |
-| TIxDB1 Map  | Transition Board Input x to Distributed Bus bit 1 |
-| TIxDB0 Map  | Transition Board Input x to Distributed Bus bit 0 |
-| TIxSEN1 Map | Transition Board Input x to Sequence External Enable 1 |
-| TIxSEN0 Map | Transition Board Input x to Sequence External Enable 0 |
-| TIxSEQ1 Map | Transition Board Input x to Sequence Trigger 1 |
-| TIxSEQ0 Map | Transition Board Input x to Sequence Trigger 0 |
-| TIxEV7 Map  | Transition Board Input x to Event Trigger 7 |
-| TIxEV6 Map  | Transition Board Input x to Event Trigger 6 |
-| TIxEV5 Map  | Transition Board Input x to Event Trigger 5 |
-| TIxEV4 Map  | Transition Board Input x to Event Trigger 4 |
-| TIxEV3 Map  | Transition Board Input x to Event Trigger 3 |
-| TIxEV2 Map  | Transition Board Input x to Event Trigger 2 |
-| TIxEV1 Map  | Transition Board Input x to Event Trigger 1 |
-| TIxEV0 Map  | Transition Board Input x to Event Trigger 0 |
+| TIxIRQ      | Map Transition Board Input x to External Interrupt |
+| TIxDB7      | Map Transition Board Input x to Distributed Bus bit 7 |
+| TIxDB6      | Map Transition Board Input x to Distributed Bus bit 6 |
+| TIxDB5      | Map Transition Board Input x to Distributed Bus bit 5 |
+| TIxDB4      | Map Transition Board Input x to Distributed Bus bit 4 |
+| TIxDB3      | Map Transition Board Input x to Distributed Bus bit 3 |
+| TIxDB2      | Map Transition Board Input x to Distributed Bus bit 2 |
+| TIxDB1      | Map Transition Board Input x to Distributed Bus bit 1 |
+| TIxDB0      | Map Transition Board Input x to Distributed Bus bit 0 |
+| TIxSEN1     | Map Transition Board Input x to Sequence External Enable 1 |
+| TIxSEN0     | Map Transition Board Input x to Sequence External Enable 0 |
+| TIxSEQ1     | Map Transition Board Input x to Sequence Trigger 1 |
+| TIxSEQ0     | Map Transition Board Input x to Sequence Trigger 0 |
+| TIxEV7      | Map Transition Board Input x to Event Trigger 7 |
+| TIxEV6      | Map Transition Board Input x to Event Trigger 6 |
+| TIxEV5      | Map Transition Board Input x to Event Trigger 5 |
+| TIxEV4      | Map Transition Board Input x to Event Trigger 4 |
+| TIxEV3      | Map Transition Board Input x to Event Trigger 3 |
+| TIxEV2      | Map Transition Board Input x to Event Trigger 2 |
+| TIxEV1      | Map Transition Board Input x to Event Trigger 1 |
+| TIxEV0      | Map Transition Board Input x to Event Trigger 0 |
+
 
 ```{note}
 All enabled input signals are OR’ed together. So if e.g. distributed bus bit 0 has two sources from
@@ -958,14 +958,14 @@ The event master has a number of internal signals which are connected following:
 | EVRU FPIN(6)       | EVRD FPOUT(6) |
 | EVRU FPIN(7)       | EVRD FPOUT(7) |
 
-| Address | Register | Type | Description |
-| ------- | -------- | ---- | ----------- |
-| 0x000           | Status | UINT32 | Status Register
-| 0x004           | Control | UINT32 | Control Register
-| 0x010           | UpDCValue | UINT32 | Upstream Data Compensation Delay Value
+| Address         | Register    | Type   | Description |
+| -------         | --------    | ----   | ----------- |
+| 0x000           | Status      | UINT32 | Status Register
+| 0x004           | Control     | UINT32 | Control Register
+| 0x010           | UpDCValue   | UINT32 | Upstream Data Compensation Delay Value
 | 0x014           | FIFODCValue | UINT32 | Receive FIFO Data Compensation Delay Value
-| 0x018           | IntDCValue | UINT32 | FCT Internal Datapath Data Compensation Delay Value
-| 0x02C           | TopologyID UINT32 | Timing Node Topology ID
+| 0x018           | IntDCValue  | UINT32 | FCT Internal Datapath Data Compensation Delay Value
+| 0x02C           | TopologyID  | UINT32 | Timing Node Topology ID
 | 0x040           | Port1DCValue| UINT32 | Port 1 loop delay value
 | 0x044           | Port2DCValue| UINT32 | Port 2 loop delay value
 | 0x048           | Port3DCValue| UINT32 | Port 3 loop delay value
@@ -974,22 +974,22 @@ The event master has a number of internal signals which are connected following:
 | 0x054           | Port6DCValue| UINT32 | Port 6 loop delay value
 | 0x058           | Port7DCValue| UINT32 | Port 7 loop delay value
 | 0x05C           | Port8DCValue| UINT32 | Port 8 loop delay value
-| 0x1000 – 0x10FF | SFP1EEPROM | | Port 1 SFP Transceiver EEPROM contents (SFP address 0xA0)
-| 0x1100 – 0x11FF | SFP1DIAG | | Port 1 SFP Transceiver diagnostics (SFP address 0xA2)
-| 0x1200 – 0x12FF | SFP2EEPROM | | Port 2 SFP Transceiver EEPROM contents (SFP address 0xA0)
-| 0x1300 – 0x13FF | SFP2DIAG | | Port 2 SFP Transceiver diagnostics (SFP address 0xA2)
-| 0x1400 – 0x14FF | SFP3EEPROM | | Port 3 SFP Transceiver EEPROM contents (SFP address 0xA0)
-| 0x1500 – 0x15FF | SFP3DIAG | | Port 3 SFP Transceiver diagnostics (SFP address 0xA2)
-| 0x1600 – 0x16FF | SFP4EEPROM | | Port 4 SFP Transceiver EEPROM contents (SFP address 0xA0)
-| 0x1700 – 0x17FF | SFP4DIAG | | Port 4 SFP Transceiver diagnostics (SFP address 0xA2)
-| 0x1800 – 0x18FF | SFP5EEPROM | | Port 5 SFP Transceiver EEPROM contents (SFP address 0xA0)
-| 0x1900 – 0x19FF | SFP5DIAG | | Port 5 SFP Transceiver diagnostics (SFP address 0xA2)
-| 0x1A00 – 0x1AFF | SFP6EEPROM | | Port 6 SFP Transceiver EEPROM contents (SFP address 0xA0)
-| 0x1B00 – 0x1BFF | SFP6DIAG | | Port 6 SFP Transceiver diagnostics (SFP address 0xA2)
-| 0x1C00 – 0x1CFF | SFP7EEPROM | | Port 7 SFP Transceiver EEPROM contents (SFP address 0xA0)
-| 0x1D00 – 0x1DFF | SFP7DIAG | | Port 7 SFP Transceiver diagnostics (SFP address 0xA2)
-| 0x1E00 – 0x1EFF | SFP8EEPROM | | Port 8 SFP Transceiver EEPROM contents (SFP address 0xA0)
-| 0x1F00 – 0x1FFF | SFP8DIAG | Port 8 SFP Transceiver diagnostics (SFP address 0xA2)
+| 0x1000 – 0x10FF | SFP1EEPROM  |        | Port 1 SFP Transceiver EEPROM contents (SFP address 0xA0)
+| 0x1100 – 0x11FF | SFP1DIAG    |        | Port 1 SFP Transceiver diagnostics (SFP address 0xA2)
+| 0x1200 – 0x12FF | SFP2EEPROM  |        | Port 2 SFP Transceiver EEPROM contents (SFP address 0xA0)
+| 0x1300 – 0x13FF | SFP2DIAG    |        | Port 2 SFP Transceiver diagnostics (SFP address 0xA2)
+| 0x1400 – 0x14FF | SFP3EEPROM  |        | Port 3 SFP Transceiver EEPROM contents (SFP address 0xA0)
+| 0x1500 – 0x15FF | SFP3DIAG    |        | Port 3 SFP Transceiver diagnostics (SFP address 0xA2)
+| 0x1600 – 0x16FF | SFP4EEPROM  |        | Port 4 SFP Transceiver EEPROM contents (SFP address 0xA0)
+| 0x1700 – 0x17FF | SFP4DIAG    |        | Port 4 SFP Transceiver diagnostics (SFP address 0xA2)
+| 0x1800 – 0x18FF | SFP5EEPROM  |        | Port 5 SFP Transceiver EEPROM contents (SFP address 0xA0)
+| 0x1900 – 0x19FF | SFP5DIAG    |        | Port 5 SFP Transceiver diagnostics (SFP address 0xA2)
+| 0x1A00 – 0x1AFF | SFP6EEPROM  |        | Port 6 SFP Transceiver EEPROM contents (SFP address 0xA0)
+| 0x1B00 – 0x1BFF | SFP6DIAG    |        | Port 6 SFP Transceiver diagnostics (SFP address 0xA2)
+| 0x1C00 – 0x1CFF | SFP7EEPROM  |        | Port 7 SFP Transceiver EEPROM contents (SFP address 0xA0)
+| 0x1D00 – 0x1DFF | SFP7DIAG    |        | Port 7 SFP Transceiver diagnostics (SFP address 0xA2)
+| 0x1E00 – 0x1EFF | SFP8EEPROM  |        | Port 8 SFP Transceiver EEPROM contents (SFP address 0xA0)
+| 0x1F00 – 0x1FFF | SFP8DIAG    |        | Port 8 SFP Transceiver diagnostics (SFP address 0xA2)
 
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
