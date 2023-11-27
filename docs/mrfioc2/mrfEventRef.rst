@@ -8,6 +8,7 @@ MRF Timing System Reference
    event-system-intro
    evm-mtca
    evg-registermap
+   fct-registermap
    evr-registermap
    firmware-changelog   
 

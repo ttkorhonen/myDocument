@@ -1,20 +1,25 @@
 # FCT Function Register Map
 
-| Address | Register     | Type    Description
-| 0x000   | Status       | UINT32 Status Register
-| 0x004   | Control      | UINT32 Control Register
-| 0x010   | UpDCValue    | UINT32  Upstream Data Compensation Delay Value
-| 0x014   | FIFODCValue  | UINT32 Receive FIFO Data Compensation Delay Value
-| 0x018   | IntDCValue   | UINT32 FCT Internal Datapath Data Compensation Delay Value
-| 0x02C   | TopologyID   | UINT32 Timing Node Topology ID
-| 0x040   | Port1DCValue | UINT32 Port 1 loop delay value
-| 0x044   | Port2DCValue | UINT32 Port 2 loop delay value
-| 0x048   | Port3DCValue | UINT32 Port 3 loop delay value
-| 0x04C   | Port4DCValue | UINT32 Port 4 loop delay value
-| 0x050   | Port5DCValue | UINT32 Port 5 loop delay value
-| 0x054   | Port6DCValue | UINT32 Port 6 loop delay value
-| 0x058   | Port7DCValue | UINT32 Port 6 loop delay value
-| 0x05C   | Port8DCValue | UINT32 Port 8 loop delay value
+The EVM module can be configured for use as an Event Generator (EVG) or a fanout/concentrator.
+
+This is the register map when EVM is configured as a fanout/concentrator.
+
+| Address | Register     | Type   |  Description |
+| ------- | -----------  | ------ | ------------ |
+| 0x000   | Status       | UINT32 | Status Register
+| 0x004   | Control      | UINT32 | Control Register
+| 0x010   | UpDCValue    | UINT32 | Upstream Data Compensation Delay Value
+| 0x014   | FIFODCValue  | UINT32 | Receive FIFO Data Compensation Delay Value
+| 0x018   | IntDCValue   | UINT32 | FCT Internal Datapath Data Compensation Delay Value
+| 0x02C   | TopologyID   | UINT32 | Timing Node Topology ID
+| 0x040   | Port1DCValue | UINT32 | Port 1 loop delay value
+| 0x044   | Port2DCValue | UINT32 | Port 2 loop delay value
+| 0x048   | Port3DCValue | UINT32 | Port 3 loop delay value
+| 0x04C   | Port4DCValue | UINT32 | Port 4 loop delay value
+| 0x050   | Port5DCValue | UINT32 | Port 5 loop delay value
+| 0x054   | Port6DCValue | UINT32 | Port 6 loop delay value
+| 0x058   | Port7DCValue | UINT32 | Port 6 loop delay value
+| 0x05C   | Port8DCValue | UINT32 | Port 8 loop delay value
 | 0x1000 – 0x10FF | SFP1EEPROM | | Port 1 SFP Transceiver EEPROM contents (SFP address 0xA0)
 | 0x1100 – 0x11FF | SFP1DIAG   | | Port 1 SFP Transceiver diagnostics (SFP address 0xA2)
 | 0x1200 – 0x12FF | SFP2EEPROM | | Port 2 SFP Transceiver EEPROM contents (SFP address 0xA0)
@@ -35,10 +40,11 @@
 ## Status Register
 
 
-address bit 23 bit 22 bit 21 bit 20 bit 19 bit 18 bit 17 bit 16
-0x001 LINK8 LINK7 LINK6 LINK5 LINK4 LINK3 LINK2 LINK1 
-bit 7 bit 6 bit 5 bit4 bit3 bit2 bit1 bit0
-0x003 VIO8 VIO7 VIO6 VIO5 VIO4 VIO3 VIO2 VIO1
+| address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
+| ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
+| 0x001   | LINK8  | LINK7  | LINK6  | LINK5  | LINK4  | LINK3  | LINK2  | LINK1  |
+|         | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
+| 0x003   | VIO8  | VIO7  | VIO6  | VIO5  | VIO4  | VIO3  | VIO2  | VIO1 |
 
 | Bit  | Function | 
 | ---  | -------- |
@@ -61,19 +67,21 @@ bit 7 bit 6 bit 5 bit4 bit3 bit2 bit1 bit0
 
 ## Control Register
 
-address bit 7 bit 6 bit 5 bit4 bit3 bit2 bit1 bit0
-0x007   CLRV8 CLRV7 CLRV6 CLRV5 CLRV4 CLRV3 CLRV2 CLRV1
+| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
+| ------- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
+| 0x007   | CLRV8 | CLRV7 | CLRV6 | CLRV5 | CLRV4 | CLRV3 | CLRV2 | CLRV1 |
 
 
-| Bit   | Function  
-| CLRV8 | Clear RX Violation Port 8 
-| CLRV7 | Clear RX Violation Port 7 
-| CLRV6 | Clear RX Violation Port 6 
-| CLRV5 | Clear RX Violation Port 5 
-| CLRV4 | Clear RX Violation Port 4 
-| CLRV3 | Clear RX Violation Port 3 
-| CLRV2 | Clear RX Violation Port 2 
-| CLRV1 | Clear RX Violation Port 1
+| Bit   | Function |
+| ----- | -------- |  
+| CLRV8 | Clear RX Violation Port 8 |
+| CLRV7 | Clear RX Violation Port 7 |
+| CLRV6 | Clear RX Violation Port 6 |
+| CLRV5 | Clear RX Violation Port 5 |
+| CLRV4 | Clear RX Violation Port 4 |
+| CLRV3 | Clear RX Violation Port 3 |
+| CLRV2 | Clear RX Violation Port 2 |
+| CLRV1 | Clear RX Violation Port 1 |
 
 
  
