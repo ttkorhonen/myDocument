@@ -434,11 +434,11 @@ This is the register map when EVM is configured as an EVG.
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
 | 0x037 | TSGENA | TSGLOAD |
 
-| Bit | Function |
-| --- | -------- |
-| TSGENA | Timestamp Generator Enable (‘0’ = disable, ‘1’ = enable)
+| Bit     | Function |
+| ---     | -------- |
+| TSGENA  | Timestamp Generator Enable (‘0’ = disable, ‘1’ = enable)
 | TSGLOAD | Timestamp Generator Load new value into Timestamp Counter
-| | Write ‘1’ to load new value
+|         | Write ‘1’ to load new value
 
 ### Microsecond Divider Register 
 
@@ -458,7 +458,7 @@ the parameters for the clock cleaner PLL and e.g. for the phase shifter in the A
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
 | 0x051 | PHTOGG | RFDIV(5:0) |
 | address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| 0x052 | CGLOCK
+| 0x052 | CGLOCK |
 
 | Bit | Function |
 | --- | -------- |
@@ -847,7 +847,7 @@ Please note that after changing the Event clock source the fractional synthesize
 | PHFEx(3:0) | Falling edge phase monitoring register
 | PHREx(3:0) | Rising edge phase monitoring register
 
-# Transition Board Input Mapping Registers
+### Transition Board Input Mapping Registers
 
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
@@ -858,10 +858,7 @@ Please note that after changing the Event clock source the fractional synthesize
 | 0x542 | TI0SEN1 | TI0SEN0 | TI0SEQ1 | TI0SEQ0 |
 | address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
 | 0x543 | TI0EV7 | TI0EV6 | TI0EV5 | TI0EV4 | TI0EV3 | TI0EV2 | TI0EV1 | TI0EV0 |
-
-
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
-| ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
 | 0x544   | TI1SQMK(3:0) |TI1SQEEN3:0 | TI1IRQ |
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
 | 0x545   | TI1DB7 | TI1DB6 | TI1DB5 | TI1DB4 | TI1DB3 | TI1DB2 | TI1DB1 | TI1DB0 |

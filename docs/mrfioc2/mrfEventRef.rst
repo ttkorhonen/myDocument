@@ -8,9 +8,10 @@ MRF Timing System Reference
    event-system-intro
    evm-mtca
    evg-registermap
+   firmware-changelog 
    fct-registermap
    evr-registermap
-   firmware-changelog   
+   evr-firmware-changelog 
 
 .. toctree::
    :maxdepth: 2
