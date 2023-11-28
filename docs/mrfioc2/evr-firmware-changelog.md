@@ -5,8 +5,7 @@
 | ---------- | ----          | -------                                                                   | ----------- |
 | 0200       | 11.06.2015    | - Prototype release                                                       | VME-EVR-300
 | 0201       | 24.09.2015    | - Added segmented data buffer block status flags
-|            |               | - Changed delay compensation FIFO depth from 2k to 4k
-event cycles
+|            |               | - Changed delay compensation FIFO depth from 2k to 4k event cycles
 |            |               | - Added DCM modulation to improve jitter performance
 | 0203       | 12.01.2016    | - Delay compensation amendments, non-GTX outputs are compensated properly |  VME-EVR-300
 | 0204       | 25.01.2016    | - First release for PCIe-EVR-300DC                                        | all
