@@ -22,8 +22,8 @@
 |            |               |- Changed segmented data buffer protocol to use K28.2 as a start symbol
 | 0207       | 30.08.2016    | - Added stand-alone capability: using its internal reference              | all
 |            |               | the EVR can now operate as a stand-alone pulse generator without event link.
-|            |               |-
-|            |               |-
+|            |               |- EVR can operate as a simple EVG by forwarding internal events
+|            |               |- Added software event capability
 |            |               |- Added one EVG type sequencer
 | 030207     |  23.12.2016 | - Changed beacon event code from 0x7a to 0x7e.                              | all 
 |            |               |- Added status bits for delay compensation path delay value validity.
