@@ -193,11 +193,11 @@ Event Receiver register/memory map.
 | 0xC000 – 0xFFFF | SeqRam | | Sequence RAM
 | 0x20000 – 0x23FFF  | GTX0MEM | Pattern memory:
 | | | | 16k bytes GTX output 0 (VME-EVR-300)
-| 0x24000 – 0x27FFF GTX1MEM Pattern memory:
+| 0x24000 – 0x27FFF | GTX1MEM  | Pattern memory:
 | | | | 16k bytes GTX output 1 (VME-EVR-300)
-| 0x28000 – 0x2BFFF GTX2MEM Pattern memory:
+| 0x28000 – 0x2BFFF | GTX2MEM  | Pattern memory:
 | | | | 16k bytes GTX output 2 (VME-EVR-300)
-| 0x2C000 – 0x2FFFF GTX3MEM Pattern memory:
+| 0x2C000 – 0x2FFFF | GTX3MEM  | Pattern memory:
 | | | | 16k bytes GTX output 3 (VME-EVR-300)
 
 
@@ -209,159 +209,154 @@ Event Receiver register/memory map.
 | 0x000   | DBUS7  | DBUS6  | DBUS5  | DBUS4  | DBUS3  | DBUS2  | DBUS1  | DBUS0  |
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
 | 0x001   | LEGVIO |
-address bit 15 bit 14 bit 13 bit 12 bit 11 bit 10 bit 9 bit 8
-0x002
-address bit 7 bit 6 bit 5 bit 4 bit 3 bit 2 bit 1 bit 0
-0x003 SFPMOD LINK LOGSTP
+| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
+| 0x002
+| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
+| 0x003   |  SFPMOD | LINK | LOGSTP |
 
 
-| Bit | Function |
-| --- | -------- |
-DBUS7 Read status of DBUS bit 7
-DBUS6 Read status of DBUS bit 6
-DBUS5 Read status of DBUS bit 5
-DBUS4 Read status of DBUS bit 4
-DBUS3 Read status of DBUS bit 3
-DBUS2 Read status of DBUS bit 2
-DBUS1 Read status of DBUS bit 1
-DBUS0 Read status of DBUS bit 0
-LEGVIO Legacy VIO (series 100, 200 and 230)
-SFPMOD SFP module status:
-‘0’ – plugged in
-‘1’ – no module installed
-LINK Link status:
-‘0’ – link down
-‘1’ – link up
-LOGSTP Event Log stopped flag
+| Bit   | Function |
+| ----- | -------- |
+|DBUS7  | Read status of DBUS bit 7
+|DBUS6  | Read status of DBUS bit 6
+|DBUS5  | Read status of DBUS bit 5
+|DBUS4  | Read status of DBUS bit 4
+|DBUS3  | Read status of DBUS bit 3
+|DBUS2  | Read status of DBUS bit 2
+|DBUS1  | Read status of DBUS bit 1
+|DBUS0  | Read status of DBUS bit 0
+|LEGVIO | Legacy VIO (series 100, 200 and 230)
+|SFPMOD | SFP module status:
+|       |‘0’ – plugged in
+|       |‘1’ – no module installed
+|LINK   | Link status:
+|       | ‘0’ – link down
+|       | ‘1’ – link up
+|LOGSTP | Event Log stopped flag
 
 ### Control Register
 
 
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-0x004 EVREN EVFWD TXLP RXLP OUTEN SRST LEMDE GTXIO
+|0x004    | EVREN  | EVFWD  | TXLP   |  RXLP  | OUTEN  | SRST   | LEMDE  | GTXIO  |
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
-0x005 DCENA
-address bit 15 bit 14 bit 13 bit 12 bit 11 bit 10 bit 9 bit 8
-0x006 TSDBUS RSTS LTS MAPEN MAPRS
-address bit 7 bit 6 bit 5 bit 4 bit 3 bit 2 bit 1 bit 0
-0x007 LOGRS LOGEN LOGDIS LOGSE RSFIFO
+| 0x005   | DCENA |
+| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
+| 0x006   | TSDBUS | RSTS   |   LTS  | MAPEN  | MAPRS |
+| address | bit 7  | bit 6 | bit 5   |  bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
+| 0x007   | LOGRS  | LOGEN | LOGDIS  | LOGSE  | RSFIFO |
 
-| Bit | Function |
-| --- | -------- |
-EVREN Event Receiver Master enable
-EVFWD Event forwarding enable:
-0 – Events not forwarded
-1 – Events received with forward bit in mapping RAM set are sent back on TX
-TXLP Transmitter loopback:
-0 – Receive signal from SFP transceiver (normal operation)
-1 – Loopback EVR TX into EVR RX
-RXLP Receiver loopback:
-0 – Transmit signal from EVR on SFP transceiver TX
-1 – Loopback SFP RX on SFP TX
-OUTEN Output enable for FPGA external components / IFB-300 (cPCI-EVRTG-300,
-PCIe-EVR-300, PXIe-EVR-300I)
-0 – disable outputs
-1 – enable outputs
-SRST Soft reset IP
-LEMDE Little endian mode (cPCI-EVR-300, PCIe-EVR-300)
-0 – PCI core in big endian mode (power up default)
-1 – PCI core in little endian mode
-GTXIO GUN-TX output hardware inhibit override
-0 – honor hardware inhibit signal (default)
-1 – inhibit override, don’t care about hardware inhibit input state
-DCENA Delay compensation mode enable
-0 – Delay compensation mode disable (receive FIFO depth controlled by DC
-Target).
-1 – Delay compensation mode enable (receive FIFO depth controlled by DC
-Target - Datapath Delay).
-TSDBUS Use timestamp counter clock on DBUS4
-RSTS Reset Timestamp. Write 1 to reset timestamp event counter and timestamp
-latch.
-LTS Latch Timestamp: Write 1 to latch timestamp from timestamp event counter to
-timestamp latch.
-MAPEN Event mapping RAM enable.
-MAPRS Mapping RAM select bit for event decoding:
-0 – select mapping RAM 1
-1 – select mapping RAM 2.
-LOGRS Reset Event Log. Write 1 to reset log.
-LOGEN Enable Event Log. Write 1 to (re)enable event log.
-LOGDIS Disable Event Log. Write 1 to disable event log.
-LOGSE Log Stop Event Enable.
-RSFIFO Reset Event FIFO. Write 1 to clear event FIFO.
+| Bit    | Function |
+| ---    | -------- |
+| EVREN  | Event Receiver Master enable
+| EVFWD  | Event forwarding enable:
+|        | 0 – Events not forwarded
+|        | 1 – Events received with forward bit in mapping RAM set are sent back on TX
+| TXLP   | Transmitter loopback:
+|        | 0 – Receive signal from SFP transceiver (normal operation)
+|        | 1 – Loopback EVR TX into EVR RX
+| RXLP   | Receiver loopback:
+|        | 0 – Transmit signal from EVR on SFP transceiver TX
+|        | 1 – Loopback SFP RX on SFP TX
+| OUTEN  | Output enable for FPGA external components / IFB-300 (cPCI-EVRTG-300, PCIe-EVR-300, PXIe-EVR-300I)
+|        | 0 – disable outputs
+|        | 1 – enable outputs
+| SRST   | Soft reset IP
+| LEMDE  |  Little endian mode (cPCI-EVR-300, PCIe-EVR-300)
+|        | 0 – PCI core in big endian mode (power up default)
+|        | 1 – PCI core in little endian mode
+| GTXIO  | GUN-TX output hardware inhibit override
+|        | 0 – honor hardware inhibit signal (default)
+|        | 1 – inhibit override, don’t care about hardware inhibit input state
+|        | DCENA Delay compensation mode enable
+|        | 0 – Delay compensation mode disable (receive FIFO depth controlled by DC Target).
+|        | 1 – Delay compensation mode enable (receive FIFO depth controlled by DC Target - Datapath Delay).
+| TSDBUS |  Use timestamp counter clock on DBUS4
+| RSTS   | Reset Timestamp. Write 1 to reset timestamp event counter and timestamp latch.
+| LTS    | Latch Timestamp: Write 1 to latch timestamp from timestamp event counter to timestamp latch.
+| MAPEN  | Event mapping RAM enable.
+| MAPRS  | Mapping RAM select bit for event decoding:
+|        | 0 – select mapping RAM 1
+|        | 1 – select mapping RAM 2.
+| LOGRS  | Reset Event Log. Write 1 to reset log.
+| LOGEN  | Enable Event Log. Write 1 to (re)enable event log.
+| LOGDIS |  Disable Event Log. Write 1 to disable event log.
+| LOGSE  | Log Stop Event Enable.
+| RSFIFO | Reset Event FIFO. Write 1 to clear event FIFO.
 
 ### Interrupt Flag Register
 
 
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-0x008
+| 0x008 |
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
-0x009 IFSOV IFSHF
-
+| 0x009 | IFSOV | IFSHF |
 |        | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-0x00A IFSSTO IFSSTA
-address bit 7 bit 6 bit 5 bit 4 bit 3 bit 2 bit 1 bit 0
-0x00B IFSEGD IFLINK IFDBUF IFHW IFEV IFHB IFFF IFVIO
+| 0x00A  | IFSSTO | IFSSTA |
+| address | bit 7 | bit 6  | bit 5  | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
+| 0x00B  | IFSEGD | IFLINK | IFDBUF | IFHW  | IFEV  | IFHB  | IFFF  | IFVIO |
 
-| Bit | Function |
-| --- | -------- |
-IFSOV Sequence RAM sequence roll over interrupt flag
-IFSHF Sequence RAM sequence halfway through interrupt flag
-IFSSTO Sequence RAM sequence stop interrupt flag
-IFSSTA Sequence RAM sequence start interrupt flag
-IFSEGD Segmented data buffer interrupt flag
-IFLINK Link state change interrupt flag
-IFDBUF Data buffer interrupt flag
-IFHW Hardware interrupt flag (mapped signal)
-IFEV Event interrupt flag
-IFHB Heartbeat interrupt flag
-IFFF Event FIFO full flag
-IFVIO Receiver violation flag
+| Bit    | Function |
+| ---    | -------- |
+| IFSOV  | Sequence RAM sequence roll over interrupt flag
+| IFSHF  | Sequence RAM sequence halfway through interrupt flag
+| IFSSTO | Sequence RAM sequence stop interrupt flag
+| IFSSTA | Sequence RAM sequence start interrupt flag
+| IFSEGD | Segmented data buffer interrupt flag
+| IFLINK | Link state change interrupt flag
+| IFDBUF | Data buffer interrupt flag
+| IFHW   | Hardware interrupt flag (mapped signal)
+| IFEV   | Event interrupt flag
+| IFHB   | Heartbeat interrupt flag
+| IFFF   | Event FIFO full flag
+| IFVIO  | Receiver violation flag
 
 ### Interrupt Enable Register
 
 
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-0x00C IRQEN
+| 0x00C   | IRQEN |
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
-0x00D IESOV IESHF
-|        | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-0x00E IESSTO IESSTA
-address bit 7 bit 6 bit 5 bit 4 bit 3 bit 2 bit 1 bit 0
-0x00F IESEGD IELINK IEDBUF IEHW IEEV IEHB IEFF IEVIO
+| 0x00D   | IESOV  | IESHF |
+|         | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
+| 0x00E   | IESSTO | IESSTA |
+| address | bit 7  | bit 6  | bit 5  | bit 4  | bit 3  | bit 2  | bit 1  | bit 0  |
+|0x00F    | IESEGD | IELINK | IEDBUF | IEHW   | IEEV   | IEHB   | IEFF   | IEVIO  |
 
-| Bit | Function |
-| --- | -------- |
-IRQEN Master interrupt enable:
-0 – disable all interrupts
-1 – allow interrupts
-IESOV Sequence RAM sequence roll over interrupt enable
-IESHF Sequence RAM sequence halfway through interrupt enable
-IESSTO Sequence RAM sequence stop interrupt enable
-IESSTA Sequence RAM sequence start interrupt enable
-IESEGD Segmented data buffer interrupt enable
-IELINK Link state change interrupt enable
-IEDBUF Data buffer interrupt enable
-IEHW Hardware interrupt enable (mapped signal)
-IEEV Event interrupt enable
-IEHB Heartbeat interrupt enable
-IEFF Event FIFO full interrupt enable
-IEVIO Receiver violation interrupt enable
+| Bit    | Function |
+| ---    | -------- |
+| IRQEN  | Master interrupt enable:
+|        | 0 – disable all interrupts
+|        | 1 – allow interrupts
+| IESOV  | Sequence RAM sequence roll over interrupt enable
+| IESHF  | Sequence RAM sequence halfway through interrupt enable
+| IESSTO |  Sequence RAM sequence stop interrupt enable
+| IESSTA |  Sequence RAM sequence start interrupt enable
+| IESEGD |  Segmented data buffer interrupt enable
+| IELINK |  Link state change interrupt enable
+| IEDBUF |  Data buffer interrupt enable
+| IEHW   | Hardware interrupt enable (mapped signal)
+| IEEV   | Event interrupt enable
+| IEHB   | Heartbeat interrupt enable
+| IEFF   | Event FIFO full interrupt enable
+| IEVIO  |  Receiver violation interrupt enable
 
 ### Hardware Interrupt Mapping Register
 
 
-address bit 7 bit 6 bit 5 bit 4 bit 3 bit 2 bit 1 bit 0
-0x013 Mapping ID (see Table 1 for mapping IDs)
+| address | bit 7  | bit 6  | bit 5  | bit 4  | bit 3  | bit 2  | bit 1  | bit 0  |
+| ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
+| 0x013   | Mapping ID (see Table 1 for mapping IDs) |
 
 ### Software Event Register
 
 
 |        | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
 0x01A SWPEND SWENA
-address bit 7 bit 6 bit 5 bit 4 bit 3 bit 2 bit 1 bit 0
+| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
 0x01B Event Code to be inserted into receive event stream
 
 | Bit | Function |
@@ -378,83 +373,86 @@ when event code is written to the event code register.
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
 0x01c PCIIE
 
-| Bit | Function |
-| --- | -------- |
-PCIIE PCI core interrupt enable (PCIe-EVR-300DC, mTCA-EVR-300)
+| Bit   | Function |
+| ---   | -------- |
+| PCIIE | PCI core interrupt enable (PCIe-EVR-300DC, mTCA-EVR-300)
+
 This bit is used by the low level driver to disable further interrupts before the
 first interrupt has been handled in user space
 
 ### Receive Data Buffer Control and Status Register
 
-address bit 15 bit 14 bit 13 bit 12 bit 11 bit 10 bit 9 bit 8
-0x022 DBRX/DBENA DBRDY/DBDIS DBCS DBEN RXSIZE(11:8)
+| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
+| ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
+| 0x022   | DBRX/DBENA DBRDY/DBDIS DBCS DBEN RXSIZE(11:8)
 
-address bit 7 bit 6 bit 5 bit 4 bit 3 bit 2 bit 1 bit 0
+| address | bit 7  | bit 6  | bit 5  | bit 4  | bit 3  | bit 2  | bit 1  | bit 0  |
+| ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
 0x023 RXSIZE(7:0)
 
-| Bit | Function |
-| --- | -------- |
-DBRX Data Buffer Receiving (read-only)
-DBENA Set-up for Single Reception (write ‘1’ to set-up)
-DBRDY Data Buffer Transmit Complete / Interrupt Flag
-DBDIS Stop Reception (write ‘1’ to stop/disable)
-DBCS Data Buffer Checksum Error (read-only)
-Flag is cleared by writing ‘1’ to DBRX or DBRDY or disabling data buffer
-DBEN Data Buffer Enable Data Buffer Mode
-‘0’ – Distributed bus not shared with data transmission, full speed distributed bus
-‘1’ – Distributed bus shared with data transmission, half speed distributed bus
-RXSIZE Data Buffer Received Buffer Size (read-only)
+| Bit    | Function |
+| ---    | -------- |
+| DBRX   | Data Buffer Receiving (read-only)
+| DBENA  |  Set-up for Single Reception (write ‘1’ to set-up)
+| DBRDY  |  Data Buffer Transmit Complete / Interrupt Flag
+| DBDIS  |  Stop Reception (write ‘1’ to stop/disable)
+| DBCS   | Data Buffer Checksum Error (read-only)
+|        | Flag is cleared by writing ‘1’ to DBRX or DBRDY or disabling data buffer
+| DBEN   | Data Buffer Enable Data Buffer Mode
+|        | ‘0’ – Distributed bus not shared with data transmission, full speed distributed bus
+|        | ‘1’ – Distributed bus shared with data transmission, half speed distributed bus
+| RXSIZE | Data Buffer Received Buffer Size (read-only)
 
 #### Transmit Data Buffer Control Register
 
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-0x024
+| 0x024
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
-0x025 TXCPT TXRUN TRIG ENA 1
-address bit 15 bit 14 bit 13 bit 12 bit 11 bit 10 bit 9 bit 8
-0x026 DTSZ(10:8)
-address bit 7 bit 6 bit 5 bit 4 bit 3 bit 2 bit 1 bit 0
-0x027 DTSZ(7:2) 0 0
+| 0x025 | TXCPT | TXRUN | TRIG | ENA | 1 
+| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
+| 0x026  | DTSZ(10:8) |
+| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
+| 0x027 | DTSZ(7:2) 0 0
 
-| Bit | Function |
-| --- | -------- |
-TXCPT Data Buffer Transmission Complete
-TXRUN Data Buffer Transmission Running – set when data transmission has been triggered and has not been completed yet
-TRIG Data Buffer Trigger Transmission
-Write ‘1’ to start transmission of data in buffer
-ENA Data Buffer Transmission enable
-‘0’ – data transmission engine disabled
-‘1’ – data transmission engine enabled
-DTSZ(10:8) Data Transfer size 4 bytes to 2k in four byte increments
+| Bit        | Function |
+| ---        | -------- |
+| TXCPT      | Data Buffer Transmission Complete
+| TXRUN      | Data Buffer Transmission Running – set when data transmission has been triggered and has not been completed yet
+| TRIG       | Data Buffer Trigger Transmission
+|            | Write ‘1’ to start transmission of data in buffer
+| ENA        | Data Buffer Transmission enable
+|            | ‘0’ – data transmission engine disabled
+|            | ‘1’ – data transmission engine enabled
+| DTSZ(10:8) | Data Transfer size 4 bytes to 2k in four byte increments
 
 #### Transmit Segemented Data Buffer Control Register
 
 
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-0x028 SADDR(7:0)
+| 0x028   | SADDR(7:0)
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
-0x029 TXCPT TXRUN TRIG ENA MODE
-address bit 15 bit 14 bit 13 bit 12 bit 11 bit 10 bit 9 bit 8
-0x02A DTSZ(10:8)
-address bit 7 bit 6 bit 5 bit 4 bit 3 bit 2 bit 1 bit 0
-0x02B DTSZ(7:2) 0 0
+| 0x029   | TXCPT | TXRUN | TRIG | ENA | MODE |
+| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
+| 0x02A   | DTSZ(10:8)
+| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
+| 0x02B   | DTSZ(7:2) 0 0
 
-| Bit | Function |
-| --- | -------- |
-SADDR Transfer Start Segment Address (16 byte segments)
-TXCPT Data Buffer Transmission Complete
-TXRUN Data Buffer Transmission Running – set when data transmission has been triggered and has not been completed yet
-TRIG Data Buffer Trigger Transmission
-Write ‘1’ to start transmission of data in buffer
-ENA Data Buffer Transmission enable
-‘0’ – data transmission engine disabled
-‘1’ – data transmission engine enabled
-MODE Distributed bus sharing mode
-‘0’ – distributed bus not shared with data transmission
-‘1’ – distributed bus shared with data transmission
-DTSZ(10:8) Data Transfer size 4 bytes to 2k in four byte increments
+| Bit        | Function |
+| ---        | -------- |
+| SADDR      | Transfer Start Segment Address (16 byte segments)
+| TXCPT      | Data Buffer Transmission Complete
+| TXRUN      | Data Buffer Transmission Running – set when data transmission has been triggered and has not been completed yet
+| TRIG       | ata Buffer Trigger Transmission
+|            | Write ‘1’ to start transmission of data in buffer
+| ENA        | Data Buffer Transmission enable
+|            |‘0’ – data transmission engine disabled
+|            |‘1’ – data transmission engine enabled
+| MODE       | Distributed bus sharing mode
+|            | ‘0’ – distributed bus not shared with data transmission
+|            | ‘1’ – distributed bus shared with data transmission
+| DTSZ(10:8) |Data Transfer size 4 bytes to 2k in four byte increments
 
 ### FPGA Firmware Version Register
 
@@ -463,30 +461,31 @@ DTSZ(10:8) Data Transfer size 4 bytes to 2k in four byte increments
 0x02C EVR = 0x1 Form Factor
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
 0x02D Subrelease ID
-address bit 15 bit 14 bit 13 bit 12 bit 11 bit 10 bit 9 bit 8
+| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
 0x02E Firmware ID
 address bit 7 bit 6 bit 5 bit 4 bit 3 bit 2 bit 1 bit 0
 0x02F Revision ID
 
 
-| Bit | Function |
-| --- | -------- |
-Form Factor 0 – CompactPCI 3U
-1 – PMC
-2 – VME64x
-3 – CompactRIO
-4 – CompactPCI 6U
-6 – PXIe
-7 – PCIe
-8 – mTCA.4
-Subrelease ID For production releases the subrelease ID counts up from 00.
-For pre-releases this ID is used “backwards” counting down from ff i.e. when
-approaching release 12000207, we have prereleases 12FF0206, 12FE0206,
-12FD0206 etc. in this order.
-Firmware ID 00 – Modular Register Map firmware (no delay compensation)
-01 – Reserved
-02 – Delay Compensation firmware
-Revision ID See end of manual
+| Bit           | Function |
+| ---           | -------- |
+| Form Factor   | 0 – CompactPCI 3U
+|               | 1 – PMC
+|               | 2 – VME64x
+|               | 3 – CompactRIO
+|               | 4 – CompactPCI 6U
+|               | 6 – PXIe
+|               | 7 – PCIe
+|               | 8 – mTCA.4
+| Subrelease ID |For production releases the subrelease ID counts up from 00.
+|               | For pre-releases this ID is used “backwards” counting down from ff i.e. when
+|               | approaching release 12000207, we have prereleases 12FF0206, 12FE0206,
+|               | 12FD0206 etc. in this order.
+| Firmware ID   |
+|               | 00 – Modular Register Map firmware (no delay compensation)
+|               | 01 – Reserved
+|               | 02 – Delay Compensation firmware
+|               | Revision ID See end of manual
 
 ### Clock Control Register
 
@@ -494,26 +493,26 @@ Revision ID See end of manual
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
 0x050 PLLLOCK BWSEL(2:0) CLKMD(1:0)
-address bit 15 bit 14 bit 13 bit 12 bit 11 bit 10 bit 9 bit 8
+| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
 0x052 CGLOCK
 
 | Bit | Function |
 | --- | -------- |
-PLLLOCK Clock cleaner PLL Locked (read-only) to receiver recovered clock
-BWSEL2:0 PLL Bandwidth Select (see Silicon Labs Si5317 datasheet)
-000 – Si5317, BW setting HM (lowest loop bandwidth)
-001 – Si5317, BW setting HL
-010 – Si5317, BW setting MH
-011 – Si5317, BW setting MM
-100 – Si5317, BW setting ML (highest loop bandwidth)
-CLKMD1:0 Event clock mode
-00 – Event clock synchronized to upstream EVG. Event clock continues to run with same frequency if link is lost.
-01 – Event clock synchronized to local fractional synthesizer reference.
-10 – Event clock synchronized to upstream EVG. Fall back to local reference if upstream link is lost.
-11 – Event clock synchronized to upstream EVG. Event clock is stopped if link is lost.
-CGLOCK Micrel fractional synthesizer SY87739L locked (read-only). This serves as the
-reference clock for the FPGA internal transceiver and indicates that a valid
-configuration word has been set in the FracDiv control register.
+| PLLLOCK   | Clock cleaner PLL Locked (read-only) to receiver recovered clock
+| BWSEL2:0  |PLL Bandwidth Select (see Silicon Labs Si5317 datasheet)
+|           | 000 – Si5317, BW setting HM (lowest loop bandwidth)
+|           | 001 – Si5317, BW setting HL
+|           | 010 – Si5317, BW setting MH
+|           | 011 – Si5317, BW setting MM
+|           | 100 – Si5317, BW setting ML (highest loop bandwidth)
+| CLKMD1:0  | Event clock mode
+|           | 00 – Event clock synchronized to upstream EVG. Event clock continues to run with same frequency if link is lost.
+|           | 01 – Event clock synchronized to local fractional synthesizer reference.
+|           | 10 – Event clock synchronized to upstream EVG. Fall back to local reference if upstream link is lost.
+|           | 11 – Event clock synchronized to upstream EVG. Event clock is stopped if link is lost.
+| CGLOCK    | Micrel fractional synthesizer SY87739L locked (read-only). This serves as the
+|           | reference clock for the FPGA internal transceiver and indicates that a valid
+|           | configuration word has been set in the FracDiv control register.
 
 #### Event FIFO
 
@@ -526,35 +525,33 @@ new event from the FIFO if it is not empty.
 
 The fractional synthesizer serves as the reference clock for the FPGA internal transceiver.
 
-Configuration Word
-
-Frequency with 24 MHz reference oscillator
-
-0x0891C100 142.857 MHz
-0x00DE816D 125 MHz
-0x00FE816D 124.95 MHz
-0x0C928166 124.9087 MHz
-0x018741AD 119 MHz
-0x072F01AD 114.24 MHz
-0x049E81AD 106.25 MHz
-0x008201AD 100 MHz
-0x025B41ED 99.956 MHz
-0x0187422D 89.25 MHz
-0x0082822D 81 MHz
-0x0106822D 80 MHz
-0x019E822D 78.900 MHz
-0x018742AD 71.4 MHz
-0x0C9282A6 62.454 MHz
-0x009743AD 50 MHz
-0x0C25B43AD 49.978 MHz
-0x0176C36D 49.965 MHz
+| Configuration Word | Frequency with 24 MHz reference oscillator |
+| ------------------ | ------------------------------------------ |
+| 0x0891C100         |     142.857 MHz
+| 0x00DE816D         |     125 MHz
+| 0x00FE816D         |     124.95 MHz
+| 0x0C928166         |     124.9087 MHz
+| 0x018741AD         |     119 MHz
+| 0x072F01AD         |     114.24 MHz
+| 0x049E81AD         |     106.25 MHz
+| 0x008201AD         |     100 MHz
+| 0x025B41ED         |     99.956 MHz
+| 0x0187422D         |     89.25 MHz
+| 0x0082822D         |     81 MHz
+| 0x0106822D         |     80 MHz
+| 0x019E822D         |     78.900 MHz
+| 0x018742AD         |     71.4 MHz
+| 0x0C9282A6         |     62.454 MHz
+| 0x009743AD         |     50 MHz
+| 0x0C25B43AD        |      49.978 MHz
+| 0x0176C36D         |     49.965 MHz
 
 ### SPI Configuration Flash Registers
 
 | address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-0x0A3 SPIDATA(7:0)
+|0x0A3 | SPIDATA(7:0)
 | address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-0x0A7 E RRDY TRDY TMT TOE ROE OE SSO
+| 0x0A7 | E | RRDY | TRDY | TMT | TOE | ROE | OE | SSO |
 
 | Bit | Function |
 | --- | -------- |
@@ -687,14 +684,14 @@ The same bit mapping applies to Front Panel Inputs, Universal Inputs and Backpla
 0x500 FPIN0 EXTLV0 BCKLE0 EXTLE0 EXTED0 BCKEV0 EXTEV0
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
 0x501 T0DB7 T0DB6 T0DB5 T0DB4 T0DB3 T0DB2 T0DB1 T0DB0
-address bit 15 bit 14 bit 13 bit 12 bit 11 bit 10 bit 9 bit 8
+| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
 0x502 Backward Event Code Register for front panel input 0
 | address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
 0x503 External Event Code Register for front panel input 0
 0x504 FPIN1 EXTLV1 BCKLE1 EXTLE1 EXTED1 BCKEV1 EXTEV1
 address bit 23 bit 22 bit 21 bit 20 bit 19 bit 18 bit 17 bit 16
 0x505 T1DB7 T1DB6 T1DB5 T1DB4 T1DB3 T1DB2 T1DB1 T1DB0
-address bit 15 bit 14 bit 13 bit 12 bit 11 bit 10 bit 9 bit 8
+| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
 0x506 Backward Event Code Register for front panel input 1
 | address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
 0x507 External Event Code Register for front panel input 1
@@ -737,7 +734,7 @@ is ‘1’ the hardware input x state is sent out on distributed bus bit 7.
 
 address bit 31 bit 16
 0x610 Frequency mode trigger position
-address bit 15 bit 14 bit 13 bit 12 bit 11 bit 10 bit 9 bit 8
+| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
 0x612 GTX3MD GTX2MD GTXPH1 GTXPH0
 address bit 7 bit 6 bit 5 bit 4 bit 3 bit 2 bit 1 bit 0
 0x613 CMLRC CMLTL CMLMD(1:0) CMLRES CMLPWD CMLENA
@@ -780,7 +777,7 @@ CMLENA CML Enable
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
 0x8F81 DBIE08 DBIE09 DBIE0A DBIE0B DBIE0C DBIE0D DBIE0E DBIE0F
 ...
-address bit 15 bit 14 bit 13 bit 12 bit 11 bit 10 bit 9 bit 8
+| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
 0x8F8E DBIE70 DBIE71 DBIE72 DBIE73 DBIE74 DBIE75 DBIE76 DBIE77
 | address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
 0x8F8F DBIE78 DBIE79 DBIE7A DBIE7B DBIE7C DBIE7D DBIE7E DBIE7F
@@ -802,7 +799,7 @@ Data Buffer interrupts the IEDBUF bit in the Interrupt Enable Register has to be
 address bit 23 bit 22 bit 21 bit 20 bit 19 bit 18 bit 17 bit 16
 0x8FA1 DBCS08 DBCS09 DBCS0A DBCS0B DBCS0C DBCS0D DBCS0E DBCS0F
 
-address bit 15 bit 14 bit 13 bit 12 bit 11 bit 10 bit 9 bit 8
+| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
 0x8FAE DBCS70 DBCS71 DBCS72 DBCS73 DBCS74 DBCS75 DBCS76 DBCS77
 | address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
 0x8FAF DBCS78 DBCS79 DBCS7A DBCS7B DBCS7C DBCS7D DBCS7E DBCS7F
@@ -823,7 +820,7 @@ This flag is cleared by writing a ‘1’ into the segment’s DBRXxx bit in the
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
 0x8FC1 DBOV08 DBOV09 DBOV0A DBOV0B DBOV0C DBOV0D DBOV0E DBOV0F
 ...
-address bit 15 bit 14 bit 13 bit 12 bit 11 bit 10 bit 9 bit 8
+| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
 0x8FCE DBOV70 DBOV71 DBOV72 DBOV73 DBOV74 DBOV75 DBOV76 DBOV77
 | address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
 0x8FCF DBOV78 DBOV79 DBOV7A DBOV7B DBOV7C DBOV7D DBOV7E DBOV7F
@@ -845,9 +842,9 @@ This flag is cleared by writing a ‘1’ into the segment’s DBRXxx bit in the
 0x8FE1 DBRX08 DBRX09 DBRX0A DBRX0B DBRX0C DBRX0D DBRX0E DBRX0F
 
 
-address bit 15 bit 14 bit 13 bit 12 bit 11 bit 10 bit 9 bit 8
+| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
 0x8FEE DBRX70 DBRX71 DBRX72 DBRX73 DBRX74 DBRX75 DBRX76 DBRX77
-address bit 7 bit 6 bit 5 bit 4 bit 3 bit 2 bit 1 bit 0
+| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
 0x8FEF DBRX78 DBRX79 DBRX7A DBRX7B DBRX7C DBRX7D DBRX7E DBRX7F
 
 

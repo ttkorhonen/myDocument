@@ -48,22 +48,22 @@ This is the register map when EVM is configured as a fanout/concentrator.
 
 | Bit  | Function | 
 | ---  | -------- |
-| LINK8 | Port8RXStatus,1–linkup,0–linkdown 
-| LINK7 | Port7RXStatus,1–linkup,0–linkdown 
-| LINK6 | Port6RXStatus,1–linkup,0–linkdown 
-| LINK5 | Port5RXStatus,1–linkup,0–linkdown 
-| LINK4 | Port4RXStatus,1–linkup,0–linkdown 
-| LINK3 | Port3RXStatus,1–linkup,0–linkdown 
-| LINK2 | Port2RXStatus,1–linkup,0–linkdown 
-| LINK1 | Port1RXStatus,1–linkup,0–linkdown 
-| VIO8  | Port 8 RX Violation
-| VIO7  | Port 7 RX Violation 
-| VIO6  | Port 6 RX Violation 
-| VIO5  | Port 5 RX Violation 
-| VIO4  | Port 4 RX Violation 
-| VIO3  | Port 3 RX Violation 
-| VIO2  | Port 2 RX Violation 
-| VIO1  | Port 1 RX Violation
+| LINK8 | Port8 RXStatus,1–link up,0–link down | 
+| LINK7 | Port7 RXStatus,1–link up,0–link down | 
+| LINK6 | Port6 RXStatus,1–link up,0–link down | 
+| LINK5 | Port5 RXStatus,1–link up,0–link down | 
+| LINK4 | Port4 RXStatus,1–link up,0–link down | 
+| LINK3 | Port3 RXStatus,1–link up,0–link down | 
+| LINK2 | Port2 RXStatus,1–link up,0–link down | 
+| LINK1 | Port1 RXStatus,1–link up,0–link down | 
+| VIO8  | Port 8 RX Violation |
+| VIO7  | Port 7 RX Violation |
+| VIO6  | Port 6 RX Violation |
+| VIO5  | Port 5 RX Violation |
+| VIO4  | Port 4 RX Violation |
+| VIO3  | Port 3 RX Violation |
+| VIO2  | Port 2 RX Violation |
+| VIO1  | Port 1 RX Violation |
 
 ## Control Register
 
