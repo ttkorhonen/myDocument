@@ -77,11 +77,11 @@ Event Receiver register/memory map.
 | 0x204 | Pulse0Presc    | UINT32 | Pulse 0 Prescaler Register
 | 0x208 | Pulse0Delay    | UINT32 | Pulse 0 Delay Register
 | 0x20C | Pulse0Width    | UINT32 | Pulse 0 Width Register
-| 0x210 | Pulse 1 Registe| rs
-| 0x| 220 | Pulse 2 Registe| rs
-| ..| .| | 
-| 0x3F| 0 | Pulse 31 Regist| ers
-| 0| x400 | FPOutMap0      | UINT16 | Front Panel Output 0 Map Register
+| 0x210 | Pulse 1 Registers
+| 0x220 | Pulse 2 Registers
+| ...| | 
+| 0x3F0 | Pulse 31 Registers
+| 0x400 | FPOutMap0      | UINT16 | Front Panel Output 0 Map Register
 | 0x402 | FPOutMap1      | UINT16 | Front Panel Output 1 Map Register
 | 0x404 | FPOutMap2      | UINT16 | Front Panel Output 2 Map Register
 | 0x406 | FPOutMap3      | UINT16 | Front Panel Output 3 Map Register
@@ -152,10 +152,10 @@ Event Receiver register/memory map.
 | 0x510 | UnivInMap0     | UINT32 | Universal Input 0 Mapping Register
 | 0x514 | UnivInMap1     | UINT32 | Universal Input 1 Mapping Register
 | ...| | 
-| 0x56| 0 | BPInMap0       | UINT32 | Backplane Input 0 Mapping Register
+| 0x560 | BPInMap0       | UINT32 | Backplane Input 0 Mapping Register
 | 0x564 | BPInMap1       | UINT32 | Backplane Input 1 Mapping Register
 | ...| | 
-| 0x61| 0 | GTX0Ctrl       | UINT32 | UNIV6 / GTX0CML Output Control Register
+| 0x610 | GTX0Ctrl       | UINT32 | UNIV6 / GTX0CML Output Control Register
 | 0x614 | GTX0HP         | UINT16 | UNIV6 / GTX0 Output High Period Count
 | 0x616 | GTX0LP         | UINT16 | UNIV6 / GTX0 Output Low Period Count
 | 0x618 | GTX0Samp       | UINT32 | UNIV6 / GTX0 Output Number of 40 bit word patterns
@@ -171,16 +171,16 @@ Event Receiver register/memory map.
 | 0x674 | GTX3HP         | UINT16 | CML1 / GTX3 Output High Period Count
 | 0x676 | GTX3LP         | UINT16 | CML1 / GTX3 Output Low Period Count
 | 0x678 | GTX3Samp       | UINT32 | CML1 / GTX3 Output Number of 40 bit word patterns
-| 0x800 – 0xFFF   | DataBuf | |Data Buffer Receive Memory
+| 0x800 – 0xFFF   | DataBuf | | Data Buffer Receive Memory
 | 0x1000 – 0x17FF | |Diagnostics counters
-| 0x1800 – 0x1FFF | TxDataBuf | Data Buffer Transmit Memory
-| 0x2000 – 0x3FFF | EventLog | 512 x 16 byte position Event Log
-| 0x4000 – 0x4FFF | MapRam1 | Event Mapping RAM 1
-| 0x5000 – 0x5FFF | MapRam2 | Event Mapping RAM 2
+| 0x1800 – 0x1FFF | TxDataBuf | | Data Buffer Transmit Memory
+| 0x2000 – 0x3FFF | EventLog |  | 512 x 16 byte position Event Log
+| 0x4000 – 0x4FFF | MapRam1 |   | Event Mapping RAM 1
+| 0x5000 – 0x5FFF | MapRam2 |   | Event Mapping RAM 2
 | 0x8000 – 0x80FF | configROM |
 | 0x8100 – 0x81FF | scratchRAM |
-| 0x8200 – 0x82FF | SFPEEPROM  | SFP Transceiver EEPROM contents (SFP address 0xA0)
-| 0x8300 – 0x83FF | SFPDIAG    | SFP Transceiver diagnostics (SFP address 0xA2)
+| 0x8200 – 0x82FF | SFPEEPROM  | | SFP Transceiver EEPROM contents (SFP address 0xA0)
+| 0x8300 – 0x83FF | SFPDIAG    | | SFP Transceiver diagnostics (SFP address 0xA2)
 | 0x8800 | DataBufRXSize0    | UINT32  | Segmented Data Buffer Segment 0 Receive Size Register
 | 0x8804 | SDataBufRXSize0   | UINT32 | Segmented Data Buffer Segment 1 Receive Size Register
 | 0x89FC | SDataBufRXSize127 | UINT32 | Segmented Data Buffer Segment 127 Receive Size Register
@@ -239,7 +239,7 @@ Event Receiver register/memory map.
 
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-|0x004    | EVREN  | EVFWD  | TXLP   |  RXLP  | OUTEN  | SRST   | LEMDE  | GTXIO  |
+| 0x004   | EVREN  | EVFWD  | TXLP   |  RXLP  | OUTEN  | SRST   | LEMDE  | GTXIO  |
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
 | 0x005   | DCENA |
 | address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
