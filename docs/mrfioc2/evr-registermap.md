@@ -172,7 +172,7 @@ Event Receiver register/memory map.
 | 0x676 | GTX3LP         | UINT16 | CML1 / GTX3 Output Low Period Count
 | 0x678 | GTX3Samp       | UINT32 | CML1 / GTX3 Output Number of 40 bit word patterns
 | 0x800 – 0xFFF   | DataBuf | | Data Buffer Receive Memory
-| 0x1000 – 0x17FF | |Diagnostics counters
+| 0x1000 – 0x17FF | Diagnostics counters |
 | 0x1800 – 0x1FFF | TxDataBuf | | Data Buffer Transmit Memory
 | 0x2000 – 0x3FFF | EventLog |  | 512 x 16 byte position Event Log
 | 0x4000 – 0x4FFF | MapRam1 |   | Event Mapping RAM 1
@@ -208,7 +208,7 @@ Event Receiver register/memory map.
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
 | 0x000   | DBUS7  | DBUS6  | DBUS5  | DBUS4  | DBUS3  | DBUS2  | DBUS1  | DBUS0  |
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
-| 0x001   | LEGVIO |
+| 0x001   |        |        |        |        |        |        |        | LEGVIO |
 | address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
 | 0x002
 | address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
@@ -241,9 +241,9 @@ Event Receiver register/memory map.
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
 | 0x004   | EVREN  | EVFWD  | TXLP   |  RXLP  | OUTEN  | SRST   | LEMDE  | GTXIO  |
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
-| 0x005   | DCENA |
+| 0x005   |        | DCENA  |
 | address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| 0x006   | TSDBUS | RSTS   |   LTS  | MAPEN  | MAPRS |
+| 0x006   |        | TSDBUS | RSTS   |        |        |   LTS  | MAPEN  | MAPRS  |
 | address | bit 7  | bit 6 | bit 5   |  bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
 | 0x007   | LOGRS  | LOGEN | LOGDIS  | LOGSE  | RSFIFO |
 
@@ -292,9 +292,9 @@ Event Receiver register/memory map.
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
 | 0x008 |
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
-| 0x009 | IFSOV | IFSHF |
+| 0x009   |        |        |        | IFSOV  |        |        |        | IFSHF  |
 |        | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| 0x00A  | IFSSTO | IFSSTA |
+| 0x00A  |        |        |        | IFSSTO |        |        |        | IFSSTA |
 | address | bit 7 | bit 6  | bit 5  | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
 | 0x00B  | IFSEGD | IFLINK | IFDBUF | IFHW  | IFEV  | IFHB  | IFFF  | IFVIO |
 
@@ -320,9 +320,9 @@ Event Receiver register/memory map.
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
 | 0x00C   | IRQEN |
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
-| 0x00D   | IESOV  | IESHF |
+| 0x00D   |        |        |        | IESOV  |        |        |        | IESHF |
 |         | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| 0x00E   | IESSTO | IESSTA |
+| 0x00E   |        |        |        | IESSTO |        |        |        | IESSTA |
 | address | bit 7  | bit 6  | bit 5  | bit 4  | bit 3  | bit 2  | bit 1  | bit 0  |
 |0x00F    | IESEGD | IELINK | IEDBUF | IEHW   | IEEV   | IEHB   | IEFF   | IEVIO  |
 
@@ -354,24 +354,25 @@ Event Receiver register/memory map.
 ### Software Event Register
 
 
-|        | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-0x01A SWPEND SWENA
+| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
+| ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
+| 0x01A   |        |        |        |        |        |        | SWPEND | SWENA  |
 | address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-0x01B Event Code to be inserted into receive event stream
+| 0x01B   |Event Code to be inserted into receive event stream
 
 | Bit | Function |
 | --- | -------- |
-SWPEND Event code waiting to be inserted (read-only). A new event code may be written
-to the event code register when this bit reads ‘0’.
-SWENA Enable software event
-When enabled ‘1’ a new event will be inserted into the receive event stream
-when event code is written to the event code register.
+| SWPEND | Event code waiting to be inserted (read-only). A new event code may be written
+|        | to the event code register when this bit reads ‘0’.
+| SWENA  | Enable software event
+|        | When enabled ‘1’ a new event will be inserted into the receive event stream
+|        | when event code is written to the event code register.
 
 ### PCI Interrupt Enable Register
 
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-0x01c PCIIE
+| 0x01c   |        | PCIIE
 
 | Bit   | Function |
 | ---   | -------- |
@@ -384,11 +385,9 @@ first interrupt has been handled in user space
 
 | address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x022   | DBRX/DBENA DBRDY/DBDIS DBCS DBEN RXSIZE(11:8)
-
+| 0x022   | DBRX/DBENA | DBRDY/DBDIS | DBCS  | DBEN | RXSIZE(11:8)
 | address | bit 7  | bit 6  | bit 5  | bit 4  | bit 3  | bit 2  | bit 1  | bit 0  |
-| ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-0x023 RXSIZE(7:0)
+| 0x023   | RXSIZE(7:0)
 
 | Bit    | Function |
 | ---    | -------- |
@@ -409,11 +408,11 @@ first interrupt has been handled in user space
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
 | 0x024
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
-| 0x025 | TXCPT | TXRUN | TRIG | ENA | 1 
+| 0x025   |        |        |        | TXCPT  | TXRUN  | TRIG   | ENA    | 1      | 
 | address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| 0x026  | DTSZ(10:8) |
-| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| 0x027 | DTSZ(7:2) 0 0
+| 0x026   |        |        |        |        |        | DTSZ(10:8) |
+| address | bit 7  | bit 6  | bit 5  | bit 4  | bit 3  | bit 2  | bit 1  | bit 0  |
+| 0x027   | DTSZ(7:2) |     |        |        |        |        | 0      | 0  |
 
 | Bit        | Function |
 | ---        | -------- |
@@ -424,7 +423,7 @@ first interrupt has been handled in user space
 | ENA        | Data Buffer Transmission enable
 |            | ‘0’ – data transmission engine disabled
 |            | ‘1’ – data transmission engine enabled
-| DTSZ(10:8) | Data Transfer size 4 bytes to 2k in four byte increments
+| DTSZ(10:2) | Data Transfer size 4 bytes to 2k in four byte increments
 
 #### Transmit Segemented Data Buffer Control Register
 
@@ -452,19 +451,19 @@ first interrupt has been handled in user space
 | MODE       | Distributed bus sharing mode
 |            | ‘0’ – distributed bus not shared with data transmission
 |            | ‘1’ – distributed bus shared with data transmission
-| DTSZ(10:8) |Data Transfer size 4 bytes to 2k in four byte increments
+| DTSZ(10:2) |Data Transfer size 4 bytes to 2k in four byte increments
 
 ### FPGA Firmware Version Register
 
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-0x02C EVR = 0x1 Form Factor
+| 0x02C   | EVR = 0x1       |        |        | Form Factor
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
-0x02D Subrelease ID
+| 0x02D   | Subrelease ID
 | address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-0x02E Firmware ID
-address bit 7 bit 6 bit 5 bit 4 bit 3 bit 2 bit 1 bit 0
-0x02F Revision ID
+| 0x02E   | Firmware ID
+| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
+| 0x02F   | Revision ID
 
 
 | Bit           | Function |
@@ -492,9 +491,9 @@ address bit 7 bit 6 bit 5 bit 4 bit 3 bit 2 bit 1 bit 0
 
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-0x050 PLLLOCK BWSEL(2:0) CLKMD(1:0)
+|0x050    | PLLLOCK| BWSEL(2:0) |    |        | CLKMD(1:0)      |        |        |
 | address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-0x052 CGLOCK
+| 0x052   |        |        |        |        |        |        | CGLOCK |        |
 
 | Bit | Function |
 | --- | -------- |
@@ -549,75 +548,72 @@ The fractional synthesizer serves as the reference clock for the FPGA internal t
 ### SPI Configuration Flash Registers
 
 | address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
+| ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
 |0x0A3 | SPIDATA(7:0)
 | address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| 0x0A7 | E | RRDY | TRDY | TMT | TOE | ROE | OE | SSO |
+| 0x0A7   | E     | RRDY  | TRDY  | TMT   | TOE   | ROE   | OE    | SSO   |
 
 | Bit | Function |
 | --- | -------- |
-SPIDATA(7:0) Read SPI data byte / Write SPI data byte
-E Overrun Error flag
-RRDY Receiver ready, if ‘1’ data byte waiting in SPI_DATA
-TRDY Transmitter ready, if ‘1’ SPI_DATA is ready to accept new transmit data byte
-TMT Transmitter empty, if ‘1’ data byte has been transmitted
-TOE Transmitter overrun error
-ROE Receiver overrun error
-OE Output enable for SPI pins, ‘1’ enable SPI pins
-SSO Slave select output enable for SPI slave device, ‘1’ device selected
+| SPIDATA(7:0) |Read SPI data byte / Write SPI data byte
+| E            | Overrun Error flag
+| RRDY         | Receiver ready, if ‘1’ data byte waiting in SPI_DATA
+| TRDY         | Transmitter ready, if ‘1’ SPI_DATA is ready to accept new transmit data byte
+| TMT          | Transmitter empty, if ‘1’ data byte has been transmitted
+| TOE          | Transmitter overrun error
+| ROE          | Receiver overrun error
+| OE           | Output enable for SPI pins, ‘1’ enable SPI pins
+| SSO          | Slave select output enable for SPI slave device, ‘1’ device selected
 
 ### Delay Compensation Status Register
 
 
-| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-0x0BE PDVLD(2:0)
-| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-0x0BF DLYL DLYS DCLOCK
+| address | bit 7  | bit 6  | bit 5  | bit 4  | bit 3  | bit 2  | bit 1  | bit 0  |
+| ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
+| 0x0BE   |        |        |        |        |        | PDVLD(2:0)
+| address | bit 7  | bit 6  | bit 5  | bit 4  | bit 3  | bit 2  | bit 1  | bit 0 |
+| 0x0BF   |        |        |        |        |DLYL    | DLYS   |        | DCLOCK
 
 | Bit | Function |
 | --- | -------- |
-PDVLD(2:0) Path delay valid
-000 – Path delay value not valid from master EVM to EVR
-001 – Path delay value valid (coarse/quick acquisition)
-011 – Path delay value valid (medium precision/slow acquisition)
-111 – Path
-delay value
-valid (fine
-preci-
-sion/slow
-acquisition)
-DLYL Delay setting too long (delay shorter than target)
-DLYS Delay setting too short (delay longer than target)
-DCLOCK Delay fifo locked to setting/delay value
+| PDVLD(2:0) | Path delay valid
+| | 000 – Path delay value not valid from master EVM to EVR
+| | 001 – Path delay value valid (coarse/quick acquisition)
+| | 011 – Path delay value valid (medium precision/slow acquisition)
+| | 111 – Path delay value valid (fine precision/slow acquisition)
+| DLYL | Delay setting too long (delay shorter than target)
+| DLYS | Delay setting too short (delay longer than target)
+| DCLOCK | Delay fifo locked to setting/delay value
 
 ### Sequence RAM Control Register
 
 
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-0x0E0 SQRUN SQENA
+| 0x0E0   |        |        |        |        |        |        | SQRUN  | SQENA
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
-0x0E1 SQSWT SQSNG SQREC SQRES SQDIS SQEN
-address bit 7 bit 0
-0x0E3 SQTSEL
+| 0x0E1   |        |        |  SQSWT | SQSNG  | SQREC  | SQRES  | SQDIS  | SQEN |
+|address | bit 7...bit 0
+|0x0E3 | SQTSEL
 
 | Bit | Function |
 | --- | -------- |
-SQRUN Sequence RAM running flag (read-only)
-SQENA Sequence RAM enabled flag (read_only)
-SQSWT Sequence RAM software trigger, write ‘1’ to trigger
-SQSNG Sequence RAM single mode
-SQREC Sequence RAM recycle mode
-SQRES Sequence RAM reset, write ‘1’ to reset
-SQDIS Sequence RAM disable, write ‘1’ to disable
-SQEN Sequence RAM enable, write ‘1’ to enable/arm
-SQTSEL 0 to n-1 – Pulse generator output
-n to 31 – (Reserved)
-32 to 39 – Distributed bus bit 0 (DBUS0) to bit 7 (DBUS7)
-40 to 47 – Prescaler 0 to Prescaler 7
-48 to 58 – (Reserved)
-61 – Software trigger
-62 – Continuous trigger
-63 – Trigger disabled
+| SQRUN | Sequence RAM running flag (read-only)
+| SQENA | Sequence RAM enabled flag (read_only)
+| SQSWT | Sequence RAM software trigger, write ‘1’ to trigger
+| SQSNG | Sequence RAM single mode
+| SQREC | Sequence RAM recycle mode
+| SQRES | Sequence RAM reset, write ‘1’ to reset
+| SQDIS | Sequence RAM disable, write ‘1’ to disable
+| SQEN  |Sequence RAM enable, write ‘1’ to enable/arm
+| SQTSEL | 0 to n-1 – Pulse generator output
+|        |n to 31 – (Reserved)
+|        |32 to 39 – Distributed bus bit 0 (DBUS0) to bit 7 (DBUS7)
+|        |40 to 47 – Prescaler 0 to Prescaler 7
+|        |48 to 58 – (Reserved)
+|        |61 – Software trigger
+|        |62 – Continuous trigger
+|        |63 – Trigger disabled
 
 ### Prescaler Pulse Trigger Registers
 
@@ -635,45 +631,44 @@ bus bit.
 
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-0x200 PxMASK(7:0)
+|0x200 | PxMASK(7:0)
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
-0x201 PxENA(7:0)
+| 0x201 | PxENA(7:0)
 | address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-0x203 PxOUT PxSWS PxSWR PxPOL PxMRE PxMSE PxMTE PxENA
-address bit 31 bit 0
-0x204 Pulse Generator 0 Prescaler Register
-address bit 31 bit 0
-0x208 Pulse Generator 0 Delay Register
-
-address bit 31 bit 0
-0x20C Pulse Generator 0 Width Register
+| 0x203   | PxOUT | PxSWS | PxSWR | PxPOL | PxMRE | PxMSE | PxMTE | PxENA
+| address | bit 31...bit 0
+|0x204  | Pulse Generator 0 Prescaler Register
+| address | bit 31...bit 0
+| 0x208  | Pulse Generator 0 Delay Register
+| address | bit 31...bit 0
+| 0x20C   | Pulse Generator 0 Width Register
 
 | Bit | Function |
 | --- | -------- |
-PxMASK(7:0) Pulse HW Mask Register
-0 – HW masking disabled
-1 – HW masking enabled. When corresponding gate bit is active ‘1’ pulse triggers are blocked
-PxENA(7:0) Pulse HW Enable Register
-0 – HW enabling inactive
-1 – HW enabling active. When corresponding gate bit is inactive ‘0’ pulse triggers are blocked
-PxOUT Pulse Generator Output (read-only)
-PxSWS Pulse Generator Software Set
-PxSWC Pulse Generator Software Reset
-PxPOL Pulse Generator Output Polarity
-0 – normal polarity
-1 – inverted polarity
-PxMRE Pulse Generator Event Mapping RAM Reset Event Enable
-0 – Reset events disabled
-1 – Mapped Reset Events reset pulse generator output
-PxMSE Pulse Generator Event Mapping RAM Set Event Enable
-0 – Set events disabled
-1 – Mapped Set Events set pulse generator output
-PxMTE Pulse Generator Event Mapping RAM Trigger Event Enable
-0 – Event Triggers disabled
-1 – Mapped Trigger Events trigger pulse generator
-PxENA Pulse Generator Enable
-0 – generator disabled
-1 – generator enabled
+| PxMASK(7:0) | Pulse HW Mask Register
+| | 0 – HW masking disabled
+| | 1 – HW masking enabled. When corresponding gate bit is active ‘1’ pulse triggers are blocked
+| PxENA(7:0) | Pulse HW Enable Register
+| | 0 – HW enabling inactive
+| | 1 – HW enabling active. When corresponding gate bit is inactive ‘0’ pulse triggers are blocked
+|PxOUT | Pulse Generator Output (read-only)
+|PxSWS | Pulse Generator Software Set
+|PxSWC | Pulse Generator Software Reset
+|PxPOL | Pulse Generator Output Polarity
+| | 0 – normal polarity
+| | 1 – inverted polarity
+|PxMRE | Pulse Generator Event Mapping RAM Reset Event Enable
+| | 0 – Reset events disabled
+| | 1 – Mapped Reset Events reset pulse generator output
+|PxMSE | Pulse Generator Event Mapping RAM Set Event Enable
+| | 0 – Set events disabled
+| | 1 – Mapped Set Events set pulse generator output
+|PxMTE | Pulse Generator Event Mapping RAM Trigger Event Enable
+| | 0 – Event Triggers disabled
+| | 1 – Mapped Trigger Events trigger pulse generator
+|PxENA | Pulse Generator Enable
+| | 0 – generator disabled
+| | 1 – generator enabled
 
 ### Input Mapping Registers
 
