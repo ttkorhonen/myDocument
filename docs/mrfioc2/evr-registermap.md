@@ -863,8 +863,8 @@ the EEPROM values and the rest of the advanced values.
 | ------ | ---------- | -----                     | ----- |
 | 0     | 1         |Type of serial transceiver | 0x03 = SFP transceiver
 | 1     | 1         | Extended identifier of type serial transceiver | 0x04 = serial ID module definition
-| 2 1 Code for connector type 0x07 = LC
-| 3 – 10 8 Code for electronic compatibility or optical compatibility
+| 2     | 1         | Code for connector type 0x07 = LC
+| 3 – 10 | 8        | Code for electronic compatibility or optical compatibility
 | 11 | 1 | Code for serial encoding algorithm
 | 12 | 1 | Nominal bit rate, units of 100 MBits/sec
 | 13 | 1 | Reserved
@@ -976,7 +976,7 @@ the EEPROM values and the rest of the advanced values.
 | Pulse Generators | 24 |16 |16
 | FP TTL inputs  | 2  | 2 | 0
 | FP TTL outputs | 0  | 4 | 0
-| FP GTX outputs | 41 | 0 | 0
+| FP GTX outputs | 4{sup}`1` | 0 | 0
 | FP UNIV I/O / slots | 4 | 0 | 16 / 8{sup}`2`
 | FP UNIV GPIO pins / slots 16/4 0 / 0 0 / 0
 | TB Outputs     |  16 | 32 | 0
