@@ -860,7 +860,7 @@ the EEPROM values and the rest of the advanced values.
 **BASE ID FIELDS**
 
 | Byte # | Field size | Notes                     | Value |
-| ------ | ========== | =====                     | ----- |
+| ------ | ---------- | -----                     | ----- |
 | 0     | 1         |Type of serial transceiver | 0x03 = SFP transceiver
 | 1     | 1         | Extended identifier of type serial transceiver | 0x04 = serial ID module definition
 | 2 1 Code for connector type 0x07 = LC
@@ -885,7 +885,7 @@ the EEPROM values and the rest of the advanced values.
 **EXTENDED ID FIELDS**
 
 | Byte # | Field size | Notes                     | Value |
-| ------ | ========== | =====                     | ----- |
+| ------ | ---------- | -----                     | ----- |
 |64 – 65 | 2 | Indicated which optional SFP signals are implemented
 |66 | 1 | Upper bit rate margin, units of %
 |67 | 1 | Lower bit rate margin, units of %
@@ -897,14 +897,14 @@ the EEPROM values and the rest of the advanced values.
 **VENDOR SPECIFIC ID FIELDS**
 
 | Byte # | Field size | Notes                     | Value |
-| ------ | ========== | =====                     | ----- |
+| ------ | ---------- | -----                     | ----- |
 | 96 – 127  |32 | Vendor specific data
 | 128 – 255 |   | Reserved
 
 **ENHANCED FEATURE SET MEMORY**
 
 | Byte # | Field size | Notes                     | Value |
-| ------ | ========== | =====                     | ----- |
+| ------ | ---------- | -----                     | ----- |
 | 256 – 257 | 2  | Temp H Alarm Signed twos complement integer in increments of 1/256 °C
 | 258 – 259 | 2  | Temp L Alarm Signed twos complement integer in increments of 1/256 °C
 | 260 – 261 | 2  | Temp H Warning Signed twos complement integer in increments of 1/256 °C
