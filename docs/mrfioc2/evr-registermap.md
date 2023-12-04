@@ -859,7 +859,8 @@ the EEPROM values and the rest of the advanced values.
 
 **BASE ID FIELDS**
 
-|Byte # | Field size | Notes                     | Value
+| Byte # | Field size | Notes                     | Value |
+| ------ | ========== | =====                     | ----- |
 | 0     | 1         |Type of serial transceiver | 0x03 = SFP transceiver
 | 1     | 1         | Extended identifier of type serial transceiver | 0x04 = serial ID module definition
 | 2 1 Code for connector type 0x07 = LC
@@ -883,6 +884,8 @@ the EEPROM values and the rest of the advanced values.
 
 **EXTENDED ID FIELDS**
 
+| Byte # | Field size | Notes                     | Value |
+| ------ | ========== | =====                     | ----- |
 |64 – 65 | 2 | Indicated which optional SFP signals are implemented
 |66 | 1 | Upper bit rate margin, units of %
 |67 | 1 | Lower bit rate margin, units of %
@@ -893,11 +896,15 @@ the EEPROM values and the rest of the advanced values.
 
 **VENDOR SPECIFIC ID FIELDS**
 
+| Byte # | Field size | Notes                     | Value |
+| ------ | ========== | =====                     | ----- |
 | 96 – 127  |32 | Vendor specific data
 | 128 – 255 |   | Reserved
 
 **ENHANCED FEATURE SET MEMORY**
 
+| Byte # | Field size | Notes                     | Value |
+| ------ | ========== | =====                     | ----- |
 | 256 – 257 | 2  | Temp H Alarm Signed twos complement integer in increments of 1/256 °C
 | 258 – 259 | 2  | Temp L Alarm Signed twos complement integer in increments of 1/256 °C
 | 260 – 261 | 2  | Temp H Warning Signed twos complement integer in increments of 1/256 °C
@@ -970,7 +977,7 @@ the EEPROM values and the rest of the advanced values.
 | FP TTL inputs  | 2  | 2 | 0
 | FP TTL outputs | 0  | 4 | 0
 | FP GTX outputs | 41 | 0 | 0
-| FP UNIV I/O / slots | 4 | 0 | 16 / 8^2
+| FP UNIV I/O / slots | 4 | 0 | 16 / 8{sup}`2`
 | FP UNIV GPIO pins / slots 16/4 0 / 0 0 / 0
 | TB Outputs     |  16 | 32 | 0
 | TB Inputs      | 16  | 32 | 0
@@ -1002,52 +1009,7 @@ Pulse Generator: Prescaler, Delay, Pulse Width Range (bits)
 
 
 
-### VME-EVR-300 Front Panel Connections
 
-
-Figure 21: VME-EVR-300 Front Panel
-
-The front panel of the Event Receiver includes the following connections and status leds:
-
-
-Connector / Led Style Level Description
-HS Red Led Module Failure
-HS Blue Led Module Powered Down
-ACT 3-color Led SAM3X Activity Led
-USB Micro-USB SAM3X Serial port / JTAG interface
-10/100 RJ45 SAM3X Ethernet Interface
-IN0 LEMO TTL (3.3V / 5V) FPTTL0 Trigger input
-IN1 LEMO TTL (3.3V / 5V) FPTTL1 Trigger input
-UNIV0/1 Universal slot Universal Output 0/1
-UNIV2/3 Universal slot Universal Output 2/3
-UNIV4/5 Universal slot Universal Output 4/5
-UNIV6/7 Universal slot Universal Output 6/7
-The output signals come through CML/GTX logic
-block 0/1
-CML0 LEMO EPY CML Mapped as Universal Output 8
-The output signals come through CML/GTX logic
-block 2
-CML1 LEMO EPY CML Mapped as Universal Output 9
-The output signals come through CML/GTX logic
-block 3
-Link TX (SFP) LC Optical 850 nm Event link Transmit
-Link RX (SFP) LC Optical 850 nm Event link Receiver
-
-#### VME TTL Input Levels
-
-The VME-EVR-300 has two front panel TTL inputs. The inputs have a configurable input termination than
-can be set by a jumper. The input can be terminated with 50 ohm to ground or 220 ohm to +3.3V. The front
-panel inputs are 5V tolerant even when powered down.
-
-Input specifications are following:
-
-
-| parameter | value |
-| --------- | ----- |
-| connector type | LEMO EPK.00.250.NTN | 
-| input impedance | 50ohm |
-| V{sub}`IH` | > 2.3 V |
-| V{sub}`IL` | < 1.0 V |
 
 ### PCIe-EVR-300DC and IFB-300 Connections
 

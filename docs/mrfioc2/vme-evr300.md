@@ -1,6 +1,6 @@
 # VME-EVR-300
 
-![image](vme-evr300-frontpanel.png)
+![image](imageds/vme-evr300-frontpanel.png)
 
 ## VME-EVR-300 Front Panel Connections
 
