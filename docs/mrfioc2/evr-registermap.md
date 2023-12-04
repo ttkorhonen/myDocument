@@ -410,7 +410,7 @@ first interrupt has been handled in user space
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
 | 0x025   |        |        |        | TXCPT  | TXRUN  | TRIG   | ENA    | 1      | 
 | address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| 0x026   |        |        |        |        |        | DTSZ(10:8) |
+| 0x026   |        |        |        |        |        | DTSZ(10:8) ||
 | address | bit 7  | bit 6  | bit 5  | bit 4  | bit 3  | bit 2  | bit 1  | bit 0  |
 | 0x027   | DTSZ(7:2) |     |        |        |        |        | 0      | 0  |
 
