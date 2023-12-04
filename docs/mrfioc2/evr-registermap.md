@@ -491,7 +491,7 @@ first interrupt has been handled in user space
 
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x050   | PLLLOCK| BWSEL(2:0) |    |        | CLKMD(1:0)      |        |        |
+| 0x050   | PLLLOCK| BWSEL(2:0) |    |        |        | CLKMD(1:0)      |        |
 | address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
 | 0x052   |        |        |        |        |        |        | CGLOCK |        |
 
@@ -684,12 +684,12 @@ The same bit mapping applies to Front Panel Inputs, Universal Inputs and Backpla
 | address | bit 7  | bit 6  | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
 | 0x503   | External Event Code Register for front panel input 0
 | 0x504   | FPIN1  |        | EXTLV1 | BCKLE1 | EXTLE1 | EXTED1 | BCKEV1 | EXTEV1 |
-| address bit 23 bit 22 bit 21 bit 20 bit 19 bit 18 bit 17 bit 16
+| address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
 | 0x505   | T1DB7  | T1DB6  | T1DB5  | T1DB4  | T1DB3  | T1DB2  | T1DB1  | T1DB0  |
 | address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
 | 0x506 | Backward Event Code Register for front panel input 1
 | address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| 0x507  |External Event Code Register for front panel input 1
+| 0x507  | External Event Code Register for front panel input 1
 
 
 | Bit | Function |
@@ -731,8 +731,7 @@ The same bit mapping applies to Front Panel Inputs, Universal Inputs and Backpla
 | address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
 | 0x612   |        |        |        |        | GTX3MD | GTX2MD | GTXPH1 | GTXPH0 |
-| address | bit 7 |bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
+| address | bit 7  |bit 6   | bit 5  | bit 4  | bit 3  | bit 2  | bit 1  | bit 0  |
 | 0x613   | CMLRC  | CMLTL  | CMLMD(1:0) |    |        | CMLRES | CMLPWD | CMLENA |
 
 | Bit | Function |
@@ -857,104 +856,107 @@ access to all of this information through a memory window of 2 × 256 bytes. The
 the EEPROM values and the rest of the advanced values.
 
 
-Byte # Field size Notes Value
-BASE ID FIELDS
-0 1 Type of serial transceiver 0x03 = SFP transceiver
-1 1 Extended identifier of type serial transceiver
 
+**BASE ID FIELDS**
 
-0x04 = serial ID module definition
+|Byte # | Field size | Notes                     | Value
+| 0     | 1         |Type of serial transceiver | 0x03 = SFP transceiver
+| 1     | 1         | Extended identifier of type serial transceiver | 0x04 = serial ID module definition
+| 2 1 Code for connector type 0x07 = LC
+| 3 – 10 8 Code for electronic compatibility or optical compatibility
+| 11 | 1 | Code for serial encoding algorithm
+| 12 | 1 | Nominal bit rate, units of 100 MBits/sec
+| 13 | 1 | Reserved
+| 14 | 1 | Link length supported for 9/125 μm fiber, units of km
+| 15 | 1 | Link length supported for 9/125 μm fiber, units of 100 m
+| 16 | 1 | Link length supported for 50/125 μm fiber, units of 10 m
+| 17 | 1 | Link length supported for 62.5/125 μm fiber, units of 10 m
+| 18 | 1 | Link length supported for copper, units of meters
+| 19 | 1 | Reserved
+| 20 – 35 | 16 | SFP transceiver vendor name (ASCII)
+| 36 | 1 | Reserved
+| 37 – 39 | 3 | SFP transceiver vendor IEEE company ID
+| 40 – 55 | 16|  Part number provided by SFP transceiver vendor (ASCII)
+| 56 – 59 | 4 | Revision level for part number provided by vendor (ASCII)
+| 60 – 62 | 3 | Reserved
+| 63 | 1 | Check code for Base ID Fields
 
+**EXTENDED ID FIELDS**
 
-2 1 Code for connector type 0x07 = LC
-3 – 10 8 Code for electronic compatibility or optical compatibility
-11 1 Code for serial encoding algorithm
-12 1 Nominal bit rate, units of 100 MBits/sec
-13 1 Reserved
-14 1 Link length supported for 9/125 μm fiber, units of km
-15 1 Link length supported for 9/125 μm fiber, units of 100 m
-16 1 Link length supported for 50/125 μm fiber, units of 10 m
-17 1 Link length supported for 62.5/125 μm fiber, units of 10 m
-18 1 Link length supported for copper, units of meters
-19 1 Reserved
-20 – 35 16 SFP transceiver vendor name (ASCII)
-36 1 Reserved
-37 – 39 3 SFP transceiver vendor IEEE company ID
-40 – 55 16 Part number provided by SFP transceiver vendor (ASCII)
-56 – 59 4 Revision level for part number provided by vendor (ASCII)
-60 – 62 3 Reserved
-63 1 Check code for Base ID Fields
-EXTENDED ID FIELDS
-64 – 65 2 Indicated which optional SFP signals are implemented
-66 1 Upper bit rate margin, units of %
-67 1 Lower bit rate margin, units of %
-68 – 83 16 Serial number provided by vendor (ASCII)
-84 – 91 8 Vendor’s manufacturing date code
-92 – 94 3 Reserved
-95 1 Check code for the Extended ID Fields
-VENDOR SPECIFIC ID FIELDS
-96 – 127 32 Vendor specific data
-128 – 255 Reserved
-ENHANCED FEATURE SET MEMORY
-256 – 257 2 Temp H Alarm Signed twos complement integer in increments of 1/256 °C
-258 – 259 2 Temp L Alarm Signed twos complement integer in increments of 1/256 °C
-260 – 261 2 Temp H Warning Signed twos complement integer in increments of 1/256 °C
-262 – 263 2 Temp L Warning Signed twos complement integer in increments of 1/256 °C
-264 – 265 2 VCC H Alarm Supply voltage decoded as unsigned integer in increments of 100 μV
-266 – 267 2 VCC L Alarm Supply voltage decoded as unsigned integer in increments of 100 μV
-268 – 269 2 VCC H Warning Supply voltage decoded as unsigned integer in increments of 100 μV
-270 – 271 2 VCC L Warning Supply voltage decoded as unsigned integer in increments of 100 μV
-272 – 273 2 Tx Bias H Alarm Laser bias current decoded as unsigned integer in increment of 2 μA
-274 – 275 2 Tx Bias L Alarm Laser bias current decoded as unsigned integer in increment of 2 μA
-276 – 277 2 Tx Bias H Warning Laser bias current decoded as unsigned integer in increment of 2 μA
-278 – 279 2 Tx Bias L Warning Laser bias current decoded as unsigned integer in increment of 2 μA
-280 – 281 2 Tx Power H Alarm Transmitter average optical power decoded as unsigned integer in increments of 0.1 μW
-282 – 283 2 Tx Power L Alarm Transmitter average optical power decoded as unsigned integer in increments of 0.1 μW
-284 – 285 2 Tx Power H Warning Transmitter average optical power decoded as unsigned integer in increments of 0.1 μW
-286 – 287 2 Tx Power L Warning Transmitter average optical power decoded as unsigned integer in increments of 0.1 μW
-288 – 289 2 Rx Power H Alarm Receiver average optical power decoded as unsigned integer in increments of 0.1 μW
-290 – 291 2 Rx Power L Alarm Receiver average optical power decoded as unsigned integer in increments of 0.1 μW
-292 – 293 2 Rx Power H Warning Receiver average optical power decoded as unsigned integer in increments of 0.1 μW
-294 – 295 2 Rx Power L Warning Receiver average optical power decoded as unsigned integer in increments of 0.1 μW
-296 – 311 16 Reserved
-312 – 350 External Calibration Constants
-351 1 Checksum for Bytes 256 – 350
-352 – 353 2 Real Time Temperature Signed twos complement integer in increments of 1/256 °C
-354 – 355 2 Real Time VCC Power SupplyVoltage Supply voltage decoded as unsigned integer in increments of 100 μV
-356 – 357 2 Real Time Tx Bias Current Laser bias current decoded as unsigned integer in increment of 2 μA
-358 – 359 2 Real Time Tx Power Transmitter average optical power decoded as unsigned integer in in- crements of 0.1 μW
-360 – 361 2 Real Time Rx Power Receiver average optical power decoded as unsigned integer in increments of 0.1 μW
-362 – 365 4 Reserved
-366 1 Status/Control bit 7: TX_DISABLE State
-bit 6 – 3: Reserved
-bit 2: TX_FAULT State
-bit 1: RX_LOS State
-bit 0: Data Ready (Bar)
-367 1 Reserved
-368 1 Alarm Flags bit 7: Temp High Alarm
-bit 6: Temp Low Alarm
-bit 5: VCC High Alarm
-bit 4: VCC Low Alarm
-bit 3: Tx Bias High Alarm
-bit 2: Tx Bias Low Alarm
-bit 1: Tx Power High Alarm
-bit 0: Tx Power Low Alarm
-369 1 Alarm Flags cont. bit 7: Rx Power High Alarm
-bit 6: Rx Power Low Alarm
-bit 5 – 0: Reserved
-370 – 371 2 Reserved
-372 1 Warning Flags bit 7: Temp High Warning
-bit 6: Temp Low Warning
-bit 5: VCC High Warning
-bit 4: VCC Low Warning
-bit 3: Tx Bias High Warning
-bit 2: Tx Bias Low Warning
-bit 1: Tx Power High Warning
-bit 0: Tx Power Low Warning
-373 1 Warning Flags cont. bit 7: Rx Power High Warning
-bit 6: Rx Power Low Warning
-bit 5 – 0: Reserved
-374 – 511 Reserved/Vendor Specific
+|64 – 65 | 2 | Indicated which optional SFP signals are implemented
+|66 | 1 | Upper bit rate margin, units of %
+|67 | 1 | Lower bit rate margin, units of %
+|68 – 83 | 16 |  Serial number provided by vendor (ASCII)
+|84 – 91 | 8  | Vendor’s manufacturing date code
+|92 – 94 | 3  | Reserved
+|95 | 1 | Check code for the Extended ID Fields
+
+**VENDOR SPECIFIC ID FIELDS**
+
+| 96 – 127  |32 | Vendor specific data
+| 128 – 255 |   | Reserved
+
+**ENHANCED FEATURE SET MEMORY**
+
+| 256 – 257 | 2  | Temp H Alarm Signed twos complement integer in increments of 1/256 °C
+| 258 – 259 | 2  | Temp L Alarm Signed twos complement integer in increments of 1/256 °C
+| 260 – 261 | 2  | Temp H Warning Signed twos complement integer in increments of 1/256 °C
+| 262 – 263 | 2  | Temp L Warning Signed twos complement integer in increments of 1/256 °C
+| 264 – 265 | 2  | VCC H Alarm Supply voltage decoded as unsigned integer in increments of 100 μV
+| 266 – 267 | 2  | VCC L Alarm Supply voltage decoded as unsigned integer in increments of 100 μV
+| 268 – 269 | 2  | VCC H Warning Supply voltage decoded as unsigned integer in increments of 100 μV
+| 270 – 271 | 2  | VCC L Warning Supply voltage decoded as unsigned integer in increments of 100 μV
+| 272 – 273 | 2  | Tx Bias H Alarm Laser bias current decoded as unsigned integer in increment of 2 μA
+| 274 – 275 | 2  | Tx Bias L Alarm Laser bias current decoded as unsigned integer in increment of 2 μA
+| 276 – 277 | 2  | Tx Bias H Warning Laser bias current decoded as unsigned integer in increment of 2 μA
+| 278 – 279 | 2  | Tx Bias L Warning Laser bias current decoded as unsigned integer in increment of 2 μA
+| 280 – 281 | 2  | Tx Power H Alarm Transmitter average optical power decoded as unsigned integer in increments of 0.1 μW
+| 282 – 283 | 2  | Tx Power L Alarm Transmitter average optical power decoded as unsigned integer in increments of 0.1 μW
+| 284 – 285 | 2  | Tx Power H Warning Transmitter average optical power decoded as unsigned integer in increments of 0.1 μW
+| 286 – 287 | 2  | Tx Power L Warning Transmitter average optical power decoded as unsigned integer in increments of 0.1 μW
+| 288 – 289 | 2  | Rx Power H Alarm Receiver average optical power decoded as unsigned integer in increments of 0.1 μW
+| 290 – 291 | 2  | Rx Power L Alarm Receiver average optical power decoded as unsigned integer in increments of 0.1 μW
+| 292 – 293 | 2  | Rx Power H Warning Receiver average optical power decoded as unsigned integer in increments of 0.1 μW
+| 294 – 295 | 2  | Rx Power L Warning Receiver average optical power decoded as unsigned integer in increments of 0.1 μW
+| 296 – 311 | 16 |  Reserved
+| 312 – 350 | | External Calibration Constants
+| 351 | 1 | Checksum for Bytes 256 – 350
+| 352 – 353 | 2 | Real Time Temperature Signed twos complement integer in increments of 1/256 °C
+| 354 – 355 | 2 | Real Time VCC Power SupplyVoltage Supply voltage decoded as unsigned integer in increments of 100 μV
+| 356 – 357 | 2 | Real Time Tx Bias Current Laser bias current decoded as unsigned integer in increment of 2 μA
+| 358 – 359 | 2 | Real Time Tx Power Transmitter average optical power decoded as unsigned integer in in- crements of 0.1 μW
+| 360 – 361 | 2 | Real Time Rx Power Receiver average optical power decoded as unsigned integer in increments of 0.1 μW
+| 362 – 365 | 4 | Reserved
+| 366 | 1 | Status/Control | bit 7: TX_DISABLE State
+|     |   |                | bit 6 – 3: Reserved
+|     |   |                | bit 2: TX_FAULT State
+|     |   |                | bit 1: RX_LOS State
+|     |   |                | bit 0: Data Ready (Bar)
+| 367 | 1 | Reserved
+| 368 | 1 | Alarm Flags    | bit 7: Temp High Alarm
+|     |    |               | bit 6: Temp Low Alarm
+|     |    |               | bit 5: VCC High Alarm
+|     |    |               | bit 4: VCC Low Alarm
+|     |    |               | bit 3: Tx Bias High Alarm
+|     |    |               | bit 2: Tx Bias Low Alarm
+|     |    |               | bit 1: Tx Power High Alarm
+|     |    |               | bit 0: Tx Power Low Alarm
+| 369 |  1 | Alarm Flags cont. | bit 7: Rx Power High Alarm
+|     |    |               | bit 6: Rx Power Low Alarm
+|     |    |               | bit 5 – 0: Reserved
+370 – 371| 2 | Reserved
+372   |  1 | Warning Flags | bit 7: Temp High Warning
+|     |    |               | bit 6: Temp Low Warning
+|     |    |               | bit 5: VCC High Warning
+|     |    |               | bit 4: VCC Low Warning
+|     |    |               | bit 3: Tx Bias High Warning
+|     |    |               | bit 2: Tx Bias Low Warning
+|     |    |               | bit 1: Tx Power High Warning
+|     |    |               | bit 0: Tx Power Low Warning
+373   | 1  | Warning Flags cont. | bit 7: Rx Power High Warning
+|     |    |               | bit 6: Rx Power Low Warning
+|     |    |               | bit 5 – 0: Reserved
+|374 – 511 | | Reserved/Vendor Specific
 
 
 
@@ -962,51 +964,38 @@ bit 5 – 0: Reserved
 ### Hardware Configuration Summary
 
 
-VME-EVR-300 mTCA-EVR-300 PCIe-EVR-300DC
-Pulse Generators 24 16 16
-FP TTL inputs 2 2 0
-FP TTL outputs 0 4 0
-FP GTX outputs 41 0 0
-FP UNIV I/O / slots 4 0 16 / 8^2
-FP UNIV GPIO pins / slots 16/4 0 / 0 0 / 0
-TB Outputs 16 32 0
-TB Inputs 16 32 0
-Prescalers 8 x 32 bit 8 x 32 bit4 83 x 3216 bit
+|                | VME-EVR-300 | mTCA-EVR-300 | PCIe-EVR-300DC |
+| -------------- | ----------- | ------------ | -------------- |
+| Pulse Generators | 24 |16 |16
+| FP TTL inputs  | 2  | 2 | 0
+| FP TTL outputs | 0  | 4 | 0
+| FP GTX outputs | 41 | 0 | 0
+| FP UNIV I/O / slots | 4 | 0 | 16 / 8^2
+| FP UNIV GPIO pins / slots 16/4 0 / 0 0 / 0
+| TB Outputs     |  16 | 32 | 0
+| TB Inputs      | 16  | 32 | 0
+| Prescalers     |8 x 32 bit | 8 x 32 bit | 8 x 32 bit |
 
 
-Pulse Generator Prescaler, Delay, Pulse Width Range (bits)
-
-##### 0 16, 32, 32 16, 32, 32 16, 32, 32
-
-##### 1 16, 32, 32 16, 32, 32 16, 32, 32
-
-##### 2 16, 32, 32 16, 32, 32 16, 32, 32
-
-##### 3 16, 32, 32 16, 32, 32 16, 32, 32
-
-##### 4 0, 32, 16 0, 32, 16 0, 32, 16
-
-##### 5 0, 32, 16 0, 32, 16 0, 32, 16
-
-##### 6 0, 32, 16 0, 32, 16 0, 32, 16
-
-##### 7 0, 32, 16 0, 32, 16 0, 32, 16
-
-##### 8 0, 32, 16 0, 32, 16 0, 32, 16
-
-##### 9 0, 32, 16 0, 32, 16 0, 32, 16
-
-##### 10 0, 32, 16 0, 32, 16 0, 32, 16
-
-##### 11 0, 32, 16 0, 32, 16 0, 32, 16
-
-##### 12 0, 32, 16 0, 32, 16 0, 32, 16
-
-##### 13 0, 32, 16 0, 32, 16 0, 32, 16
-
-##### 14 0, 32, 16 0, 32, 16 0, 32, 16
-
-##### 15 0, 32, 16 0, 32, 16 0, 32, 16
+Pulse Generator: Prescaler, Delay, Pulse Width Range (bits)
+|                | VME-EVR-300 | mTCA-EVR-300 | PCIe-EVR-300DC |
+| -------------- | ----------- | ------------ | -------------- |
+|    0           | 16, 32, 32  | 16, 32, 32   | 16, 32, 32     |   
+|    1           | 16, 32, 32  | 16, 32, 32   | 16, 32, 32     |   
+|    2           | 16, 32, 32  | 16, 32, 32   | 16, 32, 32     |   
+|    3           | 16, 32, 32  | 16, 32, 32   | 16, 32, 32     |   
+|    4           | 0, 32, 16   | 0, 32, 16    | 0, 32, 16      |   
+|    5           | 0, 32, 16   | 0, 32, 16    | 0, 32, 16      |   
+|    6           | 0, 32, 16   | 0, 32, 16    | 0, 32, 16      |   
+|    7           | 0, 32, 16   | 0, 32, 16    | 0, 32, 16      |   
+|    8           | 0, 32, 16   | 0, 32, 16    | 0, 32, 16      |   
+|    9           | 0, 32, 16   | 0, 32, 16    | 0, 32, 16      |   
+|    10          | 0, 32, 16   | 0, 32, 16    | 0, 32, 16      |   
+|    11          | 0, 32, 16   | 0, 32, 16    | 0, 32, 16      |   
+|    12          | 0, 32, 16   | 0, 32, 16    | 0, 32, 16      |   
+|    13          | 0, 32, 16   | 0, 32, 16    | 0, 32, 16      |   
+|    14          | 0, 32, 16   | 0, 32, 16    | 0, 32, 16      |   
+|    15          | 0, 32, 16   | 0, 32, 16    | 0, 32, 16      |
 
 (^1) One Universal I/O slot (2 outputs), 2 x CML output
 (^2) Universal I/O is available on the external I/O box
