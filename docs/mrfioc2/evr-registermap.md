@@ -293,10 +293,10 @@ Event Receiver register/memory map.
 | 0x008 |
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
 | 0x009   |        |        |        | IFSOV  |        |        |        | IFSHF  |
-|        | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| 0x00A  |        |        |        | IFSSTO |        |        |        | IFSSTA |
-| address | bit 7 | bit 6  | bit 5  | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| 0x00B  | IFSEGD | IFLINK | IFDBUF | IFHW  | IFEV  | IFHB  | IFFF  | IFVIO |
+|         | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
+| 0x00A   |        |        |        | IFSSTO |        |        |        | IFSSTA |
+| address | bit 7  | bit 6  | bit 5  | bit 4  | bit 3  | bit 2  | bit 1  | bit 0 |
+| 0x00B   | IFSEGD | IFLINK | IFDBUF | IFHW   | IFEV   | IFHB   | IFFF   | IFVIO |
 
 | Bit    | Function |
 | ---    | -------- |
@@ -347,26 +347,70 @@ Event Receiver register/memory map.
 ### Hardware Interrupt Mapping Register
 
 
-| address | bit 7  | bit 6  | bit 5  | bit 4  | bit 3  | bit 2  | bit 1  | bit 0  |
-| ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x013   | Mapping ID (see Table 1 for mapping IDs) |
+| address | bit 7     | bit 6     | bit 5     | bit 4     | bit 3     | bit 2     | bit 1     | bit 0     |
+| ------- | ------    | ------    | ------    | ------    | ------    | ------    | ------    | ------    |
+| 0x013   | MapID [7] | MapID [6] | MapID [5] | MapID [4] | MapID [3] | MapID [2] | MapID [1] | MapID [0] | 
 
+Table: mapping IDs
+
+| Mapping ID  | Signal |
+| ----------  | ------ |
+| 0 to n-1 | Pulse generator output (number n of pulse generators depends on HW and firmware version)
+| n to 31 | (Reserved)
+| 32 | Distributed bus bit 0 (DBUS0) 
+| ...|  ...
+| 39 | Distributed bus bit 7 (DBUS7)
+| 40 | Prescaler 0
+| 41 | Prescaler 1
+| 42 | Prescaler 2
+| 43 to 47 | (Reserved)
+| 48 | Flip-flop output 0
+| ...|  ...
+| 55 | Flip-flop output 7
+| 56 | to 58 (Reserved)
+| 59 | Event clock output (only on PXIe-EVR-300)
+| 60 | Event clock output with 180° phase shift (only on PXIe-EVR-300)
+| 61 | Tri-state output (for PCIe-EVR-300DC with input module populated in IFB-300’s Universal I/O slot)
+| 62 | Force output high (logic 1)
+| 63 |  Force output low (logic 0)
+
+#### Flip-flop Outputs (from FW version 0E0207)
+
+There are 8 flip-flop outputs. Each of these is using two pulse generators, 
+one for setting the output high and the other one for resetting the output low. 
+In the table below you can see the relationship between flip-flops and pulse generators 
+and the output mapping IDs.
+
+| flip-flop | Mapping ID  | Set            | Reset       |
+| --------- | ----------  | -------------- | ----------- |
+| 0         | 48          | Pulse gen.  0  | Pulse gen. 1
+| 1         | 49          | Pulse gen.  2  | Pulse gen. 3
+| 2         | 50          | Pulse gen.  4  | Pulse gen. 5
+| 3         | 51          | Pulse gen.  6  | Pulse gen. 7
+| 4         | 52          | Pulse gen.  8  | Pulse gen. 9
+| 5         | 53          | Pulse gen. 10  | Pulse gen. 11
+| 6         | 54          | Pulse gen. 12  | Pulse gen. 13
+| 7         | 55          | Pulse gen. 14  | Pulse gen. 15
+         
 ### Software Event Register
 
 
 | address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
 | 0x01A   |        |        |        |        |        |        | SWPEND | SWENA  |
-| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| 0x01B   |Event Code to be inserted into receive event stream
+| address | bit 7  | bit 6  | bit  5 | bit 4  | bit 3  | bit 2  | bit 1  | bit 0  |
+| 0x01B   | EVC[7] | EVC[6] | EVC[5] | EVC[4] | EVC[3] | EVC[2] | EVC[1] | EVC[0] |
+
+
 
 | Bit | Function |
 | --- | -------- |
-| SWPEND | Event code waiting to be inserted (read-only). A new event code may be written
-|        | to the event code register when this bit reads ‘0’.
-| SWENA  | Enable software event
-|        | When enabled ‘1’ a new event will be inserted into the receive event stream
-|        | when event code is written to the event code register.
+| SWPEND   | Event code waiting to be inserted (read-only). A new event code may be written
+|          | to the event code register when this bit reads ‘0’.
+| SWENA    | Enable software event
+|          | When enabled ‘1’ a new event will be inserted into the receive event stream
+|          | when event code is written to the event code register.
+| EVC[7:0] | Event Code to be inserted into receive event stream
 
 ### PCI Interrupt Enable Register
 
@@ -384,10 +428,10 @@ first interrupt has been handled in user space
 ### Receive Data Buffer Control and Status Register
 
 | address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x022   | DBRX/DBENA | DBRDY/DBDIS | DBCS  | DBEN | RXSIZE(11:8)
-| address | bit 7  | bit 6  | bit 5  | bit 4  | bit 3  | bit 2  | bit 1  | bit 0  |
-| 0x023   | RXSIZE(7:0)
+| ------- | ------     | ------      | ----------| --------- | ---------- | ---------- | --------- | ---------- |
+| 0x022   | DBRX/DBENA | DBRDY/DBDIS | DBCS      | DBEN      | RXSIZE[11] | RXSIZE[10] | RXSIZE[9] | RXSIZE[8]  |
+| address | bit 7      | bit 6       | bit 5     | bit 4     | bit 3      | bit 2      | bit 1     | bit 0      |
+| 0x023   | RXSIZE[7]  | RXSIZE[6]   | RXSIZE[5] | RXSIZE[4] | RXSIZE[3]  | RXSIZE[2]  | RXSIZE[1] | RXSIZE[0] |
 
 | Bit    | Function |
 | ---    | -------- |
@@ -400,7 +444,7 @@ first interrupt has been handled in user space
 | DBEN   | Data Buffer Enable Data Buffer Mode
 |        | ‘0’ – Distributed bus not shared with data transmission, full speed distributed bus
 |        | ‘1’ – Distributed bus shared with data transmission, half speed distributed bus
-| RXSIZE | Data Buffer Received Buffer Size (read-only)
+| RXSIZE | Data Buffer Received Buffer Size (read-only).
 
 #### Transmit Data Buffer Control Register
 
@@ -410,9 +454,9 @@ first interrupt has been handled in user space
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
 | 0x025   |        |        |        | TXCPT  | TXRUN  | TRIG   | ENA    | 1      | 
 | address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| 0x026   |        |        |        |        |        | DTSZ(10:8) ||
-| address | bit 7  | bit 6  | bit 5  | bit 4  | bit 3  | bit 2  | bit 1  | bit 0  |
-| 0x027   | DTSZ(7:2) |     |        |        |        |        | 0      | 0  |
+| 0x026   |         |         |         |         |         | DTSZ[10] | DTSZ[9] | DTSZ[8] |
+| address | bit 7   | bit 6   | bit 5   | bit 4   | bit 3   | bit 2   | bit 1   | bit 0  |
+| 0x027   | DTSZ[7] | DTSZ[6] | DTSZ[5] | DTSZ[4] | DTSZ[3] | DTSZ[2] |  0      | 0      |
 
 | Bit        | Function |
 | ---        | -------- |
@@ -430,13 +474,13 @@ first interrupt has been handled in user space
 
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x028   | SADDR(7:0)
-| address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
-| 0x029   |        |        |        |TXCPT   | TXRUN  | TRIG   | ENA    | MODE   |
-| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| 0x02A   | DTSZ(10:8)
-| address | bit 7  | bit 6  | bit 5  | bit 4  | bit 3  | bit 2  | bit 1  | bit 0 |
-| 0x02B   | DTSZ(7:2)  |    |        |        |        |        |  0     |   0   |
+| 0x028   | SADDR[7] | SADDR[6] | SADDR[5] | SADDR[4] | SADDR[3] | SADDR[2] | SADDR[1] | SADDR[0] |
+| address | bit 23   | bit 22   | bit 21   | bit 20   | bit 19   | bit 18   | bit 17   | bit 16 |
+| 0x029   |          |          |          |TXCPT     | TXRUN    | TRIG     | ENA      | MODE   |
+| address | bit 15   | bit 14   | bit 13   | bit 12   | bit 11   | bit 10   | bit 9    | bit 8  |
+| 0x02A   |          |          |          |          |          | DTSZ[10] | DTSZ[9]  | DTSZ[8] |
+| address | bit 7    | bit 6    | bit 5    | bit 4    | bit 3    | bit 2    | bit 1    | bit 0   |
+| 0x02B   | DTSZ[7]  |  DTSZ[6] | DTSZ[5]  | DTSZ[4]  | DTSZ[3]  | DTSZ[2]  |   0      |   0     |
 
 | Bit        | Function |
 | ---        | -------- |
@@ -455,36 +499,36 @@ first interrupt has been handled in user space
 
 ### FPGA Firmware Version Register
 
-| address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
-| ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x02C   | EVR = 0x1       |        |        | Form Factor
-| address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
-| 0x02D   | Subrelease ID
-| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| 0x02E   | Firmware ID
-| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| 0x02F   | Revision ID
+| address | bit 31 | bit 30 | bit 29 | bit 28    | bit 27 | bit 26 | bit 25 | bit 24 |
+| ------- | ------ | ------ | ------ | ------    | ------ | ------ | ------ | ------ |
+| 0x02C   |        |        |        | EVR = 0x1 | FF[3]  | FF[2]  | FF[1]  | FF[0]  |
+| address | bit 23 | bit 22 | bit 21 | bit 20    | bit 19 | bit 18 | bit 17 | bit 16 |
+| 0x02D   | SID[7] | SID[6] | SID[5] | SID[4]    | SID[3] | SID[2] | SID[1] | SID[0] |
+| address | bit 15 | bit 14 | bit 13 | bit 12    | bit 11 | bit 10 | bit 9  | bit 8  |
+| 0x02E   | FID[7] | FID[6] | FID[5] | FID[4]    | FID[3] | FID[2] | FID[1] | FID[0] |
+| address | bit 7  | bit 6  | bit 5  | bit 4     | bit 3  | bit 2  | bit 1  | bit 0  |
+| 0x02F   | RID[7] | RID[6] | RID[5] | RID[4]    | RID[3] | RID[2] | RID[1] | RID[0] |
 
 
-| Bit           | Function |
-| ---           | -------- |
-| Form Factor   | 0 – CompactPCI 3U
-|               | 1 – PMC
-|               | 2 – VME64x
-|               | 3 – CompactRIO
-|               | 4 – CompactPCI 6U
-|               | 6 – PXIe
-|               | 7 – PCIe
-|               | 8 – mTCA.4
-| Subrelease ID |For production releases the subrelease ID counts up from 00.
-|               | For pre-releases this ID is used “backwards” counting down from ff i.e. when
-|               | approaching release 12000207, we have prereleases 12FF0206, 12FE0206,
-|               | 12FD0206 etc. in this order.
-| Firmware ID   |
-|               | 00 – Modular Register Map firmware (no delay compensation)
-|               | 01 – Reserved
-|               | 02 – Delay Compensation firmware
-|               | Revision ID See end of manual
+| Bit                    | Function |
+| ---                    | -------- |
+| Form Factor FF(3:0)    | 0 – CompactPCI 3U
+|                        | 1 – PMC
+|                        | 2 – VME64x
+|                        | 3 – CompactRIO
+|                        | 4 – CompactPCI 6U
+|                        | 6 – PXIe
+|                        | 7 – PCIe
+|                        | 8 – mTCA.4
+| Subrelease ID SID(7:0) | For production releases the subrelease ID counts up from 00.
+|                        | For pre-releases this ID is used “backwards” counting down from ff i.e. when
+|                        | approaching release 12000207, we have prereleases 12FF0206, 12FE0206,
+|                        | 12FD0206 etc. in this order.
+| Firmware ID FID(7:0)   |
+|                        | 00 – Modular Register Map firmware (no delay compensation)
+|                        | 01 – Reserved
+|                        | 02 – Delay Compensation firmware
+| Revision ID RID(7:0)   | See end of manual
 
 ### Clock Control Register
 
