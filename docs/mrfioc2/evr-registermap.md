@@ -533,9 +533,9 @@ first interrupt has been handled in user space
 ### Clock Control Register
 
 
-| address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
-| ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x050   | PLLLOCK| BWSEL(2:0) |    |        |        | CLKMD(1:0)      |        |
+| address | bit 31 | bit 30   | bit 29   | bit 28   | bit 27 | bit 26   | bit 25   | bit 24 |
+| ------- | ------ | ------   | ------   | ------   | ------ | ------   | ------   | ------ |
+| 0x050   | PLLLOCK| BWSEL[2] | BWSEL[1] | BWSEL[0] |        | CLKMD[1] | CLKMD[0] |        |
 | address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
 | 0x052   |        |        |        |        |        |        | CGLOCK |        |
 
@@ -591,11 +591,11 @@ The fractional synthesizer serves as the reference clock for the FPGA internal t
 
 ### SPI Configuration Flash Registers
 
-| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x0A3   | SPIDATA(7:0)
-| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| 0x0A7   | E     | RRDY  | TRDY  | TMT   | TOE   | ROE   | OE    | SSO   |
+| address | bit 7      | bit 6      | bit 5      | bit 4      | bit 3      | bit 2      | bit 1      | bit 0      |
+| ------- | ---------- | ------     | ------     | ------     | ------     | ------     | ------     | ------     |
+| 0x0A3   | SPIDATA[7] | SPIDATA[6] | SPIDATA[5] | SPIDATA[4] | SPIDATA[3] | SPIDATA[2] | SPIDATA[1] | SPIDATA[0] | 
+| address | bit 7      | bit 6      | bit 5      | bit 4      | bit 3      | bit 2      | bit 1      | bit 0      |
+| 0x0A7   | E          | RRDY       | TRDY       | TMT        | TOE        | ROE        | OE         | SSO        |
 
 | Bit | Function |
 | --- | -------- |
@@ -612,11 +612,11 @@ The fractional synthesizer serves as the reference clock for the FPGA internal t
 ### Delay Compensation Status Register
 
 
-| address | bit 7  | bit 6  | bit 5  | bit 4  | bit 3  | bit 2  | bit 1  | bit 0  |
-| ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x0BE   |        |        |        |        |        | PDVLD(2:0)
-| address | bit 7  | bit 6  | bit 5  | bit 4  | bit 3  | bit 2  | bit 1  | bit 0 |
-| 0x0BF   |        |        |        |        |DLYL    | DLYS   |        | DCLOCK
+| address | bit 7  | bit 6  | bit 5  | bit 4  | bit 3  | bit 2    | bit 1    | bit 0    |
+| ------- | ------ | ------ | ------ | ------ | ------ | ------   | ------   | ------   |
+| 0x0BE   |        |        |        |        |        | PDVLD[2] | PDVLD[1] | PDVLD[0] |
+| address | bit 7  | bit 6  | bit 5  | bit 4  | bit 3  | bit 2    | bit 1    | bit 0    |
+| 0x0BF   |        |        |        |        |DLYL    | DLYS     |          | DCLOCK   |
 
 | Bit | Function |
 | --- | -------- |
@@ -637,8 +637,8 @@ The fractional synthesizer serves as the reference clock for the FPGA internal t
 | 0x0E0   |        |        |        |        |        |        | SQRUN  | SQENA
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
 | 0x0E1   |        |        |  SQSWT | SQSNG  | SQREC  | SQRES  | SQDIS  | SQEN |
-|address | bit 7...bit 0
-|0x0E3 | SQTSEL
+| address | bit 7     | bit 6     | bit 5     | bit 4     | bit 3     | bit 2     | bit 1     | bit 0     |
+| 0x0E3   | SQTSEL[7] | SQTSEL[6] | SQTSEL[5] | SQTSEL[4] | SQTSEL[3] | SQTSEL[2] | SQTSEL[1] | SQTSEL[0] |
 
 | Bit    | Function |
 | ---    | -------- |
@@ -675,15 +675,17 @@ bus bit.
 
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-|0x200 | PxMASK(7:0)
+| 0x200   | PxMASK[7] | PxMASK[6] | PxMASK[5] | PxMASK[4] | PxMASK[3] | PxMASK[2] | PxMASK[1] | PxMASK[0] |
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
-| 0x201 | PxENA(7:0)
+| 0x201   | PxENA[7] | PxENA[6] | PxENA[5] | PxENA[4] | PxENA[3] | PxENA[2] | PxENA[1] | PxENA[0] |
 | address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
 | 0x203   | PxOUT | PxSWS | PxSWR | PxPOL | PxMRE | PxMSE | PxMTE | PxENA
+
+| address | bit 31...bit 0 |
+| ------- | -------------- |
+| 0x204   | Pulse Generator 0 Prescaler Register
 | address | bit 31...bit 0
-|0x204  | Pulse Generator 0 Prescaler Register
-| address | bit 31...bit 0
-| 0x208  | Pulse Generator 0 Delay Register
+| 0x208   | Pulse Generator 0 Delay Register
 | address | bit 31...bit 0
 | 0x20C   | Pulse Generator 0 Width Register
 
@@ -723,16 +725,23 @@ The same bit mapping applies to Front Panel Inputs, Universal Inputs and Backpla
 | 0x500   | FPIN0  |        | EXTLV0 | BCKLE0 | EXTLE0 | EXTED0 | BCKEV0 | EXTEV0 |
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
 | 0x501   | T0DB7  | T0DB6  | T0DB5  | T0DB4  | T0DB3  | T0DB2  | T0DB1  | T0DB0  |
-| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
+
+| address | bit 15 ... bit 8  |
+| ------- | ----------------- |
 | 0x502   | Backward Event Code Register for front panel input 0
-| address | bit 7  | bit 6  | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
+| address | bit 7  ... bit 0  |
 | 0x503   | External Event Code Register for front panel input 0
+
+| address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
+| ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
 | 0x504   | FPIN1  |        | EXTLV1 | BCKLE1 | EXTLE1 | EXTED1 | BCKEV1 | EXTEV1 |
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
 | 0x505   | T1DB7  | T1DB6  | T1DB5  | T1DB4  | T1DB3  | T1DB2  | T1DB1  | T1DB0  |
-| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
+
+| address | bit 15 ... bit 8  |
+| ------- | ----------------- |
 | 0x506 | Backward Event Code Register for front panel input 1
-| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
+| address | bit 7  ... bit 0  |
 | 0x507  | External Event Code Register for front panel input 1
 
 
