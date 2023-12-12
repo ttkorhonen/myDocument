@@ -1,6 +1,6 @@
 # VME-EVR-300
 
-![image](imageds/vme-evr300-frontpanel.png)
+![image](images/vme-evr300-frontpanel.png)
 
 ## VME-EVR-300 Front Panel Connections
 
@@ -8,28 +8,26 @@
 The front panel of the Event Receiver includes the following connections and status leds:
 
 
-Connector / Led Style Level Description
-HS Red Led Module Failure
-HS Blue Led Module Powered Down
-ACT 3-color Led SAM3X Activity Led
-USB Micro-USB SAM3X Serial port / JTAG interface
-10/100 RJ45 SAM3X Ethernet Interface
-IN0 LEMO TTL (3.3V / 5V) FPTTL0 Trigger input
-IN1 LEMO TTL (3.3V / 5V) FPTTL1 Trigger input
-UNIV0/1 Universal slot Universal Output 0/1
-UNIV2/3 Universal slot Universal Output 2/3
-UNIV4/5 Universal slot Universal Output 4/5
-UNIV6/7 Universal slot Universal Output 6/7
-The output signals come through CML/GTX logic
-block 0/1
-CML0 LEMO EPY CML Mapped as Universal Output 8
-The output signals come through CML/GTX logic
-block 2
-CML1 LEMO EPY CML Mapped as Universal Output 9
-The output signals come through CML/GTX logic
-block 3
-Link TX (SFP) LC Optical 850 nm Event link Transmit
-Link RX (SFP) LC Optical 850 nm Event link Receiver
+| Connector / Led | Style          | Level           | Description  |
+| --------------- | -------------- | --------------- | ------------ |
+| HS              | Red Led        |                 | Module Failure
+| HS              | Blue Led       |                 | Module Powered Down
+| ACT             | 3-color Led    |                 | SAM3X Activity Led
+| USB             | Micro-USB      |                 | SAM3X Serial port / JTAG interface
+| 10/100          | RJ45           |                 | SAM3X Ethernet Interface
+| IN0             | LEMO           | TTL (3.3V / 5V) | FPTTL0 Trigger input
+| IN1             | LEMO           | TTL (3.3V / 5V) | FPTTL1 Trigger input
+| UNIV0/1         | Universal slot |                 | Universal Output 0/1
+| UNIV2/3         | Universal slot |                 | Universal Output 2/3
+| UNIV4/5         | Universal slot |                 | Universal Output 4/5
+| UNIV6/7         | Universal slot |                 | Universal Output 6/7
+|                 |                |                 | The output signals come through CML/GTX logic block 0/1
+| CML0            | LEMO EPY       | CML             | Mapped as Universal Output 8
+|                 |                |                 | The output signals come through CML/GTX logic block 2
+| CML1            | LEMO EPY       | CML             | Mapped as Universal Output 9
+|                 |                |                 | The output signals come through CML/GTX logic block 3
+| Link TX (SFP)   | LC             | Optical 850 nm  | Event link Transmit
+| Link RX (SFP)   | LC             | Optical 850 nm  | Event link Receiver
 
 #### VME TTL Input Levels
 
