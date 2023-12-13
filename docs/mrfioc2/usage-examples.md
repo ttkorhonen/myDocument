@@ -1,51 +1,17 @@
-## 4. Examples
+## Examples
 
-### 4.1. Setting Up a Event System with Delay Compensation
+## Setting Up a Event System with Delay Compensation
 
 In this example we are setting up a test system consisting of two VME-EVM-300 boards and to VME-
 EVR-300 boards. The first EVM (EVM1) is configured as the master and the seconds EVM (EVM2) as
 a fan-out. One EVR (EVR1) will be connected to the master (EVM1) and the other EVR (EVR2) to the
-fan-out (EVM2). The example setup is represented in figure 24.
+fan-out (EVM2). The example setup is represented here:
 
-(^12)
-(^34)
-(^56)
-(^78)
-(^12)
-(^34)
-(^56)
-(^78)
-Master
-Fan−Out
-Topology IDduplex fibre
-00000000
-Topology ID 00000001
-EVM1
-EVM2 duplex fibre
-Topology ID
-Topology ID 00000014
-00000002
-UNIV0
-UNIV0
-IN0
-RFIN
-TTL level 50 Hz
-571,429 MHz+6 dBm
-duplex fibre
-U
-LINK
-LINK
-ReceiverEvent
-EVR2
-ReceiverEvent
-EVR1
-UNIV−TTL
-UNIV−TTL
-UNIV1
-UNIV1
-Figure 24: Example Setup
+![image](images/example-DC-setup.png)
 
-#### 4.1.1. Initializing Master EVG
+Figure: Example Setup
+
+### Initializing Master EVG
 
 First we need to configure the master EVG to use the external RF input reference clock divided by four.
 After changing the clock source we need to reload the fractional synthesizer control word to force an internal
@@ -66,15 +32,12 @@ EvgSystemMasterEnable(evm1, 1); *(evm1+0x04) = 0xe0c00000;
 EvgBeaconEnable(evm1, 1);
 EvgEnable(evm1, 1);
 ```
-#### 4.1.2. Initializing VME-EVM-300 as Fan-Out
+### Initializing VME-EVM-300 as Fan-Out
 
 The downstream EVM has to be configured to use the upstream EVG/EVM clock as its event clock and
 after this we need to (re)load the fractional synthesizer control word.
 
 We enable the EVM and please note that both the system master bit and beacon generator bit are disabled.
-
-
-4. Examples 102
 
 ```
 API calls Register access
@@ -82,7 +45,7 @@ EvgSetRFInput(evm2, 4, 0x0c); *(evm2+0x50) = 0xc40c0000;
 EvgSetFracDiv(evm2, 0x0891c100); *(evm2+0x80) = 0x0891c100;
 EvgEnable(evm2, 1); *(evm2+0x04) = 0xe0000000;
 ```
-#### 4.1.3. Initializing VME-EVR-300
+### Initializing VME-EVR-300
 
 We start with setting the fractional synthesizer operating frequency (reference for event clock) so that the
 EVR can lock to the received event stream.
@@ -108,7 +71,7 @@ The datapath delay value can be read from the EVR DCRxValue register at offset 0
 above with 2 m fiber patches the measured datapath delay value shows 0x0032cff0 (355.686 ns) for EVR1
 and 0x00125eea (128.595 ns) for EVR2.
 
-#### 4.1.4. Generating an Event from AC input
+### Generating an Event from AC input
 
 A 50 Hz TTL level square wave signal is provided to the IN0 input on EVM1. We setup the input AC input
 divider to divide by 5, set the AC input logic to trigger event trigger 0 and we configure event trigger 0 to
@@ -120,7 +83,7 @@ EvgSetACInput(evm1, 0, 0, 5, 0); *(evm1+0x10) = 0x00000500;
 EvgSetACMap(evm1, 0); *(evm1+0x14) = 0x00000001;
 EvgSetTriggerEvent(evm1, 0, 0x01, 1); *(evm1+0x100) = 0x00000101;
 ```
-#### 4.1.5. Receiving an Event and Generating an Output Pulse
+### Receiving an Event and Generating an Output Pulse
 
 To generate a pulse on a received event code in the EVR we need to setup the mapping RAM to trigger a
 pulse generator on an event and setup the pulse generator. We also need to map the pulse generator to the
@@ -141,9 +104,7 @@ same way as the EVR1 in this example we should see a similar pulse on its UNIV0 
 output of EVR1.
 
 
-4. Examples 104
-
-### 4.2. Event Receiver Standalone Operation
+## Event Receiver Standalone Operation
 
 Starting from firmware version 0207 capability to use the EVR as a stand-alone unit has been added. Func-
 tionality includes:
@@ -158,6 +119,7 @@ tionality includes:
 The example code below has been written for the mTCA-EVR-300, but with minor changes (remapping the
 outputs) it can be used for other form factors as well.
 
+```
 int evr_sa(volatile struct MrfErRegs *pEr)
 {
 int i;
@@ -189,10 +151,11 @@ EvrSetPulseProperties(pEr, i, 0, 0, 0, 1, 1);
 EvrSetFPOutMap(pEr, i, 0x3f00 | i);
 }
 
+```
 
+### Operation
 
-##### 
-
+```
 /* Setup Prescaler 0*/
 EvrSetPrescaler(pEr, 0, 0x07ffff);
 /* Write some RAM events*/
@@ -207,5 +170,5 @@ EvrMapRamEnable(pEr, 0, 1);
 EvrOutputEnable(pEr, 1);
 return 0;
 }
-
+```
 
