@@ -181,7 +181,7 @@ in the alarm range for that number of seconds.
 
 See [Alarm Specification](https://docs.epics-controls.org/en/latest/guides/EPICS_Process_Database_Concepts.html#alarm-specification)
 for a complete explanation of record alarms and of the standard fields.
-[Alarm Fields](project:dbCommon.md#Alarm_Fields) lists other fields related
+[Alarm Fields](#alarm-fields) lists other fields related
 to alarms that are common to all record types.
 
 | Field | Summary | Type | DCT | Default |  Read | Write | CA PP |
