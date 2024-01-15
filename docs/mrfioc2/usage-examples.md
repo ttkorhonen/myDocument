@@ -59,14 +59,14 @@ examples rate is 7 ns.
 
 In this example we set the target delay to 0x02100000 which is 3.696μs.
 
-```
-API calls Register access
-EvrSetFracDiv(evr1, 0x0891c100); *(evr1+0x80) = 0x0891c100;
-EvrSetTargetDelay(evr1, 0x02100000); *(evr1+0xb0) = 0x02100000;
-EvrGetViolation(evr1, 1); *(evr1+0x08) = 0x00000001;
-EvrDCEnable(evr1, 1); *(evr1+0x04) = 0x80400000;
-EvrEnable(evr1, 1);
-```
+| API calls | Register access |
+| --------- | --------------- |
+| EvrSetFracDiv(evr1, 0x0891c100);     | *(evr1+0x80) = 0x0891c100;
+| EvrSetTargetDelay(evr1, 0x02100000); | *(evr1+0xb0) = 0x02100000;
+| EvrGetViolation(evr1, 1);            | *(evr1+0x08) = 0x00000001;
+| EvrDCEnable(evr1, 1);                | *(evr1+0x04) = 0x80400000;
+| EvrEnable(evr1, 1); |
+
 The datapath delay value can be read from the EVR DCRxValue register at offset 0x0b8. For the example
 above with 2 m fiber patches the measured datapath delay value shows 0x0032cff0 (355.686 ns) for EVR1
 and 0x00125eea (128.595 ns) for EVR2.
@@ -122,53 +122,47 @@ outputs) it can be used for other form factors as well.
 ```
 int evr_sa(volatile struct MrfErRegs *pEr)
 {
-int i;
-EvrEnable(pEr, 1);
-if (!EvrGetEnable(pEr))
-{
-printf(ERROR_TEXT "Could not enable EVR!\n");
-return -1;
-}
-EvrSetIntClkMode(pEr, 1);
-/* Build configuration for EVR map RAMS */
-{
-int ram,code;
-/* Setup MAP ram:
-event code 0x01 to 0x04 trigger pulse generators 0 through 3*/
-ram = 0;
-for (i = 0; i < 4; i++)
-{
-code = 1+i;
-EvrSetLedEvent(pEr, ram, code, 1);
-/* Pulse Triggers start at code 1 */
-EvrSetPulseMap(pEr, ram, code, i, -1, -1);
-}
-/* Setup pulse generators and front panel TTL outputs*/
-for (i = 0; i < 4; i++)
-{
-EvrSetPulseParams(pEr, i, 1, 100, 100);
-EvrSetPulseProperties(pEr, i, 0, 0, 0, 1, 1);
-EvrSetFPOutMap(pEr, i, 0x3f00 | i);
-}
+  int i;
+  EvrEnable(pEr, 1);
+  if (!EvrGetEnable(pEr))
+  {
+    printf(ERROR_TEXT "Could not enable EVR!\n");
+    return -1;
+  }
+  EvrSetIntClkMode(pEr, 1);
+  /* Build configuration for EVR map RAMS */
+  {
+    int ram,code;
+    /* Setup MAP ram: event code 0x01 to 0x04 trigger pulse generators 0 through 3*/
+    ram = 0;
+    for (i = 0; i < 4; i++)
+  {
+     code = 1+i;
+     EvrSetLedEvent(pEr, ram, code, 1);
+     /* Pulse Triggers start at code 1 */
+     EvrSetPulseMap(pEr, ram, code, i, -1, -1);
+  }
+  /* Setup pulse generators and front panel TTL outputs*/
+  for (i = 0; i < 4; i++)
+  {
+    EvrSetPulseParams(pEr, i, 1, 100, 100);
+    EvrSetPulseProperties(pEr, i, 0, 0, 0, 1, 1);
+    EvrSetFPOutMap(pEr, i, 0x3f00 | i);
+  }
 
-```
-
-### Operation
-
-```
-/* Setup Prescaler 0*/
-EvrSetPrescaler(pEr, 0, 0x07ffff);
-/* Write some RAM events*/
-EvrSetSeqRamEvent(pEr, 0, 0, 0, 1);
-EvrSetSeqRamEvent(pEr, 0, 1, 0x001ff, 2);
-EvrSetSeqRamEvent(pEr, 0, 2, 0x002ff, 3);
-EvrSetSeqRamEvent(pEr, 0, 3, 0x003ff, 4);
-EvrSetSeqRamEvent(pEr, 0, 4, 0x04000, 0x7f);
-/* Setup sequence RAM to trigger from prescaler 0 */
-EvrSeqRamControl(pEr, 0, 1, 0, 0, 0, C_EVR_SIGNAL_MAP_PRESC+0);
-EvrMapRamEnable(pEr, 0, 1);
-EvrOutputEnable(pEr, 1);
-return 0;
+  /* Setup Prescaler 0 */
+  EvrSetPrescaler(pEr, 0, 0x07ffff);
+  /* Write some RAM events*/
+  EvrSetSeqRamEvent(pEr, 0, 0, 0, 1);
+  EvrSetSeqRamEvent(pEr, 0, 1, 0x001ff, 2);
+  EvrSetSeqRamEvent(pEr, 0, 2, 0x002ff, 3);
+  EvrSetSeqRamEvent(pEr, 0, 3, 0x003ff, 4);
+  EvrSetSeqRamEvent(pEr, 0, 4, 0x04000, 0x7f);
+   /* Setup sequence RAM to trigger from prescaler 0 */
+  EvrSeqRamControl(pEr, 0, 1, 0, 0, 0, C_EVR_SIGNAL_MAP_PRESC+0);
+  EvrMapRamEnable(pEr, 0, 1);
+  EvrOutputEnable(pEr, 1);
+  return 0;
 }
 ```
 
