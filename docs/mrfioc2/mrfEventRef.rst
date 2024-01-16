@@ -6,10 +6,13 @@ MRF Timing System Reference
    :caption: Hardware:
    
    event-system-intro
+   usage-examples
    evm-mtca
    evg-registermap
    firmware-changelog 
    fct-registermap
+   evr300-mtca
+   evr300-vme
    evr-registermap
    evr-firmware-changelog 
 
