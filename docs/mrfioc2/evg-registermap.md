@@ -450,7 +450,7 @@ This register shall be written with an integer value of the event clock rate in 
 this register should read 100, for 50 MHz event clock this register should read 50. This value is used to set
 the parameters for the clock cleaner PLL and e.g. for the phase shifter in the AC input logic.
 
-## Clock Control Register
+### Clock Control Register
 
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |

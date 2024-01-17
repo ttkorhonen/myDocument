@@ -1,4 +1,4 @@
-## Examples
+# Examples of usage scenarios
 
 ## Setting Up a Event System with Delay Compensation
 
@@ -71,7 +71,7 @@ The datapath delay value can be read from the EVR DCRxValue register at offset 0
 above with 2 m fiber patches the measured datapath delay value shows 0x0032cff0 (355.686 ns) for EVR1
 and 0x00125eea (128.595 ns) for EVR2.
 
-### Generating an Event from AC input
+## Generating an Event from AC input
 
 A 50 Hz TTL level square wave signal is provided to the IN0 input on EVM1. We setup the input AC input
 divider to divide by 5, set the AC input logic to trigger event trigger 0 and we configure event trigger 0 to
@@ -83,7 +83,7 @@ EvgSetACInput(evm1, 0, 0, 5, 0); *(evm1+0x10) = 0x00000500;
 EvgSetACMap(evm1, 0); *(evm1+0x14) = 0x00000001;
 EvgSetTriggerEvent(evm1, 0, 0x01, 1); *(evm1+0x100) = 0x00000101;
 ```
-### Receiving an Event and Generating an Output Pulse
+## Receiving an Event and Generating an Output Pulse
 
 To generate a pulse on a received event code in the EVR we need to setup the mapping RAM to trigger a
 pulse generator on an event and setup the pulse generator. We also need to map the pulse generator to the
