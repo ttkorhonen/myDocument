@@ -23,12 +23,11 @@ master and if delay compensation is used it also has to have the beacon generato
 EVG/EVM can be the system master and only one EVG is allowed to have the beacon generator enabled.
 
 ```
-API calls Register access
-EvgSetRFInput(evm1, 1, 3); *(evm1+0x50) = 0xc1030000;
-EvgSetFracDiv(evm1, 0x0891c100); *(evm1+0x80) = 0x0891c100;
-```
-```
-EvgSystemMasterEnable(evm1, 1); *(evm1+0x04) = 0xe0c00000;
+API calls                            Register access 
+
+EvgSetRFInput(evm1, 1, 3);       # *(evm1+0x50) = 0xc1030000;
+EvgSetFracDiv(evm1, 0x0891c100); # *(evm1+0x80) = 0x0891c100;
+EvgSystemMasterEnable(evm1, 1);  # *(evm1+0x04) = 0xe0c00000;
 EvgBeaconEnable(evm1, 1);
 EvgEnable(evm1, 1);
 ```
@@ -40,10 +39,11 @@ after this we need to (re)load the fractional synthesizer control word.
 We enable the EVM and please note that both the system master bit and beacon generator bit are disabled.
 
 ```
-API calls Register access
-EvgSetRFInput(evm2, 4, 0x0c); *(evm2+0x50) = 0xc40c0000;
-EvgSetFracDiv(evm2, 0x0891c100); *(evm2+0x80) = 0x0891c100;
-EvgEnable(evm2, 1); *(evm2+0x04) = 0xe0000000;
+API calls                        Register access
+
+EvgSetRFInput(evm2, 4, 0x0c);    # *(evm2+0x50) = 0xc40c0000;
+EvgSetFracDiv(evm2, 0x0891c100); # *(evm2+0x80) = 0x0891c100;
+EvgEnable(evm2, 1);              # *(evm2+0x04) = 0xe0000000;
 ```
 ### Initializing VME-EVR-300
 
