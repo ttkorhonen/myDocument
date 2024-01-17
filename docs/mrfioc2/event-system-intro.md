@@ -74,19 +74,6 @@ The Event Generator has a number of functions:
   - Transmitting the [Synchronous Data](#synchronous-data) Buffer
   - Acting as a source for timestamps.
 
-### Timestamping support
-
-The event system supports timestamping by providing:
-  - Facilities to distribute a seconds value to all receivers
-  - Facilities to support generation of sub-second timestamps, usually in the event clock resolution
-  - Precisely latching the timestamp in an Event Receiver, on request or when an event code has been received.
-
-The timestamp support guarantees that all event receivers (and generators) in the same distribution will have
-precisely synchronized timestamp, up to the resolution of the event clock. For example, 100 MHz event clock results 
-in highest timestamp resolution of 10 nanoseconds.
-
-The seconds value to be distributed has to be provided to the Event Generator. 
-This is typically sourced from an external GPS receiver. 
 
 (event-processing)=
 ### Timing Events
@@ -177,8 +164,8 @@ edge of a multiplexed counter output.
 Trigger Event 0 has also the option of being triggered by a rising edge
 of the  synchronization logic output signal (that is often used for synchronising 
 with AC mains voltage). The external inputs accept TTL level signals. 
-The input logic is edge sensitive and the signals are subsequently 
-synchronized internally to the event clock.
+The input logic is edge sensitive and the signals are subsequently synchronized internally to the event
+clock.
 
 ![image](images/trigger-event.png)
 
@@ -331,7 +318,22 @@ If there is an upstream EVG, the state of all distributed bus bits may be forwar
 
 Figure: Distributed Bus signal source selection.
 
-### Timestamp Generator
+(timestamp-support)=
+### Timestamping support
+
+The event system supports timestamping by providing:
+  - Facilities to distribute a seconds value to all receivers
+  - Facilities to support generation of sub-second timestamps, usually in the event clock resolution
+  - Precisely latching the timestamp in an Event Receiver, on request or when an event code has been received.
+
+The timestamp support guarantees that all event receivers (and generators) in the same distribution will have
+precisely synchronized timestamp, up to the resolution of the event clock. For example, 100 MHz event clock results 
+in highest timestamp resolution of 10 nanoseconds.
+
+The seconds value to be distributed has to be provided to the Event Generator. 
+This is typically sourced from an external GPS receiver. 
+
+#### Timestamp Generator
 
 The model of time implemented by the MRF hardware is two 32-bit unsigned
 integers: counter, and "seconds". The counter is maintained by each EVR
@@ -363,31 +365,20 @@ Several methods of sending the seconds value to the EVG are possible:
 
 #### External hardware
 
-communicates with a GPS
+In this method, hardware is used to communicate with a GPS
 receiver over a serial (RS232) link to receive the timestamp and
-connects to two external inputs on the EVG. These inputs must be
+connect to two external inputs on the EVG. These inputs must be
 programmed to send the shift 0/1 codes.
 
 #### Time from an NTP server
 
-can be used without special hardware. This requires only a 1Hz (PPS)
+Time from a NTP server can be used without special hardware. This requires only a 1Hz (PPS)
 signal coming from the same source as the NTP time. Several commerial
 vendors supply dedicated NTP servers with builtin GPS receivers and 1Hz
 outputs. A software function is provided on the EVG which is triggered
 by the 1Hz signal. At the start of each second it sends the next second
 (current+1), which will be latched after the following 1Hz tick.
 
-
-
-Logic has been added to automatically increment and send out the 32-bit
-seconds value. Using this feature requires the two externally supplied
-clocks as shown above, but the events 0x70 and 0x71 get generated
-automatically.
-
-After the rising edge of the slower clock on DBUS4, the internal seconds
-counter is incremented and the 32 bit binary value is sent out LSB first
-as 32 events 0x70 and 0x71. The seconds counter can be updated by
-software by using the `TSValue` and `TSControl` registers.
 
 #### Timestamping Inputs
 
@@ -408,6 +399,16 @@ The two seconds counter events are used to shift in a 32-bit seconds
 value between consecutive timestamp reset events. In the EVR the value
 of the seconds shift register is transferred to the seconds counter at
 the same time the higher running part of the timestamp counter is reset.
+
+Logic has been added to automatically increment and send out the 32-bit
+seconds value. Using this feature requires the two externally supplied
+clocks as shown above, but the events 0x70 and 0x71 get generated
+automatically.
+
+After the rising edge of the slower clock on DBUS4, the internal seconds
+counter is incremented and the 32 bit binary value is sent out LSB first
+as 32 events 0x70 and 0x71. The seconds counter can be updated by
+software by using the `TSValue` and `TSControl` registers.
 
 The distributed bus event inputs can be enabled independently through
 the distributed bus event enable register. The events generated through
@@ -719,7 +720,7 @@ timestamps into FIFO memory to be read by a CPU.
 ### Functional Description
 
 After recovering the event clock the Event Receiver demultiplexes the
-event stream to 8-bit distributed bus data and 8-bit event codes. The
+event stream to  8-bit event codes and 8-bit distributed bus data. The
 distributed bus may be configured to share its bandwidth with time
 deterministic data transmission.
 
@@ -739,10 +740,10 @@ pointed to by the event code determines what actions will be taken.
 | > \...   | > \... | > \...   | > \...   | > \...   | > \...   |
 | > 0xFF   | 0x0FF0 | 4 bytes/32 bits | 4 bytes/32 bits | 4 bytes/32 bits | 4 bytes/32 bits    |
 
-There are 32 bits reserved for internal functions which are by default
-mapped to the event codes shown in table . The remaining 96 bits control
-internal pulse generators. For each pulse generator there is one bit to
-trigger the pulse generator, one bit to set the pulse generator output
+There are 32 bits (96 to 127) that are reserved for internal functions, some of which are by default
+mapped to the event codes shown in the table below. 
+The remaining 96 bits control internal pulse generators. For each pulse generator there is 
+one bit to trigger the pulse generator, one bit to set the pulse generator output
 and one bit to clear the pulse generator output.
 
 | Map bit    | Default event code | Function                                     |
@@ -881,27 +882,27 @@ case of a bidirectional signal to tri-state set both bytes to 61 (0x3d).
 
 Table 18: Output mapping values
 
-  Mapping ID   Signal
-  ------------ ---------------------------------------------------------------------------------------------------
-  0 to n-1     Pulse generator output (number n of pulse generators depends on HW and firmware version)
-  n to 31      (Reserved)
-  32           Distributed bus bit 0 (DBUS0)
-  \...         \...
-  39           Distributed bus bit 7 (DBUS7)
-  40           Prescaler 0
-  41           Prescaler 1
-  42           Prescaler 2
-  43 to 47     (Reserved)
-  48           Flip-flop output 0
-  \...         \...
-  55           Flip-flop output 7
-  56 to 58     (Reserved)
-  59           Event clock output (only on PXIe-EVR-300)
-  60           Event clock output with 180° phase shift (only on PXIe-EVR-300)
-  61           Tri-state output (for PCIe-EVR-300DC with input module populated in IFB-300's Universal I/O slot)
-  62           Force output high (logic 1)
-  63           Force output low (logic 0)
-
+  | Mapping ID  |  Signal                                                                                            |
+  |------------ | ---------------------------------------------------------------------------------------------------|
+  | 0 to n-1    |  Pulse generator output (number n of pulse generators depends on HW and firmware version)
+  | n to 31     |  (Reserved)
+  | 32          |  Distributed bus bit 0 (DBUS0)
+  | \...        |  \...
+  | 39          |  Distributed bus bit 7 (DBUS7)
+  | 40          |  Prescaler 0
+  | 41          |  Prescaler 1
+  | 42          |  Prescaler 2
+  | 43 to 47    |  (Reserved)
+  | 48          |  Flip-flop output 0
+  | \...        |  \...
+  | 55          |  Flip-flop output 7
+  | 56 to 58    |  (Reserved)
+  | 59          |  Event clock output (only on PXIe-EVR-300)
+  | 60          |  Event clock output with 180° phase shift (only on PXIe-EVR-300)
+  | 61          |  Tri-state output (for PCIe-EVR-300DC with input module populated in IFB-300's Universal I/O slot)
+  | 62          |  Force output high (logic 1)
+  | 63          |  Force output low (logic 0)
+ 
 ### Flip-flop Outputs (from FW version 0E0207)
 
 There are 8 flip-flop outputs. Each of these is using two pulse
@@ -910,16 +911,16 @@ resetting the output low. In the table below you can see the
 relationship between flip-flops and pulse generators and the output
 mapping IDs.
 
-  flip-flop   mappingID   Set          Reset
-  ----------- ----------- ------------ ------------------
-  0           48          Pulse gen.   0 Pulse gen. 1
-  1           49          Pulse gen.   2 Pulse gen. 3
-  2           50          Pulse gen.   4 Pulse gen. 5
-  3           51          Pulse gen.   6 Pulse gen. 7
-  4           52          Pulse gen.   8 Pulse gen. 9
-  5           53          Pulse gen.   10 Pulse gen. 11
-  6           54          Pulse gen.   12 Pulse gen. 13
-  7           55          Pulse gen.   14 Pulse gen. 15
+  | flip-flop   | mappingID   |Set          | Reset
+  | ----------- | ----------- |------------ | ------------------
+  | 0           | 48          |Pulse gen.   | 0 Pulse gen. 1
+  | 1           | 49          |Pulse gen.   | 2 Pulse gen. 3
+  | 2           | 50          |Pulse gen.   | 4 Pulse gen. 5
+  | 3           | 51          |Pulse gen.   | 6 Pulse gen. 7
+  | 4           | 52          |Pulse gen.   | 8 Pulse gen. 9
+  | 5           | 53          |Pulse gen.   | 10 Pulse gen. 11
+  | 6           | 54          |Pulse gen.   | 12 Pulse gen. 13
+  | 7           | 55          |Pulse gen.   | 14 Pulse gen. 15
 
 ### Front Panel Universal I/O Slots
 
@@ -1098,18 +1099,18 @@ event receiver using a fractional synthesiser. A Micrel
 Synthesiser with a reference clock of 24 MHz is used. The following
 table lists programming bit patterns for a few frequencies.
 
-  Event Rate                     Configuration Bit Pattern   Reference Output   Precision (theoretical)
-  ------------------------------ --------------------------- ------------------ -------------------------
-  142.8 MHz                      0x0891C100                  142.857 MHz        0
-  499.8 MHz/4 = 124.95 MHz       0x00FE816D                  124.95 MHz         0
-  499.654 MHz/4 = 124.9135 MHz   0x0C928166                  124.907 MHz        -52 ppm
-  476 MHz/4 = 119 MHz            0x018741AD                  119 MHz            0
-  106.25 MHz (fibre channel)     0x049E81AD                  106.25 MHz         0
-  499.8 MHz/5 = 99.96 MHz        0x025B41ED                  99.956 MHz         -40 ppm
-  50 MHz                         0x009743AD                  50.0 MHz           0
-  499.8 MHz/10 = 49.98 MHz       0x025B43AD                  49.978 MHz         -40 ppm
-  499.654MHz/4=124.9135MHz       0x0C928166                  124.907MHz         -52 ppm
-  50 MHz                         0x009743AD                  50.0 MHz           0
+  | Event Rate                     | Configuration Bit Pattern   | Reference Output   | Precision (theoretical)
+  | ------------------------------ | --------------------------- | ------------------ | -------------------------
+  | 142.8 MHz                      | 0x0891C100                  | 142.857 MHz        | 0
+  | 499.8 MHz/4 = 124.95 MHz       | 0x00FE816D                  | 124.95 MHz         | 0
+  | 499.654 MHz/4 = 124.9135 MHz   | 0x0C928166                  | 124.907 MHz        | -52 ppm
+  | 476 MHz/4 = 119 MHz            | 0x018741AD                  | 119 MHz            | 0
+  | 106.25 MHz (fibre channel)     | 0x049E81AD                  | 106.25 MHz         | 0
+  | 499.8 MHz/5 = 99.96 MHz        | 0x025B41ED                  | 99.956 MHz         | -40 ppm
+  | 50 MHz                         | 0x009743AD                  | 50.0 MHz           | 0
+  | 499.8 MHz/10 = 49.98 MHz       | 0x025B43AD                  | 49.978 MHz         | -40 ppm
+  | 499.654MHz/4=124.9135MHz       | 0x0C928166                  | 124.907MHz         | -52 ppm
+  | 50 MHz                         | 0x009743AD                  | 50.0 MHz           | 0
 
 The event receiver reference clock is required to be in ±100 ppm range
 of the event generator event clock.
