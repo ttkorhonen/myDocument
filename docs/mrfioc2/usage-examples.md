@@ -1,5 +1,7 @@
 # Examples of usage scenarios
 
+These examples use the MRF Linux API, to be found [here](https://github.com/jpietari/mrf-linux-api).
+
 ## Setting Up a Event System with Delay Compensation
 
 In this example we are setting up a test system consisting of two VME-EVM-300 boards and to VME-
