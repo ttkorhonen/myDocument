@@ -3,10 +3,15 @@ MRF Timing System Reference
 
 .. toctree::
    :maxdepth: 1
-   :caption: Hardware:
+   :caption: Introduction:
    
    event-system-intro
    usage-examples
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Hardware:
+
    evm-mtca
    evg-registermap
    firmware-changelog 

@@ -59,13 +59,15 @@ examples rate is 7 ns.
 
 In this example we set the target delay to 0x02100000 which is 3.696μs.
 
-| API calls | Register access |
-| --------- | --------------- |
-| EvrSetFracDiv(evr1, 0x0891c100);     | *(evr1+0x80) = 0x0891c100;
-| EvrSetTargetDelay(evr1, 0x02100000); | *(evr1+0xb0) = 0x02100000;
-| EvrGetViolation(evr1, 1);            | *(evr1+0x08) = 0x00000001;
-| EvrDCEnable(evr1, 1);                | *(evr1+0x04) = 0x80400000;
-| EvrEnable(evr1, 1); |
+```
+ API calls                            Register access 
+ 
+ EvrSetFracDiv(evr1, 0x0891c100);     # *(evr1+0x80) = 0x0891c100;
+ EvrSetTargetDelay(evr1, 0x02100000); # *(evr1+0xb0) = 0x02100000;
+ EvrGetViolation(evr1, 1);            # *(evr1+0x08) = 0x00000001;
+ EvrDCEnable(evr1, 1);                # *(evr1+0x04) = 0x80400000;
+ EvrEnable(evr1, 1); |
+```
 
 The datapath delay value can be read from the EVR DCRxValue register at offset 0x0b8. For the example
 above with 2 m fiber patches the measured datapath delay value shows 0x0032cff0 (355.686 ns) for EVR1
@@ -78,10 +80,11 @@ divider to divide by 5, set the AC input logic to trigger event trigger 0 and we
 send out event code 0x01.
 
 ```
-API calls Register access
-EvgSetACInput(evm1, 0, 0, 5, 0); *(evm1+0x10) = 0x00000500;
-EvgSetACMap(evm1, 0); *(evm1+0x14) = 0x00000001;
-EvgSetTriggerEvent(evm1, 0, 0x01, 1); *(evm1+0x100) = 0x00000101;
+API calls                             Register access
+
+EvgSetACInput(evm1, 0, 0, 5, 0);      # *(evm1+0x10) = 0x00000500;
+EvgSetACMap(evm1, 0);                 # *(evm1+0x14) = 0x00000001;
+EvgSetTriggerEvent(evm1, 0, 0x01, 1); # *(evm1+0x100) = 0x00000101;
 ```
 ## Receiving an Event and Generating an Output Pulse
 
@@ -91,12 +94,13 @@ actual hardware output.
 
 
 ```
-API calls Register access
-EvrSetPulseMap(evr1, 0, 0x01, 0, -1, -1); *(evr1+0x4014) = 0x00000001;
-EvrSetPulseParams(evr1, 0, 0, 0, 1000); *(evr1+0x20C) = 0x000003e8;
-EvrSetPulseProperties(evr1, 0, 0, 0, 0, 1, 1); *(evr1+0x200) = 0x00000003;
-EvrSetUnivOutMap(evr1, 0, 0x3f00); *(evr1+0x440) = 0x3f003f3f;
-EvrMapRamEnable(evr1, 0, 1); *(evr1+0x04) = 0x88400200;
+API calls                                      Register access
+
+EvrSetPulseMap(evr1, 0, 0x01, 0, -1, -1);      # *(evr1+0x4014) = 0x00000001;
+EvrSetPulseParams(evr1, 0, 0, 0, 1000);        # *(evr1+0x20C) = 0x000003e8;
+EvrSetPulseProperties(evr1, 0, 0, 0, 0, 1, 1); # *(evr1+0x200) = 0x00000003;
+EvrSetUnivOutMap(evr1, 0, 0x3f00);             # *(evr1+0x440) = 0x3f003f3f;
+EvrMapRamEnable(evr1, 0, 1);                   # *(evr1+0x04) = 0x88400200;
 EvrOutputEnable(evr1, 1);
 ```
 Now we should see a 7μs pulse on EVR1 UNIV0 output with a rate of 10 Hz. If we configure EVR2 the
