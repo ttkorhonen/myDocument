@@ -12,10 +12,12 @@ MRF Timing System Reference
    :maxdepth: 1
    :caption: Hardware:
 
+   event-generator
    evm-mtca
    evg-registermap
    firmware-changelog 
    fct-registermap
+   event-receiver
    evr300-mtca
    evr300-vme
    evr-registermap
