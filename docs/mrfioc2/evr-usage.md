@@ -184,7 +184,7 @@ In addition to being slaved to an EVG, those EVR models/firmware which
 provide a Software Event transmission function can send timestamps as
 well. This can be used to simulate timestamps in a standalone
 environment such as a test lab. see the TimeSrc property in
-[\[sec:evg:dc:func\]](#sec:evg:dc:func){reference-type="ref+page"
+[EVG Functions (DC firmware)](#sec:evg:dc:func){reference-type="ref+page"
 reference="sec:evg:dc:func"}.
 
 TimeSrc=0
@@ -696,8 +696,7 @@ TDI=255.
 The firmware file will likely be supplied in one of two formats having
 the extensions .bit or .svf. If the provided file has the extension .svf
 then proceed to section
-[\[sec:pmc:prog\]](#sec:pmc:prog){reference-type="ref"
-reference="sec:pmc:prog"}.
+[Programming with UrJTAG](Programming with UrJTAG).
 
 To convert a .bit file to a .svf file it is necessary to get the iMPACT
 programming tool from Xilinx. The easiest way to do this is with the
@@ -871,8 +870,7 @@ a line to its start script.
     time2ntp("evrname", N)
 
 Here "evrname" is the same name given when configuring the EVR (see
-[\[sec:devnames\]](#sec:devnames){reference-type="ref"
-reference="sec:devnames"}). The memory segment ID number N must be
+[Device Names](#Device names). The memory segment ID number N must be
 between 0 and 4 inclusive. The NTP daemon enforces that segments 0 and 1
 require root permissions to use. Segments 2, 3, and 4 can be accessed by
 an unprivileged user.
@@ -1259,7 +1257,9 @@ divisor used. In other modes it reads 0.
 ### Timestamp
 
 When processed creates a human readable string with either the current event
-link time, or the event link time when code # was last received.
+link time, or the event link time when code # was last received. If code is omitted or 0,
+the the current wall clock time is used. Code may also have any valid event number 1-255. 
+Then it will print the time of the last received event. 
 
 ### Event Clock TS Div
 
