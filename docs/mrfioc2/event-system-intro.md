@@ -12,15 +12,15 @@ performed actions.
 ## Timing System Principle of Operation
 
 A basic setup of the timing system consists of an Event Generator (EVG),
-the distribution layer (Fan-Out, or Repeater) and Event Receivers (EVR).
+the distribution layer (Fan-Out, or Repeater/Concentrator) and Event Receivers (EVR).
 See the picture below.
 
 
 ![image](images/mrf-overview.png){w=500px}
 
-The event system functions by transmitting a bit stream, commonly called
+The event system functions by transmitting a bit stream, called
 event stream, between the system components. The event stream is a
-continuous flow of event frames, generated and sent out by the event
+continuous flow of 16-bit event frames, generated and sent out by the event
 generator and sent out at the \"event clock\" rate. The event clock rate
 is derived from an external RF clock or optionally an on-board clock
 generator. The event stream transmitted by the Event Generator is phase
@@ -33,7 +33,11 @@ distribution layer. Finally, the EVRs lock to the bitstream signal phase
 and thus are precisely synchronised to the bitstream, and consequently 
 to each other with a high precision.
 
-The physical media for transmission is optical fiber.
+The physical media for transmission is optical fiber. Standard networking components 
+(SFP modules, multi- or single mode fiber) are used to build the network. The network 
+is fully dedicated to timing traffic, i.e., there is no need for bandwidth sharing. 
+This makes it possible for the system to react to asynchronous events without the need
+to schedule operations in advance.
 
 There is also the possibility for bi-directional signaling
 (Configuration 2), where EVRs can not only receive the event stream but
@@ -41,6 +45,8 @@ also generate and send an event stream which will be forwarded
 \"upstream\" to the EVG via the distribution layer. In the upwards
 direction, the distribution layer nodes act as concentrators,
 multiplexing the streams from below into one stream going upwards.
+Obviously, as upstream events go through the concentrators, a full determinism
+cannot be guaranteed; phase synchronicity with the master clock is preserved though.
 
 
 In earlier versions, to use the capabilities for bi-directional
@@ -56,12 +62,13 @@ The event stream protocol is based on [8b10b encoded](https://en.wikipedia.org/w
 characters, which means that the actual bit rate is higher than the number of bits in the event frame.
 Ten bits are transmitted on the link for each 8-bit byte. 
 
-Each frame of the stream consists of two bytes. The first byte always
-contains an event code. The second byte can be configured for use in two different ways, as
+Each frame of the stream consists of two bytes. The first byte is dedicated for transmitting [timing events](#event-processing),
+and always contains an [event code](#event-codes). 
+The second byte can be configured for use in two different ways, as
 [distributed bus](#distributed-bus) bits or [synchronous data transmission](#synchronous-data). 
 These will be explained in detail later.
 
-More details about the protocol will be documented separately.
+More details about the event stream protocol will be documented separately.
 
 ## Event Generator
 
@@ -72,31 +79,36 @@ The Event Generator has a number of functions:
   - Generating and transmitting the [timing events](#event-processing)
   - Transmitting the [Distributed Bus](#distributed-bus) bits
   - Transmitting the [Synchronous Data](#synchronous-data) Buffer
-  - Acting as a source for timestamps.
+  - Acting as a [source for timestamps](#timestamping-support).
 
 
 (event-processing)=
 ### Timing Events
 
-As mentioned earlier, the first byte in the event stream is always reserved
+As mentioned above, the first byte in the event stream is always reserved
 for transmitting an event code. Thus, events are transmitted at the event 
 clock rate.
 
 Event codes can be understood as instructions to indicate that something 
 has to happen and a corresponding action needs to be taken. The actions can be defined by the user. 
 
-On the receiving side (the EVR), reception of a code can be configured to do actions that can include:
-  - generating an output (trigger) pulse, to trigger actions in some other components,
+For example, in the context of an accelerator, an event
+could be something like \"send a beam pulse\" and used to trigger a particle source 
+to produce and feed a pulse to the accelerator. The 8-bit
+event codes can be configured by the user to have different meanings.
+The \"send a beam pulse\" event could be assigned the number 10, for
+example.
+
+The event code will be inserted in the event stream and distributed via the 
+distribution layer to several event receivers (EVR.)
+
+On the receiving side, the EVR can be configured to act accordingly when it receives the code. 
+Possible actions can include:
+  - generating an hardware output (trigger) pulse, to trigger actions in some other components,
   - generating a software interrupt, to trigger software actions
   - actions related to managing timestamps
-  - a number of other possible actions, defined in the Event Receiver documentation.
+  - a number of other possible actions, defined in the [Event Receiver documentation](event-receiver).
 
-For example, in the context of an accelerator, an event
-could be something like \"start acceleration\" and used to trigger a RF
-system to produce and feed a pulse to an accelerating cavity. The 8-bit
-event codes can be configured by the user to have different meanings.
-The \"start acceleration\" event could be assigned the number 10, for
-example.
 
 (event-codes)=
 #### Event Codes
