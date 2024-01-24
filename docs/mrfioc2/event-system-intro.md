@@ -70,7 +70,7 @@ These will be explained in detail later.
 
 ![image](images/event-frames.png){w=500px}
 
-(The above image shows a frame interval corresponding to 88.0525 MHz event clock.)
+(The above image shows a frame interval of 11.3 nanoseconds, corresponding to 88.0525 MHz event clock.)
 
 More details about the event stream protocol can be found [here](event-stream-protocol).
 
@@ -89,10 +89,6 @@ The Event Generator has a number of functions:
 (event-processing)=
 ### Timing Events
 
-As mentioned above, the first byte in the event stream is always reserved
-for transmitting an event code. Thus, events are transmitted at the event 
-clock rate.
-
 Event codes can be understood as instructions to indicate that something 
 has to happen and a corresponding action needs to be taken. The actions can be defined by the user. 
 
@@ -104,9 +100,9 @@ The \"send a beam pulse\" event could be assigned the number 10, for
 example.
 
 The event code will be inserted in the event stream and distributed via the 
-distribution layer to several event receivers (EVR.)
+distribution layer to several event receivers (EVR).
 
-On the receiving side, the EVR can be configured to act accordingly when it receives the code. 
+On the receiving side, the EVR can be configured to act in a number of ways when it receives the code. 
 Possible actions can include:
   - generating an hardware output (trigger) pulse, to trigger actions in some other components,
   - generating a software interrupt, to trigger software actions
@@ -117,8 +113,7 @@ Possible actions can include:
 (event-codes)=
 #### Event Codes
 
-With 8 bits, 256 different event codes can be expressed. 
-Most of these codes can be freely configurable by
+A byte of 8 bits gives 256 different event codes. Actions for most of these codes can be freely configured by
 the user, however a few codes have special predefined functions. The
 special function event codes are listed in the table below.
 
@@ -139,6 +134,11 @@ special function event codes are listed in the table below.
 | 0x7F     | End of Sequence    | \-         | \-                   |
 | 0x80-FF  | \-                 | User Defined | User Defined         |
 
+```{note} Beacon events
+
+Beacon events are related to the active delay compensation and shall not be used in user applications.
+
+```
 
 Table: Event Codes
 
@@ -331,17 +331,17 @@ deterministic data transmission.
 
 ### Event Decoding
 
-The Event Receiver provides two mapping RAMs of 256 × 128 bits. Only one
-of the RAMs can be active at a time, however both RAMs may be modified
-at any time. The event code is applied to the address lines of the active
-mapping RAM. The 128-bit data programmed into a specific memory location
-pointed to by the event code determines what actions will be taken.
+Actions that the Event Receiver does when an event is received are configured
+by setting up [event mapping RAMs](#event-decoding-ram) in the EVR. The EVR provides two mapping RAMs 
+of 256 × 128 bits each. The 128-bit data programmed into the corresponding 
+memory location pointed to by the event code determines what actions will be taken.
 
 
 ### Heartbeat Monitor
 
-A heartbeat monitor is provided to receive heartbeat events. Event code
-\$7A is by default set up to reset the heartbeat counter. If no
+Heartbeat facility can be used to detect the loss of communication between the EVR and the EVG.
+A [heartbeat monitor](#heartbeat-monitor) is provided to receive heartbeat events. Event code
+\$7A is sent by the EVG periodically to reset the heartbeat counter. If no
 heartbeat event is received the counter times out (approx. 1.6 s) and a
 heartbeat flag is set. The Event Receiver may be programmed to generate
 a heartbeat interrupt at timeout.
@@ -349,15 +349,19 @@ a heartbeat interrupt at timeout.
 ### Event FIFO and Timestamp Events
 
 The Event System provides a global timebase to attach timestamps to
-collected data and performed actions. The time stamping system consists
-of a 32-bit timestamp event counter and a 32-bit seconds counter. The
+collected data and performed actions. The time stamping system provides
+a 32-bit timestamp event counter and a 32-bit seconds counter. The
 timestamp event counter either counts received timestamp counter clock
 events or runs freely with a clock derived from the event clock. The
 event counter is also able to run on a clock provided on a distributed
 bus bit.
+When an event is received, the timestamp counters are latched and stored 
+in an event FIFO. This way, a software driver can pick up the exact timestamp when
+the event was received and attach it to data, for example to an EPICS record timestamp.
 
 ### Event Log
 
+To debug or monitor the timing system performance, an event log facility is provided.
 Up to 512 events with timestamping information can be stored in the
 event log. The log is implemented as a ring buffer and is accessible as
 a memory region. Logging events can be stopped by an event or software.
@@ -372,6 +376,8 @@ configurable size data buffer to up to 2 kbytes.
 
 ### Pulse Generators
 
+Programmable pulse generators give a number of ways to configure how
+hardware (electrical/optical) outputs work. 
 The structure of the pulse generation logic is shown in the figure
 below. Three signals from the mapping RAM control the output of the
 pulse: trigger, 'set' pulse and 'reset' pulse. A trigger causes the
@@ -419,14 +425,15 @@ The GTX Outputs provide low jitter signals with special outputs.
 The outputs can work in different
 configurations: pulse mode, pattern mode and frequency mode.
 
-### Configurable Size Data Buffer (EVR)
+### Synchronous Data Transmission
 
 Pre-DC (Delay Compensation) event systems provided a way to to transmit
-configurable size data packets that may be transmitted over the event
-system link. The buffer transmission size is configured in the Event
-Generator to up to 2 kbytes. The Event Receiver is able to receive
-buffers of any size from 4 bytes to 2 kbytes in four byte (long word)
-increments.
+configurable size data packets over the event system link. 
+The buffer transmission size is configured in the Event
+Generator to up to 2 kbytes, and can be filled with arbitrary data
+by the host system.
+The Event Receiver is able to receive buffers of any size 
+from 4 bytes to 2 kbytes in four byte (long word) increments.
 
 #### Segmented Data Buffer
 
@@ -470,6 +477,12 @@ requirements.
 
 ## Delay Compensation
 
+In the 300-series event system, an active delay compensation feature was added.
+The delay compensation can be used to stabilize the system against e.g, thermal drifts
+of optical cables that affect the signal propagation time in the system. 
+With different cable lengths, long distances and thermal gradients, the propagation delays 
+could drift and disturb operation in cases where long-term timing stability is critical.
+
 With the active delay compensation feature the Event Generator and
 distribution layer have been integrated into a single product, the Event
 Master (EVM).
@@ -491,12 +504,13 @@ layout.
 
 ### Active Delay Compensation
 
-Delay compensation is achieved in measuring the propagation delay of
+Delay compensation is achieved by measuring the propagation delay of
 events from the delay compensation master EVM through the distribution
 network up to the Event Receivers. At the last stage the EVR is aware of
 the delay through the network and adjusts an internal FIFO depth to
 match a programmed target delay value.
 
+(dc-eventmaster)=
 #### Timing System Master
 
 The top node in the Timing System has the important task to generate
@@ -507,13 +521,14 @@ to be initialised in fan-out mode.
 
 ![image](images/dc-timing-system-master.png)
 
-Figure 2: Timing System Master
+Figure: Timing System Master
 
-The beacon generator sends out the beacon event (code 0x7e) at a rate of
+The beacon generator sends out beacon events (code 0x7e) at a rate of
 event clock/215. When the next node receives the beacon it sends it
 immediately back to the master which measures the propagation delay of
 the beacon event. 
 
+(dc-fanout)=
 #### Timing System Fan-Out
 
 In EVMs configured as fan-outs, beacons from the Timing System Master 
@@ -531,6 +546,7 @@ quality. The fan-out modifies the delay value and delay status fields
 in the DC segment for each port and sends out the new DC segments through 
 ports 1 through 8.
 
+(dc-event-receiver)=
 #### Timing System Event Receiver
 
 The Event Receiver receives the beacon event and returns it back

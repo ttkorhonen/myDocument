@@ -6,10 +6,12 @@ The structure of the event stream is described to help understand the functionin
 
 ## Protocol Details
 The MRF Timing system protocol is based on [8b10b encoded](https://en.wikipedia.org/wiki/8b/10b_encoding) 
-characters. Two characters are transmitted on every event clock cycle. The first encoded byte is an event code and the second encoded byte is shared by the distributed bus and synchronous data buffer.
+characters. Two characters are transmitted on every event clock cycle. The first encoded byte is an event code and 
+the second encoded byte is shared by the distributed bus and synchronous data buffer.
 
-Event codes are encoded as characters D01.0 through D31.7. Character D00.0 is reserved and transmitted when there is no event code to transmit. 
-To synchronize the receivers every fourth empty event slot is transmitted as a synchronisation character K28.5.
+Event codes are encoded as characters D01.0 through D31.7. Character D00.0 is reserved and 
+transmitted when there is no event code to transmit. 
+To synchronize the receivers, every fourth empty event slot is transmitted as a synchronisation character K28.5.
 
 The data to be transmitted is stored in a 2 kbyte dual-ported memory starting from the lowest address 0. 
 This memory is directly accessible from the mapped memory area. The transfer size is determined by bufsize register bits in our byte increments. The transmission is triggered by software. Two flags tx_running and tx_complete represent the status of transmission.
@@ -17,15 +19,16 @@ Transmission utilises two K-characters to mark the start and end of the data tra
 
 
 The example below shows the following details:
-• Synchronisation characters at cycle 0, 4, 8, 12 and 20. Please note that event code transmission overrides synchronisation character transmission at cycle 16.
-• Event code transmissions at following cycles:
-– 2 - Beacon event (beacon event code is reserved and shall not be used for user events) – 6 – User event code 0x10
-– 16 – User event code 0x20
-• A clock with frequency event clock / 4 on distributed bus bit zero: 
-– ‘0’at cycle 0, 4, 8, 12, 16, 20
-– ‘1’ at cycle 2, 6, 10, 14, 18, 22
-• Data packet transmission on the synchronous data bus:
-– Four bytes 0xC0FFEE99 are transmitted to address 0x0A0 of the data buffer
+- Synchronisation characters at cycle 0, 4, 8, 12 and 20. Please note that event code transmission overrides synchronisation character transmission at cycle 16.
+- Event code transmissions at following cycles:
+   - 2 - Beacon event (beacon event code is reserved and shall not be used for user events) 
+   - 6 – User event code 0x10
+   - 16 – User event code 0x20
+- A clock with frequency event clock / 4 on distributed bus bit zero: 
+   - ‘0’at cycle 0, 4, 8, 12, 16, 20
+- ‘1’ at cycle 2, 6, 10, 14, 18, 22
+- Data packet transmission on the synchronous data bus:
+   - Four bytes 0xC0FFEE99 are transmitted to address 0x0A0 of the data buffer
 
 | Cycle    |  Event slot              |   Distributed Bus / Data slot  |
 | -------- |  ------------------      | ------------------------------ |

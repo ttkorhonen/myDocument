@@ -17,6 +17,7 @@ event stream to  8-bit event codes and 8-bit distributed bus data. The
 distributed bus may be configured to share its bandwidth with time
 deterministic data transmission.
 
+(event-decoding-ram)=
 ### Event Decoding
 
 The Event Receiver provides two mapping RAMs of 256 × 128 bits. Only one
@@ -67,6 +68,7 @@ and one bit to clear the pulse generator output.
 | ...        | n/a |
 | 0          | n/a                | Reset pulse generator 0 output low           |
 
+(heartbeat-monitor)=
 ### Heartbeat Monitor
 
 A heartbeat monitor is provided to receive heartbeat events. Event code
@@ -289,7 +291,7 @@ the CML Control register.
 
 In pattern mode one can generate arbitrary bit patterns taking into account following:
 
-:   -   The pattern length is a multiple of 40 bits, where each bit is
+    -   The pattern length is a multiple of 40 bits, where each bit is
         1/40th of the event clock period
     -   Maximum length of the arbitrary pattern is 40 × 2048 bits
     -   A pattern can be triggered from any pulse generator, distributed
@@ -341,9 +343,8 @@ The procedure to receive a segmented data buffer is following:
 :   -   check that receive complete flag for received segment is set
     -   check that starting segment overflow flag is cleared
     -   read transmission size from segment receive data counter
-    -   copy segment data from segmented data buffer memory into system
-        RAM • verify that starting segment overflow flag is still
-        cleared
+    -   copy segment data from segmented data buffer memory into system RAM 
+    -   verify that starting segment overflow flag is still cleared
     -   clear segment receive complete flag
 
 Starting with firmware 0205 the delay compensation logic uses the last
