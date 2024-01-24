@@ -177,7 +177,7 @@ event clock rate) from the event generator to the event receivers.
 :class: dropdown
 
 Before introduction of delay compensation, if the data transfer feature was not in use,
-the highest time resolution for the distributed bus bits was equal to ßthe event clock rate.
+the highest time resolution for the distributed bus bits was equal to half of the event clock rate.
 ```
 
 The source for distributed bus signals may be an external source 

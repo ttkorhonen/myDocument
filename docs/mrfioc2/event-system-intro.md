@@ -34,7 +34,7 @@ and thus are precisely synchronised to the bitstream, and consequently
 to each other with a high precision.
 
 The physical media for transmission is optical fiber. Standard networking components 
-(SFP modules, multi- or single mode fiber) are used to build the network. The network 
+([SFP modules](https://en.wikipedia.org/wiki/Small_Form-factor_Pluggable) , multi- or single mode fiber) are used to build the network. The network 
 is fully dedicated to timing traffic, i.e., there is no need for bandwidth sharing. 
 This makes it possible for the system to react to asynchronous events without the need
 to schedule operations in advance.

@@ -26,7 +26,7 @@ The example below shows the following details:
    - 16 – User event code 0x20
 - A clock with frequency event clock / 4 on distributed bus bit zero: 
    - ‘0’at cycle 0, 4, 8, 12, 16, 20
-- ‘1’ at cycle 2, 6, 10, 14, 18, 22
+   - ‘1’ at cycle 2, 6, 10, 14, 18, 22
 - Data packet transmission on the synchronous data bus:
    - Four bytes 0xC0FFEE99 are transmitted to address 0x0A0 of the data buffer
 
