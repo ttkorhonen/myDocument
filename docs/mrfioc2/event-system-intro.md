@@ -68,11 +68,11 @@ The second byte can be configured for use in two different ways, as
 [distributed bus](#distributed-bus) bits or [synchronous data transmission](#synchronous-data). 
 These will be explained in detail later.
 
-![image](images/event-frames.png)
+![image](images/event-frames.png){w=500px}
 
 (The above image shows a frame interval corresponding to 88.0525 MHz event clock.)
 
-More details about the event stream protocol will be documented separately.
+More details about the event stream protocol can be found [here](event-stream-protocol).
 
 ## Event Generator
 
