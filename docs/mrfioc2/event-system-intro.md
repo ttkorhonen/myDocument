@@ -45,7 +45,7 @@ also generate and send an event stream which will be forwarded
 \"upstream\" to the EVG via the distribution layer. In the upwards
 direction, the distribution layer nodes act as concentrators,
 multiplexing the streams from below into one stream going upwards.
-Obviously, as upstream events go through the concentrators, a full determinism
+Obviously, as upstream events go through the concentrators, full determinism
 cannot be guaranteed; phase synchronicity with the master clock is preserved though.
 
 
@@ -67,6 +67,10 @@ and always contains an [event code](#event-codes).
 The second byte can be configured for use in two different ways, as
 [distributed bus](#distributed-bus) bits or [synchronous data transmission](#synchronous-data). 
 These will be explained in detail later.
+
+![image](images/event-frames.png)
+
+(The above image shows a frame interval corresponding to 88.0525 MHz event clock.)
 
 More details about the event stream protocol will be documented separately.
 
