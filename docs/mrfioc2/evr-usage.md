@@ -86,14 +86,14 @@ event links to the local inputs and outputs. These sub-units include:
 the Event Mapping Ram, Pulse Generators, Prescalers (clock dividers),
 and the logical controls for the physical inputs and outputs.
 
-![EVR blocks](images/mrf-evr-blocks.png){#blocks}
-
+![EVR blocks](images/mrf-evr-blocks.png){w=500px}
 
 Logical connections inside an EVR
 
+(devsup-pulsegen)=
 ### Pulse Generators
 
-Each pulse generator has a an associated Delay, Width, Polarity (active
+Each [pulse generator](#pulse-generators) has a an associated Delay, Width, Polarity (active
 low/high), and (sometimes) a Prescaler (clock divider). When triggered
 by the Mapping Ram it will wait for the Delay time in its inactive
 state. Then it will transition to its active state, wait for the Width
@@ -105,9 +105,10 @@ setting of 1 gives the best resolution.
 In addition, the Mapping Ram can force a Pulse Generator into either
 state (Active/Inactive).
 
+(devsup-mappingram)=
 ### Event Mapping Ram
 
-The Event Mapping Ram is a table used to define the actions to be taken
+The [Event Mapping Ram](event-receiver#event-decoding) is a table used to define the actions to be taken
 by an EVR when it receives a particular event code number. The mapping
 it defines is a many-to-many relations. One event can cause several
 actions, and one action can be caused by several events.
@@ -116,11 +117,12 @@ The actions which can be taken can be grouped into two categories:
 Special actions, and Pulse Generator actions. Special actions include
 those related to timestamp distribution, and the system heartbeat tick
 (see
-[Special Function Mappings]](#special-function-mappings) for a complete list). 
+[Special Function Mappings](#special-function-mappings) for a complete list). 
 Each Pulse Generator has three mapable actions: Set (force active), Reset (force
 inactive), and Trigger (start delay program). Most applications will use
 Trigger mappings.
 
+(devsup-pulsegen)=
 ### Prescalers (Clock Divider)
 
 Prescaler sub-units take the EVR's local oscillator and output a lower
@@ -130,14 +132,14 @@ integer divisor of the Event clock.
 
 To provide known phase relationships, all dividers can be synchronously
 reset when a mapped event code is received. This is the Reset PS action.
-See [Special Function Mappings]](#special-function-mapppec:mappings).
+See [Special Function Mappings](#special-function-mapping). 
 
 ### Outputs (TTL)
 
 This sub-unit represents a local physical output on the EVR. Each output
 may be connected to one source: a Distributed Bus bit, a Prescaler, or a
 Pulse Generator (see
-[Special Function Mappings]](#special-function-mappings) for a complete list).
+[Special Function Mappings](#special-function-mappings) for a complete list).
 
 (cml-output)=
 ### Outputs (CML and GTX)
@@ -184,8 +186,7 @@ In addition to being slaved to an EVG, those EVR models/firmware which
 provide a Software Event transmission function can send timestamps as
 well. This can be used to simulate timestamps in a standalone
 environment such as a test lab. see the TimeSrc property in
-[EVG Functions (DC firmware)](#sec:evg:dc:func){reference-type="ref+page"
-reference="sec:evg:dc:func"}.
+[EVG Functions (DC firmware)](#timestamp-sources).
 
 TimeSrc=0
 

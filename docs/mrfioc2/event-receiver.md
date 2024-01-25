@@ -121,6 +121,7 @@ The distributed bus signals may be output on programmable front panel
 outputs. The distributed bus bandwidth is shared by transmission of a
 configurable size data buffer to up to 2 kbytes.
 
+(pulse-generator)=
 ### Pulse Generators
 
 The structure of the pulse generation logic is shown in the figure
@@ -247,6 +248,8 @@ monitors the state of this signal and distinguishes between state low
 (00), rising edge (01), high state (11) and falling edge (10). Based on
 the state a 40 bit pattern is sent out with a bit rate of 40 times the
 event clock rate.
+
+![image](images/gtx-pulsemode.png)
 
 -   When the source for a GTX output is low and was low one event clock
     cycle earlier (state low), the GTX output repeats the 40 bit pattern
