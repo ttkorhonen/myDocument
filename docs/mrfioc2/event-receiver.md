@@ -22,19 +22,19 @@ deterministic data transmission.
 
 The Event Receiver provides two mapping RAMs of 256 × 128 bits. Only one
 of the RAMs can be active at a time, however both RAMs may be modified
-at any time. he event code is applied to the address lines of the active
+at any time. The event code is applied to the address lines of the active
 mapping RAM. The 128-bit data programmed into a specific memory location
 pointed to by the event code determines what actions will be taken.
 
-| Event code   | Offset | Internal functions | Pulse Triggers   | 'Set' Pulse  | 'Reset' Pulse |
-| ----------   | ------ | ------------------ | --------------   | -----------  | ------------- | 
-| > 0x00   | 0x0000 | 4 bytes/32 bits | 4 bytes/32 bits | 4 bytes/32 bits | 4 bytes/32 bits    |
-| > 0x01   | 0x0010 | 4 bytes/32 bits | 4 bytes/32 bits | 4 bytes/32 bits | 4 bytes/32 bits    |
-| > 0x02   | 0x0020 | 4 bytes/32 bits | 4 bytes/32 bits | 4 bytes/32 bits | 4 bytes/32 bits    |
-| > \...   | > \... | > \...   | > \...   | > \...   | > \...   |
-| > 0xFF   | 0x0FF0 | 4 bytes/32 bits | 4 bytes/32 bits | 4 bytes/32 bits | 4 bytes/32 bits    |
+| Event code   | Offset | Internal functions | Pulse Triggers   | 'Set' Pulse     | 'Reset' Pulse      |
+| ----------   | ------ | ------------------ | --------------   | -----------     | -------------      | 
+| > 0x00       | 0x0000 | 4 bytes/32 bits    | 4 bytes/32 bits  | 4 bytes/32 bits | 4 bytes/32 bits    |
+| > 0x01       | 0x0010 | 4 bytes/32 bits    | 4 bytes/32 bits  | 4 bytes/32 bits | 4 bytes/32 bits    |
+| > 0x02       | 0x0020 | 4 bytes/32 bits    | 4 bytes/32 bits  | 4 bytes/32 bits | 4 bytes/32 bits    |
+| > \...       | > \... | > \...             | > \...           | > \...          | > \...             |
+| > 0xFF       | 0x0FF0 | 4 bytes/32 bits    | 4 bytes/32 bits  | 4 bytes/32 bits | 4 bytes/32 bits    |
 
-(special-function-mappings)=
+(special-function-bitmap)=
 #### Function mapping
 
 There are 32 bits (96 to 127) that are reserved for internal functions, some of which are by default
@@ -60,15 +60,15 @@ and one bit to clear the pulse generator output.
 | 96         | 0x70               | Seconds shift register '0'                   |
 | 80 to 95   | n/a                | (Reserved)                                   |
 | 79         | n/a                | Trigger pulse generator 15                   |
-| ...        | n/a |
+| ...        | n/a                |
 | 64         | n/a                | Trigger pulse generator 0                    |
 | 48 to 63   | n/a                | (Reserved)                                   |
 | 47         | n/a                | Set pulse generator 15 output high           |
-| ...        | n/a |
+| ...        | n/a                |
 | 32         | n/a                | Set pulse generator 0 output high            |
 | 16 to 31   | n/a                | (Reserved)                                   |
 |      15    | n/a                | Reset pulse generator 15 output low          |
-| ...        | n/a |
+| ...        | n/a                |
 | 0          | n/a                | Reset pulse generator 0 output low           |
 
 (heartbeat-monitor)=

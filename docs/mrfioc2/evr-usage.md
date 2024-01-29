@@ -116,8 +116,7 @@ actions, and one action can be caused by several events.
 The actions which can be taken can be grouped into two categories:
 Special actions, and Pulse Generator actions. Special actions include
 those related to timestamp distribution, and the system heartbeat tick
-(see
-[Special Function Mappings](event-receiver.md#special-function-mappings) for a complete list). 
+(see [Special Function Mappings](#special-function-mapping) for a complete list). 
 Each Pulse Generator has three mapable actions: Set (force active), Reset (force
 inactive), and Trigger (start delay program). Most applications will use
 Trigger mappings.
@@ -1490,7 +1489,7 @@ In this example the event \$(EVT) specified in the VAL field will cause function
 
 Implemented for: longout
 
-See: evrApp/Db/evrmap.db
+See: evrApp/Db/evrmap.db and compare with [register definition.](event-receiver.md#special-function-bitmap)
 
 Allows a number of special actions to be mapped to certains events.
 These actions include:
