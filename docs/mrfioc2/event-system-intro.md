@@ -75,9 +75,9 @@ These will be explained in detail later.
 
 (The above image shows a frame interval of 11.3 nanoseconds, corresponding to 88.0525 MHz event clock.)
 
-More details about the event stream protocol can be found [here](event-stream-protocol).
+Details about the event stream protocol can be found [here](event-stream-protocol).
 
-## Event Generator
+## Event Generator Overview
 
 The Event Generator generates the event stream and sends it out to an
 array of Event Receivers.
@@ -137,24 +137,24 @@ special function event codes are listed in the table below.
 | 0x7F     | End of Sequence    | \-         | \-                   |
 | 0x80-FF  | \-                 | User Defined | User Defined         |
 
-```{note} Beacon events
+Table: Event Codes
 
-Beacon events are related to the active delay compensation and shall not be used in user applications.
+
+```{note}
+
+**Beacon events** are related to the active delay compensation and **shall not** be used in user applications.
 
 ```
-
-Table: Event Codes
 
 The event codes are transmitted continuously. If there is no other
 event code to be transferred, the null event code (0x00) is transmitted.
 Every now and then a special 8B10B character K28.5 is transmitted
-instead of the null event code. The K28.5 comma character is transmitted
-to allow the event receivers to synchronise on the correct word boundary
-on the serial bit stream.
+instead of the null event code to allow the event receivers to synchronise 
+on the correct word boundary on the serial bit stream.
 
-#### Event Generation
+### Sources for timing events
 
-Timing events can be generated from a number of different sources: input
+Timing events can be generated from a number of different sources: physical input
 signals, from an internal event sequencer, software-generated
 events and events received from an upstream Event Generator.
 
@@ -168,25 +168,25 @@ event code register and various enable bits.
 
 #### Event Sequencer
 
-Event sequencers provide a method of transmitting or playing back
+Event sequencers provide a method of transmitting (or "playing back")
 sequences of events stored in random access memory with defined timing.
 In the event generator there are two event sequencers. 8-bit event codes
-are stored in a RAM table each attached with a 32-bit timestamp (event
+are stored in a RAM table together with a 32-bit time value (event
 address) relative to the start of sequence. Both sequencers can hold up
-to 2048 event code -- timestamp pairs.
+to 2048 event code -- time pairs.
 
 The Sequencers may be triggered from several sources including software
 triggering, triggering on a multiplexed counter output or AC mains
 voltage synchronization logic output.
 
 
-#### Uses for the sequencer 
+##### Uses for the sequencer 
 
 The event sequencers are typically used for sending out a precisely
 timed sequence of events, like an accelerator machine cycle. 
 In this case, event codes that have been defined for different actions to
 be taken during the acceleration cycle are placed in the sequencer RAM 
-together with the time interval (event address) between sending out the events.
+together with the time interval between sending out the events.
 This is the most common use case for the sequencers. Typically the two sequencers
 are used in foreground/background combination, where the foreground sequencer is 
 transmitting events, and the background sequencer can be prepared by software 
@@ -218,6 +218,9 @@ event clock rate) from the event generator to the event receivers.
 The distributed bus signals can be programmed 
 to be available as hardware outputs on the event receiver. 
 
+Typical uses for the distributed bus are distributing hardware clock signals (that are slower that the event clock)
+or distributing status signals to a large number of receivers.
+
 (timestamp-support)=
 ### Timestamping support
 
@@ -226,8 +229,8 @@ The event system supports timestamping by providing:
   - Facilities to support generation of sub-second timestamps, usually in the event clock resolution
   - Precisely latching the timestamp in an Event Receiver, on request or when an event code has been received.
 
-The timestamp support guarantees that all event receivers (and generators) in the same distribution will have
-precisely synchronized timestamp, up to the resolution of the event clock. For example, 100 MHz event clock results 
+The timestamp support guarantees that all event receivers (and generators) in the same distribution setup will have
+precisely synchronized timestamps, up to the resolution of the event clock. For example, 100 MHz event clock results 
 in highest timestamp resolution of 10 nanoseconds.
 
 The seconds value to be distributed has to be provided to the Event Generator. 
@@ -241,7 +244,7 @@ and incremented quickly. The value of the "seconds" is sent periodically
 from the EVG at a lower rate.
 
 Note that while it is referred to as "seconds" this value is an
-arbitrary integer which can have other meanings. 
+arbitrary integer that could have other meanings. 
 Several methods of sending the seconds value to the EVG are possible:
 
 #### External hardware
@@ -262,16 +265,17 @@ by the 1Hz signal. At the start of each second it sends the next second
 
 
 (synchronous-data)=
-### Configurable Size Data Buffer
+### Synchronous Data buffer
 
-A buffer of up to 2k bytes can be transmitted over the event link. This data buffer will be 
-(synchronously) available to all EVRs that receive the event stream.
+A memory buffer of up to 2k bytes can be transmitted over the event link. 
+This data buffer will be  (synchronously) available to all EVRs that 
+receive the event stream.
 
 ![image](images/configurable-size-data-buffer.png)
 
 The data to be transmitted is stored in a 2 kbyte dual-ported memory
 starting from the lowest address 0. This memory is directly accessible
-via the memory interface. 
+via the memory interface in both generators and receivers. 
 
 ### Utility Functions in the Event Generator
 
@@ -313,16 +317,14 @@ During operation the reference frequency should not be changed more than
 | Minimum | 50 MHz    | 1.0 Gb/s |
 | Maximum | 142.8 MHz | 2.9 Gb/s |
 
-## Event Receiver
+## Event Receiver Overview
 
 Event Receivers decode timing events and signals from an optical event
 stream transmitted by an Event Generator. Events and signals are
-received at predefined rate the event clock that is usually divided down
-from an accelerators main RF reference. The event receivers lock to the
-phase event clock of the Event Generator and are thus phase locked to
-the RF reference. Event Receivers convert event codes transmitted by an
-Event Generator to hardware outputs. They can also generate software
-interrupts and store the event codes with globally distributed
+received at the event clock rate. The event receivers lock to the
+phase of the upstream clock reference. Event Receivers convert event codes 
+that are transmitted by an Event Generator to hardware outputs. 
+They can also generate software interrupts and store the event codes with
 timestamps into FIFO memory to be read by a CPU.
 
 ### Functional Description
@@ -397,10 +399,10 @@ Pulse Generator
 ### Prescalers
 
 The Event Receiver provides a number of programmable prescalers. The
-frequencies are programmable and are derived from the event clock. A
-special event code reset prescalers \$7B causes the prescalers to be
-synchronously reset, so the frequency outputs will be in same phase
-across all event receivers.
+frequencies are programmable subharmonics of the event clock. A
+special event code *"reset prescalers"* (\$7B) causes the prescalers to be
+synchronously reset in the whole system, so the frequency outputs will 
+be in same phase across all event receivers.
 
 ### Programmable Front Panel, Universal I/O and Backplane Connections
 
@@ -422,12 +424,6 @@ Universal I/O modules. Each module provides two outputs e.g. two TTL
 output, two NIM output or two optical outputs. The source for these
 outputs is selected with mapping registers.
 
-GTX Front Panel Outputs and mTCA-EVR TCLKA/TCLKB Clocks 
-
-The GTX Outputs provide low jitter signals with special outputs. 
-The outputs can work in different
-configurations: pulse mode, pattern mode and frequency mode.
-
 ### Synchronous Data Transmission
 
 Pre-DC (Delay Compensation) event systems provided a way to to transmit
@@ -440,43 +436,17 @@ from 4 bytes to 2 kbytes in four byte (long word) increments.
 
 #### Segmented Data Buffer
 
-With the addition of delay compensation a segmented data buffer has been
+With the addition of delay compensation (300-series), a segmented data buffer has been
 introduced and it can coexist with the configurable size data buffer.
 The segmented data buffer is divided into 16 byte segments that allow
 updating only part of the buffer memory with the remaining segments left
 untouched.
-
-### Interrupt Generation
-
-The Event Receiver has multiple interrupt sources which all have their
-own enable and flag bits. The following events may be programmed to
-generate an interrupt:
-
-> -   Receiver link state change
-> -   Receiver violation: bit error or the loss of signal.
-> -   Lost heartbeat: heartbeat monitor timeout.
-> -   Write operation of an event to the event FIFO.
-> -   Event FIFO is full.
-> -   Data Buffer reception complete.
-
-In addition to the events listed above an interrupt can be generated
-from one of the pulse generator outputs, distributed bus bits or
-prescalers. The pulse interrupt can be mapped in a similar way as the
-front panel outputs.
 
 ### External Event Input
 
 An external hardware input is provided to be able to take an external
 pulse to generate an internal event. This event will be handled as any
 other received event.
-
-### Programmable Reference Clock
-
-The event receiver requires a reference clock to be able to synchronise
-on the incoming event stream sent by the event generator. For
-flexibility a programmable reference clock is provided to allow the use
-of the equipment in various applications with varying frequency
-requirements.
 
 (delay-compensation)=
 ## Delay Compensation

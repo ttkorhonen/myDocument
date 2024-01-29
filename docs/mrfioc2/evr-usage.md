@@ -108,7 +108,7 @@ state (Active/Inactive).
 (devsup-mappingram)=
 ### Event Mapping Ram
 
-The [Event Mapping Ram](event-receiver#event-decoding) is a table used to define the actions to be taken
+The [Event Mapping Ram](event-receiver.md#event-decoding) is a table used to define the actions to be taken
 by an EVR when it receives a particular event code number. The mapping
 it defines is a many-to-many relations. One event can cause several
 actions, and one action can be caused by several events.
@@ -117,7 +117,7 @@ The actions which can be taken can be grouped into two categories:
 Special actions, and Pulse Generator actions. Special actions include
 those related to timestamp distribution, and the system heartbeat tick
 (see
-[Special Function Mappings](#special-function-mappings) for a complete list). 
+[Special Function Mappings](event-receiver.md#special-function-mappings) for a complete list). 
 Each Pulse Generator has three mapable actions: Set (force active), Reset (force
 inactive), and Trigger (start delay program). Most applications will use
 Trigger mappings.

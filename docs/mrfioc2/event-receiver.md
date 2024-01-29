@@ -34,6 +34,9 @@ pointed to by the event code determines what actions will be taken.
 | > \...   | > \... | > \...   | > \...   | > \...   | > \...   |
 | > 0xFF   | 0x0FF0 | 4 bytes/32 bits | 4 bytes/32 bits | 4 bytes/32 bits | 4 bytes/32 bits    |
 
+(special-function-mappings)=
+#### Function mapping
+
 There are 32 bits (96 to 127) that are reserved for internal functions, some of which are by default
 mapped to the event codes shown in the table below. 
 The remaining 96 bits control internal pulse generators. For each pulse generator there is 
