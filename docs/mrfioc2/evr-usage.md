@@ -86,7 +86,7 @@ The intent of this document is to introduce the concepts and help understanding 
 to use the driver. For studying the implementation, the important locations in the source
 tree relating to the EVR are included in this document.
 
-The source distribution includes API documentation, produced with 
+The source repository contains a full API documentation, produced with 
 [Doxygen](https://en.wikipedia.org/wiki/Doxygen). 
 
 
@@ -131,7 +131,7 @@ The actions which can be taken can be grouped into two categories:
 Special actions, and Pulse Generator actions. Special actions include
 those related to timestamp distribution, and the system heartbeat tick
 (see [Special Function Mappings](#special-function-mapping) for a complete list). 
-Each Pulse Generator has three mapable actions: Set (force active), Reset (force
+Each Pulse Generator has three mappable actions: Set (force active), Reset (force
 inactive), and Trigger (start delay program). Most applications will use
 Trigger mappings.
 
@@ -145,14 +145,14 @@ integer divisor of the Event clock.
 
 To provide known phase relationships, all dividers can be synchronously
 reset when a mapped event code is received. This is the Reset PS action.
-See [Special Function Mappings](#special-function-mapping). 
+See [Special Function Mappings](event-receiver.md#special-function-bitmap). 
 
 ### Outputs (TTL)
 
-This sub-unit represents a local physical output on the EVR. Each output
+This sub-unit represents a physical output on the EVR. Each output
 may be connected to one source: a Distributed Bus bit, a Prescaler, or a
 Pulse Generator (see
-[Special Function Mappings](#special-function-mappings) for a complete list).
+[Function Mapping](#special-function-mapping) for a complete list).
 
 (cml-output)=
 ### Outputs (CML and GTX)
@@ -167,18 +167,19 @@ specified in one of three possible ways:
   - As an arbitrary bit pattern (\<= 40940 bits) which begins when the 
     output goes \[TODO: high or low?\].
 
-In the sub-pattern mode, t  he rising and falling patterns are transmitted
+In the sub-pattern mode, the rising and falling edge patterns are transmitted
 when the output level changes, while the high and low patterns are
 repeated in between level changes.
 
-The GTX outputs found only on the EVRTG ($e^{-}$gun) receiver function
-similarly to the CML outputs at twice the frequency. Thus for this
-device patterns are 40 bits.
+The GTX outputs that are found only on selected models like VME-EVR-300, function
+similarly to the CML outputs, however at twice the frequency. Thus for these
+devices patterns are 40 bits.
 
 ### Inputs
 
 An EVR's local TTL input can cause several actions when triggered. It
-may be directly connected to one of the upstream Distributed Bus bits,
+may be directly connected to one of the upstream 
+[Distributed Bus](event-system-intro#distributed-bus) bits,
 it may cause an event to be sent on the upstream links, or applied to
 the local Mapping Ram.
 
@@ -187,8 +188,8 @@ The rising edge of a local input can be timestamped.
 ### Global Timestamp Reception
 
 Each EVR receives synchronous time broadcasts from an EVG. Software may
-query the current time at any point. The arrival time of certain event
-codes can be saved as well. This can be accomplished with the 'event'
+query the current time at any point. The arrival time of event codes 
+can be saved as well. This can be accomplished with the 'event'
 record device support.
 
 Each EVR may be configured with a different method of incrementing the
@@ -1130,27 +1131,27 @@ example database files.
 Properties in this section apply to the EVR as a whole.
 Records accessing properties in this section will have DTYP set to "EVR". See: evrApp/Db/evrbase.db
 
-|      Name          | Record type(s)  | Description                                                           |
-| -------------------| --------------- | --------------------------------------------------------------------- |
-|   {term}`Enable`   |    bo, bi       |  {term}`Master enable for the EVR. <Enable>`  |
-| PLL Lock Status    |     bi          |      |
-| Link Status        |     bi          | [Event link status](#link-status) |
-| Timestamp Valid | bi | [Validity of the timestamp](#timestamp-valid) |
-| Model | longin | [Hardware model](#model-number)|
-| Version |  longin | |
-| Sw Version | | |
-| FIFO Overflow Count | longin | |
-| Fifo Over Rate | longin | |
-| HB Timeout Count | | |
-| Clock | ao, ai | |
-| Timestamp Source | longout, longin | [Selects timestamp source](#timestamp-sources) |
-| Timestamp Clock |  ao, ai| |
-| Timestamp Prescaler | longin | | 
-| Timestamp | stringin | |
-| Event Clock TD Div | longin | |
-| Receive Error Count | longin | |
+|      Name           | Record type(s)  | Description                                                           |
+| ------------------- | --------------- | --------------------------------------------------------------------- |
+|   {term}`Enable`    |    bo, bi       |  {term}`Master enable for the EVR. <Enable>`                          |
+| PLL Lock Status     |     bi          |                                                                       |
+| Link Status         |     bi          | [Event link status](#link-status)                                     |
+| Timestamp Valid     |     bi          | [Validity of the timestamp](#timestamp-valid)                         |
+| Model               |   longin        | [Hardware model](#model-number)                                       |
+| Version             |  longin         |                                                                       |
+| Sw Version          |                 |                                                                       |
+| FIFO Overflow Count | longin          |                                                                       |
+| Fifo Over Rate      | longin          |                                                                       |
+| HB Timeout Count    |                 |                                                                       |
+| Clock               | ao, ai          |                                                                       |
+| Timestamp Source    | longout, longin | [Selects timestamp source](#timestamp-sources)                        |
+| Timestamp Clock     |  ao, ai         |                                                                       |
+| Timestamp Prescaler | longin          |                                                                       | 
+| Timestamp           | stringin        |                                                                       |
+| Event Clock TD Div  | longin          |                                                                       |
+| Receive Error Count | longin          |                                                                       |
 
-For example, the boolean property Enable could be written by the following record:
+For example, the boolean property **Enable** could be written by the following record:
 
 ```
   record(bo, "$(P)ena " ) {
