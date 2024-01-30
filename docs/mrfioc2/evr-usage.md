@@ -1,12 +1,17 @@
 
 
-# Epics device driver for MRF Event Receiver (EVR)
+# EPICS device driver for MRF Event Receiver (EVR)
 
+Event Receiver is a component of the MRF Timing system.
+Introduction to the MRF timing system can be found [here](event-system-intro).
 
-## What is Available?
+Further details on the hardware implementation can be found on the same site, 
+in particular about the [Event Receiver](event-receiver).
 
 More information on the Micro Research hardware can be found on their
 website <http://www.mrf.fi/>.
+
+## What is Available?
 
 The software discussed below can be found on the 'EPICS modules'
 site on Github, in the 'mrfioc2' repository.
@@ -53,8 +58,6 @@ $ git clone https://github.com/epics-modules/mrfioc2.git
 
 Edit 'configure/CONFIG_SITE' and 'configure/RELEASE' then run make.
 
-The following is a brief tour of the important locations in the source
-tree relating to the EVR.
 
 ## Supported Hardware
 
@@ -67,22 +70,31 @@ The following devices are supported.
  |     PMC-EVR-230     |    3     |        0       |          1        |     No   |
  |    CPCI-EVR-230     |    0     |        4       |          2        |  Yes[^7] |
  |   cPCI-EVRTG-300    |  2[^8]   |        2       |        1[^9]      |     No   |
- |    cPCI-EVR-300     |    0     |        12      |          2        |      0   |
- |   PCIe-EVR-300DC    |    0     |        0       |          0        |     16   |
- |  mTCA-EVR-300[^10]  |    4     |       4/0      |          2        |    0/1 6 |
-
+ |    cPCI-EVR-300     |    0     |        12      |          2        |     No   |
+ |   PCIe-EVR-300DC    |    0     |        0       |          0        |  Yes[^13]|
+ |  mTCA-EVR-300[^10]  |    4     |       4/0      |          2        |    Yes   |
+ |  VME-EVR-300        |   4[^12] |        4       |          2        |    Yes   |
 # Overview
 
-The purpose of this document is to act as a guide and reference for
-using the 'mrfioc2' EPICS support module for the Micro Research Finland
+The purpose of this document is to act as a guide for using the 'mrfioc2' 
+[EPICS](https://epics-controls.org) support module for the Micro Research Finland
 (MRF) timing system[^11]. It describes software for using the Event Receiver (EVR).
+
+The document is an overview of the driver and its capabilities. It is not a fully 
+up-to-date document with all details, even if the contents are thought to be accurate.
+The intent of this document is to introduce the concepts and help understanding how
+to use the driver. For studying the implementation, the important locations in the source
+tree relating to the EVR are included in this document.
+
+The source distribution includes API documentation, produced with 
+[Doxygen](https://en.wikipedia.org/wiki/Doxygen). 
 
 
 ## Receiver Functions
 
 Internally an EVR can be thought of as a number of logical sub-units
-(Fig. [3](#blocks)) connecting the upstream and downstream
-event links to the local inputs and outputs. These sub-units include:
+that connect the upstream and downstream event links to the local inputs 
+and outputs. These sub-units include:
 the Event Mapping Ram, Pulse Generators, Prescalers (clock dividers),
 and the logical controls for the physical inputs and outputs.
 
@@ -93,9 +105,10 @@ Logical connections inside an EVR
 (devsup-pulsegen)=
 ### Pulse Generators
 
-Each [pulse generator](#pulse-generators) has a an associated Delay, Width, Polarity (active
-low/high), and (sometimes) a Prescaler (clock divider). When triggered
-by the Mapping Ram it will wait for the Delay time in its inactive
+Each [pulse generator](event-receiver.md#pulse-generator) has a an 
+associated Delay, Width, Polarity (active low/high), and 
+(sometimes) a Prescaler (clock divider). 
+When triggered by the Mapping Ram it will wait for the Delay time in its inactive
 state. Then it will transition to its active state, wait for the Width
 time before transitioning back to its inactive state.
 
@@ -108,9 +121,10 @@ state (Active/Inactive).
 (devsup-mappingram)=
 ### Event Mapping Ram
 
-The [Event Mapping Ram](event-receiver.md#event-decoding) is a table used to define the actions to be taken
-by an EVR when it receives a particular event code number. The mapping
-it defines is a many-to-many relations. One event can cause several
+The [Event Mapping Ram](event-receiver.md#event-decoding) is a table 
+used to define the actions to be taken by an EVR when it receives 
+a particular event code number. The mapping it defines is a 
+many-to-many relation; one event can cause several
 actions, and one action can be caused by several events.
 
 The actions which can be taken can be grouped into two categories:
@@ -1725,6 +1739,10 @@ Status for the builtin NTP clock driver.
 
 [^11]: List of supported hardware given in section
     [Supported Hardware]](#supported-hardware).
+
+[^12]  One Universal I/O slot, 2 x CML (GTX) outputs.
+
+[^13] Extension "box", connected with a cable.
 
 ```{glossary}
 EnablePLL
