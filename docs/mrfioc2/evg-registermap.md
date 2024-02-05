@@ -639,39 +639,39 @@ Please note that after changing the Event clock source the fractional synthesize
 
 ### Event Trigger Registers
 
-| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x102 | EVEN0 |
-| address | bit 7 | bit 0 |
-| 0x103 | EVCD0(7:0) |
-| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| 0x106 EVEN1 |
-| address | bit 7 | bit 0 |
-| 0x107 | EVCD1(7:0) |
-| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| 0x10A | EVEN2 |
-| address | bit 7 | bit 0 |
-| 0x10B | EVCD2(7:0) |
-| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| 0x10E | EVEN3 | 
-| address | bit 7 | bit 0| 
-| 0x10F | EVCD3(7:0) |
-| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| 0x112 | EVEN4 |
-| address | bit 7 | bit 0 |
-| 0x113 | EVCD4(7:0) |
-| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| 0x116 | EVEN5 |
-| address | bit 7 | bit 0 |
-| 0x117 | EVCD5(7:0) |
-| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| 0x11A | EVEN6 |
-| address | bit 7 | bit 0 |
-| 0x11B | EVCD6(7:0) |
-| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| 0x11E | EVEN7 |
-| address | bit 7 | bit 0 |
-| 0x11F | EVCD7(7:0) |
+| address | bit 15   | bit 14   | bit 13   | bit 12   | bit 11   | bit 10   | bit 9    | bit 8    |
+| ------- | ------   | ------   | ------   | ------   | ------   | ------   | ------   | ------   |
+| 0x102   |          |          |          |          |          |          |          | EVEN0    |
+|         | bit 7    | bit 6    | bit 5    | bit 4    | bit 3    | bit 2    | bit 1    | bit 0    |
+| 0x103   | EVCD0(7) | EVCD0(6) | EVCD0(5) | EVCD0(4) | EVCD0(3) | EVCD0(2) | EVCD0(1) | EVCD0(0) |
+|         | bit 15   | bit 14   | bit 13   | bit 12   | bit 11   | bit 10   | bit 9    | bit 8    |
+| 0x106   |          |          |          |          |          |          |          | EVEN1    |
+|         | bit 7    | bit 6    | bit 5    | bit 4    | bit 3    | bit 2    | bit 1    | bit 0    |
+| 0x107   | EVCD1(7) | EVCD1(6) | EVCD1(5) | EVCD1(4) | EVCD1(3) | EVCD1(2) | EVCD1(1) | EVCD1(0) |
+|         | bit 15   | bit 14   | bit 13   | bit 12   | bit 11   | bit 10   | bit 9    | bit 8    |
+| 0x10A   |          |          |          |          |          |          |          | EVEN2    |
+|         | bit 7    |  bit 6   | bit 5    | bit 4    | bit 3    | bit 2    | bit 1    | bit 0    |
+| 0x10B   | EVCD2(7) | EVCD2(6) | EVCD2(5) | EVCD2(4) | EVCD2(3) | EVCD2(2) | EVCD2(1) | EVCD2(0) |
+|         | bit 15   | bit 14   | bit 13   | bit 12   | bit 11   | bit 10   | bit 9    | bit 8    |
+| 0x10E   |          |          |          |          |          |          |          | EVEN3    | 
+|         | bit 7    |  bit 6   | bit 5    | bit 4    | bit 3    | bit 2    | bit 1    | bit 0    | 
+| 0x10F   | EVCD3(7) | EVCD3(6) | EVCD3(5) | EVCD3(4) | EVCD3(3) | EVCD3(2) | EVCD3(1) | EVCD3(0) |
+|         | bit 15   | bit 14   | bit 13   | bit 12   | bit 11   | bit 10   | bit 9    | bit 8    |
+| 0x112   |          |          |          |          |          |          |          | EVEN4    |
+|         | bit 7    |  bit 6   | bit 5    | bit 4    | bit 3    | bit 2    | bit 1    | bit 0    |
+| 0x113   | EVCD4(7) | EVCD4(6) | EVCD4(5) | EVCD4(4) | EVCD4(3) | EVCD4(2) | EVCD4(1) | EVCD4(0) |
+|         | bit 15   | bit 14   | bit 13   | bit 12   | bit 11   | bit 10   | bit 9    | bit 8    |
+| 0x116   |          |          |          |          |          |          |          | EVEN5    |
+|         | bit 7    |  bit 6   | bit 5    | bit 4    | bit 3    | bit 2    | bit 1    | bit 0    |
+| 0x117   | EVCD5(7) | EVCD5(6) | EVCD5(5) | EVCD5(4) | EVCD5(3) | EVCD5(2) | EVCD5(1) | EVCD5(0) |
+|         | bit 15   | bit 14   | bit 13   | bit 12   | bit 11   | bit 10   | bit 9    | bit 8    |
+| 0x11A   |          |          |          |          |          |          |          | EVEN6    |
+|         | bit 7    | bit 6    | bit 5    | bit 4    | bit 3    | bit 2    | bit 1    | bit 0    |
+| 0x11B   | EVCD6(7) | EVCD6(6) | EVCD6(5) | EVCD6(4) | EVCD6(3) | EVCD6(2) | EVCD6(1) | EVCD6(0) |
+|         | bit 15   | bit 14   | bit 13   | bit 12   | bit 11   | bit 10   | bit 9    | bit 8    |
+| 0x11E   |          |          |          |          |          |          |          | EVEN7    |
+|         | bit 7    |  bit 6   | bit 5    | bit 4    | bit 3    | bit 2    | bit 1    | bit 0    |
+| 0x11F   | EVCD7(7) | EVCD7(6) | EVCD7(5) | EVCD7(4) | EVCD7(3) | EVCD7(2) | EVCD7(1) | EVCD7(0) |
 
 
 | Bit | Function |

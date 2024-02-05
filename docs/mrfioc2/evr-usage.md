@@ -1129,7 +1129,9 @@ example database files.
 ## Global Properties
 
 Properties in this section apply to the EVR as a whole.
-Records accessing properties in this section will have DTYP set to "EVR". See: evrApp/Db/evrbase.db
+Records accessing properties in this section will have DTYP set to "EVR". 
+
+See: *evrApp/Db/evrbase.db*
 
 |      Name           | Record type(s)  | Description                                                           |
 | ------------------- | --------------- | --------------------------------------------------------------------- |
@@ -1245,9 +1247,9 @@ and ESLO fields. Use ESLO of 1e-6 to allow user setting/reading in MHz.
 Determines what causes the timestamp event counter to tick. There are three
 possible values:
 
-  **Event clock**: Use an integer divisor of the EVR's local oscillator.
-  **Mapped code(s)**: Increments the counter whenever certain events arrive. These codes can be defined using special mapping records.
-  **DBus 4**: Increments on the 0->1 transition of DBus bit #4.
+  - **Event clock**: Use an integer divisor of the EVR's local oscillator.
+  - **Mapped code(s)**: Increments the counter whenever certain events arrive. These codes can be defined using special mapping records.
+  - **DBus 4**: Increments on the 0->1 transition of DBus bit #4.
 
 (timestamp-clock)=
 ### Timestamp Clock
@@ -1741,9 +1743,9 @@ Status for the builtin NTP clock driver.
 [^11]: List of supported hardware given in section
     [Supported Hardware]](#supported-hardware).
 
-[^12]  One Universal I/O slot, 2 x CML (GTX) outputs.
+[^12]: One Universal I/O slot, 2 x CML (GTX) outputs.
 
-[^13] Extension "box", connected with a cable.
+[^13]: Extension "box", connected with a cable.
 
 ```{glossary}
 EnablePLL
