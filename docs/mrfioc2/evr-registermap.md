@@ -1,14 +1,14 @@
-# Event Receiver Registermap
+## Event Receiver Registermap
 
 Event Receiver register/memory map.
 
-## Register Map
+### Register Map
 
 | Address | Register | Type | Description |
 | ------- | -------- | ---- | ------------|
-| 0x000 | Status         | UINT32 | Status Register
-| 0x004 | Control        | UINT32 | Control Register
-| 0x008 | IrqFlag        | UINT32 | Interrupt Flag Register
+| 0x000 | Status         | UINT32 | [Status Register](#status-register)
+| 0x004 | Control        | UINT32 | [Control Register](#control-register)
+| 0x008 | IrqFlag        | UINT32 | [Interrupt Flag Register](#interrupt-flag-register)
 | 0x00C | IrqEnable      | UINT32 | Interrupt Enable Register
 | 0x010 | PulseIrqMap    | UINT32 | Mapping register for pulse interrupt
 | 0x018 | SWEvent        | UINT32 | Software event register

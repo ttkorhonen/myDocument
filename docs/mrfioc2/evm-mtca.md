@@ -1,4 +1,4 @@
-# MTCA-EVM-300 
+## MTCA-EVM-300 
 
 ![MTCA-EVM-300 Front Panel](images/mtca-evm300-frontpanel.png){#mtcaevm300front}
 
@@ -24,7 +24,7 @@
 | RX8 (UP)        | LC    | optical  | Upstream Receiver Optical Input (RX) |
 
 
-## TTL Input Levels
+### TTL Input Levels
 
 The mTCA-EVM-300 has one front panel TTL input. 
 The input is terminated with 50 ohm to ground and is 5V tolerant even when powered down.
@@ -38,7 +38,7 @@ Input specifications are following:
 | V{sub}`IH`      | > 2.3 V |
 | V{sub}`IL`      | < 1.0 V |
 
-## Register Mapping
+### Register Mapping
 
 The mTCA-EVM-300 uses the following PCI IDs.
 

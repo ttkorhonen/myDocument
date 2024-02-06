@@ -1,4 +1,4 @@
-# EVG Function Register Map
+## EVG Function Register Map
 
 The EVM module can be configured for use as an Event Generator (EVG) or a fanout/concentrator.
 
@@ -130,9 +130,9 @@ This is the register map when EVM is configured as an EVG.
 | 0x8000 – 0xBFFF | SeqRam0 | | Sequence RAM 0 |
 | 0xC000 – 0xFFFF | SeqRam1 | | Sequence RAM 1 |
 
-## Register descriptions
+### Register descriptions
 
-### Status Register
+#### Status Register
 
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
@@ -186,7 +186,7 @@ This is the register map when EVM is configured as an EVG.
 |       | 1 – System Master enabled – has to be set and only for master EVG in system |
 | SRALT | (reserved) | 
 
-### Interrupt Flag Register
+#### Interrupt Flag Register
 
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
@@ -216,7 +216,7 @@ This is the register map when EVM is configured as an EVG.
 | IFFF    | RX Event FIFO full flag |
 | IFVIO   | Port U Receiver violation flag |
 
-### Interrupt Enable Register
+#### Interrupt Enable Register
 
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
@@ -247,7 +247,7 @@ This is the register map when EVM is configured as an EVG.
 | IEFF | Event FIFO full interrupt enable
 | IEVIO | Receiver violation interrupt enable
 
-### AC Trigger Control Register
+#### AC Trigger Control Register
 
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
@@ -267,7 +267,7 @@ This is the register map when EVM is configured as an EVG.
 | | 011 = Front panel TTL input IN1
 | | 101 = Front panel TTL input IN2
 
-### AC Trigger Mapping Register
+#### AC Trigger Mapping Register
 
 | address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
@@ -284,7 +284,7 @@ This is the register map when EVM is configured as an EVG.
 | ACM1 | If set AC circuit triggers Event Trigger 1 |
 | ACM0 | If set AC circuit triggers Event Trigger 0 |
 
-### Software Event Register
+#### Software Event Register
 
 | address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9 | bit 8 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
@@ -300,7 +300,7 @@ This is the register map when EVM is configured as an EVG.
 | | When enabled ‘1’ a new event will be sent out when event code is written to
 | | the event code register.
 
-### Segmented Data Buffer Control Register
+#### Segmented Data Buffer Control Register
 
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
@@ -324,7 +324,7 @@ This is the register map when EVM is configured as an EVG.
 | | ‘1’ – data transmission engine enabled
 | DTSZ(10:8) | Data Transfer size 4 bytes to 2k in four byte increments
 
-### Data Buffer Control Register
+#### Data Buffer Control Register
 
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
@@ -350,7 +350,7 @@ This is the register map when EVM is configured as an EVG.
 | DTSZ | Data Transfer size 4 bytes to 2k in four byte increments
 
 
-### Distributed Bus Mapping Register
+#### Distributed Bus Mapping Register
 
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
@@ -378,7 +378,7 @@ This is the register map when EVM is configured as an EVG.
 | DBMAP1(3:0) | Distributed Bus Bit 7 Mapping (see above for mappings)
 | DBMAP0(3:0) | Distributed Bus Bit 7 Mapping (see above for mappings)
 
-### Distributer Bus Event Enable Register
+#### Distributer Bus Event Enable Register
 
 | address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
@@ -390,7 +390,7 @@ This is the register map when EVM is configured as an EVG.
 | DBEV6 | Distributed bus input 6 “Seconds ‘0’” 0x70 event enable
 | DBEV7 | Distributed bus input 7 “Seconds ‘1’” 0x71 event enable
 
-### FPGA Firmware Version Register
+#### FPGA Firmware Version Register
 
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
@@ -428,7 +428,7 @@ This is the register map when EVM is configured as an EVG.
 | | 02 – Delay Compensation firmware
 | Revision ID | See end of manual
 
-### Timestamp Generator Control Register
+#### Timestamp Generator Control Register
 
 | address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
@@ -440,7 +440,7 @@ This is the register map when EVM is configured as an EVG.
 | TSGLOAD | Timestamp Generator Load new value into Timestamp Counter
 |         | Write ‘1’ to load new value
 
-### Microsecond Divider Register 
+#### Microsecond Divider Register 
 
 | address | bit 15 | bit 0 | 
 | ------- | ------ | ------ |
@@ -450,7 +450,7 @@ This register shall be written with an integer value of the event clock rate in 
 this register should read 100, for 50 MHz event clock this register should read 50. This value is used to set
 the parameters for the clock cleaner PLL and e.g. for the phase shifter in the AC input logic.
 
-### Clock Control Register
+#### Clock Control Register
 
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
@@ -516,7 +516,7 @@ the parameters for the clock cleaner PLL and e.g. for the phase shifter in the A
 
 Please note that after changing the Event clock source the fractional synthesizer control word must be reloaded to initialize an internal reset.
 
-### Event Analyser Control Register
+#### Event Analyser Control Register
 
 | address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
 | ------- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
@@ -540,7 +540,7 @@ Please note that after changing the Event clock source the fractional synthesize
 | | 0 – Counter running
 | | 1 – Counter reset to zero.
 
-### Sequence RAM Control Registers
+#### Sequence RAM Control Registers
 
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
@@ -594,7 +594,7 @@ Please note that after changing the Event clock source the fractional synthesize
 |          | 31 – trigger disabled (default after power up)
 
 
-### SY87739L Fractional Divider Configuration Word
+#### SY87739L Fractional Divider Configuration Word
 
 |Configuration Word | Frequency with 24 MHz reference oscillator |
 | ----------------- | ------------------------------------------ |
@@ -617,7 +617,7 @@ Please note that after changing the Event clock source the fractional synthesize
 | 0x0C25B43AD|  49.978 MHz
 | 0x0176C36D | 49.965 MHz
 
-## SPI Configuration Flash Registers
+#### SPI Configuration Flash Registers
 
 | address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
@@ -637,7 +637,7 @@ Please note that after changing the Event clock source the fractional synthesize
 | OE | Output enable for SPI pins, ‘1’ enable SPI pins |
 | SSO | Slave select output enable for SPI slave device, ‘1’ device selected |
 
-### Event Trigger Registers
+#### Event Trigger Registers
 
 | address | bit 15   | bit 14   | bit 13   | bit 12   | bit 11   | bit 10   | bit 9    | bit 8    |
 | ------- | ------   | ------   | ------   | ------   | ------   | ------   | ------   | ------   |
@@ -679,7 +679,7 @@ Please note that after changing the Event clock source the fractional synthesize
 | EVENx | Enable Event Trigger x |
 | EVCDx | Event Trigger Code for Event trigger x | 
 
-### Multiplexed Counter Registers
+#### Multiplexed Counter Registers
 
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
@@ -744,7 +744,7 @@ Please note that after changing the Event clock source the fractional synthesize
 |MXxEV1 | Map rising edge of multiplexed counter x to send out event trigger 1
 |MXxEV0 | Map rising edge of multiplexed counter x to send out event trigger 0
 
-### Transition Board Output Mapping Registers
+#### Transition Board Output Mapping Registers
 
 | address | bit 15 | bit 0 |
 | --------| ------ | ----- |
@@ -755,7 +755,7 @@ Please note that after changing the Event clock source the fractional synthesize
 | address | bit 15 | bit 0
 | 0x41E | Transition Board Output 15 Mapping ID
 
-### Front Panel Input Mapping Registers
+#### Front Panel Input Mapping Registers
 
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
@@ -847,7 +847,7 @@ Please note that after changing the Event clock source the fractional synthesize
 | PHFEx(3:0) | Falling edge phase monitoring register
 | PHREx(3:0) | Rising edge phase monitoring register
 
-### Transition Board Input Mapping Registers
+#### Transition Board Input Mapping Registers
 
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
@@ -908,7 +908,7 @@ All enabled input signals are OR’ed together. So if e.g. distributed bus bit 0
 universal input 0 and 1, if either of the inputs is active high also the distributed bus is active high.
 ```
 
-## Embedded Event Receivers
+### Embedded Event Receivers
 
 The VME-EVM-300 has two embedded event receivers. The downstream event receiver (EVRD) receives
 the event stream from port U whereas the upstream event receiver (EVRU) receives the concentrated event

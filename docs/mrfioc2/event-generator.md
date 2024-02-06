@@ -1,4 +1,4 @@
-# Event Master Generator
+# Event Master Generator and Fanout
 
 The Event Generator generates the event stream and sends it out to an
 array of Event Receivers.

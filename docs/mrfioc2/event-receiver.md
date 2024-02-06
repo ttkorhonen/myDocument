@@ -20,11 +20,13 @@ deterministic data transmission.
 (event-decoding-ram)=
 ### Event Decoding
 
-The Event Receiver provides two mapping RAMs of 256 × 128 bits. Only one
+The actions that the Event Receiver takes when it receives an event code are configured by means
+of the Mapping RAMs. Each EVR provides two mapping RAMs of 256 × 128 bits. Only one
 of the RAMs can be active at a time, however both RAMs may be modified
 at any time. The event code is applied to the address lines of the active
 mapping RAM. The 128-bit data programmed into a specific memory location
 pointed to by the event code determines what actions will be taken.
+The rough classification of actions is as described in the table below.
 
 | Event code   | Offset | Internal functions | Pulse Triggers   | 'Set' Pulse     | 'Reset' Pulse      |
 | ----------   | ------ | ------------------ | --------------   | -----------     | -------------      | 
@@ -37,8 +39,8 @@ pointed to by the event code determines what actions will be taken.
 (special-function-bitmap)=
 #### Function mapping
 
-There are 32 bits (96 to 127) that are reserved for internal functions, some of which are by default
-mapped to the event codes shown in the table below. 
+There are 32 bits (96 to 127) that are reserved for internal functions, some of which are 
+by default mapped to event codes as shown in the table below. 
 The remaining 96 bits control internal pulse generators. For each pulse generator there is 
 one bit to trigger the pulse generator, one bit to set the pulse generator output
 and one bit to clear the pulse generator output.

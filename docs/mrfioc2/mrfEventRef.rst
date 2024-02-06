@@ -9,12 +9,12 @@ MRF Timing System Reference
    usage-examples
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :caption: Hardware:
 
    event-generator
-   evm-mtca
    evg-registermap
+   evm-mtca
    firmware-changelog 
    fct-registermap
    event-receiver
