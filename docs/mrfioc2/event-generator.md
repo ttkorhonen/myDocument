@@ -1,4 +1,20 @@
-# Event Master Generator and Fanout
+# Event Master 
+
+Since the 300-series, Event Generator and Fanout/Concentrator are combined 
+in the Event Master module that can be configured for either use; an Event Generator or Fanout-Concentrator.
+
+# Fanout and Concentrator
+
+When configured as a Fanout/Concentrator, the EVM has basically two tasks:
+
+- Multiplying the [event stream](event-stream-protocol.md) from one input link to multiple (up to 8) output links.
+- Concentrating the event streams from multiple links to one upwards link.
+
+Fanout/concentrators play also an important role in the [delay compensation](event-system-intro.md#delay-compensation)
+
+Register map for this function can be found [here](fct-registermap.md)
+
+# Event Generator
 
 The Event Generator generates the event stream and sends it out to an
 array of Event Receivers.
@@ -628,7 +644,7 @@ if it does not know the frequency range to lock to.
 |50 MHz                       | 0x009743AD                | 50.0 MHz         | 0
 
 
-## Delay Compensation
+# Delay Compensation
 
 With the active delay compensation feature the Event Generator and
 distribution layer have been integrated into a single product, the Event
@@ -638,7 +654,7 @@ Master (EVM).
 
 Figure 1: Timing System Topology (Active Delay Compensation, series 300)
 
-### Topology ID
+## Topology ID
 
 Each device in the timing system is given an unique identifier, the
 Topology ID. The master EVM is given ID 0x00000000. The downstream
@@ -649,7 +665,7 @@ four bits to form the topology ID for the downstream devices in the next
 level. The topology IDs are represented above the devices in the example
 layout in figure 1.
 
-### Active Delay Compensation
+## Active Delay Compensation
 
 Delay compensation is achieved in measuring the propagation delay of
 events from the delay compensation master EVM through the distribution
@@ -657,7 +673,7 @@ network up to the Event Receivers. At the last stage the EVR is aware of
 the delay through the network and adjusts an internal FIFO depth to
 match a programmed target delay value.
 
-#### Timing System Master
+### Timing System Master
 
 The top node in the Timing System has the important task to generate
 periodic beacon events, to initialise and send out delay compensation
@@ -681,7 +697,7 @@ path delay value status is invalidated. Also if the delay value between
 consecutive measurements varies significantly (by more than +/- 4 event
 clock cycles) the delay measurement and delay value status is reset.
 
-#### Timing System Fan-Out
+### Timing System Fan-Out
 
 In EVMs configured as fan-outs (DCMST = 0 and BCGEN = 0) beacons from
 the Timing System Master are received by the port U transceiver. The
@@ -702,7 +718,7 @@ value status is invalidated.
 
 ![image](images/dc-fanout.png)
 
-Figure 3: Timing System Fan-Out
+Figure: Timing System Fan-Out
 
 The fan-out receives the delay compensation segment on the segmented
 data buffer. This segment contains information about the delay value

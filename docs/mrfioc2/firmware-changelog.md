@@ -1,4 +1,4 @@
-# EVM Firmware Version Change Log
+## EVM Firmware Version Change Log
 
 | FW Version | Date | Changes | Affected HW |
 | ---------- | ---- | ------- | ------------|
