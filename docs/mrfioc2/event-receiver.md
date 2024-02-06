@@ -214,17 +214,17 @@ resetting the output low. In the table below you can see the
 relationship between flip-flops and pulse generators and the output
 mapping IDs.
 
-  | flip-flop   | mappingID   |Set          | Reset
-  | ----------- | ----------- |------------ | ------------------
-  | 0           | 48          |Pulse gen.   | 0 Pulse gen. 1
-  | 1           | 49          |Pulse gen.   | 2 Pulse gen. 3
-  | 2           | 50          |Pulse gen.   | 4 Pulse gen. 5
-  | 3           | 51          |Pulse gen.   | 6 Pulse gen. 7
-  | 4           | 52          |Pulse gen.   | 8 Pulse gen. 9
-  | 5           | 53          |Pulse gen.   | 10 Pulse gen. 11
-  | 6           | 54          |Pulse gen.   | 12 Pulse gen. 13
-  | 7           | 55          |Pulse gen.   | 14 Pulse gen. 15
-
+  | flip-flop   | mappingID   |Set           | Reset
+  | ----------- | ----------- |------------  | ------------------
+  | 0           | 48          |Pulse gen. 0  | Pulse gen. 1
+  | 1           | 49          |Pulse gen. 2  | Pulse gen. 3
+  | 2           | 50          |Pulse gen. 4  | Pulse gen. 5
+  | 3           | 51          |Pulse gen. 6  | Pulse gen. 7
+  | 4           | 52          |Pulse gen. 8  | Pulse gen. 9
+  | 5           | 53          |Pulse gen. 10 | Pulse gen. 11
+  | 6           | 54          |Pulse gen. 12 | Pulse gen. 13
+  | 7           | 55          |Pulse gen. 14 | Pulse gen. 15
+ 
 ### Front Panel Universal I/O Slots
 
 Universal I/O slots provide different types of output with exchangeable

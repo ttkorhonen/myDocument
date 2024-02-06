@@ -9,17 +9,17 @@ Event Receiver register/memory map.
 | 0x000 | Status         | UINT32 | [Status Register](#status-register)
 | 0x004 | Control        | UINT32 | [Control Register](#control-register)
 | 0x008 | IrqFlag        | UINT32 | [Interrupt Flag Register](#interrupt-flag-register)
-| 0x00C | IrqEnable      | UINT32 | Interrupt Enable Register
-| 0x010 | PulseIrqMap    | UINT32 | Mapping register for pulse interrupt
-| 0x018 | SWEvent        | UINT32 | Software event register
-| 0x01C | PCIIrqEnable   | UINT32 | PCI Interrupt Enable Register
-| 0x020 | DataBufCtrl    | UINT32 | Data Buffer Control and Status Register
-| 0x024 | TxDataBufCtrl  | UINT32 | TX Data Buffer Control and Status Register 
-| 0x028 | TxSegBufCtrl   | UINT32 | TX Segmented Data Buffer Control and Status Register
-| 0x02C | FWVersion      | UINT32 | Firmware Version Register
+| 0x00C | IrqEnable      | UINT32 | [Interrupt Enable Register](#interrupt-enable-register)
+| 0x010 | PulseIrqMap    | UINT32 | [Mapping register for pulse interrupt](#hardware-interrupt-mapping-register)
+| 0x018 | SWEvent        | UINT32 | [Software event register](#software-event-register)
+| 0x01C | PCIIrqEnable   | UINT32 | [PCI Interrupt Enable Register](#pci-interrupt-enable-register)
+| 0x020 | DataBufCtrl    | UINT32 | [Data Buffer Control and Status Register](#receive-data-buffer-control-and-status-register)
+| 0x024 | TxDataBufCtrl  | UINT32 | [TX Data Buffer Control and Status Register](#transmit-data-buffer-control-register) 
+| 0x028 | TxSegBufCtrl   | UINT32 | [TX Segmented Data Buffer Control and Status Register](#transmit-segemented-data-buffer-control-register)
+| 0x02C | FWVersion      | UINT32 | [Firmware Version Register](#fpga-firmware-version-register)
 | 0x040 | EvCntPresc     | UINT32 | Event Counter Prescaler
 | 0x04C | UsecDivider    | UINT32 | Divider to get from Event Clock to 1 MHz
-| 0x050 | ClockControl   | UINT32 | Event Clock Control Register
+| 0x050 | ClockControl   | UINT32 | [Event Clock Control Register](#clock-control-register)
 | 0x05C | SecSR          | UINT32 | Seconds Shift Register
 | 0x060 | SecCounter     | UINT32 | Timestamp Seconds Counter
 | 0x064 | EventCounter   | UINT32 | Timestamp Event Counter
@@ -29,18 +29,18 @@ Event Receiver register/memory map.
 | 0x074 | EvFIFOEvCnt    | UINT32 | Event FIFO Event Counter Register
 | 0x078 | EvFIFOCode     | UINT16 | Event FIFO Event Code Register
 | 0x07C | LogStatus      | UINT32 | Event Log Status Register
-| 0x080 | FracDiv        | UINT32 | Micrel SY87739L Fractional Divider Configuration Word
+| 0x080 | FracDiv        | UINT32 | [Micrel SY87739L Fractional Divider Configuration Word](#sy87739l-fractional-divider-configuration-word)
 | 0x090 | GPIODir        | UINT32 | Front Panel UnivIO GPIO signal direction
 | 0x094 | GPIOIn         | UINT32 | Front Panel UnivIO GPIO input register
 | 0x098 | GPIOOut        | UINT32 | Front Panel UnivIO GPIO output register
-| 0x0A0 | SPIData        | UINT32 | SPI Data Register
-| 0x0A4 | SPIControl     | UINT32 | SPI Control Register
+| 0x0A0 | SPIData        | UINT32 | [SPI Data Register](#spi-configuration-flash-registers)
+| 0x0A4 | SPIControl     | UINT32 | [SPI Control Register](#spi-configuration-flash-registers)
 | 0x0B0 | DCTarget       | UINT32 | Delay Compensation Target Value
 | 0x0B4 | DCRxValue      | UINT32 | Delay Compensation Transmission Path Delay Value
 | 0x0B8 | DCIntValue     | UINT32 | Delay Compensation Internal Delay Value
-| 0x0BC | DCStatus       | UINT32 | Delay Compensation Status Register
+| 0x0BC | DCStatus       | UINT32 | [Delay Compensation Status Register](#delay-compensation-status-register)
 | 0x0C0 | TopologyID     | UINT32 | Timing Node Topology ID
-| 0x0E0 | SeqRamCtrl     | UINT32 | Sequence RAM Control Register
+| 0x0E0 | SeqRamCtrl     | UINT32 | [Sequence RAM Control Register](#sequence-ram-control-register)
 | 0x100 | Prescaler0     | UINT32 | Prescaler 0 Divider
 | 0x104 | Prescaler1     | UINT32 | Prescaler 1 Divider
 | 0x108 | Prescaler2     | UINT32 | Prescaler 2 Divider
@@ -57,7 +57,7 @@ Event Receiver register/memory map.
 | 0x134 | PrescPhase5    | UINT32 | Prescaler 5 Phase Offset Register
 | 0x138 | PrescPhase6    | UINT32 | Prescaler 6 Phase Offset Register
 | 0x13C | PrescPhase7    | UINT32 | Prescaler 7 Phase Offset Register
-| 0x140 | PrescTrig0     | UINT32 | Prescaler 0 Pulse Generator Trigger Register
+| 0x140 | PrescTrig0     | UINT32 | [Prescaler 0 Pulse Generator Trigger Register](#prescaler-pulse-trigger-registers)
 | 0x144 | PrescTrig1     | UINT32 | Prescaler 1 Pulse Generator Trigger Register
 | 0x148 | PrescTrig2     | UINT32 | Prescaler 2 Pulse Generator Trigger Register
 | 0x14C | PrescTrig3     | UINT32 | Prescaler 3 Pulse Generator Trigger Register
@@ -65,7 +65,7 @@ Event Receiver register/memory map.
 | 0x154 | PrescTrig5     | UINT32 | Prescaler 5 Pulse Generator Trigger Register
 | 0x158 | PrescTrig6     | UINT32 | Prescaler 6 Pulse Generator Trigger Register
 | 0x15C | PrescTrig7     | UINT32 | Prescaler 7 Pulse Generator Trigger Register
-| 0x180 | DBusTrig0      | UINT32 | DBus Bit 0 Pulse Generator Trigger Register
+| 0x180 | DBusTrig0      | UINT32 | [DBus Bit 0 Pulse Generator Trigger Register](#distributed-bus-pulse-trigger-registers)
 | 0x184 | DBusTrig1      | UINT32 | DBus Bit 1 Pulse Generator Trigger Register
 | 0x188 | DBusTrig2      | UINT32 | DBus Bit 2 Pulse Generator Trigger Register
 | 0x18C | DBusTrig3      | UINT32 | DBus Bit 3 Pulse Generator Trigger Register
@@ -73,7 +73,7 @@ Event Receiver register/memory map.
 | 0x194 | DBusTrig5      | UINT32 | DBus Bit 5 Pulse Generator Trigger Register
 | 0x198 | DBusTrig6      | UINT32 | DBus Bit 6 Pulse Generator Trigger Register
 | 0x19C | DBusTrig7      | UINT32 | DBus Bit 7 Pulse Generator Trigger Register
-| 0x200 | Pulse0Ctrl     | UINT32 | Pulse 0 Control Register
+| 0x200 | Pulse0Ctrl     | UINT32 | [Pulse 0 Control Register](#pulse-generator-registers)
 | 0x204 | Pulse0Presc    | UINT32 | Pulse 0 Prescaler Register
 | 0x208 | Pulse0Delay    | UINT32 | Pulse 0 Delay Register
 | 0x20C | Pulse0Width    | UINT32 | Pulse 0 Width Register
@@ -147,7 +147,7 @@ Event Receiver register/memory map.
 | 0x4CA | BPOutMap5      | UINT16 | Backplane Output 5 Map Register
 | 0x4CC | BPOutMap6      | UINT16 | Backplane Output 6 Map Register
 | 0x4CE | BPOutMap7      | UINT16 | Backplane Output 7 Map Register
-| 0x500 | FPInMap0       | UINT32 | Front Panel Input 0 Mapping Register
+| 0x500 | FPInMap0       | UINT32 | [Front Panel Input 0 Mapping Register](#input-mapping-registers)
 | 0x504 | FPInMap1       | UINT32 | Front Panel Input 1 Mapping Register
 | 0x510 | UnivInMap0     | UINT32 | Universal Input 0 Mapping Register
 | 0x514 | UnivInMap1     | UINT32 | Universal Input 1 Mapping Register
@@ -184,10 +184,10 @@ Event Receiver register/memory map.
 | 0x8800 | DataBufRXSize0    | UINT32  | Segmented Data Buffer Segment 0 Receive Size Register
 | 0x8804 | SDataBufRXSize0   | UINT32 | Segmented Data Buffer Segment 1 Receive Size Register
 | 0x89FC | SDataBufRXSize127 | UINT32 | Segmented Data Buffer Segment 127 Receive Size Register
-| 0x8F80 – 0x8F8F | SDataBufSIrqEna |  | Segmented Data Buffer Segment Interrupt Enable Register
-| 0x8FA0 – 0x8FAF | SDataBufCSFlag  |  | Segmented Data Buffer Segment Checksum Flags
-| 0x8FC0 – 0x8FCF | SDataBufOVFlag  |  | Segmented Data Buffer Segment Overflow Flags
-| 0x8FE0 – 0x8FEF | SDataBufRxFlag  |  | Segmented Data Buffer Segment Receive Flags
+| 0x8F80 – 0x8F8F | SDataBufSIrqEna |  | [Segmented Data Buffer Segment Interrupt Enable Register](#data-buffer-segment-interrupt-enable-register)
+| 0x8FA0 – 0x8FAF | SDataBufCSFlag  |  | [Segmented Data Buffer Segment Checksum Flags](#data-buffer-checksum-flag-register)
+| 0x8FC0 – 0x8FCF | SDataBufOVFlag  |  | [Segmented Data Buffer Segment Overflow Flags](#data-buffer-overflow-flag-register)
+| 0x8FE0 – 0x8FEF | SDataBufRxFlag  |  | [Segmented Data Buffer Segment Receive Flags](#data-buffer-receive-flag-register)
 | 0x9000 – 0x97FF | SDataBufData    |  | Segmented Data Buffer Segment Data Memory
 | 0xA000 – 0xA7FF | SDataBufData    |  | Segmented Data Buffer Transmit Memory
 | 0xC000 – 0xFFFF | SeqRam | | Sequence RAM

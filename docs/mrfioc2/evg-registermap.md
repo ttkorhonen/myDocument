@@ -7,35 +7,35 @@ This is the register map when EVM is configured as an EVG.
 
 | Address |  Register | Type | Description |
 | ------- | --------- | ---- | ----------- |
-| 0x000 | Status | UINT32 | Status Register |
-| 0x004 | Control | UINT32 | Control Register |
-| 0x008 | IrqFlag | UINT32 | Interrupt Flag Register |
-| 0x00C | IrqEnable | UINT32 | Interrupt Enable Register |
-| 0x010 | ACControl | UINT32 | AC divider control
-| 0x014 | ACMap | UINT32 | AC trigger event mapping
-| 0x018 | SWEvent | UINT32 | Software event Register |
-| 0x01C | SegBufControl | UINT32 | Segmented Data Buffer Control Register |
-| 0x020 | DataBufControl | UINT32 | Data Buffer Control Register |
-| 0x024 | DBusMap | UINT32 | Distributed Bus Mapping Register |
-| 0x028 | DBusEvents | UINT32 | Distributed Bus Timestamping Events Register |
-| 0x02C | FWVersion | UINT32 | Firmware Version Register |
-| 0x034 | TSControl | UINT32 | Timestamp event generator control Register |
+| 0x000 | Status | UINT32 | [Status Register](#status-register) |
+| 0x004 | Control | UINT32 | [Control Register](#control-register) |
+| 0x008 | IrqFlag | UINT32 | [Interrupt Flag Register](#interrupt-flag-register) |
+| 0x00C | IrqEnable | UINT32 | [Interrupt Enable Register](#interrupt-enable-register) |
+| 0x010 | ACControl | UINT32 | [AC divider control](#ac-trigger-control-register)
+| 0x014 | ACMap | UINT32 | [AC trigger event mapping](#ac-trigger-mapping-register)
+| 0x018 | SWEvent | UINT32 | [Software event Register](#software-event-register) |
+| 0x01C | SegBufControl | UINT32 | [Segmented Data Buffer Control Register](#segmented-data-buffer-control-register) |
+| 0x020 | DataBufControl | UINT32 | [Data Buffer Control Register](#data-buffer-control-register) |
+| 0x024 | DBusMap | UINT32 | [Distributed Bus Mapping Register](#distributed-bus-mapping-register) |
+| 0x028 | DBusEvents | UINT32 | [Distributed Bus Timestamping Events Register](#distributer-bus-event-enable-register) |
+| 0x02C | FWVersion | UINT32 | [Firmware Version Register](#fpga-firmware-version-register) |
+| 0x034 | TSControl | UINT32 | [Timestamp event generator control Register](#timestamp-generator-control-register) |
 | 0x038 | TSValue | UINT32 | Timestamp event generator value Register |
 | 0x040 | FPInput | UINT32 | Front Panel Input state Register |
 | 0x044 | UnivInput | UINT32 | Universal Input state Register |
 | 0x048 | TBInput | UINT32 | Transition Board Input state Register |
-| 0x04C | UsecDivider | UINT32 | Divider to get from Event Clock to 1 MHz
-| 0x050 | ClockControl | UINT32 | Event Clock Control Register |
-| 0x060 | EvanControl | UINT32 | Event Analyser Control Register |
+| 0x04C | UsecDivider | UINT32 | [Divider to get from Event Clock to 1 MHz](#microsecond-divider-register)
+| 0x050 | ClockControl | UINT32 | [Event Clock Control Register](#clock-control-register) |
+| 0x060 | EvanControl | UINT32 | [Event Analyser Control Register](#event-analyser-control-register) |
 | 0x064 | EvanCode | UINT32 | Event Analyser Distributed Bus and Event Code Register |
 | 0x068 | EvanTimeHigh | UINT32 | Event Analyser Time Counter (bits 63 – 32)
 | 0x06C | EvanTimeLow | UINT32 | Event Analyser Time Counter (bits 31 – 0)
-| 0x070 | SeqRamCtrl0 | UINT32 | Sequence RAM 0 Control Register |
-| 0x074 | SeqRamCtrl1 | UINT32 | Sequence RAM 1 Control Register |
-| 0x080 | FracDiv | UINT32 | Micrel SY87739L Fractional Divider Configuration Word
-| 0x0A0 | SPIData | UINT32 | SPI Data Register |
-| 0x0A4 | SPIControl | UINT32 | SPI Control Register |
-| 0x100 | EvTrig0 | UINT32 | Event Trigger 0 Register |
+| 0x070 | SeqRamCtrl0 | UINT32 | [Sequence RAM 0 Control Register](#sequence-ram-control-registers) |
+| 0x074 | SeqRamCtrl1 | UINT32 | [Sequence RAM 1 Control Register](#sequence-ram-control-registers) |
+| 0x080 | FracDiv | UINT32 | [Micrel SY87739L Fractional Divider Configuration Word](#sy87739l-fractional-divider-configuration-word)
+| 0x0A0 | SPIData | UINT32 | [SPI Data Register](#spi-configuration-flash-registers) |
+| 0x0A4 | SPIControl | UINT32 | [SPI Control Register](#spi-configuration-flash-registers) |
+| 0x100 | EvTrig0 | UINT32 | [Event Trigger 0 Register](#event-trigger-registers) |
 | 0x104 | EvTrig1 | UINT32 | Event Trigger 1 Register |
 | 0x108 | EvTrig2 | UINT32 | Event Trigger 2 Register |
 | 0x10C | EvTrig3 | UINT32 | Event Trigger 3 Register |
@@ -43,7 +43,7 @@ This is the register map when EVM is configured as an EVG.
 | 0x114 | EvTrig5 | UINT32 | Event Trigger 5 Register |
 | 0x118 | EvTrig6 | UINT32 | Event Trigger 6 Register |
 | 0x11C | EvTrig7 | UINT32 | Event Trigger 7 Register |
-| 0x180 | MXCCtrl0 | UINT32 | Multiplexed Counter 0 Control Register |
+| 0x180 | MXCCtrl0 | UINT32 | [Multiplexed Counter 0 Control Register](#multiplexed-counter-registers) |
 | 0x184 | MXCPresc0 | UINT32 | Multiplexed Counter 0 Prescaler Register |
 | 0x188 | MXCCtrl1 | UINT32 | Multiplexed Counter 1 Control Register |
 | 0x18C | MXCPresc1 | UINT32 | Multiplexed Counter 1 Prescaler Register |
@@ -73,7 +73,7 @@ This is the register map when EVM is configured as an EVG.
 | 0x44E | UnivOutMap7 | UINT16 | Universal Output 7 Mapping Register |
 | 0x450 | UnivOutMap8 | UINT16 | Universal Output 8 Mapping Register |
 | 0x452 | UnivOutMap9 | UINT16 | Universal Output 9 Mapping Register |
-| 0x480 | TBOutMap0 | UINT16 | Transition Board Output 0 Mapping Register |
+| 0x480 | TBOutMap0 | UINT16 | [Transition Board Output 0 Mapping Register](#transition-board-output-mapping-registers) |
 | 0x482 | TBOutMap1 | UINT16 | Transition Board Output 1 Mapping Register |
 | 0x484 | TBOutMap2 | UINT16 | Transition Board Output 2 Mapping Register |
 | 0x486 | TBOutMap3 | UINT16 | Transition Board Output 3 Mapping Register |
@@ -89,10 +89,10 @@ This is the register map when EVM is configured as an EVG.
 | 0x49A | TBOutMap13 | UINT16 | Transition Board Output 13 Mapping Register |
 | 0x49C | TBOutMap14 | UINT16 | Transition Board Output 14 Mapping Register |
 | 0x49E | TBOutMap15 | UINT16 | Transition Board Output 15 Mapping Register |
-| 0x500 | FPInMap0 | UINT32 | Front Panel Input 0 Mapping Register |
+| 0x500 | FPInMap0 | UINT32 | [Front Panel Input 0 Mapping Register](#front-panel-input-mapping-registers) |
 | 0x504 | FPInMap1 | UINT32 | Front Panel Input 1 Mapping Register |
 | 0x508 | FPInMap2 | UINT32 | Front Panel Input 2 Mapping Register |
-| 0x520 | FPPhMon0 | UINT32 | Front Panel Input 0 Phase Monitoring Register |
+| 0x520 | FPPhMon0 | UINT32 | [Front Panel Input 0 Phase Monitoring Register](#front-panel-input-phase-monitoring-registers) |
 | 0x524 | FPPhMon1 | UINT32 | Front Panel Input 1 Phase Monitoring Register |
 | 0x528 | FPPhMon2 | UINT32 | Front Panel Input 2 Phase Monitoring Register |
 | 0x540 | UnivInMap0 | UINT32 | Front Panel Universal Input 0 Map Register |
@@ -105,7 +105,7 @@ This is the register map when EVM is configured as an EVG.
 | 0x55C | UnivInMap7 | UINT32 | Front Panel Universal Input 7 Map Register |
 | 0x560 | UnivInMap8 | UINT32 | Front Panel Universal Input 8 Map Register |
 | 0x564 | UnivInMap9 | UINT32 | Front Panel Universal Input 9 Map Register |
-| 0x600 | TBInMap0 | UINT32 | Transition Board Input 0 Mapping Register |
+| 0x600 | TBInMap0 | UINT32 | [Transition Board Input 0 Mapping Register](#transition-board-input-mapping-registers) |
 | 0x604 | TBInMap1 | UINT32 | Transition Board Input 1 Mapping Register |
 | 0x608 | TBInMap2 | UINT32 | Transition Board Input 2 Mapping Register |
 | 0x60C | TBInMap3 | UINT32 | Transition Board Input 3 Mapping Register |
@@ -159,6 +159,7 @@ This is the register map when EVM is configured as an EVG.
 | TDB1 | Status of transmitted distributed bus bit 1 |
 | TDB0 | Status of transmitted distributed bus bit 0 |
 
+#### Control Register
 
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
@@ -253,19 +254,21 @@ This is the register map when EVM is configured as an EVG.
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
 | 0x011   | ACSYN2 | ACSYN1 | ACBYP  | ACSYN0 |
 |         | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| 0x012   | AC Trigger Divider |
-|         | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 |bit 2 | bit 1 | bit 0 |
-| 0x013   | AC Trigger Phase Shift |
+| 0x012   | ACDIV7 | ACDIV6 | ACDIV5 | ACDIV4 | ACDIV3 | ACDIV2 | ACDIV1 | ACDIV0 |
+|         | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
+| 0x013   | ACPS7 | ACPS6 | ACPS5 | ACPS4 | ACPS3 | ACPS2 | ACPS1 | ACPS0 |
 
-| Bit | Function |
-| --- | -------- |
-| ACBYP | AC divider and phase shifter bypass (0 = divider/phase shifter enabled, 1 =
-| | divider/phase shifter bypassed)
+| Bit        | Function |
+| ---        | -------- |
+| ACBYP      | AC divider and phase shifter bypass (0 = divider/phase shifter enabled, 1 =
+|            | divider/phase shifter bypassed)
 | ACSYN(2:0) | Synchronization select
-| | 000 = Event clock
-| | 001 = Multiplexed counter 7 output
-| | 011 = Front panel TTL input IN1
-| | 101 = Front panel TTL input IN2
+|            | 000 = Event clock
+|            | 001 = Multiplexed counter 7 output
+|            | 011 = Front panel TTL input IN1
+|            | 101 = Front panel TTL input IN2
+| ACDIV(7:0) | AC Trigger divider (8-bit value)
+| ACPS(7:0)  | AC Trigger Phase shift (8-bit value)
 
 #### AC Trigger Mapping Register
 
@@ -290,38 +293,40 @@ This is the register map when EVM is configured as an EVG.
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
 | 0x01A | SWPEND | SWENA |
 | address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| 0x01B | Event Code to be sent out |
+| 0x01B   | CODE7 | CODE6 | CODE5 | CODE4 | CODE3 | CODE2 | CODE1 | CODE0 |
 
-| Bit | Function |
-| --- | -------- |
-| SWPEND | Event code waiting to be sent out (read-only). A new event code may be written
-| | to the event code register when this bit reads ‘0’.
-| SWENA | Enable software event
-| | When enabled ‘1’ a new event will be sent out when event code is written to
-| | the event code register.
+| Bit       | Function |
+| ---       | -------- |
+| SWPEND    | Event code waiting to be sent out (read-only). A new event code may be written
+|           | to the event code register when this bit reads ‘0’.
+| SWENA     | Enable software event
+|           | When enabled ‘1’ a new event will be sent out when event code is written to
+|           | the event code register.
+| CODE(7:0) | Event Code (8-bit value)
 
 #### Segmented Data Buffer Control Register
 
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x01C | SADDR(7:0) | | | | | | |
-| address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
-| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| 0x01E | DTSZ(10:8)
-| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| 0x01F   |  DTSZ(7:2) 0 0
+| 0x01C   | SADDR7 | SADDR7 | SADDR7 | SADDR7 | SADDR7 | SADDR7 | SADDR7 | SADDR7 |
+|         | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
+| 0x01D   |        |        |        | TXCPT  | TXRUN  | TRIG   |  ENA   |     1  |
+|         | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
+| 0x01E   |        |        |        |        |        | DTSZ10 | DTSZ9  | DTSZ8  |
+|         | bit 7  | bit 6  | bit 5  | bit 4  | bit 3  | bit 2  | bit 1  | bit 0  |
+| 0x01F   | DTSZ7  | DTSZ6  |DTSZ5   | DTSZ4  | DTSZ3  | DTSZ2  | 0      | 0      |
 
-| Bit | Function |
-| --- | -------- |
-| SADDR | Transfer Start Segment Address (16 byte segments)
-| TXCPT | Data Buffer Transmission Complete
-| TXRUN | Data Buffer Transmission Running – set when data transmission has been trig-
-| | gered and has not been completed yet
-| TRIG | Data Buffer Trigger Transmission
-| | Write ‘1’ to start transmission of data in buffer
-| ENA | Data Buffer Transmission enable
-| | ‘0’ – data transmission engine disabled
-| | ‘1’ – data transmission engine enabled
+| Bit        | Function |
+| ---        | -------- |
+| SADDR      | Transfer Start Segment Address (16 byte segments)
+| TXCPT      | Data Buffer Transmission Complete
+| TXRUN      | Data Buffer Transmission Running – set when data transmission has been
+|            | triggered and has not been completed yet
+| TRIG       | Data Buffer Trigger Transmission
+|            | Write ‘1’ to start transmission of data in buffer
+| ENA        | Data Buffer Transmission enable
+|            | ‘0’ – data transmission engine disabled
+|            | ‘1’ – data transmission engine enabled
 | DTSZ(10:8) | Data Transfer size 4 bytes to 2k in four byte increments
 
 #### Data Buffer Control Register
