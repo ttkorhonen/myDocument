@@ -404,6 +404,8 @@ All the outputs are programmable: multiplexed counters and distributed
 bus bits can be mapped to any output. The mapping is shown in table
 below.
 
+(mapping-id-table)=
+
  | MappingID   | Signal |
  | ----------- | ------------ |
  | 0 to 31     | (Reserved) |

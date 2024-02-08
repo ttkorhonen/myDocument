@@ -624,7 +624,7 @@ Please note that after changing the Event clock source the fractional synthesize
 | address | bit 7    | bit 6    | bit 5    | bit 4    | bit 3    | bit 2    | bit 1    | bit 0    |
 | ------- | ------   | ------   | ------   | ------   | ------   | ------   | ------   | ------   |
 | 0x0A3   | SPIDATA7 | SPIDATA6 | SPIDATA5 | SPIDATA4 | SPIDATA3 | SPIDATA2 | SPIDATA1 | SPIDATA0 |
-| address | bit 7    | bit 6    | bit 5    | bit 4    | bit 3    | bit 2    | bit 1    | bit 0    |
+|         | bit 7    | bit 6    | bit 5    | bit 4    | bit 3    | bit 2    | bit 1    | bit 0    |
 | 0x0A7   | E        | RRDY     | TRDY     | TMT      | TOE      | ROE      | OE       | SSO      |
    
 | Bit          | Function |
