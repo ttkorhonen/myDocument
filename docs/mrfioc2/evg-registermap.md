@@ -292,7 +292,7 @@ This is the register map when EVM is configured as an EVG.
 | address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
 | 0x01A   |        |        |        |        |        |        | SWPEND | SWENA |
-| address | bit 7  | bit 6  | bit 5  | bit 4  | bit 3  | bit 2  | bit 1  | bit 0 |
+|         | bit 7  | bit 6  | bit 5  | bit 4  | bit 3  | bit 2  | bit 1  | bit 0 |
 | 0x01B   | CODE7  | CODE6  | CODE5  | CODE4  | CODE3  | CODE2  | CODE1  | CODE0 |
 
 | Bit       | Function |
@@ -306,15 +306,15 @@ This is the register map when EVM is configured as an EVG.
 
 #### Segmented Data Buffer Control Register
 
-| address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
-| ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x01C   | SADDR7 | SADDR7 | SADDR7 | SADDR7 | SADDR7 | SADDR7 | SADDR7 | SADDR7 |
-|         | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
-| 0x01D   |        |        |        | TXCPT  | TXRUN  | TRIG   |  ENA   |     1  |
-|         | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| 0x01E   |        |        |        |        |        | DTSZ10 | DTSZ9  | DTSZ8  |
-|         | bit 7  | bit 6  | bit 5  | bit 4  | bit 3  | bit 2  | bit 1  | bit 0  |
-| 0x01F   | DTSZ7  | DTSZ6  |DTSZ5   | DTSZ4  | DTSZ3  | DTSZ2  | 0      | 0      |
+| address | bit 31   | bit 30   | bit 29   | bit 28   | bit 27   | bit 26   | bit 25   | bit 24   |
+| ------- | ------   | ------   | ------   | ------   | ------   | ------   | ------   | ------   |
+| 0x01C   | SADDR(7) | SADDR(6) | SADDR(5) | SADDR(4) | SADDR(3) | SADDR(2) | SADDR(1) | SADDR(0) |
+|         | bit 23   | bit 22   | bit 21   | bit 20   | bit 19   | bit 18   | bit 17   | bit 16   |
+| 0x01D   |          |          |          | TXCPT    | TXRUN    | TRIG     |  ENA     |     1    |
+|         | bit 15   | bit 14   | bit 13   | bit 12   | bit 11   | bit 10   | bit 9    | bit 8    |
+| 0x01E   |          |          |          |          |          | DTSZ(10) | DTSZ(9)  | DTSZ(8)  |
+|         | bit 7    | bit 6    | bit 5    | bit 4    | bit 3    | bit 2    | bit 1    | bit 0    |
+| 0x01F   | DTSZ(7)  | DTSZ(6)  |DTSZ(5)   | DTSZ(4)  | DTSZ(3)  | DTSZ(2)  | 0        | 0        |
 
 | Bit        | Function |
 | ---        | -------- |
@@ -335,11 +335,10 @@ This is the register map when EVM is configured as an EVG.
 | ------- | ------  | ------  | ------  | ------  | ------ | ------   | ------  | ------  |
 | 0x020   |        
 |         | bit 23  | bit 22  | bit 21  | bit 20  | bit 19 | bit 18   | bit 17  | bit 16  |
-| ------- | ------  | ------  | ------  | ------  | ------ | ------   | ------  | ------  |
 | 0x021   |         |         |         | TXCPT   | TXRUN  | TRIG     | ENA     | 1       |
-| address | bit 15  | bit 14  | bit 13  | bit 12  | bit 11 | bit 10   | bit 9   | bit 8   |
+|         | bit 15  | bit 14  | bit 13  | bit 12  | bit 11 | bit 10   | bit 9   | bit 8   |
 | 0x022   |         |         |         |         |        | DTSZ(10) | DTSZ(9) | DTSZ(8) |
-| address | bit 7   | bit 6   | bit 5   | bit 4   | bit 3  | bit 2    | bit 1   | bit 0   |
+|         | bit 7   | bit 6   | bit 5   | bit 4   | bit 3  | bit 2    | bit 1   | bit 0   |
 | 0x023   | DTSZ(7) | DTSZ(6) | DTSZ(5) | DTSZ(4) | DTSZ(3) | DTSZ(2) | 0       | 0       |
   
 | Bit   | Function |
@@ -360,20 +359,20 @@ This is the register map when EVM is configured as an EVG.
 | address | bit 31    | bit 30    | bit 29    | bit 28    | bit 27    | bit 26    | bit 25    | bit 24    |
 | ------- | ------    | ------    | ------    | ------    | ------    | ------    | ------    | ------    |
 | 0x024   | DBMAP7(3) | DBMAP7(2) | DBMAP7(1) | DBMAP7(0) | DBMAP6(3) | DBMAP6(2) | DBMAP6(1) | DBMAP6(0) |
-| address | bit 23    | bit 22    | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
+|         | bit 23    | bit 22    | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
 | 0x025   | DBMAP5(3) | DBMAP5(2) | DBMAP5(1) | DBMAP5(0) | DBMAP4(3) | DBMAP4(2) | DBMAP4(1) | DBMAP4(0) |
-| address | bit 15    | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
+|         | bit 15    | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
 | 0x026   | DBMAP3(3) | DBMAP3(2) | DBMAP3(1) | DBMAP3(0) | DBMAP2(3) | DBMAP2(2) | DBMAP2(1) | DBMAP2(0) |
-| address | bit 7     | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
+|         | bit 7     | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
 | 0x027   | DBMAP1(3) | DBMAP1(2) | DBMAP1(1) | DBMAP1(0) | DBMAP0(3) | DBMAP0(2) | DBMAP0(1) | DBMAP0(0) |
 
-| Bit | Function |
-| --- | -------- |
+| Bit         | Function |
+| ---         | -------- |
 | DBMAP7(3:0) | Distributed Bus Bit 7 Mapping:
-| | 0 – Off, output logic ‘0’
-| | 1 – take bus bit from external input
-| | 2 – Multiplexed counter output mapped to distributed bus bit
-| | 3 – Distributed bus bit forwarded from upstream EVG
+|             | 0 – Off, output logic ‘0’
+|             | 1 – take bus bit from external input
+|             | 2 – Multiplexed counter output mapped to distributed bus bit
+|             | 3 – Distributed bus bit forwarded from upstream EVG
 | DBMAP6(3:0) | Distributed Bus Bit 7 Mapping (see above for mappings)
 | DBMAP5(3:0) | Distributed Bus Bit 7 Mapping (see above for mappings)
 | DBMAP4(3:0) | Distributed Bus Bit 7 Mapping (see above for mappings)
@@ -382,14 +381,14 @@ This is the register map when EVM is configured as an EVG.
 | DBMAP1(3:0) | Distributed Bus Bit 7 Mapping (see above for mappings)
 | DBMAP0(3:0) | Distributed Bus Bit 7 Mapping (see above for mappings)
 
-#### Distributer Bus Event Enable Register
+#### Distributed Bus Event Enable Register
 
 | address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x02B | DBEV7 | DBEV6 | DBEV5 |
+| 0x02B   | DBEV7  | DBEV6  | DBEV5 |
 
-| Bit | Function |
-| --- | -------- |
+| Bit   | Function |
+| ---   | -------- |
 | DBEV5 | Distributed bus input 5 “Timestamp reset” 0x7D event enable
 | DBEV6 | Distributed bus input 6 “Seconds ‘0’” 0x70 event enable
 | DBEV7 | Distributed bus input 7 “Seconds ‘1’” 0x71 event enable
@@ -407,29 +406,29 @@ This is the register map when EVM is configured as an EVG.
 | 0x02F   | Revision ID |
 
 
-| Bit | Function | 
-| --- | -------- |
+| Bit                | Function | 
+| ---                | -------- |
 | Form Factor FF(0:3)| |
-| | 0 – CompactPCI 3U |
-| | 1 – PMC |
-| | 2 – VME64x |
-| | 3 – CompactRIO |
-| | 4 – CompactPCI 6U |
-| | 6 – PXIe |
-| | 7 – PCIe |
-| | 8 – mTCA.4 |
+|                    | 0 – CompactPCI 3U |
+|                    | 1 – PMC |
+|                    | 2 – VME64x |
+|                    | 3 – CompactRIO |
+|                    | 4 – CompactPCI 6U |
+|                    | 6 – PXIe |
+|                    | 7 – PCIe |
+|                    | 8 – mTCA.4 |
 
 
 | Bit | Function |
 | --- | -------- |
 | Subrelease ID | For production releases the subrelease ID counts up from 00.
-| | For pre-releases this ID is used “backwards” counting down from ff i.e. when
-| | approacing release 22000207, we have prereleases 22FF0206, 22FE0206,
-| | 22FD0206 etc. in this order.
-| Firmware ID | 00 – Modular Register Map firmware (no delay compensation)
-| | 01 – Reserved
-| | 02 – Delay Compensation firmware
-| Revision ID | See end of manual
+|               | For pre-releases this ID is used “backwards” counting down from ff i.e. when
+|               | approacing release 22000207, we have prereleases 22FF0206, 22FE0206,
+|               | 22FD0206 etc. in this order.
+| Firmware ID   | 00 – Modular Register Map firmware (no delay compensation)
+|               | 01 – Reserved
+|               | 02 – Delay Compensation firmware
+| Revision ID   | See end of manual
 
 #### Timestamp Generator Control Register
 
@@ -458,64 +457,64 @@ the parameters for the clock cleaner PLL and e.g. for the phase shifter in the A
 | address | bit 31  | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------  | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
 | 0x050   | PLLLOCK | BWSEL2 | BWSEL1 | BWSEL0 |        | RFSEL2 | RFSEL1 | RFSEL0 |
-| address | bit 23  | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
+|         | bit 23  | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
 | 0x051   | PHTOGG  |        | RFDIV5 | RFDIV4 | RFDIV3 | RFDIV2 | RFDIV1 | RFDIV0 |
-| address | bit 15  | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
+|         | bit 15  | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
 | 0x052   |         |        |        |        |        |        | CGLOCK |        |
 
 | Bit | Function |
 | --- | -------- |
 | PLLLOCK | Clock cleaner locked
 | BWSEL2:0 | PLL Bandwidth Select (see Silicon Labs Si5317 datasheet)
-| | 000 – Si5317, BW setting HM (lowest loop bandwidth)
-| | 001 – Si5317, BW setting HL
-| | 010 – Si5317, BW setting MH
-| | 011 – Si5317, BW setting MM
-| | 100 – Si5317, BW setting ML (highest loop bandwidth)
-| PHTOGG | Distributed bus phase toggle
+|          | 000 – Si5317, BW setting HM (lowest loop bandwidth)
+|          | 001 – Si5317, BW setting HL
+|          | 010 – Si5317, BW setting MH
+|          | 011 – Si5317, BW setting MM
+|          | 100 – Si5317, BW setting ML (highest loop bandwidth)
+| PHTOGG   | Distributed bus phase toggle
 | RFDIV5-0 | External RF divider select:
-| | 000000 – RF/1
-| | 000001 – RF/2
-| | 000010 – RF/3
-| | 000011 – RF/4
-| | 000100 – RF/5
-| | 000101 – RF/6
-| | 000110 – RF/7
-| | 000111 – RF/8
-| | 001000 – RF/9
-| | 001001 – RF/10
-| | 001010 – RF/11
-| | 001011 – RF/12
-| | 001100 – OFF
-| | 001101 – RF/14
-| | 001110 – RF/15
-| | 001111 – RF/16
-| | 010000 – RF/17
-| | 010001 – RF/18
-| | 010010 – RF/19
-| | 010011 – RF/20
-| | 010100 – RF/21
-| | 010101 – RF/22
-| | 010110 – RF/23
-| | 010111 – RF/24
-| | 011000 – RF/25
-| | 011001 – RF/26
-| | 011010 – RF/27
-| | 011011 – RF/28
-| | 011100 – RF/29
-| | 011101 – RF/30
-| | 011110 – RF/31
-| | 011111 – RF/32
+|          | 000000 – RF/1
+|          | 000001 – RF/2
+|          | 000010 – RF/3
+|          | 000011 – RF/4
+|          | 000100 – RF/5
+|          | 000101 – RF/6
+|          | 000110 – RF/7
+|          | 000111 – RF/8
+|          | 001000 – RF/9
+|          | 001001 – RF/10
+|          | 001010 – RF/11
+|          | 001011 – RF/12
+|          | 001100 – OFF
+|          | 001101 – RF/14
+|          | 001110 – RF/15
+|          | 001111 – RF/16
+|          | 010000 – RF/17
+|          | 010001 – RF/18
+|          | 010010 – RF/19
+|          | 010011 – RF/20
+|          | 010100 – RF/21
+|          | 010101 – RF/22
+|          | 010110 – RF/23
+|          | 010111 – RF/24
+|          | 011000 – RF/25
+|          | 011001 – RF/26
+|          | 011010 – RF/27
+|          | 011011 – RF/28
+|          | 011100 – RF/29
+|          | 011101 – RF/30
+|          | 011110 – RF/31
+|          | 011111 – RF/32
 | RFSEL2-0 | RF reference select:
-| | 000 – Use internal reference (fractional synthesizer)
-| | 001 – Use external RF reference (front panel input through divider)
-| | 010 – PXIe 100 MHz clock
-| | 100 – Use recovered RX clock, Fan-Out mode
-| | 101 – Use external RF reference for downstream ports, internal reference for
-| | upstream port, Fan-Out mode, event rate down conversion
-| | 110 – PXIe 10 MHz clock through clock multiplier
-| | 111 – Recovered clock /2 decimate mode, event rate is halved
-| CGLOCK | Micrel SY87739L reference clock locked (read-only)
+|          | 000 – Use internal reference (fractional synthesizer)
+|          | 001 – Use external RF reference (front panel input through divider)
+|          | 010 – PXIe 100 MHz clock
+|          | 100 – Use recovered RX clock, Fan-Out mode
+|          | 101 – Use external RF reference for downstream ports, internal reference for
+|          | upstream port, Fan-Out mode, event rate down conversion
+|          | 110 – PXIe 10 MHz clock through clock multiplier
+|          | 111 – Recovered clock /2 decimate mode, event rate is halved
+| CGLOCK   | Micrel SY87739L reference clock locked (read-only)
 
 Please note that after changing the Event clock source the fractional synthesizer control word must be reloaded to initialize an internal reset.
 
@@ -528,41 +527,41 @@ Please note that after changing the Event clock source the fractional synthesize
 | Bit | Function |
 | --- | -------- |
 |EVANE | Event Analyser FIFO not empty flag:
-| | 0 – FIFO empty
-| | 1 – FIFO not empty, events in FIFO
+|      | 0 – FIFO empty
+|      | 1 – FIFO not empty, events in FIFO
 |EVARS | Event Analyser Reset
-| | 0 – not in reset
-| | 1 – reset
+|      | 0 – not in reset
+|      | 1 – reset
 |EVAOF | Event Analyser FIFO overflow flag:
-| | 0 – no overflow
-| | 1 – FIFO overflow
+|      | 0 – no overflow
+|      | 1 – FIFO overflow
 |EVAEN | Event Analyser enable
-| | 0 – Event Analyser disabled
-| | 1 – Event Analyser enabled
+|      | 0 – Event Analyser disabled
+|      | 1 – Event Analyser enabled
 |EVACR | Event Analyser 64 bit counter reset
-| | 0 – Counter running
-| | 1 – Counter reset to zero.
+|      | 0 – Counter running
+|      | 1 – Counter reset to zero.
 
 #### Sequence RAM Control Registers
 
 | address | bit 31    | bit 30    | bit 29    | bit 28    | bit 27   | bit 26   | bit 25   | bit 24   |
 | ------- | ------    | ------    | ------    | ------    | ------   | ------   | ------   | ------   |
 | 0x070   |           |           |           |           |          |          | SQ0RUN   | SQ0ENA   |
-| address | bit 23    | bit 22    | bit 21    | bit 20    | bit 19   | bit 18   | bit 17   | bit 16   |
+|         | bit 23    | bit 22    | bit 21    | bit 20    | bit 19   | bit 18   | bit 17   | bit 16   |
 | 0x071   | SQ0XTR    | SQ0XEN    | SQ0SWT    | SQ0SNG    | SQ0REC   | SQ0RES   | SQ0DIS   | SQ0EN    |
-| address | bit 15    | bit 14    | bit 13    | bit 12    | bit 11   | bit 10   | bit 9    | bit 8    |
+|         | bit 15    | bit 14    | bit 13    | bit 12    | bit 11   | bit 10   | bit 9    | bit 8    |
 | 0x072   | SQSWMASK3 | SQSWMASK2 | SQSWMASK1 | SQSWMASK0 | SQSWENA3 | SQSWENA2 | SQSWENA1 | SQSWENA0 |
-| address | bit 7     | bit 6     | bit 5     | bit 4     | bit 3    | bit 2    | bit 1    | bit 0    |
+|         | bit 7     | bit 6     | bit 5     | bit 4     | bit 3    | bit 2    | bit 1    | bit 0    |
 | 0x073   | SQ0TSEL7 | SQ0TSEL6 | SQ0TSEL5 | SQ0TSEL4 | SQ0TSEL3 | SQ0TSEL2 | SQ0TSEL1 | SQ0TSEL0     |
 
 | address | bit 31    | bit 30    | bit 29    | bit 28    | bit 27   | bit 26   | bit 25   | bit 24   |
 | ------- | ------    | ------    | ------    | ------    | ------   | ------   | ------   | ------   |
 | 0x074   |           |           |           |           |          |          | SQ1RUN   | SQ1ENA   |
-| address | bit 23    | bit 22    | bit 21    | bit 20    | bit 19   | bit 18   | bit 17   | bit 16   |
+|         | bit 23    | bit 22    | bit 21    | bit 20    | bit 19   | bit 18   | bit 17   | bit 16   |
 | 0x075   | SQ1XTR    | SQ1XEN    | SQ1SWT    | SQ1SNG    | SQ1REC   | SQ1RES   | SQ1DIS   | SQ1EN    |
-| address | bit 15    | bit 14    | bit 13    | bit 12    | bit 11   | bit 10   | bit 9    | bit 8    |
+|         | bit 15    | bit 14    | bit 13    | bit 12    | bit 11   | bit 10   | bit 9    | bit 8    |
 | 0x076   | SQSWMASK3 | SQSWMASK2 | SQSWMASK1 | SQSWMASK0 | SQSWENA3 | SQSWENA2 | SQSWENA1 | SQSWENA0 |
-| address | bit 7     | bit 6     | bit 5     | bit 4     | bit 3    | bit 2    | bit 1    | bit 0    |
+|         | bit 7     | bit 6     | bit 5     | bit 4     | bit 3    | bit 2    | bit 1    | bit 0    |
 | 0x077   | SQ1TSEL7  | SQ1TSEL6  | SQ1TSEL5  | SQ1TSEL4  | SQ1TSEL3 | SQ1TSEL2 | SQ1TSEL1 | SQ1TSEL0 |
 
 | Bit | Function |
@@ -601,24 +600,24 @@ Please note that after changing the Event clock source the fractional synthesize
 
 |Configuration Word | Frequency with 24 MHz reference oscillator |
 | ----------------- | ------------------------------------------ |
-| 0x0891C100 | 142.857 MHz
-| 0x00DE816D | 125 MHz
-| 0x00FE816D | 124.95 MHz
-| 0x0C928166 | 124.9087 MHz
-| 0x018741AD | 119 MHz
-| 0x072F01AD | 114.24 MHz
-| 0x049E81AD | 106.25 MHz
-| 0x008201AD | 100 MHz
-| 0x025B41ED | 99.956 MHz
-| 0x0187422D | 89.25 MHz
-| 0x0082822D | 81 MHz
-| 0x0106822D | 80 MHz
-| 0x019E822D | 78.900 MHz
-| 0x018742AD | 71.4 MHz
-| 0x0C9282A6 | 62.454 MHz
-| 0x009743AD | 50 MHz
-| 0x0C25B43AD|  49.978 MHz
-| 0x0176C36D | 49.965 MHz
+| 0x0891C100        | 142.857 MHz
+| 0x00DE816D        | 125 MHz
+| 0x00FE816D        | 124.95 MHz
+| 0x0C928166        | 124.9087 MHz
+| 0x018741AD        | 119 MHz
+| 0x072F01AD        | 114.24 MHz
+| 0x049E81AD        | 106.25 MHz
+| 0x008201AD        | 100 MHz
+| 0x025B41ED        | 99.956 MHz
+| 0x0187422D        | 89.25 MHz
+| 0x0082822D        | 81 MHz
+| 0x0106822D        | 80 MHz
+| 0x019E822D        | 78.900 MHz
+| 0x018742AD        | 71.4 MHz
+| 0x0C9282A6        | 62.454 MHz
+| 0x009743AD        | 50 MHz
+| 0x0C25B43AD       |  49.978 MHz
+| 0x0176C36D        | 49.965 MHz
 
 #### SPI Configuration Flash Registers
 
@@ -628,17 +627,17 @@ Please note that after changing the Event clock source the fractional synthesize
 | address | bit 7    | bit 6    | bit 5    | bit 4    | bit 3    | bit 2    | bit 1    | bit 0    |
 | 0x0A7   | E        | RRDY     | TRDY     | TMT      | TOE      | ROE      | OE       | SSO      |
    
-| Bit | Function |
-| --- | -------- |
+| Bit          | Function |
+| ---          | -------- |
 | SPIDATA(7:0) | Read SPI data byte / Write SPI data byte |
-| E | Overrun Error flag |
-| RRDY | Receiver ready, if ‘1’ data byte waiting in SPI_DATA |
-| TRDY | Transmitter ready, if ‘1’ SPI_DATA is ready to accept new transmit data byte |
-| TMT | Transmitter empty, if ‘1’ data byte has been transmitted |
-| TOE | Transmitter overrun error |
-| ROE | Receiver overrun error |
-| OE | Output enable for SPI pins, ‘1’ enable SPI pins |
-| SSO | Slave select output enable for SPI slave device, ‘1’ device selected |
+| E            | Overrun Error flag |
+| RRDY         | Receiver ready, if ‘1’ data byte waiting in SPI_DATA |
+| TRDY         | Transmitter ready, if ‘1’ SPI_DATA is ready to accept new transmit data byte |
+| TMT          | Transmitter empty, if ‘1’ data byte has been transmitted |
+| TOE          | Transmitter overrun error |
+| ROE          | Receiver overrun error |
+| OE           | Output enable for SPI pins, ‘1’ enable SPI pins |
+| SSO          | Slave select output enable for SPI slave device, ‘1’ device selected |
 
 #### Event Trigger Registers
 
@@ -861,7 +860,7 @@ Please note that after changing the Event clock source the fractional synthesize
 | 0x542   |           |           | TI0SEN1   | TI0SEN0   |             |             | TI0SEQ1     | TI0SEQ0 |
 |         | bit 7     | bit 6     | bit 5     | bit 4     | bit 3       | bit 2       | bit 1       | bit 0 |
 | 0x543   | TI0EV7    | TI0EV6    | TI0EV5    | TI0EV4    | TI0EV3      | TI0EV2      | TI0EV1      | TI0EV0 |
-| address | bit 31    | bit 30    | bit 29    | bit 28    | bit 27      | bit 26      | bit 25      | bit 24 |
+|         | bit 31    | bit 30    | bit 29    | bit 28    | bit 27      | bit 26      | bit 25      | bit 24 |
 | 0x544   | TI1SQMK(3)| TI1SQMK(2)| TI1SQMK(1)| TI1SQMK(0)| TI1SQEEN(3) | TI1SQEEN(2) | TI1SQEEN(1) | TI1SQEEN(0) / TI1IRQ |
 |         | bit 23    | bit 22    | bit 21    | bit 20    | bit 19      | bit 18      | bit 17      | bit 16 |
 | 0x545   | TI1DB7    | TI1DB6    | TI1DB5    | TI1DB4    | TI1DB3      | TI1DB2      | TI1DB1      | TI1DB0 |
@@ -994,7 +993,7 @@ The event master has a number of internal signals which are connected following:
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
 | 0x001   | LINK8  | LINK7  | LINK6  | LINK5  | LINK4  | LINK3  | LINK2  | LINK1  |
-| address | bit 7  | bit 6  | bit 5  | bit 4  | bit 3  | bit 2  | bit 1  | bit 0  |
+|         | bit 7  | bit 6  | bit 5  | bit 4  | bit 3  | bit 2  | bit 1  | bit 0  |
 | 0x003   | VIO8   | VIO7   | VIO6   | VIO5   | VIO4   | VIO3   | VIO2   | VIO1   |
 
 | Bit | Function |
