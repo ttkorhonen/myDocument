@@ -219,22 +219,22 @@ This is the register map when EVM is configured as an EVG.
 
 #### Interrupt Enable Register
 
-| address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
-| ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x00C  | IRQEN | PCIIE |
-|        | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
-| 0x00D  |IESOV1 | IESOV0 | IESHF1 | IESHF0 |
-|        | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| 0x00E | IESSTO1 | IESSTO0 | IESSTA1 | IESSTA0 |
-|        | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| 0x00F  | IEEXT | IEDBUF | IEFF | IEVIO |
+| address | bit 31 | bit 30 | bit 29  | bit 28 | bit 27 | bit 26 | bit 25  | bit 24  |
+| ------- | ------ | ------ | ------  | ------ | ------ | ------ | ------  | ------  |
+| 0x00C  | IRQEN   | PCIIE  |   
+|        | bit 23  | bit 22 | bit 21  | bit 20 | bit 19 | bit 18 | bit 17  | bit 16  |
+| 0x00D  |         |        | IESOV1  | IESOV0 |        |        | IESHF1  | IESHF0  |
+|        | bit 15  | bit 14 | bit 13  | bit 12 | bit 11 | bit 10 | bit 9   | bit 8   |
+| 0x00E  |         |        | IESSTO1 | IESSTO0 |       |        | IESSTA1 | IESSTA0 |
+|        | bit 7   | bit 6  | bit 5   | bit 4   | bit 3 | bit 2  | bit 1   | bit 0   |
+| 0x00F  |         | IEEXT  | IEDBUF  |         |       |        | IEFF    | IEVIO   |
 
-| Bit | Function |
-| --- | -------- |
-| IRQEN | Master interrupt enable
-| PCIIE | PCI core interrupt enable (cPCI-EVG-300)
-| |This bit is used by the low level driver to disable further interrupts before the
-| | first interrupt has been handled in user space
+| Bit     | Function |
+| ---     | -------- |
+| IRQEN   | Master interrupt enable
+| PCIIE   | PCI core interrupt enable (cPCI-EVG-300)
+|         |This bit is used by the low level driver to disable further interrupts before the
+|         | first interrupt has been handled in user space
 | IESOV1  | Sequence RAM 1 sequence roll over interrupt enable
 | IESOV0  | Sequence RAM 0 sequence roll over interrupt enable
 | IESHF1  | Sequence RAM 1 sequence halfway through interrupt enable
@@ -252,11 +252,11 @@ This is the register map when EVM is configured as an EVG.
 
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x011   | ACSYN2 | ACSYN1 | ACBYP  | ACSYN0 |
+| 0x011   |        |        |        |        | ACSYN2 | ACSYN1 | ACBYP  | ACSYN0 |
 |         | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
 | 0x012   | ACDIV7 | ACDIV6 | ACDIV5 | ACDIV4 | ACDIV3 | ACDIV2 | ACDIV1 | ACDIV0 |
-|         | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| 0x013   | ACPS7 | ACPS6 | ACPS5 | ACPS4 | ACPS3 | ACPS2 | ACPS1 | ACPS0 |
+|         | bit 7  | bit 6  | bit 5  | bit 4  | bit 3  | bit 2  | bit 1  | bit 0  |
+| 0x013   | ACPS7  | ACPS6  | ACPS5  | ACPS4  | ACPS3  | ACPS2  | ACPS1  | ACPS0  |
 
 | Bit        | Function |
 | ---        | -------- |
@@ -289,11 +289,11 @@ This is the register map when EVM is configured as an EVG.
 
 #### Software Event Register
 
-| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9 | bit 8 |
+| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x01A | SWPEND | SWENA |
-| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| 0x01B   | CODE7 | CODE6 | CODE5 | CODE4 | CODE3 | CODE2 | CODE1 | CODE0 |
+| 0x01A   |        |        |        |        |        |        | SWPEND | SWENA |
+| address | bit 7  | bit 6  | bit 5  | bit 4  | bit 3  | bit 2  | bit 1  | bit 0 |
+| 0x01B   | CODE7  | CODE6  | CODE5  | CODE4  | CODE3  | CODE2  | CODE1  | CODE0 |
 
 | Bit       | Function |
 | ---       | -------- |
@@ -331,42 +331,41 @@ This is the register map when EVM is configured as an EVG.
 
 #### Data Buffer Control Register
 
-| address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
-| ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x020 |
-| address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
-| ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x021 | TXCPT | TXRUN | TRIG | ENA 1
-| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| 0x022 DTSZ(10:8) |
-| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| 0x023 DTSZ(7:2) | 0 | 0 |
-
-| Bit | Function |
-| --- | -------- |
+| address | bit 31  | bit 30  | bit 29  | bit 28  | bit 27 | bit 26   | bit 25  | bit 24  |
+| ------- | ------  | ------  | ------  | ------  | ------ | ------   | ------  | ------  |
+| 0x020   |        
+|         | bit 23  | bit 22  | bit 21  | bit 20  | bit 19 | bit 18   | bit 17  | bit 16  |
+| ------- | ------  | ------  | ------  | ------  | ------ | ------   | ------  | ------  |
+| 0x021   |         |         |         | TXCPT   | TXRUN  | TRIG     | ENA     | 1       |
+| address | bit 15  | bit 14  | bit 13  | bit 12  | bit 11 | bit 10   | bit 9   | bit 8   |
+| 0x022   |         |         |         |         |        | DTSZ(10) | DTSZ(9) | DTSZ(8) |
+| address | bit 7   | bit 6   | bit 5   | bit 4   | bit 3  | bit 2    | bit 1   | bit 0   |
+| 0x023   | DTSZ(7) | DTSZ(6) | DTSZ(5) | DTSZ(4) | DTSZ(3) | DTSZ(2) | 0       | 0       |
+  
+| Bit   | Function |
+| ---   | -------- |
 | TXCPT | Data Buffer Transmission Complete
-| TXRUN | Data Buffer Transmission Running – set when data transmission has been trig-
-| | gered and has not been completed yet
-| TRIG | Data Buffer Trigger Transmission
-| | Write ‘1’ to start transmission of data in buffer
-| ENA | Data Buffer Transmission enable
-| | ‘0’ – data transmission engine disabled
-| | ‘1’ – data transmission engine enabled
-| DTSZ | Data Transfer size 4 bytes to 2k in four byte increments
+| TXRUN | Data Buffer Transmission Running – set when data transmission has been
+|       | triggered and has not been completed yet
+| TRIG  | Data Buffer Trigger Transmission
+|       | Write ‘1’ to start transmission of data in buffer
+| ENA   | Data Buffer Transmission enable
+|       | ‘0’ – data transmission engine disabled
+|       | ‘1’ – data transmission engine enabled
+| DTSZ  | Data Transfer size 4 bytes to 2k in four byte increments
 
 
 #### Distributed Bus Mapping Register
 
-| address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
-| ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x024 | DBMAP7(3:0) | DBMAP6(3:0) |
-| address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
-| 0x025 | DBMAP5(3:0) | DBMAP4(3:0) |
-| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x026 DBMAP3(3:0) | DBMAP2(3:0) | 
-| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| 0x027 | DBMAP1(3:0) | DBMAP0(3:0) |
+| address | bit 31    | bit 30    | bit 29    | bit 28    | bit 27    | bit 26    | bit 25    | bit 24    |
+| ------- | ------    | ------    | ------    | ------    | ------    | ------    | ------    | ------    |
+| 0x024   | DBMAP7(3) | DBMAP7(2) | DBMAP7(1) | DBMAP7(0) | DBMAP6(3) | DBMAP6(2) | DBMAP6(1) | DBMAP6(0) |
+| address | bit 23    | bit 22    | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
+| 0x025   | DBMAP5(3) | DBMAP5(2) | DBMAP5(1) | DBMAP5(0) | DBMAP4(3) | DBMAP4(2) | DBMAP4(1) | DBMAP4(0) |
+| address | bit 15    | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
+| 0x026   | DBMAP3(3) | DBMAP3(2) | DBMAP3(1) | DBMAP3(0) | DBMAP2(3) | DBMAP2(2) | DBMAP2(1) | DBMAP2(0) |
+| address | bit 7     | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
+| 0x027   | DBMAP1(3) | DBMAP1(2) | DBMAP1(1) | DBMAP1(0) | DBMAP0(3) | DBMAP0(2) | DBMAP0(1) | DBMAP0(0) |
 
 | Bit | Function |
 | --- | -------- |
