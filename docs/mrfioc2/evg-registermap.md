@@ -750,7 +750,7 @@ Please note that after changing the Event clock source the fractional synthesize
 
 | address | bit 15 to bit 0 |
 | --------| --------------- |
-| 0x480   | Transition Board Output 0 Mapping ID (see Table 6 on page 18 for mapping IDs)
+| 0x480   | Transition Board Output 0 Mapping ID (see [the table for mapping IDs](event-generator.md#mapping-id-table))
 |         | bit (15:0)
 | 0x482   | Transition Board Output 1 Mapping ID
 | ...     |
@@ -912,7 +912,7 @@ universal input 0 and 1, if either of the inputs is active high also the distrib
 
 ### Embedded Event Receivers
 
-The VME-EVM-300 has two embedded event receivers. The downstream event receiver (EVRD) receives
+The EVM-300 firmware includes two embedded event receivers. The downstream event receiver (EVRD) receives
 the event stream from port U whereas the upstream event receiver (EVRU) receives the concentrated event
 stream from ports 1 through 8.
 
