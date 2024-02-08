@@ -48,7 +48,7 @@ vxWorks: >=6.7
 
 Linux kernel:   >= 3.2.1 (earlier versions may work)
 
-## Source
+### Source
 
 VCS Checkout
 
@@ -59,7 +59,7 @@ $ git clone https://github.com/epics-modules/mrfioc2.git
 Edit 'configure/CONFIG_SITE' and 'configure/RELEASE' then run make.
 
 
-## Supported Hardware
+### Supported Hardware
 
 The following devices are supported.
 
@@ -74,17 +74,17 @@ The following devices are supported.
  |   PCIe-EVR-300DC    |    0     |        0       |          0        |  Yes[^13]|
  |  mTCA-EVR-300[^10]  |    4     |       4/0      |          2        |    Yes   |
  |  VME-EVR-300        |   4[^12] |        4       |          2        |    Yes   |
-# Overview
+## Overview of the Driver 
 
 The purpose of this document is to act as a guide for using the 'mrfioc2' 
 [EPICS](https://epics-controls.org) support module for the Micro Research Finland
 (MRF) timing system[^11]. It describes software for using the Event Receiver (EVR).
 
-The document is an overview of the driver and its capabilities. It is not a fully 
+This document is an overview of the driver and its capabilities. It is not a fully 
 up-to-date document with all details, even if the contents are thought to be accurate.
 The intent of this document is to introduce the concepts and help understanding how
 to use the driver. For studying the implementation, the important locations in the source
-tree relating to the EVR are included in this document.
+tree relating to the EVR are included.
 
 The source repository contains a full API documentation, produced with 
 [Doxygen](https://en.wikipedia.org/wiki/Doxygen). 

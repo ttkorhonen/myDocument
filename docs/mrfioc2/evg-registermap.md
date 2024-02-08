@@ -399,19 +399,18 @@ This is the register map when EVM is configured as an EVG.
 
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x02C | EVG = 0x2 Form Factor |
-| address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
-| 0x02D | Subrelease ID |
-| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x02E | Firmware ID |
-| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| 0x02F | Revision ID |
+| 0x02C   | 0      |     0  |      1 |      0 |  FF3   |  FF2   |  FF1   |  FF0   |
+|         | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
+| 0x02D   | Subrelease ID |
+|         | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
+| 0x02E   | Firmware ID |
+|         | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
+| 0x02F   | Revision ID |
 
 
 | Bit | Function | 
 | --- | -------- |
-| Form Factor | |
+| Form Factor FF(0:3)| |
 | | 0 – CompactPCI 3U |
 | | 1 – PMC |
 | | 2 – VME64x |
@@ -435,9 +434,9 @@ This is the register map when EVM is configured as an EVG.
 
 #### Timestamp Generator Control Register
 
-| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x037 | TSGENA | TSGLOAD |
+| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1  | bit 0   |
+| ------- | ----- | ----- | ----- | ----- | ----- | ----- | -----  | -----   |
+| 0x037   |       |       |       |       |       |       | TSGENA | TSGLOAD |
 
 | Bit     | Function |
 | ---     | -------- |
@@ -447,9 +446,9 @@ This is the register map when EVM is configured as an EVG.
 
 #### Microsecond Divider Register 
 
-| address | bit 15 | bit 0 | 
-| ------- | ------ | ------ |
-| 0x04E | Rounded integer value of 1μs * event clock |
+| address | bit 15 .. bit 0 | 
+| ------- | --------------- |
+| 0x04E   | Rounded integer value of 1μs * event clock |
 
 This register shall be written with an integer value of the event clock rate in MHz. For 100 MHz event clock
 this register should read 100, for 50 MHz event clock this register should read 50. This value is used to set
@@ -457,13 +456,13 @@ the parameters for the clock cleaner PLL and e.g. for the phase shifter in the A
 
 #### Clock Control Register
 
-| address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
-| ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x050 | PLLLOCK | BWSEL(2:0) | RFSEL(2:0) |
-| address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
-| 0x051 | PHTOGG | RFDIV(5:0) |
-| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| 0x052 | CGLOCK |
+| address | bit 31  | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
+| ------- | ------  | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
+| 0x050   | PLLLOCK | BWSEL2 | BWSEL1 | BWSEL0 |        | RFSEL2 | RFSEL1 | RFSEL0 |
+| address | bit 23  | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
+| 0x051   | PHTOGG  |        | RFDIV5 | RFDIV4 | RFDIV3 | RFDIV2 | RFDIV1 | RFDIV0 |
+| address | bit 15  | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
+| 0x052   |         |        |        |        |        |        | CGLOCK |        |
 
 | Bit | Function |
 | --- | -------- |
@@ -525,7 +524,7 @@ Please note that after changing the Event clock source the fractional synthesize
 
 | address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
 | ------- | ----- | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
-| 0x063 | EVANE | EVARS | EVAOF | EVAEN | EVACR |
+| 0x063   |       |       |       | EVANE | EVARS | EVAOF | EVAEN | EVACR |
 
 | Bit | Function |
 | --- | -------- |
@@ -547,25 +546,25 @@ Please note that after changing the Event clock source the fractional synthesize
 
 #### Sequence RAM Control Registers
 
-| address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
-| ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x070 | SQ0RUN | SQ0ENA |
-| address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
-| 0x071 | SQ0XTR | SQ0XEN | SQ0SWT | SQ0SNG | SQ0REC | SQ0RES | SQ0DIS | SQ0EN |
-| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9 | bit 8 |
-| 0x072 | SQSWMASK(3:0) | SQSWENA(3:0) |
-| address | bit 7 | bit 0 |
-| 0x073 | SQ0TSEL |
+| address | bit 31    | bit 30    | bit 29    | bit 28    | bit 27   | bit 26   | bit 25   | bit 24   |
+| ------- | ------    | ------    | ------    | ------    | ------   | ------   | ------   | ------   |
+| 0x070   |           |           |           |           |          |          | SQ0RUN   | SQ0ENA   |
+| address | bit 23    | bit 22    | bit 21    | bit 20    | bit 19   | bit 18   | bit 17   | bit 16   |
+| 0x071   | SQ0XTR    | SQ0XEN    | SQ0SWT    | SQ0SNG    | SQ0REC   | SQ0RES   | SQ0DIS   | SQ0EN    |
+| address | bit 15    | bit 14    | bit 13    | bit 12    | bit 11   | bit 10   | bit 9    | bit 8    |
+| 0x072   | SQSWMASK3 | SQSWMASK2 | SQSWMASK1 | SQSWMASK0 | SQSWENA3 | SQSWENA2 | SQSWENA1 | SQSWENA0 |
+| address | bit 7     | bit 6     | bit 5     | bit 4     | bit 3    | bit 2    | bit 1    | bit 0    |
+| 0x073   | SQ0TSEL7 | SQ0TSEL6 | SQ0TSEL5 | SQ0TSEL4 | SQ0TSEL3 | SQ0TSEL2 | SQ0TSEL1 | SQ0TSEL0     |
 
-| address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
-| ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x074 | SQ1RUN | SQ1ENA |
-| address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
-| 0x075 | SQ1XTR | SQ1XEN | SQ1SWT | SQ1SNG | SQ1REC | SQ1RES | SQ1DIS | SQ1EN |
-| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| 0x076 | SQSWMASK(3:0) | SQSWENA(3:0) |
-| address | bit 7 | bit 0 |
-| 0x077 | SQ1TSEL |
+| address | bit 31    | bit 30    | bit 29    | bit 28    | bit 27   | bit 26   | bit 25   | bit 24   |
+| ------- | ------    | ------    | ------    | ------    | ------   | ------   | ------   | ------   |
+| 0x074   |           |           |           |           |          |          | SQ1RUN   | SQ1ENA   |
+| address | bit 23    | bit 22    | bit 21    | bit 20    | bit 19   | bit 18   | bit 17   | bit 16   |
+| 0x075   | SQ1XTR    | SQ1XEN    | SQ1SWT    | SQ1SNG    | SQ1REC   | SQ1RES   | SQ1DIS   | SQ1EN    |
+| address | bit 15    | bit 14    | bit 13    | bit 12    | bit 11   | bit 10   | bit 9    | bit 8    |
+| 0x076   | SQSWMASK3 | SQSWMASK2 | SQSWMASK1 | SQSWMASK0 | SQSWENA3 | SQSWENA2 | SQSWENA1 | SQSWENA0 |
+| address | bit 7     | bit 6     | bit 5     | bit 4     | bit 3    | bit 2    | bit 1    | bit 0    |
+| 0x077   | SQ1TSEL7  | SQ1TSEL6  | SQ1TSEL5  | SQ1TSEL4  | SQ1TSEL3 | SQ1TSEL2 | SQ1TSEL1 | SQ1TSEL0 |
 
 | Bit | Function |
 | --- | -------- |
@@ -624,12 +623,12 @@ Please note that after changing the Event clock source the fractional synthesize
 
 #### SPI Configuration Flash Registers
 
-| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x0A3 | SPIDATA(7:0) |
-| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| 0x0A7 | E | RRDY | TRDY | TMT | TOE | ROE | OE | SSO |
-
+| address | bit 7    | bit 6    | bit 5    | bit 4    | bit 3    | bit 2    | bit 1    | bit 0    |
+| ------- | ------   | ------   | ------   | ------   | ------   | ------   | ------   | ------   |
+| 0x0A3   | SPIDATA7 | SPIDATA6 | SPIDATA5 | SPIDATA4 | SPIDATA3 | SPIDATA2 | SPIDATA1 | SPIDATA0 |
+| address | bit 7    | bit 6    | bit 5    | bit 4    | bit 3    | bit 2    | bit 1    | bit 0    |
+| 0x0A7   | E        | RRDY     | TRDY     | TMT      | TOE      | ROE      | OE       | SSO      |
+   
 | Bit | Function |
 | --- | -------- |
 | SPIDATA(7:0) | Read SPI data byte / Write SPI data byte |
@@ -679,8 +678,8 @@ Please note that after changing the Event clock source the fractional synthesize
 | 0x11F   | EVCD7(7) | EVCD7(6) | EVCD7(5) | EVCD7(4) | EVCD7(3) | EVCD7(2) | EVCD7(1) | EVCD7(0) |
 
 
-| Bit | Function |
-| --- | -------- |
+| Bit   | Function |
+| ---   | -------- |
 | EVENx | Enable Event Trigger x |
 | EVCDx | Event Trigger Code for Event trigger x | 
 
@@ -688,53 +687,53 @@ Please note that after changing the Event clock source the fractional synthesize
 
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x180 | MXC0 | MXCP0 | 
-| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| 0x183 | MX0EV7 | MX0EV6 | MX0EV5 | MX0EV4 | MX0EV3 | MX0EV2 | MX0EV1 | MX0EV0 |
-| address | bit 31 | bit 0 |
-| 0x184 | Multiplexed Counter 0  Prescaler |
-| address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
-| 0x188 | MXC1 | MXCP1 |
-| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| 0x18B | MX1EV7 | MX1EV6 | MX1EV5 | MX1EV4 | MX1EV3 | MX1EV2 | MX1EV1 | MX1EV0 |
-| address | bit 31 | bit 0 |
-| 0x18C | Multiplexed Counter 1 Prescaler |
-| address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
-| 0x190 | MXC2 | MXCP2 |
-| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| 0x193 | MX2EV7 | MX2EV6 | MX2EV5 | MX2EV4 | MX2EV3 | MX2EV2 | MX2EV1 | MX2EV0 |
-| address | bit 31 | bit 0 |
-| 0x194 | Multiplexed Counter 2 Prescaler |
-| address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
-| 0x198 | MXC3 | MXCP3 |
-| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| 0x19B | MX3EV7 | MX3EV6 | MX3EV5 | MX3EV4 | MX3EV3 | MX3EV2 | MX3EV1 | MX3EV0 |
-| address | bit 31 | bit 0 |
-| 0x19C | Multiplexed Counter 3 Prescaler |
-| address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
-| 0x1A0 | MXC4 | MXCP4 |
-| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| 0x1A3 | MX4EV7 | MX4EV6 | MX4EV5 | MX4EV4 | MX4EV3 | MX4EV2 | MX4EV1 | MX4EV0 |
-| address | bit 31 | bit 0 |
-| 0x1A4 | Multiplexed Counter 4 Prescaler |
-| address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
-| 0x1A8 | MXC5 | MXCP5 |
-| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| 0x1AB | MX5EV7 | MX5EV6 | MX5EV5 | MX5EV4 | MX5EV3 | MX5EV2 | MX5EV1 | MX5EV0 |
-| address | bit 31 | bit 0 |
-| 0x1AC | Multiplexed Counter 5 Prescaler |
-| address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
-| 0x1B0 | MXC6 | MXCP6 |
-| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| 0x1B3 | MX6EV7 | MX6EV6 | MX6EV5 | MX6EV4 | MX6EV3 | MX6EV2 | MX6EV1 | MX6EV0 |
-| address | bit 31 | bit 0 |
-| 0x1B4 | Multiplexed Counter 6 Prescaler |
-| address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
-| 0x1B8 | MXC7 | MXCP7 |
-| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| 0x1BB | MX7EV7 | MX7EV6 | MX7EV5 | MX7EV4 | MX7EV3 | MX7EV2 | MX7EV1 | MX7EV0 |
-| address | bit 31 | bit 0 |
-| 0x1BC | Multiplexed Counter 7 Prescaler |
+| 0x180   | MXC0   | MXCP0  | 
+|         | bit 7  | bit 6  | bit 5  | bit 4  | bit 3  | bit 2  | bit 1  | bit 0  |
+| 0x183   | MX0EV7 | MX0EV6 | MX0EV5 | MX0EV4 | MX0EV3 | MX0EV2 | MX0EV1 | MX0EV0 |
+|         | bit 31 | bit 0 |
+| 0x184   | Multiplexed Counter 0  Prescaler |
+|         | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
+| 0x188   | MXC1   | MXCP1 |
+|         | bit 7  | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
+| 0x18B   | MX1EV7 | MX1EV6 | MX1EV5 | MX1EV4 | MX1EV3 | MX1EV2 | MX1EV1 | MX1EV0 |
+|         | bit 31 | bit 0 |
+| 0x18C   | Multiplexed Counter 1 Prescaler |
+|         | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
+| 0x190   | MXC2 | MXCP2 |
+|         | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
+| 0x193   | MX2EV7 | MX2EV6 | MX2EV5 | MX2EV4 | MX2EV3 | MX2EV2 | MX2EV1 | MX2EV0 |
+|         | bit 31 | bit 0 |
+| 0x194   | Multiplexed Counter 2 Prescaler |
+|         | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
+| 0x198   | MXC3 | MXCP3 |
+|         | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
+| 0x19B   | MX3EV7 | MX3EV6 | MX3EV5 | MX3EV4 | MX3EV3 | MX3EV2 | MX3EV1 | MX3EV0 |
+|         | bit 31 | bit 0 |
+| 0x19C   | Multiplexed Counter 3 Prescaler |
+|         | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
+| 0x1A0   | MXC4 | MXCP4 |
+|         | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
+| 0x1A3   | MX4EV7 | MX4EV6 | MX4EV5 | MX4EV4 | MX4EV3 | MX4EV2 | MX4EV1 | MX4EV0 |
+|         | bit 31 | bit 0 |
+| 0x1A4   | Multiplexed Counter 4 Prescaler |
+|         | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
+| 0x1A8   | MXC5 | MXCP5 |
+|         | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
+| 0x1AB   | MX5EV7 | MX5EV6 | MX5EV5 | MX5EV4 | MX5EV3 | MX5EV2 | MX5EV1 | MX5EV0 |
+|         | bit 31 | bit 0 |
+| 0x1AC   | Multiplexed Counter 5 Prescaler |
+|         | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
+| 0x1B0   | MXC6 | MXCP6 |
+|         | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
+| 0x1B3   | MX6EV7 | MX6EV6 | MX6EV5 | MX6EV4 | MX6EV3 | MX6EV2 | MX6EV1 | MX6EV0 |
+|         | bit 31 | bit 0 |
+| 0x1B4   | Multiplexed Counter 6 Prescaler |
+|         | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
+| 0x1B8   | MXC7 | MXCP7 |
+|         | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
+| 0x1BB   | MX7EV7 | MX7EV6 | MX7EV5 | MX7EV4 | MX7EV3 | MX7EV2 | MX7EV1 | MX7EV0 |
+|         | bit 31 | bit 0 |
+| 0x1BC   | Multiplexed Counter 7 Prescaler |
 
 | Bit | Function |
 | --- | -------- |
@@ -751,45 +750,45 @@ Please note that after changing the Event clock source the fractional synthesize
 
 #### Transition Board Output Mapping Registers
 
-| address | bit 15 | bit 0 |
-| --------| ------ | ----- |
-| 0x480 | Transition Board Output 0 Mapping ID (see Table 6 on page 18 for mapping IDs)
-| address | bit 15 | bit 0
-| 0x482 | Transition Board Output 1 Mapping ID
-| ... |
-| address | bit 15 | bit 0
-| 0x41E | Transition Board Output 15 Mapping ID
+| address | bit 15 to bit 0 |
+| --------| --------------- |
+| 0x480   | Transition Board Output 0 Mapping ID (see Table 6 on page 18 for mapping IDs)
+|         | bit (15:0)
+| 0x482   | Transition Board Output 1 Mapping ID
+| ...     |
+|         | bit (15:0)
+| 0x41E   | Transition Board Output 15 Mapping ID
 
 #### Front Panel Input Mapping Registers
 
-| address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
-| ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x500 | FP0SQMK(3:0) | FP0SQEEN3:0| FP0IRQ |
-| address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
-| 0x501 | FP0DB7 | FP0DB6 | FP0DB5 | FP0DB4 | FP0DB3 | FP0DB2 | FP0DB1 | FP0DB0 |
-| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9 | bit 8 |
-| 0x502 | FP0SEN1 | FP0SEN0 | FP0SEQ1 | FP0SEQ0 |
-| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| 0x503 | FP0EV7 | FP0EV6 | FP0EV5 | FP0EV4 | FP0EV3 | FP0EV2 | FP0EV1 | FP0EV0 |
-| address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
-| 0x504 | FP1SQMK(3:0) | FP1SQEEN3:0 | FP1IRQ |
-| address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
-| 0x505 | FP1DB7 | FP1DB6 | FP1DB5 | FP1DB4 | FP1DB3 | FP1DB2 | FP1DB1 | FP1DB0 |
-| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| 0x506 | FP1SEN1 | FP1SEN0 | FP1SEQ1 | FP1SEQ0 |
-| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| 0x507 | FP1EV7 | FP1EV6 | FP1EV5 | FP1EV4 | FP1EV3 | FP1EV2 | FP1EV1 | FP1EV0 |
-| address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
-| 0x508 | FP2SQMK(3:0) | FP2SQEEN3:0 | FP2IRQ |
-| address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
-| 0x509 | FP2DB7 | FP2DB6 | FP2DB5 | FP2DB4 | FP2DB3 | FP2DB2 | FP2DB1 | FP2DB0 |
-| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| 0x50A | FP2SEN1 | FP2SEN0 | FP2SEQ1 | FP2SEQ0 |
-| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| 0x50B | FP2EV7 | FP2EV6 | FP2EV5 | FP2EV4 | FP2EV3 | FP2EV2 | FP2EV1 | FP2EV0|
+| address | bit 31   | bit 30   | bit 29   | bit 28   | bit 27    | bit 26    | bit 25    | bit 24           |
+| ------- | ------   | ------   | ------   | ------   | ------    | ------    | ------    | ------           |
+| 0x500   | FP0SQMK3 | FP0SQMK2 | FP0SQMK1 | FP0SQMK0 | FP0SQEEN3 | FP0SQEEN2 | FP0SQEEN1 | FP0SQEEN0/FP0IRQ |
+|         | bit 23   | bit 22   | bit 21   | bit 20   | bit 19    | bit 18    | bit 17    | bit 16           |
+| 0x501   | FP0DB7   | FP0DB6   | FP0DB5   | FP0DB4   | FP0DB3    | FP0DB2    | FP0DB1    | FP0DB0           |
+|         | bit 15   | bit 14   | bit 13   | bit 12   | bit 11    | bit 10    | bit 9     | bit 8            |
+| 0x502   |          |          | FP0SEN1  | FP0SEN0  |           |           | FP0SEQ1   | FP0SEQ0          |
+|         | bit 7    | bit 6    | bit 5    | bit 4    | bit 3     | bit 2     | bit 1     | bit 0            |
+| 0x503   | FP0EV7   | FP0EV6   | FP0EV5   | FP0EV4   | FP0EV3    | FP0EV2    | FP0EV1    | FP0EV0           |
+|         | bit 31   | bit 30   | bit 29   | bit 28   | bit 27    | bit 26    | bit 25    | bit 24           |
+| 0x504   | FP1SQMK3 | FP1SQMK2 | FP1SQMK1 | FP1SQMK0 | FP1SQEEN3 | FP1SQEEN2 | FP1SQEEN1 | FP1SQEEN0/FP1IRQ |
+|         | bit 23   | bit 22   | bit 21   | bit 20   | bit 19    | bit 18    | bit 17    | bit 16           |
+| 0x505   | FP1DB7   | FP1DB6   | FP1DB5   | FP1DB4   | FP1DB3    | FP1DB2    | FP1DB1    | FP1DB0           |
+|         | bit 15   | bit 14   | bit 13   | bit 12   | bit 11    | bit 10    | bit 9     | bit 8            |
+| 0x506   |          |          | FP1SEN1  | FP1SEN0  |           |           |  FP1SEQ1  | FP1SEQ0          |
+|         | bit 7    | bit 6    | bit 5    | bit 4    | bit 3     | bit 2     | bit 1     | bit 0            |
+| 0x507   | FP1EV7   | FP1EV6   | FP1EV5   | FP1EV4   | FP1EV3    | FP1EV2    | FP1EV1    | FP1EV0           |
+|         | bit 31   | bit 30   | bit 29   | bit 28   | bit 27    | bit 26    | bit 25    | bit 24           |
+| 0x508   | FP2SQMK3 | FP2SQMK2 | FP2SQMK1 | FP2SQMK0 | FP2SQEEN3 | FP2SQEEN2 | FP2SQEEN1 | FP2SQEEN0/FP2IRQ |
+|         | bit 23   | bit 22   | bit 21   | bit 20   | bit 19    | bit 18    | bit 17    | bit 16           |
+| 0x509   | FP2DB7   | FP2DB6   | FP2DB5   | FP2DB4   | FP2DB3    | FP2DB2    | FP2DB1    | FP2DB0           |
+|         | bit 15   | bit 14   | bit 13   | bit 12   | bit 11    | bit 10    | bit 9     | bit 8            |
+| 0x50A   |          |          | FP2SEN1  | FP2SEN0  |           |           | FP2SEQ1   | FP2SEQ0          |
+|         | bit 7    | bit 6    | bit 5    | bit 4    | bit 3     | bit 2     | bit 1     | bit 0            |
+| 0x50B   | FP2EV7   | FP2EV6   | FP2EV5   | FP2EV4   | FP2EV3    | FP2EV2    | FP2EV1    | FP2EV0           |
 
-| Bit | Function |
-| --- | -------- |
+| Bit       | Function |
+| --------- | -------- |
 | FPxSQMKy  | Map Front panel Input x to Sequence Event Mask bit y
 | FPxSQEENy | Map Front panel Input x to Sequence Event Enable bit y
 | FPxIRQ    | Map Front panel Input x to External Interrupt
@@ -816,29 +815,29 @@ Please note that after changing the Event clock source the fractional synthesize
 
 ### Front Panel Input Phase Monitoring Registers
 
-| address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
-| ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x520 | PHCLR0 | DBPH0 | PHSEL0 |
-| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| 0x522 | PHFE0 |
-| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| 0x523 | PHRE0 |
+| address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27   | bit 26   | bit 25    | bit 24   |
+| ------- | ------ | ------ | ------ | ------ | ------   | ------   | ------    | ------   |
+| 0x520   | PHCLR0 | DBPH0  |        |        |          |          | PHSEL0(1) | PHSEL0(0)|
+|         | bit 15 | bit 14 | bit 13 | bit 12 | bit 11   | bit 10   | bit 9     | bit 8    |
+| 0x522   |        |        |        |        | PHFE0(3) | PHFE0(2) | PHFE0(1)  | PHFE0(0) |
+|         | bit 7  | bit 6  | bit 5  | bit 4  | bit 3    | bit 2    | bit 1     | bit 0    |
+| 0x523   |        |        |        |        | PHRE0(3) | PHRE0(2) | PHRE0(1)  | PHRE0(0) |
 
-| address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
-| ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x524 | PHCLR1 | DBPH1 | PHSEL1 |
-| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| 0x526 | PHFE1 |
-| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| 0x527 | PHRE1 |
+| address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27   | bit 26   | bit 25    | bit 24   |
+| ------- | ------ | ------ | ------ | ------ | ------   | ------   | ------    | ------   |
+| 0x524   | PHCLR1 | DBPH1  |        |        |          |          | PHSEL1(1) | PHSEL1(0)|
+|         | bit 15 | bit 14 | bit 13 | bit 12 | bit 11   | bit 10   | bit 9     | bit 8    |
+| 0x526   |        |        |        |        | PHFE1(3) | PHFE1(2) | PHFE1(1)  | PHFE1(0) |
+|         | bit 7  | bit 6  | bit 5  | bit 4  | bit 3    | bit 2    | bit 1     | bit 0    |
+| 0x527   |        |        |        |        | PHRE1(3) | PHRE1(2) | PHRE1(1)  | PHRE1(0) |
 
-| address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
-| ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x528 | PHCLR2 | DBPH2 | PHSEL2 |
-| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| 0x52A | PHFE2 |
-| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| 0x52B | PHRE2 |
+| address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27   | bit 26   | bit 25    | bit 24   |
+| ------- | ------ | ------ | ------ | ------ | ------   | ------   | ------    | ------   |
+| 0x528   | PHCLR2 | DBPH2  |        |        |          |          | PHSEL2(1) | PHSEL2(0)|
+|         | bit 15 | bit 14 | bit 13 | bit 12 | bit 11   | bit 10   | bit 9     | bit 8    |
+| 0x52A   |        |        |        |        | PHFE2(3) | PHFE2(2) | PHFE2(1)  | PHFE2(0) |
+|         | bit 7  | bit 6  | bit 5  | bit 4  | bit 3    | bit 2    | bit 1     | bit 0    |
+| 0x52B   |        |        |        |        | PHRE2(3) | PHRE2(2) | PHRE2(1)  | PHRE2(0) |
 
 | Bit | Function |
 | --- | -------- |
@@ -854,35 +853,35 @@ Please note that after changing the Event clock source the fractional synthesize
 
 #### Transition Board Input Mapping Registers
 
-| address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
-| ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x540 | TI0SQMK(3:0) | TI0SQEEN3:0 | TI0IRQ |
-| address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
-| 0x541 | TI0DB7 | TI0DB6 | TI0DB5 | TI0DB4 | TI0DB3 | TI0DB2 | TI0DB1 | TI0DB0 |
-| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| 0x542 | TI0SEN1 | TI0SEN0 | TI0SEQ1 | TI0SEQ0 |
-| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| 0x543 | TI0EV7 | TI0EV6 | TI0EV5 | TI0EV4 | TI0EV3 | TI0EV2 | TI0EV1 | TI0EV0 |
-| address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
-| 0x544   | TI1SQMK(3:0) |TI1SQEEN3:0 | TI1IRQ |
-| address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
-| 0x545   | TI1DB7 | TI1DB6 | TI1DB5 | TI1DB4 | TI1DB3 | TI1DB2 | TI1DB1 | TI1DB0 |
-| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| 0x546   | TI1SEN1 | TI1SEN0 | TI1SEQ1 | TI1SEQ0 |
-| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
-| 0x547   | TI1EV7 | TI1EV6 | TI1EV5 | TI1EV4 | TI1EV3 | TI1EV2 | TI1EV1 | TI1EV0 |
+| address | bit 31    | bit 30    | bit 29    | bit 28    | bit 27      | bit 26      | bit 25      | bit 24 |
+| ------- | ------    | ------    | ------    | ------    | ------      | ------      | ------      | ------ |
+| 0x540   | TI0SQMK(3)| TI0SQMK(2)| TI0SQMK(1)| TI0SQMK(0)| TI0SQEEN(3) | TI0SQEEN(2) | TI0SQEEN(1) | TI0SQEEN(0) / TI0IRQ |
+|         | bit 23    | bit 22    | bit 21    | bit 20    | bit 19      | bit 18      | bit 17      | bit 16 |
+| 0x541   | TI0DB7    | TI0DB6    | TI0DB5    | TI0DB4    | TI0DB3      | TI0DB2      | TI0DB1      | TI0DB0 |
+|         | bit 15    | bit 14    | bit 13    | bit 12    | bit 11      | bit 10      | bit 9       | bit 8  |
+| 0x542   |           |           | TI0SEN1   | TI0SEN0   |             |             | TI0SEQ1     | TI0SEQ0 |
+|         | bit 7     | bit 6     | bit 5     | bit 4     | bit 3       | bit 2       | bit 1       | bit 0 |
+| 0x543   | TI0EV7    | TI0EV6    | TI0EV5    | TI0EV4    | TI0EV3      | TI0EV2      | TI0EV1      | TI0EV0 |
+| address | bit 31    | bit 30    | bit 29    | bit 28    | bit 27      | bit 26      | bit 25      | bit 24 |
+| 0x544   | TI1SQMK(3)| TI1SQMK(2)| TI1SQMK(1)| TI1SQMK(0)| TI1SQEEN(3) | TI1SQEEN(2) | TI1SQEEN(1) | TI1SQEEN(0) / TI1IRQ |
+|         | bit 23    | bit 22    | bit 21    | bit 20    | bit 19      | bit 18      | bit 17      | bit 16 |
+| 0x545   | TI1DB7    | TI1DB6    | TI1DB5    | TI1DB4    | TI1DB3      | TI1DB2      | TI1DB1      | TI1DB0 |
+|         | bit 15    | bit 14    | bit 13    | bit 12    | bit 11      | bit 10      | bit 9       | bit 8  |
+| 0x546   |           |           | TI1SEN1   | TI1SEN0   |             |             | TI1SEQ1     | TI1SEQ0 |
+|         | bit 7     | bit 6     | bit 5     | bit 4     | bit 3       | bit 2       | bit 1       | bit 0 |
+| 0x547   | TI1EV7    | TI1EV6    | TI1EV5    | TI1EV4    | TI1EV3      | TI1EV2      | TI1EV1      | TI1EV0 |
 | ... |
-| address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
-| 0x55C   | TI15SQMK(3:0) | TI15SQEEN3:0| TI15IRQ |
-| address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
-| 0x55D   | TI15DB7 | TI15DB6 | TI15DB5 | TI15DB4 | TI15DB3 | TI15DB2 | TI15DB1 | TI15DB0 |
-| address | bit 15 | bit 14 | bit 13   | bit 12   | bit 11   | bit 10 | bit 9   | bit 8   |
-| 0x55E   |        |        | TI15SEN1 | TI15SEN0 |          |        |TI15SEQ1 | TI15SEQ0 |
-|         | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 |bit 1 |bit 0 |
-| 0x55F   | TI15EV7 | TI15EV6 | TI15EV5 | TI15EV4 | TI15EV3 | TI15EV2 | TI15EV1 | TI15EV0 |
+|         | bit 31    | bit 30    | bit 29    | bit 28    | bit 27      | bit 26      | bit 25      | bit 24 |
+| 0x55C   | TI5SQMK(3)| TI5SQMK(2)| TI5SQMK(1)| TI5SQMK(0)| TI5SQEEN(3) | TI5SQEEN(2) | TI5SQEEN(1) | TI5SQEEN(0) / TI5IRQ |
+|         | bit 23    | bit 22    | bit 21    | bit 20    | bit 19      | bit 18      | bit 17      | bit 16 |
+| 0x55D   | TI15DB7   | TI15DB6   | TI15DB5   | TI15DB4   | TI15DB3     | TI15DB2     | TI15DB1     | TI15DB0 |
+|         | bit 15    | bit 14    | bit 13    | bit 12    | bit 11      | bit 10      | bit 9       | bit 8   |
+| 0x55E   |           |           | TI15SEN1  | TI15SEN0  |             |             | TI15SEQ1    | TI15SEQ0 |
+|         | bit 7     | bit 6     | bit 5     | bit 4     | bit 3       | bit 2       | bit1        | bit 0 |
+| 0x55F   | TI15EV7   | TI15EV6   | TI15EV5   | TI15EV4   | TI15EV3     | TI15EV2     | TI15EV1     | TI15EV0 |
 
-| Bit | Function |
-| --- | -------- |
+| Bit         | Function |
+| ---         | -------- |
 | TIxSQMKy    | Map Transition Board Input x to Sequence Event Mask bit y |
 | TIxSQEENy   | Map Transition Board Input x to Sequence Event Enable bit y |
 | TIxIRQ      | Map Transition Board Input x to External Interrupt |
@@ -1020,10 +1019,10 @@ The event master has a number of internal signals which are connected following:
 
 | address | bit 7  | bit 6  | bit 5  | bit 4  | bit 3  | bit 2  | bit 1  | bit 0  |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x007 | CLRV8 | CLRV7 | CLRV6 | CLRV5 | CLRV4 | CLRV3 | CLRV2 | CLRV1 |
+| 0x007   | CLRV8  | CLRV7  | CLRV6  | CLRV5  | CLRV4  | CLRV3  | CLRV2  | CLRV1  |
 
-| Bit | Function |
-| --- | -------- |
+| Bit   | Function |
+| ---   | -------- |
 | CLRV8 | Clear RX Violation Port 8 |
 | CLRV7 | Clear RX Violation Port 7 |
 | CLRV6 | Clear RX Violation Port 6 |
