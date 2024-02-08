@@ -516,7 +516,10 @@ the parameters for the clock cleaner PLL and e.g. for the phase shifter in the A
 |          | 111 – Recovered clock /2 decimate mode, event rate is halved
 | CGLOCK   | Micrel SY87739L reference clock locked (read-only)
 
-Please note that after changing the Event clock source the fractional synthesizer control word must be reloaded to initialize an internal reset.
+```{note}
+Please note that after changing the Event clock source the fractional synthesizer control word 
+must be reloaded to initialize an internal reset.
+```
 
 #### Event Analyser Control Register
 
@@ -751,10 +754,8 @@ Please note that after changing the Event clock source the fractional synthesize
 | address | bit 15 to bit 0 |
 | --------| --------------- |
 | 0x480   | Transition Board Output 0 Mapping ID (see [the table for mapping IDs](event-generator.md#mapping-id-table))
-|         | bit (15:0)
 | 0x482   | Transition Board Output 1 Mapping ID
 | ...     |
-|         | bit (15:0)
 | 0x41E   | Transition Board Output 15 Mapping ID
 
 #### Front Panel Input Mapping Registers

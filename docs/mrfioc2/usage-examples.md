@@ -1,6 +1,7 @@
 # Examples of usage scenarios
 
 These examples use the MRF Linux API, to be found [here](https://github.com/jpietari/mrf-linux-api).
+For register descriptions, see [EVG registermap](evg-registermap) or [EVR registermap](evr-registermap).
 
 ## Setting Up a Event System with Delay Compensation
 
@@ -112,8 +113,8 @@ output of EVR1.
 
 ## Event Receiver Standalone Operation
 
-Starting from firmware version 0207 capability to use the EVR as a stand-alone unit has been added. Func-
-tionality includes:
+Starting from firmware version 0207 capability to use the EVR as a stand-alone unit has been added. 
+Functionality includes:
 
 - Using the internal fractional synthesizer clock as a reference clock
 - Generating internal events by software

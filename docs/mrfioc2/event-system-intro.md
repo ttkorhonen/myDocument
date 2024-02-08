@@ -247,17 +247,17 @@ Note that while it is referred to as "seconds" this value is an
 arbitrary integer that could have other meanings. 
 Several methods of sending the seconds value to the EVG are possible:
 
-#### External hardware
+##### External hardware
 
 In this method, hardware is used to communicate with a GPS
 receiver over a serial (RS232) link to receive the timestamp and
 connect to two external inputs on the EVG. These inputs must be
 programmed to send the shift 0/1 codes.
 
-#### Time from an NTP server
+##### Time from an NTP server
 
 Time from a NTP server can be used without special hardware. This requires only a 1Hz (PPS)
-signal coming from the same source as the NTP time. Several commerial
+signal coming from the same source as the NTP time. Several commercial
 vendors supply dedicated NTP servers with builtin GPS receivers and 1Hz
 outputs. A software function is provided on the EVG which is triggered
 by the 1Hz signal. At the start of each second it sends the next second
@@ -268,7 +268,7 @@ by the 1Hz signal. At the start of each second it sends the next second
 ### Synchronous Data buffer
 
 A memory buffer of up to 2k bytes can be transmitted over the event link. 
-This data buffer will be  (synchronously) available to all EVRs that 
+This data buffer will be (synchronously) available to all EVRs that 
 receive the event stream.
 
 ![image](images/configurable-size-data-buffer.png)
@@ -498,7 +498,7 @@ to be initialised in fan-out mode.
 Figure: Timing System Master
 
 The beacon generator sends out beacon events (code 0x7e) at a rate of
-event clock/215. When the next node receives the beacon it sends it
+event clock/2{sup}`15`. When the next node receives the beacon it sends it
 immediately back to the master which measures the propagation delay of
 the beacon event. 
 

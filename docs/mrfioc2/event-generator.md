@@ -10,9 +10,9 @@ When configured as a Fanout/Concentrator, the EVM has basically two tasks:
 - Multiplying the [event stream](event-stream-protocol.md) from one input link to multiple (up to 8) output links.
 - Concentrating the event streams from multiple links to one upwards link.
 
-Fanout/concentrators play also an important role in the [delay compensation](event-system-intro.md#delay-compensation)
+Fanout/concentrators play also an important role in the [delay compensation](event-system-intro.md#delay-compensation).
 
-Register map for this function can be found [here](fct-registermap.md)
+Register map for this function can be found [here](fct-registermap.md).
 
 # Event Generator
 
@@ -616,14 +616,14 @@ sine-wave signal with a level of maximum +10 dBm can be used.
 
 RF Input Requirements
 
-*) Range limited by AD9515 maximum input frequency of 1.6 GHz
+*) Range limited by [AD9515](https://www.analog.com/en/products/ad9515.html) maximum input frequency of 1.6 GHz
 
 ### Fractional Synthesiser (EVM, distribution layer)
 
 The event master requires a reference clock to be able to synchronise on
 the incoming event stream sent by the system master. A Micrel
-(<http://www.micrel.com>) SY87739L Protocol Transparent Fractional-N
-Synthesiser with a reference clock of 24 MHz is used. 
+(<http://www.micrel.com>) [SY87739L Protocol Transparent Fractional-N
+Synthesiser](http://ww1.microchip.com/downloads/en/devicedoc/sy87739l.pdf) with a reference clock of 24 MHz is used. 
 
 The following table lists programming bit patterns for a few frequencies. 
 Please note that before programming a new operating frequency in the fractional
