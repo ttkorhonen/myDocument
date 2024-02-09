@@ -22,6 +22,8 @@ When configured as a Fanout/Concentrator, the EVM has basically two tasks:
 
 Fanout/concentrators play also an important role in the [delay compensation](event-system-intro.md#delay-compensation).
 
+In EVMs configured as fan-outs [(DCMST = 0 and BCGEN = 0)](evg-registermap.md#control-register) beacons from the Timing System Master are received by the port U transceiver. The recovered event clock from the transceiver is filtered by a clock cleaner external to the FPGA. A FIFO separates the cleaned event clock domain from the recovered clock domain. The depth of the FIFO is kept constant by adjusting the phase of the cleaned clock. Beacon events are propagated through the fan-out and the propagation delay from port U to the fan-out ports 1 through 8 is measured. This delay value can be read from the IntDCValue register.
+
 Register map for this function can be found [here](fct-registermap.md).
 
 # Event Generator
@@ -33,12 +35,14 @@ The Event Generator has a number of functions:
   - Generating and transmitting the [timing events](#event-processing)
   - Transmitting the [Distributed Bus](#distributed-bus) bits
   - Transmitting the [Synchronous Data](#synchronous-data) Buffer
-  - Acting as a source for timestamps.
+  - Acting as a source for [timestamps](#timestamp-support).
 
 Events are sent out by the event generator as event frames (words) which consist of
 an eight bit event code and an eight bit distributed bus data byte. 
 The event transfer rate is derived from an external RF clock or optionally an on-board clock generator. 
 The optical event stream transmitted by the Event Generator is phase locked to the clock reference.
+
+Register map for Event Generator function can be found [here](evg-registermap.md).
 
 ## Event Generation
 

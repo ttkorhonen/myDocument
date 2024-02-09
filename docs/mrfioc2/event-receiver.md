@@ -10,7 +10,9 @@ Event Generator to hardware outputs. They can also generate software
 interrupts and store the event codes with globally distributed
 timestamps into FIFO memory to be read by a CPU.
 
-![image](images/evr-blockdiagram.png){w=600px}
+Block diagram of the Event Receiver (simplified).
+
+![image](images/evr-blockdiagram.png)
 
 ### Functional Description
 
