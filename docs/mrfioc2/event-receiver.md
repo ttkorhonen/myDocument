@@ -10,6 +10,8 @@ Event Generator to hardware outputs. They can also generate software
 interrupts and store the event codes with globally distributed
 timestamps into FIFO memory to be read by a CPU.
 
+![image](images/evr-blockdiagram.png){w=600px}
+
 ### Functional Description
 
 After recovering the event clock the Event Receiver demultiplexes the
@@ -30,11 +32,11 @@ The rough classification of actions is as described in the table below.
 
 | Event code   | Offset | Internal functions | Pulse Triggers   | 'Set' Pulse     | 'Reset' Pulse      |
 | ----------   | ------ | ------------------ | --------------   | -----------     | -------------      | 
-| > 0x00       | 0x0000 | 4 bytes/32 bits    | 4 bytes/32 bits  | 4 bytes/32 bits | 4 bytes/32 bits    |
-| > 0x01       | 0x0010 | 4 bytes/32 bits    | 4 bytes/32 bits  | 4 bytes/32 bits | 4 bytes/32 bits    |
-| > 0x02       | 0x0020 | 4 bytes/32 bits    | 4 bytes/32 bits  | 4 bytes/32 bits | 4 bytes/32 bits    |
-| > \...       | > \... | > \...             | > \...           | > \...          | > \...             |
-| > 0xFF       | 0x0FF0 | 4 bytes/32 bits    | 4 bytes/32 bits  | 4 bytes/32 bits | 4 bytes/32 bits    |
+|   0x00       | 0x0000 | 4 bytes/32 bits    | 4 bytes/32 bits  | 4 bytes/32 bits | 4 bytes/32 bits    |
+|   0x01       | 0x0010 | 4 bytes/32 bits    | 4 bytes/32 bits  | 4 bytes/32 bits | 4 bytes/32 bits    |
+|   0x02       | 0x0020 | 4 bytes/32 bits    | 4 bytes/32 bits  | 4 bytes/32 bits | 4 bytes/32 bits    |
+|   \...       |  \...  |   \...             |   \...           |   \...          |   \...             |
+|   0xFF       | 0x0FF0 | 4 bytes/32 bits    | 4 bytes/32 bits  | 4 bytes/32 bits | 4 bytes/32 bits    |
 
 (special-function-bitmap)=
 #### Function mapping

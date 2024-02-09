@@ -3,6 +3,16 @@
 Since the 300-series, Event Generator and Fanout/Concentrator are combined 
 in the Event Master module that can be configured for either use; an Event Generator or Fanout-Concentrator.
 
+Block diagram of EVM configured as an **Event Generator**:
+
+![image](images/evm-evg-blockdiagram.png){w=600px}
+
+Block diagram of EVM configured as a **Fanout/Concentrator**:
+
+![image](images/evm-fct-blockdiagram.png){w=600px}
+
+The essential differences are in clocking and FIFOs. 
+
 # Fanout and Concentrator
 
 When configured as a Fanout/Concentrator, the EVM has basically two tasks:
@@ -87,7 +97,19 @@ counter rolls over to 0 when 0xffffffff is reached.
 
 Starting with firmware version 0200 a mask field has been added. Bits in
 the mask field allow masking events from being send out based on
-external signal input states or software mask bits.
+external signal input states or software mask bits. 
+
+There are four **enable** signals:
+
+– When mask enable bit is active ‘1’, enable event
+  transmission only when HW signal is active high
+  or software mask enable bit active ‘1’
+
+And four **disable** signals:
+
+– When mask disable bit is active ‘1’, disable event
+  transmission when HW signal is active high or
+  software mask disable bit is active ‘1'.
 
 The Sequencers may be triggered from several sources including software
 triggering, triggering on a multiplexed counter output or AC mains
@@ -111,9 +133,10 @@ are both reset. When a new trigger arrives, the sequencer starts a new
 run. The difference to the single sequence mode is that the sequencer
 does not get disabled at end of sequence.
 
-The sequencers are enabled by writing a '1' bit to SQxEN in the Sequence
-RAM control Register. The RAMs may be disabled any time by writing a '1'
-to SQxDIS bit. Disabling sequence RAMs does not reset the RAM address
+The sequencers are enabled by writing a '1' bit to SQxEN in the 
+[Sequence RAM control Register](evg-registermap#sequence-ram-control-registers). 
+The RAMs may be disabled any time by writing a '1' to SQxDIS bit. 
+Disabling sequence RAMs does not reset the RAM address
 and timestamp registers. By writing a '1' to the bit SQxRES in the
 Control Register the sequencer is both disabled and the RAM address and
 timestamp register is reset.
@@ -621,9 +644,9 @@ RF Input Requirements
 ### Fractional Synthesiser (EVM, distribution layer)
 
 The event master requires a reference clock to be able to synchronise on
-the incoming event stream sent by the system master. A Micrel
-(<http://www.micrel.com>) [SY87739L Protocol Transparent Fractional-N
-Synthesiser](http://ww1.microchip.com/downloads/en/devicedoc/sy87739l.pdf) with a reference clock of 24 MHz is used. 
+the incoming event stream sent by the system master. A [Microchip (formerly Micrel)](https://www.microchip.com/)
+[SY87739L Protocol Transparent Fractional-N Synthesiser](http://ww1.microchip.com/downloads/en/devicedoc/sy87739l.pdf) 
+with a reference clock of 24 MHz is used. 
 
 The following table lists programming bit patterns for a few frequencies. 
 Please note that before programming a new operating frequency in the fractional
