@@ -12,7 +12,7 @@ timestamps into FIFO memory to be read by a CPU.
 
 Block diagram of the Event Receiver (simplified).
 
-![image](images/evr-blockdiagram.png)
+![image](images/evr-blockdiagram.png){w=600px}
 
 ### Functional Description
 
@@ -352,12 +352,12 @@ with the actual number of bytes received in the transmission.
 
 The procedure to receive a segmented data buffer is following:
 
-:   -   check that receive complete flag for received segment is set
-    -   check that starting segment overflow flag is cleared
-    -   read transmission size from segment receive data counter
-    -   copy segment data from segmented data buffer memory into system RAM 
-    -   verify that starting segment overflow flag is still cleared
-    -   clear segment receive complete flag
+-   check that receive complete flag for received segment is set
+-   check that starting segment overflow flag is cleared
+-   read transmission size from segment receive data counter
+-   copy segment data from segmented data buffer memory into system RAM 
+-   verify that starting segment overflow flag is still cleared
+-   clear segment receive complete flag
 
 Starting with firmware 0205 the delay compensation logic uses the last
 16 byte segment of the segmented data buffer for delay compensation
