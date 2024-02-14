@@ -402,10 +402,10 @@ lock to.
 ### Fractional Synthesiser
 
 The clock reference for the event receiver is generated on-board the
-event receiver using a fractional synthesiser. A Micrel
-(<http://www.micrel.com>) SY87739L Protocol Transparent Fractional-N
-Synthesiser with a reference clock of 24 MHz is used. The following
-table lists programming bit patterns for a few frequencies.
+event receiver using a fractional synthesiser. A [Microchip (formerly Micrel)](https://www.microchip.com/)
+[SY87739L Protocol Transparent Fractional-N Synthesiser](http://ww1.microchip.com/downloads/en/devicedoc/sy87739l.pdf) 
+with a reference clock of 24 MHz is used. 
+The following table lists programming bit patterns for a few frequencies.
 
   | Event Rate                     | Configuration Bit Pattern   | Reference Output   | Precision (theoretical)
   | ------------------------------ | --------------------------- | ------------------ | -------------------------
