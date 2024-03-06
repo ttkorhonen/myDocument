@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'EPICS Documentation Sandbox'
-copyright = '2023, Timo Korhonen'
+copyright = '2023, European Spallation Source'
 author = 'Timo Korhonen'
 
 
