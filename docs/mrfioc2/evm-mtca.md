@@ -38,6 +38,57 @@ Input specifications are following:
 | V{sub}`IH`      | > 2.3 V |
 | V{sub}`IL`      | < 1.0 V |
 
+### mTCA-EVM-300 mTCA.4 Backplane Trigger Bus Lines
+
+The EVM can drive and receive all of the eight differential trigger bus lines on the mTCA.4 backplane, ports 17 through 20. The configuration is following:
+
+Table: mTCA-EVM-300 mTCA.4 Backplane Trigger Bus Lines
+| mTCA.4 Pin | EVM Backplane I/O Port |
+| ---------- | ---------------------- |
+| Rx17       |  0                     |
+| Tx17       |  1                     |
+| Rx18       |  2                     |
+| Tx18       |  3                     |
+| Rx19       |  4                     |
+| Tx19       |  5                     |
+| Rx20       |  6                     |
+| Tx20       |  7                     |
+
+The differential line is an input when the BPOutMap register for this line has the value 0x3d (61 decimal).
+
+### mTCA-EVM-300 mTCA.4 Rear Transition Module Signals
+
+The EVM supports driving and receiving signals to/from a RTM. The signal configuration is following:
+
+Table: mTCA-EVM-300 RTM Signals
+
+|   mTCA.4 J30/RP30 Pin | EVM RTM I/O Port        |
+| A3/B3                 | n/a                     |
+| C3/D3                 | n/a                     |
+| E3-/F3+               | TBOut8                  |
+| A4/B4                 | n/a                     |
+| C4-/D4+               | TBOut9                  |
+| E4-/F4+               | TBOut7                  |
+| A5 SDA                | (I2C LED/GPIO control)  |
+| B5 SCL                | (I2C LED/GPIO control)  |
+| C5-/D5+               | TBIn9                   |
+| E5-/F5+               | TBOut6                  |
+| A6-/B6+               | TBIn8                   |
+| C6-/D6+               | TBIn7                   |
+| E6-/F6+               | TBOut5                  |
+| A7-/B7+               | TBIn6                   |
+| C7-/D7+               | TBIn5                   |
+| E7-/F7+               | TBOut4                  |
+| A8-/B8+               | TBIn4                   |
+| C8-/D8+               | TBIn3                   |
+| E8-/F8+               | TBOut3                  |
+| A9-/B9+               | TBIn2                   |
+| C9-/D9+               | TBIn1                   |
+| E9-/F9+               | TBOut2                  |
+| A10-/B10+             | TBIn0                   |
+| C10-/D10+             | TBOut0                  |
+| E10-/F10+             | TBOut1                  |
+
 ### Register Mapping
 
 The mTCA-EVM-300 uses the following PCI IDs.

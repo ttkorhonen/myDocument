@@ -175,6 +175,33 @@ and was not running before the trigger. A sequence stop interrupt is
 issued when the sequence is running and reaches the 'end of sequence'
 code.
 
+#### Event Priority
+
+Events in the EVM have certain priority. An event with higher priority is sent out before lower priority events. The event priority is following:
+
+| Event source            | Priority |
+| ---------------------   | -------- |
+| Upstream Event          | highest  |
+| Trigger Event 0         |          |
+| Trigger Event 1         |          |
+| Trigger Event 2         |          |
+| Trigger Event 3         |          |
+| Event Sequencer 1       |          |
+| Event Sequencer 2       |          |
+| Trigger Event 4         |          |
+| Trigger Event 5         |          |
+| Trigger Event 6         |          |
+| Trigger Event 7         |          |
+| Beacon Event            |          |
+| Software Event          |          |
+| Timestamping ’0’ Event  |          |
+| Timestamping ’1’ Event  |          |
+| TimestampingSecondEvent | lowest   |
+
+
+Each of the sources of the priority encoder has only one buffer stage that allows the pending event to wait for an empty slot. 
+If another event from the same source occurs before the preceding events gets sent out the earlier event is lost.
+
 #### Uses for the sequencer 
 
 The event sequencers are typically used for sending out a precisely
@@ -208,6 +235,27 @@ transmitted as soon as there is no other event code to be transmitted.
 ![image](images/upstream-events.png)
 
 Figure: Upstream event processing.
+
+### Event Priority
+
+Events in the EVM have certain priority. An event with higher priority is sent out before lower priority events. The event priority is following:
+Event source
+Priority
+Upstream Event
+Trigger Event 0
+Trigger Event 1
+Trigger Event 2
+Trigger Event 3
+Event Sequencer 1
+Event Sequencer 2
+Trigger Event 4
+Trigger Event 5
+Trigger Event 6
+Trigger Event 7
+Beacon Event
+Software Event
+Timestamping ’0’ Event Timestamping ’1’ Event TimestampingSecondEvent lowest
+
 
 (distributed-bus)=
 ## Distributed Bus
@@ -491,6 +539,7 @@ After this the signal synchronized to the event clock or the output of
 multiplexed counter 7. The option to synchronize to an external clock
 provided in front panel TTL input IN1 or IN2 has been added in firmware
 version 22000207.
+
 
 ![image](images/ac-input-logic.png)
 

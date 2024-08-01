@@ -243,10 +243,8 @@ of the conditional, like this:
 
 `(A + B)<(C + D) ? E`
 
-- 
-Result is E if (A + B)<(C + D)
-- 
-Result is unchanged if (A + B)>=(C + D)
+- Result is `E` if `(A + B)<(C + D)`
+- Result is unchanged if `(A + B)>=(C + D)`
 
     From 3.14.9 onwards, this expression must be written as
     `(A + B) < (C + D) ? E : VAL`
