@@ -199,7 +199,7 @@ Events in the EVM have certain priority. An event with higher priority is sent o
 | TimestampingSecondEvent | lowest   |
 
 
-Each of the sources of the priority encoder has only one buffer stage that allows the pending event to wait for an empty slot. 
+Each of the sources of the priority encoder has only one buffer stage that allows the pending event to wait for an empty slot.
 If another event from the same source occurs before the preceding events gets sent out the earlier event is lost.
 
 #### Uses for the sequencer 

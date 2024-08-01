@@ -14,11 +14,12 @@ This is the register map when EVM is configured as an EVG.
 | 0x010 | ACControl | UINT32 | [AC divider control](#ac-trigger-control-register)
 | 0x014 | ACMap | UINT32 | [AC trigger event mapping](#ac-trigger-mapping-register)
 | 0x018 | SWEvent | UINT32 | [Software event Register](#software-event-register) |
-| 0x01C | SegBufControl | UINT32 | [Segmented Data Buffer Control Register](#segmented-data-buffer-control-register) |
+| 0x01C | PCIMasterIrqEnable | UINT32 | [PCI Master Interrupt Enable Register](#pci-master-interrupt-enable-register) |
 | 0x020 | DataBufControl | UINT32 | [Data Buffer Control Register](#data-buffer-control-register) |
 | 0x024 | DBusMap | UINT32 | [Distributed Bus Mapping Register](#distributed-bus-mapping-register) |
 | 0x028 | DBusEvents | UINT32 | [Distributed Bus Timestamping Events Register](#distributer-bus-event-enable-register) |
 | 0x02C | FWVersion | UINT32 | [Firmware Version Register](#fpga-firmware-version-register) |
+| 0x030 | SegBufControl | UINT32 | [Segmented Data Buffer Control Register](#segmented-data-buffer-control-register) |
 | 0x034 | TSControl | UINT32 | [Timestamp event generator control Register](#timestamp-generator-control-register) |
 | 0x038 | TSValue | UINT32 | Timestamp event generator value Register |
 | 0x040 | FPInput | UINT32 | Front Panel Input state Register |
@@ -43,26 +44,34 @@ This is the register map when EVM is configured as an EVG.
 | 0x114 | EvTrig5 | UINT32 | Event Trigger 5 Register |
 | 0x118 | EvTrig6 | UINT32 | Event Trigger 6 Register |
 | 0x11C | EvTrig7 | UINT32 | Event Trigger 7 Register |
-| 0x180 | MXCCtrl0 | UINT32 | [Multiplexed Counter 0 Control Register](#multiplexed-counter-registers) |
+| 0x180 | MXCCtrl0 | UINT32  | [Multiplexed Counter 0 Control Register](#multiplexed-counter-registers) |
 | 0x184 | MXCPresc0 | UINT32 | Multiplexed Counter 0 Prescaler Register |
-| 0x188 | MXCCtrl1 | UINT32 | Multiplexed Counter 1 Control Register |
+| 0x188 | MXCCtrl1 | UINT32  | Multiplexed Counter 1 Control Register |
 | 0x18C | MXCPresc1 | UINT32 | Multiplexed Counter 1 Prescaler Register |
-| 0x190 | MXCCtrl2 | UINT32 | Multiplexed Counter 2 Control Register |
+| 0x190 | MXCCtrl2 | UINT32  | Multiplexed Counter 2 Control Register |
 | 0x194 | MXCPresc2 | UINT32 | Multiplexed Counter 2 Prescaler Register |
-| 0x198 | MXCCtrl3 | UINT32 | Multiplexed Counter 3 Control Register |
+| 0x198 | MXCCtrl3 | UINT32  | Multiplexed Counter 3 Control Register |
 | 0x19C | MXCPresc3 | UINT32 | Multiplexed Counter 3 Prescaler Register |
-| 0x1A0 | MXCCtrl4 | UINT32 | Multiplexed Counter 4 Control Register |
+| 0x1A0 | MXCCtrl4 | UINT32  | Multiplexed Counter 4 Control Register |
 | 0x1A4 | MXCPresc4 | UINT32 | Multiplexed Counter 4 Prescaler Register |
-| 0x1A8 | MXCCtrl5 | UINT32 | Multiplexed Counter 5 Control Register |
+| 0x1A8 | MXCCtrl5 | UINT32  | Multiplexed Counter 5 Control Register |
 | 0x1AC | MXCPresc5 | UINT32 | Multiplexed Counter 5 Prescaler Register |
-| 0x1B0 | MXCCtrl6 | UINT32 | Multiplexed Counter 6 Control Register |
+| 0x1B0 | MXCCtrl6 | UINT32  | Multiplexed Counter 6 Control Register |
 | 0x1B4 | MXCPresc6 | UINT32 | Multiplexed Counter 6 Prescaler Register |
-| 0x1B8 | MXCCtrl7 | UINT32 | Multiplexed Counter 7 Control Register |
+| 0x1B8 | MXCCtrl7 | UINT32  | Multiplexed Counter 7 Control Register |
 | 0x1BC | MXCPresc7 | UINT32 | Multiplexed Counter 7 Prescaler Register |
 | 0x400 | FPOutMap0 | UINT16 | Front Panel Output 0 Mapping Register |
 | 0x402 | FPOutMap1 | UINT16 | Front Panel Output 1 Mapping Register |
 | 0x404 | FPOutMap2 | UINT16 | Front Panel Output 2 Mapping Register |
 | 0x406 | FPOutMap3 | UINT16 | Front Panel Output 3 Mapping Register |
+| 0x420 | BPOutMap0 | UINT16 | Backplane Output 0 Mapping Register   |
+| 0x422 | BPOutMap1 | UINT16 | Backplane Output 1 Mapping Register   |
+| 0x424 | BPOutMap2 | UINT16 | Backplane Output 2 Mapping Register   |
+| 0x426 | BPOutMap3 | UINT16 | Backplane Output 3 Mapping Register   |
+| 0x428 | BPOutMap4 | UINT16 | Backplane Output 4 Mapping Register   |
+| 0x42A | BPOutMap5 | UINT16 | Backplane Output 5 Mapping Register   |
+| 0x42C | BPOutMap6 | UINT16 | Backplane Output 6 Mapping Register   |
+| 0x42E | BPOutMap7 | UINT16 | Backplane Output 7 Mapping Register   |
 | 0x440 | UnivOutMap0 | UINT16 | Universal Output 0 Mapping Register |
 | 0x442 | UnivOutMap1 | UINT16 | Universal Output 1 Mapping Register |
 | 0x444 | UnivOutMap2 | UINT16 | Universal Output 2 Mapping Register |
@@ -73,6 +82,12 @@ This is the register map when EVM is configured as an EVG.
 | 0x44E | UnivOutMap7 | UINT16 | Universal Output 7 Mapping Register |
 | 0x450 | UnivOutMap8 | UINT16 | Universal Output 8 Mapping Register |
 | 0x452 | UnivOutMap9 | UINT16 | Universal Output 9 Mapping Register |
+| 0x454 | UnivOutMap10 | UINT16 | Universal Output 10 Mapping Register |
+| 0x456 | UnivOutMap11 | UINT16 | Universal Output 11 Mapping Register |
+| 0x458 | UnivOutMap12 | UINT16 | Universal Output 12 Mapping Register |
+| 0x45A | UnivOutMap13 | UINT16 | Universal Output 13 Mapping Register |
+| 0x45C | UnivOutMap14 | UINT16 | Universal Output 14 Mapping Register |
+| 0x45E | UnivOutMap15 | UINT16 | Universal Output 15 Mapping Register |
 | 0x480 | TBOutMap0 | UINT16 | [Transition Board Output 0 Mapping Register](#transition-board-output-mapping-registers) |
 | 0x482 | TBOutMap1 | UINT16 | Transition Board Output 1 Mapping Register |
 | 0x484 | TBOutMap2 | UINT16 | Transition Board Output 2 Mapping Register |
@@ -90,21 +105,35 @@ This is the register map when EVM is configured as an EVG.
 | 0x49C | TBOutMap14 | UINT16 | Transition Board Output 14 Mapping Register |
 | 0x49E | TBOutMap15 | UINT16 | Transition Board Output 15 Mapping Register |
 | 0x500 | FPInMap0 | UINT32 | [Front Panel Input 0 Mapping Register](#front-panel-input-mapping-registers) |
-| 0x504 | FPInMap1 | UINT32 | Front Panel Input 1 Mapping Register |
-| 0x508 | FPInMap2 | UINT32 | Front Panel Input 2 Mapping Register |
+| 0x504 | FPInMap1 | UINT32 | Front Panel Input 1 Mapping Register (VME only) |
+| 0x508 | FPInMap2 | UINT32 | Front Panel Input 2 Mapping Register (VME only) |
 | 0x520 | FPPhMon0 | UINT32 | [Front Panel Input 0 Phase Monitoring Register](#front-panel-input-phase-monitoring-registers) |
-| 0x524 | FPPhMon1 | UINT32 | Front Panel Input 1 Phase Monitoring Register |
-| 0x528 | FPPhMon2 | UINT32 | Front Panel Input 2 Phase Monitoring Register |
-| 0x540 | UnivInMap0 | UINT32 | Front Panel Universal Input 0 Map Register |
-| 0x544 | UnivInMap1 | UINT32 | Front Panel Universal Input 1 Map Register |
-| 0x548 | UnivInMap2 | UINT32 | Front Panel Universal Input 2 Map Register |
-| 0x54C | UnivInMap3 | UINT32 | Front Panel Universal Input 3 Map Register |
-| 0x550 | UnivInMap4 | UINT32 | Front Panel Universal Input 4 Map Register |
-| 0x554 | UnivInMap5 | UINT32 | Front Panel Universal Input 5 Map Register |
-| 0x558 | UnivInMap6 | UINT32 | Front Panel Universal Input 6 Map Register |
-| 0x55C | UnivInMap7 | UINT32 | Front Panel Universal Input 7 Map Register |
-| 0x560 | UnivInMap8 | UINT32 | Front Panel Universal Input 8 Map Register |
-| 0x564 | UnivInMap9 | UINT32 | Front Panel Universal Input 9 Map Register |
+| 0x524 | FPPhMon1 | UINT32 | Front Panel Input 1 Phase Monitoring Register (VME only)|
+| 0x528 | FPPhMon2 | UINT32 | Front Panel Input 2 Phase Monitoring Register (VME only)|
+| 0x540 | UnivInMap0 | UINT32 | [Universal Input 0 Map Register] (#universal-input-mapping-registers) |
+| 0x544 | UnivInMap1 | UINT32 | Universal Input 1 Map Register |
+| 0x548 | UnivInMap2 | UINT32 | Universal Input 2 Map Register |
+| 0x54C | UnivInMap3 | UINT32 | Universal Input 3 Map Register |
+| 0x550 | UnivInMap4 | UINT32 | Universal Input 4 Map Register |
+| 0x554 | UnivInMap5 | UINT32 | Universal Input 5 Map Register |
+| 0x558 | UnivInMap6 | UINT32 | Universal Input 6 Map Register |
+| 0x55C | UnivInMap7 | UINT32 | Universal Input 7 Map Register |
+| 0x560 | UnivInMap8 | UINT32 | Universal Input 8 Map Register |
+| 0x564 | UnivInMap9 | UINT32 | Universal Input 9 Map Register |
+| 0x568 | UnivInMap10 | UINT32 | Universal Input 10 Map Register |
+| 0x56C | UnivInMap11 | UINT32 | Universal Input 11 Map Register |
+| 0x570 | UnivInMap12 | UINT32 | Universal Input 12 Map Register |
+| 0x574 | UnivInMap13 | UINT32 | Universal Input 13 Map Register |
+| 0x578 | UnivInMap14 | UINT32 | Universal Input 14 Map Register |
+| 0x57C | UnivInMap15 | UINT32 | Universal Input 15 Map Register |
+| 0x580 | BPInMap0 | UINT32 | Backplane Input 0 Map Register |
+| 0x584 | BPInMap1 | UINT32 | Backplane Input 1 Map Register |
+| 0x588 | BPInMap2 | UINT32 | Backplane Input 2 Map Register |
+| 0x58C | BPInMap3 | UINT32 | Backplane Input 3 Map Register |
+| 0x590 | BPInMap4 | UINT32 | Backplane Input 4 Map Register |
+| 0x594 | BPInMap5 | UINT32 | Backplane Input 5 Map Register |
+| 0x598 | BPInMap6 | UINT32 | Backplane Input 6 Map Register |
+| 0x59C | BPInMap7 | UINT32 | Backplane Input 7 Map Register |
 | 0x600 | TBInMap0 | UINT32 | [Transition Board Input 0 Mapping Register](#transition-board-input-mapping-registers) |
 | 0x604 | TBInMap1 | UINT32 | Transition Board Input 1 Mapping Register |
 | 0x608 | TBInMap2 | UINT32 | Transition Board Input 2 Mapping Register |
@@ -192,7 +221,7 @@ This is the register map when EVM is configured as an EVG.
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
 |  0x008  |
-|         | **bit 23** | **bit 22** | **bit 21** | **bit 20** | **bit 19** | **bit 18** | **bit 17** | **bit 16** |
+|         | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
 |  0x009  |        |        | IFSOV1 | IFSOV0 |        |        | IFSHF1 | IFSHF0 |
 |         | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
 | 0x00A   |        |        | IFSSTO1 | IFSSTO0 |             || IFSSTA1 | IFSSTA0 |
@@ -221,13 +250,13 @@ This is the register map when EVM is configured as an EVG.
 
 | address | bit 31 | bit 30 | bit 29  | bit 28 | bit 27 | bit 26 | bit 25  | bit 24  |
 | ------- | ------ | ------ | ------  | ------ | ------ | ------ | ------  | ------  |
-| 0x00C  | IRQEN   | PCIIE  |   
-|        | bit 23  | bit 22 | bit 21  | bit 20 | bit 19 | bit 18 | bit 17  | bit 16  |
-| 0x00D  |         |        | IESOV1  | IESOV0 |        |        | IESHF1  | IESHF0  |
-|        | bit 15  | bit 14 | bit 13  | bit 12 | bit 11 | bit 10 | bit 9   | bit 8   |
-| 0x00E  |         |        | IESSTO1 | IESSTO0 |       |        | IESSTA1 | IESSTA0 |
-|        | bit 7   | bit 6  | bit 5   | bit 4   | bit 3 | bit 2  | bit 1   | bit 0   |
-| 0x00F  |         | IEEXT  | IEDBUF  |         |       |        | IEFF    | IEVIO   |
+| 0x00C   | IRQEN  |        |   
+|         | bit 23 | bit 22 | bit 21  | bit 20 | bit 19 | bit 18 | bit 17  | bit 16  |
+| 0x00D   |        |        | IESOV1  | IESOV0 |        |        | IESHF1  | IESHF0  |
+|         | bit 15 | bit 14 | bit 13  | bit 12 | bit 11 | bit 10 | bit 9   | bit 8   |
+| 0x00E   |        |        | IESSTO1 | IESSTO0 |       |        | IESSTA1 | IESSTA0 |
+|         | bit 7  | bit 6  | bit 5   | bit 4   | bit 3 | bit 2  | bit 1   | bit 0   |
+| 0x00F   |        | IEEXT  | IEDBUF  |         |       |        | IEFF    | IEVIO   |
 
 | Bit     | Function |
 | ---     | -------- |
@@ -272,9 +301,9 @@ This is the register map when EVM is configured as an EVG.
 
 #### AC Trigger Mapping Register
 
-| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
+| address | bit 7  | bit 6  | bit 5  | bit 4  | bit 3  | bit 2  | bit 1  | bit 0  |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x017 | ACM7 | ACM6 | ACM5 | ACM4 | ACM3 | ACM2 | ACM1 | ACM0 |
+| 0x017   | ACM7   | ACM6   | ACM5   | ACM4   | ACM3   | ACM2   | ACM1   | ACM0   |
 
 | Bit | Function |
 | --- | -------- |
@@ -304,30 +333,12 @@ This is the register map when EVM is configured as an EVG.
 |           | the event code register.
 | CODE(7:0) | Event Code (8-bit value)
 
-#### Segmented Data Buffer Control Register
+#### PCI Master Interrupt Enable Register
 
-| address | bit 31   | bit 30   | bit 29   | bit 28   | bit 27   | bit 26   | bit 25   | bit 24   |
-| ------- | ------   | ------   | ------   | ------   | ------   | ------   | ------   | ------   |
-| 0x01C   | SADDR(7) | SADDR(6) | SADDR(5) | SADDR(4) | SADDR(3) | SADDR(2) | SADDR(1) | SADDR(0) |
-|         | bit 23   | bit 22   | bit 21   | bit 20   | bit 19   | bit 18   | bit 17   | bit 16   |
-| 0x01D   |          |          |          | TXCPT    | TXRUN    | TRIG     |  ENA     |     1    |
-|         | bit 15   | bit 14   | bit 13   | bit 12   | bit 11   | bit 10   | bit 9    | bit 8    |
-| 0x01E   |          |          |          |          |          | DTSZ(10) | DTSZ(9)  | DTSZ(8)  |
-|         | bit 7    | bit 6    | bit 5    | bit 4    | bit 3    | bit 2    | bit 1    | bit 0    |
-| 0x01F   | DTSZ(7)  | DTSZ(6)  |DTSZ(5)   | DTSZ(4)  | DTSZ(3)  | DTSZ(2)  | 0        | 0        |
+| address | bit 31 | bit 30 | bit 29  | bit 28 | bit 27 | bit 26 | bit 25  | bit 24  |
+| ------- | ------ | ------ | ------  | ------ | ------ | ------ | ------  | ------  |
+| 0x01C   |        | PCIIE  |   
 
-| Bit        | Function |
-| ---        | -------- |
-| SADDR      | Transfer Start Segment Address (16 byte segments)
-| TXCPT      | Data Buffer Transmission Complete
-| TXRUN      | Data Buffer Transmission Running – set when data transmission has been
-|            | triggered and has not been completed yet
-| TRIG       | Data Buffer Trigger Transmission
-|            | Write ‘1’ to start transmission of data in buffer
-| ENA        | Data Buffer Transmission enable
-|            | ‘0’ – data transmission engine disabled
-|            | ‘1’ – data transmission engine enabled
-| DTSZ(10:8) | Data Transfer size 4 bytes to 2k in four byte increments
 
 #### Data Buffer Control Register
 
@@ -430,11 +441,37 @@ This is the register map when EVM is configured as an EVG.
 |               | 02 – Delay Compensation firmware
 | Revision ID   | See end of manual
 
+#### Segmented Data Buffer Control Register
+
+| address | bit 31   | bit 30   | bit 29   | bit 28   | bit 27   | bit 26   | bit 25   | bit 24   |
+| ------- | ------   | ------   | ------   | ------   | ------   | ------   | ------   | ------   |
+| 0x030   | SADDR(7) | SADDR(6) | SADDR(5) | SADDR(4) | SADDR(3) | SADDR(2) | SADDR(1) | SADDR(0) |
+|         | bit 23   | bit 22   | bit 21   | bit 20   | bit 19   | bit 18   | bit 17   | bit 16   |
+| 0x031   |          |          |          | TXCPT    | TXRUN    | TRIG     |  ENA     |     1    |
+|         | bit 15   | bit 14   | bit 13   | bit 12   | bit 11   | bit 10   | bit 9    | bit 8    |
+| 0x032   |          |          |          |          |          | DTSZ(10) | DTSZ(9)  | DTSZ(8)  |
+|         | bit 7    | bit 6    | bit 5    | bit 4    | bit 3    | bit 2    | bit 1    | bit 0    |
+| 0x033   | DTSZ(7)  | DTSZ(6)  |DTSZ(5)   | DTSZ(4)  | DTSZ(3)  | DTSZ(2)  | 0        | 0        |
+
+| Bit        | Function |
+| ---        | -------- |
+| SADDR      | Transfer Start Segment Address (16 byte segments)
+| TXCPT      | Data Buffer Transmission Complete
+| TXRUN      | Data Buffer Transmission Running – set when data transmission has been
+|            | triggered and has not been completed yet
+| TRIG       | Data Buffer Trigger Transmission
+|            | Write ‘1’ to start transmission of data in buffer
+| ENA        | Data Buffer Transmission enable
+|            | ‘0’ – data transmission engine disabled
+|            | ‘1’ – data transmission engine enabled
+| DTSZ(10:8) | Data Transfer size 4 bytes to 2k in four byte increments
+
+
 #### Timestamp Generator Control Register
 
-| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1  | bit 0   |
-| ------- | ----- | ----- | ----- | ----- | ----- | ----- | -----  | -----   |
-| 0x037   |       |       |       |       |       |       | TSGENA | TSGLOAD |
+| address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1   | bit 0   |
+| ------- | ----- | ----- | ----- | ----- | ----- | ----- | -----   | -----   |
+| 0x037   |       |       |       |       |       |       | TSGLOAD | TSGENA  |
 
 | Bit     | Function |
 | ---     | -------- |
@@ -850,34 +887,91 @@ must be reloaded to initialize an internal reset.
 | PHFEx(3:0) | Falling edge phase monitoring register
 | PHREx(3:0) | Rising edge phase monitoring register
 
+#### Universal Input Mapping Registers
+
+| address | bit 31    | bit 30    | bit 29    | bit 28    | bit 27      | bit 26      | bit 25      | bit 24 |
+| ------- | ------    | ------    | ------    | ------    | ------      | ------      | ------      | ------ |
+| 0x540   | UI0SQMK(3)| UI0SQMK(2)| UI0SQMK(1)| UI0SQMK(0)| UI0SQEEN(3) | UI0SQEEN(2) | UI0SQEEN(1) | UI0SQEEN(0) / UI0IRQ |
+|         | bit 23    | bit 22    | bit 21    | bit 20    | bit 19      | bit 18      | bit 17      | bit 16 |
+| 0x541   | UI0DB7    | UI0DB6    | UI0DB5    | UI0DB4    | UI0DB3      | UI0DB2      | UI0DB1      | UI0DB0 |
+|         | bit 15    | bit 14    | bit 13    | bit 12    | bit 11      | bit 10      | bit 9       | bit 8  |
+| 0x542   |           |           | UI0SEN1   | UI0SEN0   |             |             | UI0SEQ1     | UI0SEQ0 |
+|         | bit 7     | bit 6     | bit 5     | bit 4     | bit 3       | bit 2       | bit 1       | bit 0 |
+| 0x543   | UI0EV7    | UI0EV6    | UI0EV5    | UI0EV4    | UI0EV3      | UI0EV2      | UI0EV1      | UI0EV0 |
+|         | bit 31    | bit 30    | bit 29    | bit 28    | bit 27      | bit 26      | bit 25      | bit 24 |
+| 0x544   | UI1SQMK(3)| UI1SQMK(2)| UI1SQMK(1)| UI1SQMK(0)| UI1SQEEN(3) | UI1SQEEN(2) | UI1SQEEN(1) | UI1SQEEN(0) / UI1IRQ |
+|         | bit 23    | bit 22    | bit 21    | bit 20    | bit 19      | bit 18      | bit 17      | bit 16 |
+| 0x545   | UI1DB7    | UI1DB6    | UI1DB5    | UI1DB4    | UI1DB3      | UI1DB2      | UI1DB1      | UI1DB0 |
+|         | bit 15    | bit 14    | bit 13    | bit 12    | bit 11      | bit 10      | bit 9       | bit 8  |
+| 0x546   |           |           | UI1SEN1   | UI1SEN0   |             |             | TI1SEQ1     | TI1SEQ0 |
+|         | bit 7     | bit 6     | bit 5     | bit 4     | bit 3       | bit 2       | bit 1       | bit 0 |
+| 0x547   | UI1EV7    | UI1EV6    | UI1EV5    | UI1EV4    | UI1EV3      | UI1EV2      | UI1EV1      | UI1EV0 |
+| ... |
+|         | bit 31    | bit 30    | bit 29    | bit 28    | bit 27      | bit 26      | bit 25      | bit 24 |
+| 0x55C   | UI5SQMK(3)| UI5SQMK(2)| UI5SQMK(1)| UI5SQMK(0)| UI5SQEEN(3) | UI5SQEEN(2) | UI5SQEEN(1) | UI5SQEEN(0) / UI5IRQ |
+|         | bit 23    | bit 22    | bit 21    | bit 20    | bit 19      | bit 18      | bit 17      | bit 16 |
+| 0x55D   | UI15DB7   | UI15DB6   | UI15DB5   | UI15DB4   | UI15DB3     | UI15DB2     | UI15DB1     | UI15DB0 |
+|         | bit 15    | bit 14    | bit 13    | bit 12    | bit 11      | bit 10      | bit 9       | bit 8   |
+| 0x55E   |           |           | UI15SEN1  | UI15SEN0  |             |             | UI15SEQ1    | UI15SEQ0 |
+|         | bit 7     | bit 6     | bit 5     | bit 4     | bit 3       | bit 2       | bit1        | bit 0 |
+| 0x55F   | UI15EV7   | UI15EV6   | UI15EV5   | UI15EV4   | UI15EV3     | UI15EV2     | UI15EV1     | UI15EV0 |
+
+| Bit         | Function |
+| ---         | -------- |
+| UIxSQMKy    | Map Universal Input x to Sequence Event Mask bit y |
+| UIxSQEENy   | Map Universal Input x to Sequence Event Enable bit y |
+| UIxIRQ      | Map Universal Input x to External Interrupt |
+| UIxDB7      | Map Universal Input x to Distributed Bus bit 7 |
+| UIxDB6      | Map Universal Input x to Distributed Bus bit 6 |
+| UIxDB5      | Map Universal Input x to Distributed Bus bit 5 |
+| UIxDB4      | Map Universal Input x to Distributed Bus bit 4 |
+| UIxDB3      | Map Universal Input x to Distributed Bus bit 3 |
+| UIxDB2      | Map Universal Input x to Distributed Bus bit 2 |
+| UIxDB1      | Map Universal Input x to Distributed Bus bit 1 |
+| UIxDB0      | Map Universal Input x to Distributed Bus bit 0 |
+| UIxSEN1     | Map Universal Input x to Sequence External Enable 1 |
+| UIxSEN0     | Map Universal Input x to Sequence External Enable 0 |
+| UIxSEQ1     | Map Universal Input x to Sequence Trigger 1 |
+| UIxSEQ0     | Map Universal Input x to Sequence Trigger 0 |
+| UIxEV7      | Map Universal Input x to Event Trigger 7 |
+| UIxEV6      | Map Universal Input x to Event Trigger 6 |
+| UIxEV5      | Map Universal Input x to Event Trigger 5 |
+| UIxEV4      | Map Universal Input x to Event Trigger 4 |
+| UIxEV3      | Map Universal Input x to Event Trigger 3 |
+| UIxEV2      | Map Universal Input x to Event Trigger 2 |
+| UIxEV1      | Map Universal Input x to Event Trigger 1 |
+| UIxEV0      | Map Universal Input x to Event Trigger 0 |
+
+
+
 #### Transition Board Input Mapping Registers
 
 | address | bit 31    | bit 30    | bit 29    | bit 28    | bit 27      | bit 26      | bit 25      | bit 24 |
 | ------- | ------    | ------    | ------    | ------    | ------      | ------      | ------      | ------ |
-| 0x540   | TI0SQMK(3)| TI0SQMK(2)| TI0SQMK(1)| TI0SQMK(0)| TI0SQEEN(3) | TI0SQEEN(2) | TI0SQEEN(1) | TI0SQEEN(0) / TI0IRQ |
+| 0x600   | TI0SQMK(3)| TI0SQMK(2)| TI0SQMK(1)| TI0SQMK(0)| TI0SQEEN(3) | TI0SQEEN(2) | TI0SQEEN(1) | TI0SQEEN(0) / TI0IRQ |
 |         | bit 23    | bit 22    | bit 21    | bit 20    | bit 19      | bit 18      | bit 17      | bit 16 |
-| 0x541   | TI0DB7    | TI0DB6    | TI0DB5    | TI0DB4    | TI0DB3      | TI0DB2      | TI0DB1      | TI0DB0 |
+| 0x601   | TI0DB7    | TI0DB6    | TI0DB5    | TI0DB4    | TI0DB3      | TI0DB2      | TI0DB1      | TI0DB0 |
 |         | bit 15    | bit 14    | bit 13    | bit 12    | bit 11      | bit 10      | bit 9       | bit 8  |
-| 0x542   |           |           | TI0SEN1   | TI0SEN0   |             |             | TI0SEQ1     | TI0SEQ0 |
+| 0x602   |           |           | TI0SEN1   | TI0SEN0   |             |             | TI0SEQ1     | TI0SEQ0 |
 |         | bit 7     | bit 6     | bit 5     | bit 4     | bit 3       | bit 2       | bit 1       | bit 0 |
-| 0x543   | TI0EV7    | TI0EV6    | TI0EV5    | TI0EV4    | TI0EV3      | TI0EV2      | TI0EV1      | TI0EV0 |
+| 0x603   | TI0EV7    | TI0EV6    | TI0EV5    | TI0EV4    | TI0EV3      | TI0EV2      | TI0EV1      | TI0EV0 |
 |         | bit 31    | bit 30    | bit 29    | bit 28    | bit 27      | bit 26      | bit 25      | bit 24 |
-| 0x544   | TI1SQMK(3)| TI1SQMK(2)| TI1SQMK(1)| TI1SQMK(0)| TI1SQEEN(3) | TI1SQEEN(2) | TI1SQEEN(1) | TI1SQEEN(0) / TI1IRQ |
+| 0x604   | TI1SQMK(3)| TI1SQMK(2)| TI1SQMK(1)| TI1SQMK(0)| TI1SQEEN(3) | TI1SQEEN(2) | TI1SQEEN(1) | TI1SQEEN(0) / TI1IRQ |
 |         | bit 23    | bit 22    | bit 21    | bit 20    | bit 19      | bit 18      | bit 17      | bit 16 |
-| 0x545   | TI1DB7    | TI1DB6    | TI1DB5    | TI1DB4    | TI1DB3      | TI1DB2      | TI1DB1      | TI1DB0 |
+| 0x605   | TI1DB7    | TI1DB6    | TI1DB5    | TI1DB4    | TI1DB3      | TI1DB2      | TI1DB1      | TI1DB0 |
 |         | bit 15    | bit 14    | bit 13    | bit 12    | bit 11      | bit 10      | bit 9       | bit 8  |
-| 0x546   |           |           | TI1SEN1   | TI1SEN0   |             |             | TI1SEQ1     | TI1SEQ0 |
+| 0x606   |           |           | TI1SEN1   | TI1SEN0   |             |             | TI1SEQ1     | TI1SEQ0 |
 |         | bit 7     | bit 6     | bit 5     | bit 4     | bit 3       | bit 2       | bit 1       | bit 0 |
-| 0x547   | TI1EV7    | TI1EV6    | TI1EV5    | TI1EV4    | TI1EV3      | TI1EV2      | TI1EV1      | TI1EV0 |
+| 0x607   | TI1EV7    | TI1EV6    | TI1EV5    | TI1EV4    | TI1EV3      | TI1EV2      | TI1EV1      | TI1EV0 |
 | ... |
 |         | bit 31    | bit 30    | bit 29    | bit 28    | bit 27      | bit 26      | bit 25      | bit 24 |
-| 0x55C   | TI5SQMK(3)| TI5SQMK(2)| TI5SQMK(1)| TI5SQMK(0)| TI5SQEEN(3) | TI5SQEEN(2) | TI5SQEEN(1) | TI5SQEEN(0) / TI5IRQ |
+| 0x61C   | TI5SQMK(3)| TI5SQMK(2)| TI5SQMK(1)| TI5SQMK(0)| TI5SQEEN(3) | TI5SQEEN(2) | TI5SQEEN(1) | TI5SQEEN(0) / TI5IRQ |
 |         | bit 23    | bit 22    | bit 21    | bit 20    | bit 19      | bit 18      | bit 17      | bit 16 |
-| 0x55D   | TI15DB7   | TI15DB6   | TI15DB5   | TI15DB4   | TI15DB3     | TI15DB2     | TI15DB1     | TI15DB0 |
+| 0x61D   | TI15DB7   | TI15DB6   | TI15DB5   | TI15DB4   | TI15DB3     | TI15DB2     | TI15DB1     | TI15DB0 |
 |         | bit 15    | bit 14    | bit 13    | bit 12    | bit 11      | bit 10      | bit 9       | bit 8   |
-| 0x55E   |           |           | TI15SEN1  | TI15SEN0  |             |             | TI15SEQ1    | TI15SEQ0 |
+| 0x61E   |           |           | TI15SEN1  | TI15SEN0  |             |             | TI15SEQ1    | TI15SEQ0 |
 |         | bit 7     | bit 6     | bit 5     | bit 4     | bit 3       | bit 2       | bit1        | bit 0 |
-| 0x55F   | TI15EV7   | TI15EV6   | TI15EV5   | TI15EV4   | TI15EV3     | TI15EV2     | TI15EV1     | TI15EV0 |
+| 0x61F   | TI15EV7   | TI15EV6   | TI15EV5   | TI15EV4   | TI15EV3     | TI15EV2     | TI15EV1     | TI15EV0 |
 
 | Bit         | Function |
 | ---         | -------- |
@@ -957,6 +1051,8 @@ The event master has a number of internal signals which are connected following:
 | EVRU FPIN(5)       | EVRD FPOUT(5) |
 | EVRU FPIN(6)       | EVRD FPOUT(6) |
 | EVRU FPIN(7)       | EVRD FPOUT(7) |
+
+### FCT Function Register Map
 
 | Address         | Register    | Type   | Description |
 | -------         | --------    | ----   | ----------- |
