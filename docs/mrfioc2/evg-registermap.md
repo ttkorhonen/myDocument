@@ -17,7 +17,7 @@ This is the register map when EVM is configured as an EVG.
 | 0x01C | PCIMasterIrqEnable | UINT32 | [PCI Master Interrupt Enable Register](#pci-master-interrupt-enable-register) |
 | 0x020 | DataBufControl | UINT32 | [Data Buffer Control Register](#data-buffer-control-register) |
 | 0x024 | DBusMap | UINT32 | [Distributed Bus Mapping Register](#distributed-bus-mapping-register) |
-| 0x028 | DBusEvents | UINT32 | [Distributed Bus Timestamping Events Register](#distributer-bus-event-enable-register) |
+| 0x028 | DBusEvents | UINT32 | [Distributed Bus Timestamping Events Register](#distributed-bus-event-enable-register) |
 | 0x02C | FWVersion | UINT32 | [Firmware Version Register](#fpga-firmware-version-register) |
 | 0x030 | SegBufControl | UINT32 | [Segmented Data Buffer Control Register](#segmented-data-buffer-control-register) |
 | 0x034 | TSControl | UINT32 | [Timestamp event generator control Register](#timestamp-generator-control-register) |
@@ -110,7 +110,7 @@ This is the register map when EVM is configured as an EVG.
 | 0x520 | FPPhMon0 | UINT32 | [Front Panel Input 0 Phase Monitoring Register](#front-panel-input-phase-monitoring-registers) |
 | 0x524 | FPPhMon1 | UINT32 | Front Panel Input 1 Phase Monitoring Register (VME only)|
 | 0x528 | FPPhMon2 | UINT32 | Front Panel Input 2 Phase Monitoring Register (VME only)|
-| 0x540 | UnivInMap0 | UINT32 | [Universal Input 0 Map Register] (#universal-input-mapping-registers) |
+| 0x540 | UnivInMap0 | UINT32 | [Universal Input 0 Map Register](#universal-input-mapping-registers) |
 | 0x544 | UnivInMap1 | UINT32 | Universal Input 1 Map Register |
 | 0x548 | UnivInMap2 | UINT32 | Universal Input 2 Map Register |
 | 0x54C | UnivInMap3 | UINT32 | Universal Input 3 Map Register |
@@ -339,6 +339,11 @@ This is the register map when EVM is configured as an EVG.
 | ------- | ------ | ------ | ------  | ------ | ------ | ------ | ------  | ------  |
 | 0x01C   |        | PCIIE  |   
 
+| Bit   | Function |
+| ---   | -------- |
+| PCIIE | PCI core interrupt enable (mTCA-EVM-300) |
+|       | This bit is used by the low level driver to disable further interrupts | 
+|       | before the first interrupt has been handled in user space. |
 
 #### Data Buffer Control Register
 
@@ -464,7 +469,7 @@ This is the register map when EVM is configured as an EVG.
 | ENA        | Data Buffer Transmission enable
 |            | ‘0’ – data transmission engine disabled
 |            | ‘1’ – data transmission engine enabled
-| DTSZ(10:8) | Data Transfer size 4 bytes to 2k in four byte increments
+| DTSZ       | Data Transfer size 4 bytes to 2k in four byte increments
 
 
 #### Timestamp Generator Control Register
@@ -1087,6 +1092,8 @@ The event master has a number of internal signals which are connected following:
 | 0x1E00 – 0x1EFF | SFP8EEPROM  |        | Port 8 SFP Transceiver EEPROM contents (SFP address 0xA0)
 | 0x1F00 – 0x1FFF | SFP8DIAG    |        | Port 8 SFP Transceiver diagnostics (SFP address 0xA2)
 
+#### FCT Link Status Register
+
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
 | 0x001   | LINK8  | LINK7  | LINK6  | LINK5  | LINK4  | LINK3  | LINK2  | LINK1  |
@@ -1111,6 +1118,8 @@ The event master has a number of internal signals which are connected following:
 | VIO3  | Port 3 RX Violation |
 | VIO2  | Port 2 RX Violation |
 | VIO1  | Port 1 RX Violation |
+
+#### FCT Link Control Register
 
 | address | bit 7  | bit 6  | bit 5  | bit 4  | bit 3  | bit 2  | bit 1  | bit 0  |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
