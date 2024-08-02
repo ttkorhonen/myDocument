@@ -173,3 +173,40 @@ int evr_sa(volatile struct MrfErRegs *pEr)
 }
 ```
 
+## mTCA-EVR-300RF GUN-TX/GUN-RC-300 Pulse Mode Example
+
+This example is using the shell wrapper functions in the mrf-linux-api available 
+on https://github. com/jpietari/mrf-linux-api.
+
+```
+./EvrSetEventFrequency /dev/era3 124.95
+./EvrGetViolation /dev/era3 1
+./EvrEnable /dev/era3 1
+./EvrMapRamEnable /dev/era3 0 1
+./EvrGetViolation /dev/era3 1
+# Setup Map RAM0 to trigger pulse generator 0 on event 2
+./EvrSetPulseMap /dev/era3 0 2 0 -1 -1
+# Setup 10 event clock cycle long pulse on pulse generator 0
+./EvrSetPulseParams /dev/era3 0 0 0 10
+./EvrSetPulseProperties /dev/era3 0 0 0 0 1 1
+# Map Pulse genrator 0 to UNIV0
+./EvrSetUnivOutMap /dev/era3 1 0x3f00
+# Map Pulse genrator 0 also to SFP GTX
+# SFP GTX is on Universal Output 20
+./EvrSetUnivOutMap /dev/era3 20 0x3f00
+# Map Pulse genrator 0 also to CML GTX
+# CML GTX is on Universal Output 21
+./EvrSetUnivOutMap /dev/era3 21 0x3f00
+# Override inhibit signal on UNIVIN0
+./EvrSetGunTxInhibitOverride /dev/era3 1
+# Set SFP GTX into GUN-RC-300 mode
+./EvrSetCMLMode /dev/era3 4 0x3800
+# Enable SFP GTX output
+./EvrCMLEnable /dev/era3 4 1
+# For testing purposes it is possible to look at the GTX modulation
+# on the CML outputs:
+#./EvrSetCMLMode /dev/era3 5 0x3800
+./EvrCMLEnable /dev/era3 5 1
+# Set Phase offset 0-2559, steps of 8 ns/2560 = 3.125 ps
+./EvrSetCMLPhaseOffset /dev/era3 4 1000}
+```

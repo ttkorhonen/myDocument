@@ -36,3 +36,22 @@ data buffers/segmented data buffers.
 | | | mode transceivers.
 | 050207 | 26.06.2017 | - Fixed transceiver_channel to turn off receiver on first | VME-EVM-300
 | | | error to prevent propagation of errors up stream. |
+| 070207 | 04.05.2020 | - Changed VME CSR registers to readback unused bits as zero. | VME-EVM-300
+| | | - Fixed bus error on write to fct registers |
+| | | - Added external reset for MXC |
+
+### mTCA.4 development branch
+
+| 070207 | 31.01.2019 | - Moved MIRQ to 0x1C register. Moved DCDataBuf-Control from 0x1c to 0x30. | mTCA-EVM-300
+| 0A0207 | 15.11.2019 | - Fixed RX polarity of mTCA-EVM-300 ports 6 and 7. | mTCA-EVM-300
+| | | - Defaults for fan-out.|
+| | | - Added support for mTCA backplane I/O on trigger bus. |
+| 0B0207 | 15.11.2019 | - Fixed EVRU/D to EVG signal and added pullup to MOD_SDA. | mTCA-EVM-300
+| 0C0207 | 02.04.2020 | - Added settings files. | mTCA-EVM-300
+| | | - Changed event clock contraint to 6 ns.|
+
+
+### Merging of VME and mTCA.4 development branches
+
+| 0C0207 | 11.09.2020 | - Merge VME tested successfully. | VME-EVM-300
+| 0E0207 | 24.02.2021 | - Merge mTCA.4 tested successfully. | mTCA-EVM-300

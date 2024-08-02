@@ -168,6 +168,18 @@ The VME-EVR-300, PCIe-EVR- 300DC and mTCA-EVR-300 have four pulse
 generators configured as gates, pulse generators 28 to 31 which
 correspond gates 0 to 3.
 
+#### Pulse Generator Pulse Trains
+
+Starting with subrelease ID 0x19 a capability of generating pulse trains has been added to the pulse generators. 
+Pulse trains are enabled by specifying the number of pulse repetitions and the repeat interval. 
+The pulse width is defined by the width of the initial pulse. When the number of repetitions is 0, 
+the pulse generator behaves exactly the same way as in earlier firmware releases 
+i.e., the total number of pulses is n+1 where n is the number of repetitions. 
+Both the repeat delay (interval) and number of repetitions registers are 32 bit wide.
+
+![image](evr-pulsegen-pulsetrains.png)
+
+
 ### Prescalers
 
 The Event Receiver provides a number of programmable prescalers. The
@@ -199,7 +211,11 @@ Table 18: Output mapping values
   | 40          |  Prescaler 0
   | 41          |  Prescaler 1
   | 42          |  Prescaler 2
-  | 43 to 47    |  (Reserved)
+  | 43          |  Prescaler 3
+  | 44          |  Prescaler 4
+  | 45          |  Prescaler 5
+  | 46          |  Prescaler 6
+  | 47          |  Prescaler 7
   | 48          |  Flip-flop output 0
   | \...        |  \...
   | 55          |  Flip-flop output 7
@@ -236,18 +252,38 @@ Universal I/O modules. Each module provides two outputs e.g. two TTL
 output, two NIM output or two optical outputs. The source for these
 outputs is selected with mapping registers.
 
-VME-EVR-300 GTX Front Panel Outputs and mTCA-EVR TCLKA/TCLKB Clocks The
-VME-EVR-300 has four GTX front panel outputs, two in Universal I/O slot
+### VME-EVR-300 GTX Front Panel Outputs and mTCA-EVR TCLKA/TCLKB Clocks 
+
+The VME-EVR-300 has four GTX front panel outputs, two in Universal I/O slot
 UNIV6/UNIV7 and CML outputs CML0 and CML1. The GTX Outputs provide low
 jitter signals with special outputs. The outputs can work in different
 configurations: pulse mode, pattern mode and frequency mode. The
 difference com- pared to the CML output of the VME-EVR-230RF is that
 instead of 20 bits per event clock cycle the GTX outputs have 40 bits
 per event clock cycle doubling the resolution to 200 ps/bit at an event
-clock of 125 MHz. The mTCA-EVR-300 TCLKA and TCLKB backplane clock
+clock of 125 MHz. 
+
+The mTCA-EVR-300 TCLKA and TCLKB backplane clock
 operate the same way as VME-EVR-300 GTX front panel outputs. The pulse
 mapping is controlled through UNIV16 (TCLKA) and UNIV17 (TCLKB) mapping
 registers.
+
+### mTCA-EVR-300RF GTX Outputs
+
+The mTCA-EVR-300RF has altogether six GTX outputs, two on the backplane, TCLKA and TCLKB, and four on the front panel: 
+one Universal I/O slot (UNIV2/UNIV3), one SFP output, and one differential CML output.
+
+The SFP output can be configured to generate a modulated signal that can be received by an 
+Electron Gun trigger receiver GUN-RC-300. 
+For GUN-RC-300 operation the GTX output has to be placed in GTX3MD mode (see GTX output control register).
+
+The GUN-TX mode has a special inhibit function that by default is using Universal Input 0 as an inhibit signal. 
+When the state of the inhibit signal is high the GUN-TX output is disabled. 
+The inhibit function may be overridden with the GTXIO override bit in the main control register.
+
+The mTCA-EVR-300RF also adds the capability of phase shifting all of the GTX outputs individually 
+with a step resolution of 1/2560 event clock cycles. 
+The phase shift is controlled by the GTX Phase Shift Offset Register.
 
 ### GTX Pulse Mode
 
@@ -303,20 +339,82 @@ the CML Control register.
 
 In pattern mode one can generate arbitrary bit patterns taking into account following:
 
-    -   The pattern length is a multiple of 40 bits, where each bit is
-        1/40th of the event clock period
-    -   Maximum length of the arbitrary pattern is 40 × 2048 bits
-    -   A pattern can be triggered from any pulse generator, distributed
-        bus bit etc. When triggered the pattern generator starts sending
-        40 bit words from the pattern memory sequentially starting from
-        position 0. This goes on until the pattern length set by the
-        samples register has been reached.
-    -   If the pattern generator is in recycle mode the pattern
-        continues immediately from position 0 of the pattern memory.
-    -   If the pattern generator is in single pattern mode, the pattern
-        stops and the 40 bit word from the last position of the pattern
-        memory (2047) is sent out until the pattern generator is
-        triggered again.
+-   The pattern length is a multiple of 40 bits, where each bit is
+    1/40th of the event clock period
+-   Maximum length of the arbitrary pattern is 40 × 2048 bits
+-   A pattern can be triggered from any pulse generator, distributed
+    bus bit etc. When triggered the pattern generator starts sending
+    40 bit words from the pattern memory sequentially starting from
+    position 0. This goes on until the pattern length set by the
+    samples register has been reached.
+-   If the pattern generator is in recycle mode the pattern
+    continues immediately from position 0 of the pattern memory.
+-   If the pattern generator is in single pattern mode, the pattern
+    stops and the 40 bit word from the last position of the pattern
+    memory (2047) is sent out until the pattern generator is
+    triggered again.
+
+
+### GTX GUN-RC-300 Mode (mTCA-EVR-300RF)
+
+The front panel GTX SFP output can be configured to generate a modulated signal that 
+can be received by an Electron Gun trigger receiver GUN-RC-300. 
+The GUN-RC-300 is capable of generating pulse trains with a quarter resolution 
+of the event clock cycle (2 ns @ 125 MHz); that is, 
+it allows triggering the gun bunch by bunch with a RF divider of four.
+
+### GUN-RC-300 Pulse Mode
+
+This mode is similar to the GTX Pulse Mode except that due to the modulation used in the GUN-RC-300 
+the resolution is lower than in GTX Pulse Mode.
+
+Here the 40 bit pattern is still used, however, it is required that in the 40 bit pattern 
+five consecutive bits are of the same state that is bits 0-4 have the same state, bits 5-9 have the same state etc.
+
+- When the source for the GTX GUN-TX output is low and waslow one event clock cycle earlier(state low), 
+  the GTX output repeats the 8x5 bit pattern stored in pattern_00 register.
+- When the source for the GTX GUN-TX output is high and was low one event clock cycle earlier (state rising), 
+  the GTX output sends out the 8x5 bit pattern stored in pattern_01 register.
+- When the source for the GTX GUN-TX output is high and was high one event clock cycle earlier (state high), 
+  the GTX output repeats the 8x5 bit pattern stored in pattern_11 register.
+- When the source for the GTX GUN-TX output is low and was high one event clock cycle earlier (state falling), 
+  the GTX output sends out the 8x5 bit pattern stored in pattern_10 register.
+
+By default (after power up) the four first pattern registers have the following values:
+
+| pattern nr.  |  bit pattern                                    |
+| ------------ | ------------                                    |
+| 00           | ``00000 00000 00000 00000 00000 00000 00000 00000`` |
+| 01           | ``11111 11111 11111 11111 11111 11111 11111 11111`` |
+| 10           | ``00000 00000 00000 00000 00000 00000 00000 00000`` |
+| 11           | ``11111 11111 11111 11111 11111 11111 11111 11111`` |
+
+If for example the pattern for the rising edge(pattern_01) is changed to 
+``11111 00000 11111 00000 11111 00000 11111 00000``
+then the pulse start is changed to four short pulses with a stable top until the end of the pulse.
+Please see 4.3 for example for setting up the mTCA-EVR-300RF in GUN-RC-300 pulse mode.
+
+### GUN-RC-300 Pattern Mode
+
+The pattern mode is similar to the GTX pattern mode, but like in the pulse mode the patterns are 
+arranged as 8x5 bit patterns instead of fourty bit patterns.
+
+- The pattern length is a multiple of 8x5 bits, where each 5 bit block is 1/8th of the event clock period
+- Maximum length of the arbitrary pattern is 2048 event clock cycles
+- A pattern can be triggered from the rising edge of any pulse generator, distributed bus bit etc. 
+  When triggered the pattern generator starts sending 8x5 bit words from the pattern memory sequentially 
+  starting from position 0. This goes on until the pattern length set by the samples register has been reached.
+- If the pattern generator is in recycle mode the pattern continues immediately from position 0 of the pattern memory.
+- If the pattern generator is in single pattern mode, the pattern stops and the 40 bit word 
+  from the last position of the pattern memory (2047) is sent out until the pattern generator is triggered again.
+
+**Common GUN-TX Mode Considerations**
+
+- The GTX outputs should not be enable before the EVG/EVR link is up
+- Disconnecting any fibre connection between EVG/EVR or EVR/GUN-RC can 
+  lead to a spurious pulses at the GUN-RC
+- A lost EVG RF reference can cause spurious pulses at the GUN-RC
+
 
 ### Configurable Size Data Buffer (EVR)
 
