@@ -44,4 +44,14 @@
 | 0D0207     | 20.5.2019   |  - Added programmable phase shift to prescalers.                                         | mTCA-EVR-300
 | 0E0207     | 2.7.2019    | - Fix to event FIFO.                                                                     | mTCA-EVR-300
 |      |                   |- Added flip-flop outputs.
-
+| 0F0207     | 3.3.2020    | - Added support for RTM on mTCA-EVR-300..                                                | mTCA-EVR-300
+| 100207     | 9.4.2021    | - Allow disabling receive databuf mode.                                                  | mTCA-EVR-300
+| 110207     | 2.6.2021    | - Added support for mTCA-EVR-300RF                                                       | mTCA-EVR-300RF
+| 130207     | 14.2.2022    | - 32 bit pulse width for HW mask pulse generators                                       | VME-EVR-300
+| 140207     | 11.5.2022    | - Added pulse generator masking capability for HW set and reset                         | mTCA-EVR-300DC
+| 150207     | 15.6.2022    | - Added VME-UTB-64x support for VME-EVR-300.                                            | VME-EVR-300
+| 160207     | 6.10.2022    | - Changed pulse with and delay to 32 bits on all pulse generators..                     | mTCA-EVR-300DC and VME-EVR-300
+| 170207     | 6.10.2022    | -  Use LOS from SFP transceiver to reset receiver..                                     | mTCA-EVR-300DC
+| 180207     | 17.01.2023    | -Added support for new mTCA-EVR-300DC hardware with improved backplane triggers.       | mTCA-EVR-300DC
+| 190207     | 27.05.2023    | - Added support pulse trains for pulse generators.                                     | mTCA-EVR-300DC
+| 200207     | 26.06.2023    | - Fixed pulse trains issues with single width pulses.                                  | mTCA-EVR-300DC

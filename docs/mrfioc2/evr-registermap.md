@@ -149,40 +149,71 @@ Event Receiver register/memory map.
 | 0x4CE | BPOutMap7      | UINT16 | Backplane Output 7 Map Register
 | 0x500 | FPInMap0       | UINT32 | [Front Panel Input 0 Mapping Register](#input-mapping-registers)
 | 0x504 | FPInMap1       | UINT32 | Front Panel Input 1 Mapping Register
+| ...| | 
 | 0x510 | UnivInMap0     | UINT32 | Universal Input 0 Mapping Register
 | 0x514 | UnivInMap1     | UINT32 | Universal Input 1 Mapping Register
 | ...| | 
 | 0x560 | BPInMap0       | UINT32 | Backplane Input 0 Mapping Register
 | 0x564 | BPInMap1       | UINT32 | Backplane Input 1 Mapping Register
 | ...| | 
-| 0x610 | GTX0Ctrl       | UINT32 | UNIV6 / GTX0CML Output Control Register
-| 0x614 | GTX0HP         | UINT16 | UNIV6 / GTX0 Output High Period Count
-| 0x616 | GTX0LP         | UINT16 | UNIV6 / GTX0 Output Low Period Count
-| 0x618 | GTX0Samp       | UINT32 | UNIV6 / GTX0 Output Number of 40 bit word patterns
-| 0x630 | GTX1Ctrl       | UINT32 | UNIV7 / GTX1CML 5 Output Control Register
-| 0x634 | GTX1HP         | UINT16 | UNIV7 / GTX1 Output High Period Count
-| 0x636 | GTX1LP         | UINT16 | UNIV7 / GTX1 Output Low Period Count
-| 0x638 | GTX1Samp       | UINT32 | UNIV7 / GTX1 Output Number of 40 bit word patterns
-| 0x650 | GTX2Ctrl       | UINT32 | CML 0 / GTX2 Output Control Register
-| 0x654 | GTX2HP         | UINT16 | CML 0 / GTX2 Output High Period Count
-| 0x656 | GTX2LP         | UINT16 | CML 0 / GTX2 Output Low Period Count
-| 0x658 | GTX2Samp       | UINT32 | CML 0 / GTX2 Output Number of 40 bit word patterns
-| 0x670 | GTX3Ctrl       | UINT32 | CML1 / GTX3 Output Control Register
-| 0x674 | GTX3HP         | UINT16 | CML1 / GTX3 Output High Period Count
-| 0x676 | GTX3LP         | UINT16 | CML1 / GTX3 Output Low Period Count
-| 0x678 | GTX3Samp       | UINT32 | CML1 / GTX3 Output Number of 40 bit word patterns
-| 0x800 – 0xFFF   | DataBuf | | Data Buffer Receive Memory
-| 0x1000 – 0x17FF | Diagnostics counters |
+| 0x580 | TBDly0       | UINT32 | Transition Board -DLY Module Output 0 Delay. Value 0-1023
+| 0x584 | TBDly1       | UINT32 | Transition Board -DLY Module Output 1 Delay. Value 0-1023
+| ...| | 
+| 0x5C0 | TBInMap0       | UINT32 | Transition Board Input 0 Mapping Register
+| 0x5C4 | TBInMap1       | UINT32 | Transition Board Input 1 Mapping Register
+| ...| | 
+| 0x610 | GTX0Ctrl       | UINT32 | GTX0 Output Control Register
+| 0x614 | GTX0HP         | UINT16 | GTX0 Output High Period Count
+| 0x616 | GTX0LP         | UINT16 | GTX0 Output Low Period Count
+| 0x618 | GTX0Samp       | UINT32 | GTX0 Output Number of 40 bit word patterns
+| 0x61C | GTX0PS         | UINT32 | GTX0 Phase Shift Offset Register
+| 0x630 | GTX1Ctrl       | UINT32 | GTX1 Output Control Register
+| 0x634 | GTX1HP         | UINT16 | GTX1 Output High Period Count
+| 0x636 | GTX1LP         | UINT16 | GTX1 Output Low Period Count
+| 0x638 | GTX1Samp       | UINT32 | GTX1 Output Number of 40 bit word patterns
+| 0x63C | GTX1PS         | UINT32 | GTX1 Phase Shift Offset Register
+| 0x650 | GTX2Ctrl       | UINT32 | GTX2 Output Control Register
+| 0x654 | GTX2HP         | UINT16 | GTX2 Output High Period Count
+| 0x656 | GTX2LP         | UINT16 | GTX2 Output Low Period Count
+| 0x658 | GTX2Samp       | UINT32 | GTX2 Output Number of 40 bit word patterns
+| 0x65C | GTX2PS         | UINT32 | GTX2 Phase Shift Offset Register
+| 0x670 | GTX3Ctrl       | UINT32 | GTX3 Output Control Register
+| 0x674 | GTX3HP         | UINT16 | GTX3 Output High Period Count
+| 0x676 | GTX3LP         | UINT16 | GTX3 Output Low Period Count
+| 0x678 | GTX3Samp       | UINT32 | GTX3 Output Number of 40 bit word patterns
+| 0x67C | GTX3PS         | UINT32 | GTX3 Phase Shift Offset Register
+| 0x610 | GTX4Ctrl       | UINT32 | GTX4 Output Control Register
+| 0x694 | GTX4HP         | UINT16 | GTX4 Output High Period Count
+| 0x696 | GTX4LP         | UINT16 | GTX4 Output Low Period Count
+| 0x698 | GTX4Samp       | UINT32 | GTX4 Output Number of 40 bit word patterns
+| 0x69C | GTX4PS         | UINT32 | GTX4 Phase Shift Offset Register
+| 0x6B0 | GTX5Ctrl       | UINT32 | GTX5 Output Control Register
+| 0x6B4 | GTX5HP         | UINT16 | GTX5 Output High Period Count
+| 0x6B6 | GTX5LP         | UINT16 | GTX5 Output Low Period Count
+| 0x6B8 | GTX5Samp       | UINT32 | GTX5 Output Number of 40 bit word patterns
+| 0x6BC | GTX5PS         | UINT32 | GTX5 Phase Shift Offset Register
+| 0x800 – 0xFFF   | DataBuf   | | Data Buffer Receive Memory
+| 0x1000 – 0x17FF |           | | Diagnostics counters |
 | 0x1800 – 0x1FFF | TxDataBuf | | Data Buffer Transmit Memory
 | 0x2000 – 0x3FFF | EventLog |  | 512 x 16 byte position Event Log
 | 0x4000 – 0x4FFF | MapRam1 |   | Event Mapping RAM 1
 | 0x5000 – 0x5FFF | MapRam2 |   | Event Mapping RAM 2
+| 0x7200 | Pulse0RepCnt | UINT32 | Pulse 0 Repetition Count Register |
+| 0x7204 | Pulse0RepDelay | UINT32 | Pulse 0 Repeat Delay Register |
+| 0x7210 | Pulse1RepCnt | UINT32 | Pulse 1 Repetition Count Register |
+| 0x7214 | Pulse1RepDelay | UINT32 | Pulse 1 Repeat Delay Register |
+| 0x7220 | Pulse2RepCnt | UINT32 | Pulse 2 Repetition Count Register |
+| 0x7224 | Pulse2RepDelay | UINT32 | Pulse 2 Repeat Delay Register |
+| ...    | ......        | ....... | ...      |
+| 0x73F0 | Pulse31RepCnt | UINT32 | Pulse 31 Repetition Count Register |
+| 0x73F4 | Pulse31RepDelay | UINT32 | Pulse 31 Repeat Delay Register |
 | 0x8000 – 0x80FF | configROM |
 | 0x8100 – 0x81FF | scratchRAM |
 | 0x8200 – 0x82FF | SFPEEPROM  | | SFP Transceiver EEPROM contents (SFP address 0xA0)
 | 0x8300 – 0x83FF | SFPDIAG    | | SFP Transceiver diagnostics (SFP address 0xA2)
 | 0x8800 | DataBufRXSize0    | UINT32  | Segmented Data Buffer Segment 0 Receive Size Register
 | 0x8804 | SDataBufRXSize0   | UINT32 | Segmented Data Buffer Segment 1 Receive Size Register
+| ...    | ......        | ....... | ...      |
 | 0x89FC | SDataBufRXSize127 | UINT32 | Segmented Data Buffer Segment 127 Receive Size Register
 | 0x8F80 – 0x8F8F | SDataBufSIrqEna |  | [Segmented Data Buffer Segment Interrupt Enable Register](#data-buffer-segment-interrupt-enable-register)
 | 0x8FA0 – 0x8FAF | SDataBufCSFlag  |  | [Segmented Data Buffer Segment Checksum Flags](#data-buffer-checksum-flag-register)
@@ -193,13 +224,22 @@ Event Receiver register/memory map.
 | 0xC000 – 0xFFFF | SeqRam | | Sequence RAM
 | 0x20000 – 0x23FFF  | GTX0MEM | Pattern memory:
 | | | | 16k bytes GTX output 0 (VME-EVR-300)
+| | | | 16k bytes GTX output 0 (mTCA-EVR-300U/RF TCLKA)
 | 0x24000 – 0x27FFF | GTX1MEM  | Pattern memory:
 | | | | 16k bytes GTX output 1 (VME-EVR-300)
+| | | | 16k bytes GTX output 0 (mTCA-EVR-300U/RF TCLKB)
 | 0x28000 – 0x2BFFF | GTX2MEM  | Pattern memory:
 | | | | 16k bytes GTX output 2 (VME-EVR-300)
+| | | | 16k bytes GTX output 0 (mTCA-EVR-300U/RF UNIV2)
 | 0x2C000 – 0x2FFFF | GTX3MEM  | Pattern memory:
 | | | | 16k bytes GTX output 3 (VME-EVR-300)
-
+| | | | 16k bytes GTX output 0 (mTCA-EVR-300U/RF UNIV3)
+| 0x2C000 – 0x2FFFF | GTX3MEM  | Pattern memory:
+| | | | 16k bytes GTX output 4 (VME-EVR-300)
+| | | | 16k bytes GTX output 0 (mTCA-EVR-300U/RF GTX/GUN-TX)
+| 0x2C000 – 0x2FFFF | GTX3MEM  | Pattern memory:
+| | | | 16k bytes GTX output 5 (VME-EVR-300)
+| | | | 16k bytes GTX output 0 (mTCA-EVR-300U/RF GTX CML)
 
 ### Status Register
 
@@ -243,7 +283,7 @@ Event Receiver register/memory map.
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
 | 0x005   |        | DCENA  |
 | address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9  | bit 8  |
-| 0x006   |        | TSDBUS | RSTS   |        |        |   LTS  | MAPEN  | MAPRS  |
+| 0x006   | PRPOL  | TSDBUS | RSTS   |        |        |   LTS  | MAPEN  | MAPRS  |
 | address | bit 7  | bit 6 | bit 5   |  bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
 | 0x007   | LOGRS  | LOGEN | LOGDIS  | LOGSE  | RSFIFO |
 
@@ -269,9 +309,12 @@ Event Receiver register/memory map.
 | GTXIO  | GUN-TX output hardware inhibit override
 |        | 0 – honor hardware inhibit signal (default)
 |        | 1 – inhibit override, don’t care about hardware inhibit input state
-|        | DCENA Delay compensation mode enable
+| DCENA  | Delay compensation mode enable
 |        | 0 – Delay compensation mode disable (receive FIFO depth controlled by DC Target).
 |        | 1 – Delay compensation mode enable (receive FIFO depth controlled by DC Target - Datapath Delay).
+| PRPOL  | Prescaler Polarity select 
+|        | 0 – Prescalers aligned on falling edge
+|        | 1 – Prescalers aligned on rising edge
 | TSDBUS |  Use timestamp counter clock on DBUS4
 | RSTS   | Reset Timestamp. Write 1 to reset timestamp event counter and timestamp latch.
 | LTS    | Latch Timestamp: Write 1 to latch timestamp from timestamp event counter to timestamp latch.
@@ -589,6 +632,18 @@ The fractional synthesizer serves as the reference clock for the FPGA internal t
 | 0x0C25B43AD        |      49.978 MHz
 | 0x0176C36D         |     49.965 MHz
 
+### GPIO Pin Direction Register
+
+| address | bit 31-0      |
+| ------- | ----------    | 
+| 0x090   | GPDIR         |
+
+| Bit    | Function |
+| ---    | -------- |
+| GPDIRx | GPIO I/O Direction 
+|        | 0:input
+|        | 1: output
+
 ### SPI Configuration Flash Registers
 
 | address | bit 7      | bit 6      | bit 5      | bit 4      | bit 3      | bit 2      | bit 1      | bit 0      |
@@ -675,9 +730,11 @@ bus bit.
 
 | address | bit 31 | bit 30 | bit 29 | bit 28 | bit 27 | bit 26 | bit 25 | bit 24 |
 | ------- | ------ | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| 0x200   | PxMASK[7] | PxMASK[6] | PxMASK[5] | PxMASK[4] | PxMASK[3] | PxMASK[2] | PxMASK[1] | PxMASK[0] |
+| 0x200   | PxMASK[3] | PxMASK[2] | PxMASK[1] | PxMASK[0] | |  |  |  |
 | address | bit 23 | bit 22 | bit 21 | bit 20 | bit 19 | bit 18 | bit 17 | bit 16 |
-| 0x201   | PxENA[7] | PxENA[6] | PxENA[5] | PxENA[4] | PxENA[3] | PxENA[2] | PxENA[1] | PxENA[0] |
+| 0x201   | PxMENA[3] | PxMENA[2] | PxMENA[1] | PxMENA[0] |
+| address | bit 15 | bit 14 | bit 13 | bit 12 | bit 11 | bit 10 | bit 9 | bit 8 |
+| 0x202   |        |        |        |        |        |        | PxRME | PxSME |
 | address | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
 | 0x203   | PxOUT | PxSWS | PxSWR | PxPOL | PxMRE | PxMSE | PxMTE | PxENA
 
@@ -691,12 +748,14 @@ bus bit.
 
 | Bit | Function |
 | --- | -------- |
-| PxMASK(7:0) | Pulse HW Mask Register
+| PxMASK(3:0) | Pulse HW Mask Register
 | | 0 – HW masking disabled
 | | 1 – HW masking enabled. When corresponding gate bit is active ‘1’ pulse triggers are blocked
-| PxENA(7:0) | Pulse HW Enable Register
+| PxMENA(3:0) | Pulse HW Enable Register
 | | 0 – HW enabling inactive
 | | 1 – HW enabling active. When corresponding gate bit is inactive ‘0’ pulse triggers are blocked
+| PxRME | Pulse Generator Apply mask to HW Reset
+| PxSME | Pulse Generator Apply mask to HW Set
 |PxOUT | Pulse Generator Output (read-only)
 |PxSWS | Pulse Generator Software Set
 |PxSWC | Pulse Generator Software Reset
@@ -776,6 +835,8 @@ The same bit mapping applies to Front Panel Inputs, Universal Inputs and Backpla
 | | 0 – disable distributed bus bit
 | | 1 – enable distributed bus bit control from hardware input: e.g. when TxDB7
 | | is ‘1’ the hardware input x state is sent out on distributed bus bit 7.
+
+### GTX Output Control Register
  
 | address | bit 31...bit 16 |
 | ------- | --------------- |
@@ -958,65 +1019,65 @@ the EEPROM values and the rest of the advanced values.
 
 | Byte # | Field size | Notes                     | Value |
 | ------ | ---------- | -----                     | ----- |
-| 256 – 257 | 2  | Temp H Alarm Signed twos complement integer in increments of 1/256 °C
-| 258 – 259 | 2  | Temp L Alarm Signed twos complement integer in increments of 1/256 °C
-| 260 – 261 | 2  | Temp H Warning Signed twos complement integer in increments of 1/256 °C
-| 262 – 263 | 2  | Temp L Warning Signed twos complement integer in increments of 1/256 °C
-| 264 – 265 | 2  | VCC H Alarm Supply voltage decoded as unsigned integer in increments of 100 μV
-| 266 – 267 | 2  | VCC L Alarm Supply voltage decoded as unsigned integer in increments of 100 μV
-| 268 – 269 | 2  | VCC H Warning Supply voltage decoded as unsigned integer in increments of 100 μV
-| 270 – 271 | 2  | VCC L Warning Supply voltage decoded as unsigned integer in increments of 100 μV
-| 272 – 273 | 2  | Tx Bias H Alarm Laser bias current decoded as unsigned integer in increment of 2 μA
-| 274 – 275 | 2  | Tx Bias L Alarm Laser bias current decoded as unsigned integer in increment of 2 μA
-| 276 – 277 | 2  | Tx Bias H Warning Laser bias current decoded as unsigned integer in increment of 2 μA
-| 278 – 279 | 2  | Tx Bias L Warning Laser bias current decoded as unsigned integer in increment of 2 μA
-| 280 – 281 | 2  | Tx Power H Alarm Transmitter average optical power decoded as unsigned integer in increments of 0.1 μW
-| 282 – 283 | 2  | Tx Power L Alarm Transmitter average optical power decoded as unsigned integer in increments of 0.1 μW
-| 284 – 285 | 2  | Tx Power H Warning Transmitter average optical power decoded as unsigned integer in increments of 0.1 μW
-| 286 – 287 | 2  | Tx Power L Warning Transmitter average optical power decoded as unsigned integer in increments of 0.1 μW
-| 288 – 289 | 2  | Rx Power H Alarm Receiver average optical power decoded as unsigned integer in increments of 0.1 μW
-| 290 – 291 | 2  | Rx Power L Alarm Receiver average optical power decoded as unsigned integer in increments of 0.1 μW
-| 292 – 293 | 2  | Rx Power H Warning Receiver average optical power decoded as unsigned integer in increments of 0.1 μW
-| 294 – 295 | 2  | Rx Power L Warning Receiver average optical power decoded as unsigned integer in increments of 0.1 μW
+| 256 – 257 | 2  | Temp H Alarm       | Signed twos complement integer in increments of 1/256 °C
+| 258 – 259 | 2  | Temp L Alarm       | Signed twos complement integer in increments of 1/256 °C
+| 260 – 261 | 2  | Temp H Warning     | Signed twos complement integer in increments of 1/256 °C
+| 262 – 263 | 2  | Temp L Warning     | Signed twos complement integer in increments of 1/256 °C
+| 264 – 265 | 2  | VCC H Alarm        | Supply voltage decoded as unsigned integer in increments of 100 μV
+| 266 – 267 | 2  | VCC L Alarm        | Supply voltage decoded as unsigned integer in increments of 100 μV
+| 268 – 269 | 2  | VCC H Warning      | Supply voltage decoded as unsigned integer in increments of 100 μV
+| 270 – 271 | 2  | VCC L Warning      | Supply voltage decoded as unsigned integer in increments of 100 μV
+| 272 – 273 | 2  | Tx Bias H Alarm    | Laser bias current decoded as unsigned integer in increment of 2 μA
+| 274 – 275 | 2  | Tx Bias L Alarm    | Laser bias current decoded as unsigned integer in increment of 2 μA
+| 276 – 277 | 2  | Tx Bias H Warning  | Laser bias current decoded as unsigned integer in increment of 2 μA
+| 278 – 279 | 2  | Tx Bias L Warning  | Laser bias current decoded as unsigned integer in increment of 2 μA
+| 280 – 281 | 2  | Tx Power H Alarm   | Transmitter average optical power decoded as unsigned integer in increments of 0.1 μW
+| 282 – 283 | 2  | Tx Power L Alarm   | Transmitter average optical power decoded as unsigned integer in increments of 0.1 μW
+| 284 – 285 | 2  | Tx Power H Warning | Transmitter average optical power decoded as unsigned integer in increments of 0.1 μW
+| 286 – 287 | 2  | Tx Power L Warning | Transmitter average optical power decoded as unsigned integer in increments of 0.1 μW
+| 288 – 289 | 2  | Rx Power H Alarm   | Receiver average optical power decoded as unsigned integer in increments of 0.1 μW
+| 290 – 291 | 2  | Rx Power L Alarm   | Receiver average optical power decoded as unsigned integer in increments of 0.1 μW
+| 292 – 293 | 2  | Rx Power H Warning | Receiver average optical power decoded as unsigned integer in increments of 0.1 μW
+| 294 – 295 | 2  | Rx Power L Warning | Receiver average optical power decoded as unsigned integer in increments of 0.1 μW
 | 296 – 311 | 16 |  Reserved
 | 312 – 350 | | External Calibration Constants
 | 351 | 1 | Checksum for Bytes 256 – 350
-| 352 – 353 | 2 | Real Time Temperature Signed twos complement integer in increments of 1/256 °C
-| 354 – 355 | 2 | Real Time VCC Power SupplyVoltage Supply voltage decoded as unsigned integer in increments of 100 μV
-| 356 – 357 | 2 | Real Time Tx Bias Current Laser bias current decoded as unsigned integer in increment of 2 μA
-| 358 – 359 | 2 | Real Time Tx Power Transmitter average optical power decoded as unsigned integer in in- crements of 0.1 μW
-| 360 – 361 | 2 | Real Time Rx Power Receiver average optical power decoded as unsigned integer in increments of 0.1 μW
+| 352 – 353 | 2 | Real Time Temperature              | Signed twos complement integer in increments of 1/256 °C
+| 354 – 355 | 2 | Real Time VCC Power Supply Voltage | Supply voltage decoded as unsigned integer in increments of 100 μV
+| 356 – 357 | 2 | Real Time Tx Bias Current          | Laser bias current decoded as unsigned integer in increment of 2 μA
+| 358 – 359 | 2 | Real Time Tx Power                 | Transmitter average optical power decoded as unsigned integer in increments of 0.1 μW
+| 360 – 361 | 2 | Real Time Rx Power                 | Receiver average optical power decoded as unsigned integer in increments of 0.1 μW 
 | 362 – 365 | 4 | Reserved
-| 366 | 1 | Status/Control | bit 7: TX_DISABLE State
-|     |   |                | bit 6 – 3: Reserved
-|     |   |                | bit 2: TX_FAULT State
-|     |   |                | bit 1: RX_LOS State
-|     |   |                | bit 0: Data Ready (Bar)
-| 367 | 1 | Reserved
-| 368 | 1 | Alarm Flags    | bit 7: Temp High Alarm
-|     |    |               | bit 6: Temp Low Alarm
-|     |    |               | bit 5: VCC High Alarm
-|     |    |               | bit 4: VCC Low Alarm
-|     |    |               | bit 3: Tx Bias High Alarm
-|     |    |               | bit 2: Tx Bias Low Alarm
-|     |    |               | bit 1: Tx Power High Alarm
-|     |    |               | bit 0: Tx Power Low Alarm
-| 369 |  1 | Alarm Flags cont. | bit 7: Rx Power High Alarm
-|     |    |               | bit 6: Rx Power Low Alarm
-|     |    |               | bit 5 – 0: Reserved
+| 366 | 1 | Status/Control                          | bit 7: TX_DISABLE State
+|     |   |                                         | bit 6 – 3: Reserved
+|     |   |                                         | bit 2: TX_FAULT State
+|     |   |                                         | bit 1: RX_LOS State
+|     |   |                                         | bit 0: Data Ready (Bar)
+| 367 | 1 | Reserved                         
+| 368 | 1 | Alarm Flags                             | bit 7: Temp High Alarm
+|     |    |                                        | bit 6: Temp Low Alarm
+|     |    |                                        | bit 5: VCC High Alarm
+|     |    |                                        | bit 4: VCC Low Alarm
+|     |    |                                        | bit 3: Tx Bias High Alarm
+|     |    |                                        | bit 2: Tx Bias Low Alarm
+|     |    |                                        | bit 1: Tx Power High Alarm
+|     |    |                                        | bit 0: Tx Power Low Alarm
+| 369 |  1 | Alarm Flags cont.                      | bit 7: Rx Power High Alarm
+|     |    |                                        | bit 6: Rx Power Low Alarm
+|     |    |                                        | bit 5 – 0: Reserved
 370 – 371| 2 | Reserved
-372   |  1 | Warning Flags | bit 7: Temp High Warning
-|     |    |               | bit 6: Temp Low Warning
-|     |    |               | bit 5: VCC High Warning
-|     |    |               | bit 4: VCC Low Warning
-|     |    |               | bit 3: Tx Bias High Warning
-|     |    |               | bit 2: Tx Bias Low Warning
-|     |    |               | bit 1: Tx Power High Warning
-|     |    |               | bit 0: Tx Power Low Warning
-373   | 1  | Warning Flags cont. | bit 7: Rx Power High Warning
-|     |    |               | bit 6: Rx Power Low Warning
-|     |    |               | bit 5 – 0: Reserved
-|374 – 511 | | Reserved/Vendor Specific
+372   |  1 | Warning Flags                          | bit 7: Temp High Warning
+|     |    |                                        | bit 6: Temp Low Warning
+|     |    |                                        | bit 5: VCC High Warning
+|     |    |                                        | bit 4: VCC Low Warning
+|     |    |                                        | bit 3: Tx Bias High Warning
+|     |    |                                        | bit 2: Tx Bias Low Warning
+|     |    |                                        | bit 1: Tx Power High Warning
+|     |    |                                        | bit 0: Tx Power Low Warning
+373   | 1  | Warning Flags cont.                    | bit 7: Rx Power High Warning
+|     |    |                                        | bit 6: Rx Power Low Warning
+|     |    |                                        | bit 5 – 0: Reserved
+|374 – 511 |                                        | Reserved/Vendor Specific
 
 
 
